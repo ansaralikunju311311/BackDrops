@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Light"), local("Gilroy-Light"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Light.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Light.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Regular"), local("Gilroy-Regular"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Regular.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Regular.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Medium"), local("Gilroy-Medium"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Medium.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Medium.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Bold"), local("Gilroy-Bold"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Bold.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Bold.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Extrabold"), local("Gilroy-Extrabold"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Extrabold.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Extrabold.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Gilroy-Extrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circe";
+  src: local("Circe Light"), local("Circe-Light"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Light.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Light.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circe";
+  src: local("Circe Regular"), local("Circe-Regular"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Regular.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Regular.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Circe";
+  src: local("Circe Bold"), local("Circe-Bold"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Bold.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Bold.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/Circe-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "URW Geometric Extended";
+  src: local("URW Geometric Extended Regular"), local("URW-Geometric-Extended-Regular"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Regular.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Regular.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "URW Geometric Extended";
+  src: local("URW Geometric Extended Medium"), local("URW-Geometric-Extended-Medium"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Medium.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Medium.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "URW Geometric Extended";
+  src: local("URW Geometric Extended Bold"), local("URW-Geometric-Extended-Bold"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Bold.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Bold.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "URW Geometric Extended";
+  src: local("URW Geometric Extended Black"), local("URW-Geometric-Extended-Black"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Black.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Black.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/URWGeometricExt-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Euclid Circular";
+  src: local("Euclid Circular Regular"), local("Euclid-Circular-Regular"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/EuclidCircularA-Regular.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/EuclidCircularA-Regular.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/EuclidCircularA-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Euclid Circular";
+  src: local("Euclid Circular Semi Bold"), local("Euclid-Circular-Semi-Bold"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/EuclidCircularA-SemiBold.woff2") format("woff2"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/EuclidCircularA-SemiBold.woff") format("woff"), url("https://insightexpo.ae/wp-content/themes/insightexpo/fonts/EuclidCircularA-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@theme {
+  --font-gilroy: "Gilroy", sans-serif;
+  --font-circe: "Circe", sans-serif;
+  --font-urw: "URW Geometric Extended", sans-serif;
+  --font-euclid: "Euclid Circular", sans-serif;
+  --color-brand-red: #E41713;
+  --color-brand-bg: #1C202A;
+  --color-brand-input: #43474F;
+  --color-brand-green: #2BEA60;
+  --color-brand-card: #2A2F3D;
+  --color-brand-border: #393D48;
+}
+
+:root {
+  font-size: 0.520835vw;
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 1.1682242991vw;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-gilroy);
+  background-color: var(--color-brand-bg);
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+input, textarea, button, a {
+  outline: none;
+  font: inherit;
+}
