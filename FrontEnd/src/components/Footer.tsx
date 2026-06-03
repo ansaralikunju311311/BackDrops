@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
               <div className="flex flex-col text-left py-12 select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-10 max-w-[120rem] mx-auto">
                 {/* Intro block */}
                 <p>
-                  <strong className="text-white font-bold">BackDrops</strong> is a full-service event agency specializing in the creation and management of temporary construction projects. Since 2019, we have been providing a wide range of services for the production of exclusive exhibition stands, using innovative technologies and following trends in the exhibition industry. Our team has successful experience working not only with UAE projects, but also with foreign projects in more than 30 countries around the world. Thanks to the competencies of our specialists, we are improving every year, expanding our capabilities and expanding the list of countries in which we implement our projects.
+                  <strong className="text-white font-bold">BackDrops</strong> is a full-service event agency specializing in the creation and management of temporary construction projects. Since 2019, we have been providing a wide range of services for the production of exclusive exhibition stands, using innovative technologies and following trends in the exhibition industry. Our team has successful experience working not only with UAE projects, but also with foreign projects in more than 15 countries around the world. Thanks to the competencies of our specialists, we are improving every year, expanding our capabilities and expanding the list of countries in which we implement our projects.
                 </p>
 
                 {/* The main mission */}
@@ -170,33 +170,56 @@ const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom Details Grid (Structured) */}
+         {/* Bottom Details Grid (Structured) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-brand-white/10 pt-16 mb-16">
           
           {/* Column 1: Office Address info */}
-          <div>
-            <span className="font-urw font-extrabold text-[2.8rem] tracking-wider text-brand-white block mb-4">
-              BackDrops FZE
-            </span>
-            <p className="font-circe font-light text-[2.4rem] text-brand-text-muted leading-relaxed">
-              Gate No. 13, Warehouse No. 6 - Mena Jabal Ali - Dubai - UAE
-            </p>
+          <div className="space-y-4">
+            <div>
+              <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white block mb-2">
+                BackDrops FZE
+              </span>
+              <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed">
+                Gate No. 13, Warehouse No. 6 - Mena Jabal Ali - Dubai - UAE
+              </p>
+            </div>
+            <div className="pt-4 border-t border-brand-white/10">
+              <div className="flex items-center justify-between gap-4 mb-2">
+                <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white">
+                  Creo Construction Experts
+                </span>
+                <a
+                  href="https://www.instagram.com/creo_designs?igsh=Nno4YWgxdWx4M3Jw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-text-muted hover:text-[#d4af37] transition-all duration-300 hover:scale-110 flex items-center justify-center w-10 h-10 rounded-full bg-brand-white/5 hover:bg-brand-white/10 flex-shrink-0"
+                  aria-label="Creo Designs Instagram"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                  </svg>
+                </a>
+              </div>
+              <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed">
+                India office: Arullil arcade, Pazhuvil, Near Chazhur panchayath office, Thrissur DT
+              </p>
+            </div>
           </div>
 
           {/* Column 2: Contacts info */}
           <div>
-            <span className="font-urw font-extrabold text-[2.8rem] tracking-wider text-brand-white block mb-4">
+            <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white block mb-4">
               Contacts
             </span>
             <a
               href="tel:+971545502356"
-              className="font-circe font-light text-[2.4rem] text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
+              className="font-circe font-light text-[1.8rem] md:text-[2rem] text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
             >
               +971 54 550 2356
             </a>
             <a
               href="mailto:info@backdrops.ae"
-              className="font-circe font-light text-[2.4rem] text-brand-white hover:text-brand-gold block transition-colors duration-300"
+              className="font-circe font-light text-[1.8rem] md:text-[2rem] text-brand-white hover:text-brand-gold block transition-colors duration-300"
             >
               info@backdrops.ae
             </a>
@@ -208,7 +231,7 @@ const Footer: React.FC = () => {
               <a
                 key={policy}
                 href="#"
-                className="font-euclid font-normal text-[2.2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
+                className="font-euclid font-normal text-[1.8rem] md:text-[2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
               >
                 {policy}
               </a>

@@ -117,7 +117,7 @@ const Hero: React.FC = () => {
               {/* Stat 1 */}
               <div className="flex flex-col">
                 <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={6} suffix="+" />
+                  <CountUp from={0} to={20} suffix="+" />
                 </span>
                 <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
                   years experience
@@ -127,7 +127,7 @@ const Hero: React.FC = () => {
               {/* Stat 2 */}
               <div className="flex flex-col">
                 <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={30} suffix="+" />
+                  <CountUp from={0} to={15} suffix="+" />
                 </span>
                 <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
                   countries
@@ -137,7 +137,7 @@ const Hero: React.FC = () => {
               {/* Stat 3 */}
               <div className="flex flex-col">
                 <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={200} suffix="+" />
+                  <CountUp from={0} to={600} suffix="+" />
                 </span>
                 <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
                   completed projects
