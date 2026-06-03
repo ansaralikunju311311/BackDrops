@@ -7,6 +7,8 @@ import Mission from './components/About/Mission'
 import Certificates from './components/About/Certificates'
 import Contact from './components/Contact'
 import Services from './components/Services'
+import ServiceDetail from './components/ServiceDetail'
+import PortfolioDetail from './components/PortfolioDetail'
 import Footer from './components/Footer'
 
 const ScrollToTop: React.FC = () => {
@@ -50,9 +52,12 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomeView />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/detail" element={<ServiceDetail />} />
+            <Route path="/portfolio/detail" element={<PortfolioDetail />} />
             <Route path="/contacts" element={<Contact />} />
           </Routes>
         </main>
+
 
         {/* Global Footer with WhatsApp Widget */}
         <Footer />

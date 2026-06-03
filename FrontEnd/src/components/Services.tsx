@@ -245,8 +245,8 @@ const Services: React.FC = () => {
               {/* Front offset border (Gold/red accent) */}
               <div className="absolute -top-6 -left-6 w-full h-full border border-brand-gold/45 rounded-sm pointer-events-none z-0" />
 
-              {/* Main Image Viewport */}
-              <div className="w-full h-full relative overflow-hidden rounded-sm z-10 bg-brand-dark-accent border border-brand-white/5">
+              {/* Main Image Viewport wrapped in detail link */}
+              <Link to={`/services/detail?id=${activeIdx}`} className="w-full h-full relative overflow-hidden rounded-sm z-10 bg-brand-dark-accent border border-brand-white/5 block group/img">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.img
                     key={activeIdx}
@@ -257,11 +257,11 @@ const Services: React.FC = () => {
                     exit="exit"
                     src={SERVICES_DATA[activeIdx].image}
                     alt={SERVICES_DATA[activeIdx].title}
-                    className="w-full h-full object-cover select-none"
+                    className="w-full h-full object-cover select-none group-hover/img:scale-105 transition-transform duration-700"
                   />
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
-              </div>
+              </Link>
             </div>
           </div>
 
@@ -307,10 +307,10 @@ const Services: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Link to Contacts */}
+            {/* Link to Service Details Page */}
             <div className="mt-8 lg:mt-12">
               <Link
-                to={`/contacts?service=${encodeURIComponent(SERVICES_DATA[activeIdx].title)}`}
+                to={`/services/detail?id=${activeIdx}`}
                 className="inline-flex font-euclid font-bold text-[2rem] tracking-wider uppercase text-brand-gold hover:text-white transition-colors duration-300 items-center gap-3 group/btn"
               >
                 <span>Read more</span>
