@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 import BexLogo from './BexLogo'
 
 const Header: React.FC = () => {
+  const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -33,9 +35,9 @@ const Header: React.FC = () => {
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
         
         {/* Left: Brand Logo */}
-        <a href="#" className="flex items-center group py-1">
+        <Link to="/" className="flex items-center group py-1">
           <BexLogo scale={isScrolled ? 0.85 : 0.95} />
-        </a>
+        </Link>
 
         {/* Center: IFES Badge (Desktop Only) - hidden when scrolled */}
         <div className="hidden lg:block">
@@ -63,29 +65,39 @@ const Header: React.FC = () => {
         {/* Right: Navigation Links and Optional Scrolled Action Button */}
         <div className="hidden lg:flex items-center gap-8">
           <nav className="flex items-center gap-2 relative">
-            {menuItems.map((item, idx) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                className="font-euclid font-bold text-[2.1rem] tracking-wider uppercase text-brand-white/80 hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs"
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <span className="relative z-10">{item}</span>
-                <AnimatePresence>
-                  {hoveredIndex === idx && (
-                    <motion.span
-                      layoutId="nav-hover-pill"
-                      className="absolute inset-0 bg-brand-white/5 rounded-xs z-0"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </AnimatePresence>
-              </a>
-            ))}
+            {menuItems.map((item, idx) => {
+              const isContacts = item.toLowerCase() === 'contacts'
+              const hrefPath = isContacts 
+                ? '/contacts' 
+                : (location.pathname === '/contacts' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+              
+              const Component = isContacts ? Link : 'a'
+              const props = isContacts ? { to: '/contacts' } : { href: hrefPath }
+
+              return (
+                <Component
+                  key={item}
+                  {...props}
+                  className="font-euclid font-bold text-[2.1rem] tracking-wider uppercase text-brand-white/80 hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs"
+                  onMouseEnter={() => setHoveredIndex(idx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <span className="relative z-10">{item}</span>
+                  <AnimatePresence>
+                    {hoveredIndex === idx && (
+                      <motion.span
+                        layoutId="nav-hover-pill"
+                        className="absolute inset-0 bg-brand-white/5 rounded-xs z-0"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                </Component>
+              )
+            })}
           </nav>
 
           {/* Scrolled Send Request Button */}
@@ -97,12 +109,12 @@ const Header: React.FC = () => {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.3 }}
               >
-                <a
-                  href="#contacts"
+                <Link
+                  to="/contacts"
                   className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase px-8 py-4 bg-brand-gold text-brand-white hover:bg-brand-white hover:text-brand-dark transition-all duration-300 rounded-xs flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.15)] group"
                 >
                   Send Request <span className="font-light text-[1.8rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
-                </a>
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>
@@ -130,16 +142,26 @@ const Header: React.FC = () => {
           >
             <div className="flex flex-col p-8 gap-8 h-full">
               <nav className="flex flex-col gap-4">
-                {menuItems.map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase().replace(' ', '-')}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-urw font-bold text-[2.2rem] uppercase tracking-wider text-brand-white hover:text-brand-gold py-3 border-b border-brand-white/5 transition-colors duration-300"
-                  >
-                    {item}
-                  </a>
-                ))}
+                {menuItems.map((item) => {
+                  const isContacts = item.toLowerCase() === 'contacts'
+                  const hrefPath = isContacts 
+                    ? '/contacts' 
+                    : (location.pathname === '/contacts' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+                  
+                  const Component = isContacts ? Link : 'a'
+                  const props = isContacts ? { to: '/contacts' } : { href: hrefPath }
+
+                  return (
+                    <Component
+                      key={item}
+                      {...props}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="font-urw font-bold text-[2.2rem] uppercase tracking-wider text-brand-white hover:text-brand-gold py-3 border-b border-brand-white/5 transition-colors duration-300"
+                    >
+                      {item}
+                    </Component>
+                  )
+                })}
               </nav>
             </div>
           </motion.div>

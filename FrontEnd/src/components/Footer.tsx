@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 import BexLogo from './BexLogo'
 
 const Footer: React.FC = () => {
+  const location = useLocation()
   const currentYear = new Date().getFullYear()
   const [isDividerHovered, setIsDividerHovered] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
@@ -39,7 +41,7 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <footer className="bg-brand-bg text-brand-white pt-16 pb-12 relative overflow-hidden" id="contacts">
+    <footer className="bg-brand-bg text-brand-white pt-16 pb-12 relative overflow-hidden" id="footer">
       
       {/* WhatsApp Floating Widget with Pulsing Green Rings */}
       <div className="fixed bottom-8 right-8 z-50 flex items-center justify-center">
@@ -127,32 +129,43 @@ const Footer: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-24">
           
           {/* Logo on the left */}
-          <a href="#" className="flex items-center group py-1">
+          {/* Logo on the left */}
+          <Link to="/" className="flex items-center group py-1">
             <BexLogo scale={0.95} />
-          </a>
+          </Link>
 
           {/* Navigation in the center */}
           <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4">
-            {['Services', 'Portfolio', 'Reviews', 'Articles', 'Contacts', 'FAQ'].map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className="font-euclid font-bold text-[2.1rem] uppercase tracking-wider text-brand-white/70 hover:text-brand-gold transition-colors duration-300 relative py-2 group"
-              >
-                {link}
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </a>
-            ))}
+            {['Services', 'Portfolio', 'Reviews', 'Articles', 'Contacts', 'FAQ'].map((link) => {
+              const isContacts = link.toLowerCase() === 'contacts'
+              const hrefPath = isContacts 
+                ? '/contacts' 
+                : (location.pathname === '/contacts' ? `/#${link.toLowerCase()}` : `#${link.toLowerCase()}`)
+              
+              const Component = isContacts ? Link : 'a'
+              const props = isContacts ? { to: '/contacts' } : { href: hrefPath }
+
+              return (
+                <Component
+                  key={link}
+                  {...props}
+                  className="font-euclid font-bold text-[2.1rem] uppercase tracking-wider text-brand-white/70 hover:text-brand-gold transition-colors duration-300 relative py-2 group"
+                >
+                  {link}
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                </Component>
+              )
+            })}
           </nav>
 
           {/* Gold button on the right */}
           <div>
-            <a
-              href="#contacts"
+            <Link
+              to="/contacts"
               className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase px-12 py-5 bg-brand-gold text-brand-dark hover:bg-brand-white hover:text-brand-dark transition-all duration-300 rounded-sm flex items-center gap-3 shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)] group"
             >
               Send Request <span className="font-light text-xl group-hover:translate-x-1 transition-transform duration-300">+</span>
-            </a>
+            </Link>
           </div>
 
         </div>
