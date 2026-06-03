@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Phone, Mail, ArrowUpRight, MessageSquare, Check, AlertCircle } from 'lucide-react'
-
 interface ValidationErrors {
   fullName?: string;
   companyName?: string;
@@ -9,7 +8,6 @@ interface ValidationErrors {
   phoneNumber?: string;
   message?: string;
 }
-
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -172,7 +170,7 @@ const Contact: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Large diagonal shadow shard */}
         <div 
-          className="absolute top-0 right-0 w-[80%] h-[120%] bg-gradient-to-bl from-brand-white/[0.02] via-transparent to-transparent opacity-60 transform rotate-[15deg] translate-x-[20%] -translate-y-[10%]"
+          className="absolute top-0 right-0 w-[80%] h-[120%] bg-linear-to-bl from-brand-white/2 via-transparent to-transparent opacity-60 transform rotate-15 translate-x-[20%] translate-y-[-10%]"
           style={{
             clipPath: 'polygon(20% 0%, 100% 0%, 100% 80%, 0% 100%)',
             backdropFilter: 'blur(8px)',
@@ -180,18 +178,18 @@ const Contact: React.FC = () => {
         />
         {/* Dark polygonal prism overlay 1 */}
         <div 
-          className="absolute -top-[10%] right-[5%] w-[60%] h-[90%] bg-gradient-to-b from-brand-dark-accent/25 to-brand-bg/50 border border-brand-white/[0.03] transform -skew-x-[20deg] rotate-[25deg]"
+          className="absolute top-[-10%] right-[5%] w-[60%] h-[90%] bg-linear-to-b from-brand-dark-accent/25 to-brand-bg/50 border border-brand-white/3 transform skew-x-[-20deg] rotate-25"
           style={{
             boxShadow: 'inset 0 0 40px rgba(255,255,255,0.01), 0 30px 60px rgba(0,0,0,0.8)'
           }}
         />
         {/* Dark polygonal prism overlay 2 */}
         <div 
-          className="absolute top-[20%] right-[15%] w-[45%] h-[75%] bg-gradient-to-tr from-brand-dark-accent/40 via-brand-dark/20 to-transparent border-l border-brand-white/[0.04] transform -skew-x-[15deg] rotate-[15deg]"
+          className="absolute top-[20%] right-[15%] w-[45%] h-[75%] bg-linear-to-tr from-brand-dark-accent/40 via-brand-dark/20 to-transparent border-l border-brand-white/4 transform skew-x-[-15deg] rotate-15"
         />
       </div>
 
-      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+      <div className="max-w-560 mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         
         {/* Contact Us Title */}
         <motion.div
@@ -218,10 +216,10 @@ const Contact: React.FC = () => {
             UAE
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12 max-w-[90rem]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12 max-w-360">
             {/* Address Row */}
             <div className="flex gap-6 items-start group">
-              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/[0.02] transition-all duration-300 shrink-0">
+              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
               <div className="space-y-2">
@@ -236,7 +234,7 @@ const Contact: React.FC = () => {
 
             {/* Email Row */}
             <div className="flex gap-6 items-start group">
-              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/[0.02] transition-all duration-300 shrink-0">
+              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
                 <Mail className="w-5 h-5" />
               </div>
               <div className="space-y-2">
@@ -254,7 +252,7 @@ const Contact: React.FC = () => {
 
             {/* Telephone Row */}
             <div className="flex gap-6 items-start group">
-              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/[0.02] transition-all duration-300 shrink-0">
+              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
                 <Phone className="w-5 h-5" />
               </div>
               <div className="space-y-2">
@@ -287,9 +285,9 @@ const Contact: React.FC = () => {
               Contact us
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-10" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-14" noValidate>
               {/* Full Name */}
-              <div className={`relative border-b transition-colors duration-300 py-3 ${
+              <div className={`relative border-b transition-colors duration-300 pt-10 pb-4 ${
                 errors.fullName 
                   ? 'border-red-500/40 focus-within:border-red-500' 
                   : 'border-brand-white/15 focus-within:border-brand-gold'
@@ -297,8 +295,8 @@ const Contact: React.FC = () => {
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'fullName' || formData.fullName
-                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
-                      : 'top-2 text-brand-text-muted/70'
+                      ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
+                      : 'top-8 text-brand-text-muted/70'
                   } ${errors.fullName ? 'text-red-400' : ''}`}
                 >
                   Full name <span className="text-brand-gold">*</span>
@@ -311,7 +309,8 @@ const Contact: React.FC = () => {
                   onFocus={() => setActiveInput('fullName')}
                   onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
+                  style={{ fontSize: '3rem' }}
+                  className="w-full bg-transparent border-none pt-2 text-brand-white focus:outline-none"
                 />
                 <AnimatePresence>
                   {errors.fullName && (
@@ -328,7 +327,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Company Name */}
-              <div className={`relative border-b transition-colors duration-300 py-3 ${
+              <div className={`relative border-b transition-colors duration-300 pt-10 pb-4 ${
                 errors.companyName 
                   ? 'border-red-500/40 focus-within:border-red-500' 
                   : 'border-brand-white/15 focus-within:border-brand-gold'
@@ -336,8 +335,8 @@ const Contact: React.FC = () => {
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'companyName' || formData.companyName
-                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
-                      : 'top-2 text-brand-text-muted/70'
+                      ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
+                      : 'top-8 text-brand-text-muted/70'
                   } ${errors.companyName ? 'text-red-400' : ''}`}
                 >
                   Company name <span className="text-brand-gold">*</span>
@@ -350,7 +349,8 @@ const Contact: React.FC = () => {
                   onFocus={() => setActiveInput('companyName')}
                   onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
+                  style={{ fontSize: '3rem' }}
+                  className="w-full bg-transparent border-none pt-2 text-brand-white focus:outline-none"
                 />
                 <AnimatePresence>
                   {errors.companyName && (
@@ -367,7 +367,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* E-mail */}
-              <div className={`relative border-b transition-colors duration-300 py-3 ${
+              <div className={`relative border-b transition-colors duration-300 pt-10 pb-4 ${
                 errors.email 
                   ? 'border-red-500/40 focus-within:border-red-500' 
                   : 'border-brand-white/15 focus-within:border-brand-gold'
@@ -375,8 +375,8 @@ const Contact: React.FC = () => {
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'email' || formData.email
-                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
-                      : 'top-2 text-brand-text-muted/70'
+                      ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
+                      : 'top-8 text-brand-text-muted/70'
                   } ${errors.email ? 'text-red-400' : ''}`}
                 >
                   E-mail <span className="text-brand-gold">*</span>
@@ -389,7 +389,8 @@ const Contact: React.FC = () => {
                   onFocus={() => setActiveInput('email')}
                   onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
+                  style={{ fontSize: '3rem' }}
+                  className="w-full bg-transparent border-none pt-2 text-brand-white focus:outline-none"
                 />
                 <AnimatePresence>
                   {errors.email && (
@@ -406,7 +407,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Phone Number */}
-              <div className={`relative border-b transition-colors duration-300 py-3 ${
+              <div className={`relative border-b transition-colors duration-300 pt-10 pb-4 ${
                 errors.phoneNumber 
                   ? 'border-red-500/40 focus-within:border-red-500' 
                   : 'border-brand-white/15 focus-within:border-brand-gold'
@@ -414,8 +415,8 @@ const Contact: React.FC = () => {
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'phoneNumber' || formData.phoneNumber
-                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
-                      : 'top-2 text-brand-text-muted/70'
+                      ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
+                      : 'top-8 text-brand-text-muted/70'
                   } ${errors.phoneNumber ? 'text-red-400' : ''}`}
                 >
                   Phone number <span className="text-brand-gold">*</span>
@@ -428,7 +429,8 @@ const Contact: React.FC = () => {
                   onFocus={() => setActiveInput('phoneNumber')}
                   onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
+                  style={{ fontSize: '3rem' }}
+                  className="w-full bg-transparent border-none pt-2 text-brand-white focus:outline-none"
                 />
                 <AnimatePresence>
                   {errors.phoneNumber && (
@@ -445,7 +447,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Message */}
-              <div className={`relative border-b transition-colors duration-300 py-3 ${
+              <div className={`relative border-b transition-colors duration-300 pt-10 pb-4 ${
                 errors.message 
                   ? 'border-red-500/40 focus-within:border-red-500' 
                   : 'border-brand-white/15 focus-within:border-brand-gold'
@@ -453,8 +455,8 @@ const Contact: React.FC = () => {
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'message' || formData.message
-                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
-                      : 'top-2 text-brand-text-muted/70'
+                      ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
+                      : 'top-8 text-brand-text-muted/70'
                   } ${errors.message ? 'text-red-400' : ''}`}
                 >
                   Message <span className="text-brand-gold">*</span>
@@ -467,7 +469,8 @@ const Contact: React.FC = () => {
                   onBlur={handleBlur}
                   required
                   rows={2}
-                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white resize-none focus:outline-none"
+                  style={{ fontSize: '3rem' }}
+                  className="w-full bg-transparent border-none pt-2 text-brand-white resize-none focus:outline-none"
                 />
                 <AnimatePresence>
                   {errors.message && (
@@ -541,7 +544,7 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 relative mt-12 lg:mt-0 flex justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-[50rem] aspect-[4/5] z-10 select-none group">
+            <div className="relative w-full max-w-200 aspect-4/5 z-10 select-none group">
               
               {/* Backing Outline decorative Box 1 (Offset Top-Left) */}
               <div className="absolute -top-6 -left-6 border border-brand-white/10 w-2/3 h-2/3 -z-10 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2">
@@ -557,15 +560,15 @@ const Contact: React.FC = () => {
                 <img 
                   src="/assets/workspace_meeting.png" 
                   alt="Workspace Meeting" 
-                  className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 hover:scale-[1.03]"
+                  className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 transition-all duration-700 hover:scale-[1.03]"
                 />
                 
                 {/* Gradient overlay inside image bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Floating Social Bar (Right edge vertical align) */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-brand-white py-6 px-3 flex flex-col gap-6 rounded-[4px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 transition-all duration-300 hover:scale-105 border border-black/5">
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-brand-white py-6 px-3 flex flex-col gap-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 transition-all duration-300 hover:scale-105 border border-black/5">
                 <a 
                   href="https://www.youtube.com/@BackdropsDXB" 
                   target="_blank" 
@@ -609,7 +612,7 @@ const Contact: React.FC = () => {
                 className="absolute -bottom-7 -right-7 w-16 h-16 bg-brand-gold hover:bg-brand-gold-light text-brand-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-20 group"
                 aria-label="Send direct query"
               >
-                <MessageSquare className="w-7 h-7 transition-transform duration-300 group-hover:rotate-[15deg]" />
+                <MessageSquare className="w-7 h-7 transition-transform duration-300 group-hover:rotate-15" />
               </motion.a>
             </div>
           </motion.div>
