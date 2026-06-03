@@ -16,7 +16,11 @@ const Mission: React.FC = () => {
             className="max-w-[48rem] text-center md:text-right order-3 md:order-1"
           >
             <p className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-brand-text-muted leading-relaxed">
-              present your company and products at the event as effectively as possible
+             The future we're Building
+             To become the go-to execution partner 
+             for leading agencies,knwon for 
+             delivering experiences that are not
+             "just built -- but remembered"
             </p>
           </motion.div>
 

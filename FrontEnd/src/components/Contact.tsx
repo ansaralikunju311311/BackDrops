@@ -21,6 +21,17 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const serviceParam = params.get('service')
+    if (serviceParam) {
+      setFormData(prev => ({
+        ...prev,
+        message: `Hello, I am interested in your "${serviceParam}" services. Please contact me with more information.`
+      }))
+    }
+  }, [])
+
   // Interactive states for right-side visual component
   const [rotateX, setRotateX] = useState(0)
   const [rotateY, setRotateY] = useState(0)
