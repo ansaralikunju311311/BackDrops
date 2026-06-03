@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Phone, Mail, ArrowUpRight, MessageSquare, Check, AlertCircle } from 'lucide-react'
 
+interface ValidationErrors {
+  fullName?: string;
+  companyName?: string;
+  email?: string;
+  phoneNumber?: string;
+  message?: string;
+}
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -10,22 +18,96 @@ const Contact: React.FC = () => {
     phoneNumber: '',
     message: ''
   })
+  const [errors, setErrors] = useState<ValidationErrors>({})
   const [activeInput, setActiveInput] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
+  const validateField = (name: string, value: string): string => {
+    let error = ''
+    switch (name) {
+      case 'fullName':
+        if (!value.trim()) {
+          error = 'Full name is required.'
+        } else if (!/^[a-zA-Z\s]{2,50}$/.test(value.trim())) {
+          error = 'Full name must be 2-50 characters (letters and spaces only).'
+        }
+        break
+      case 'companyName':
+        if (!value.trim()) {
+          error = 'Company name is required.'
+        } else if (value.trim().length < 2 || value.trim().length > 100) {
+          error = 'Company name must be between 2 and 100 characters.'
+        }
+        break
+      case 'email':
+        if (!value.trim()) {
+          error = 'Email address is required.'
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
+          error = 'Please enter a valid email address (e.g. name@domain.com).'
+        }
+        break
+      case 'phoneNumber':
+        if (!value.trim()) {
+          error = 'Phone number is required.'
+        } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(value.trim())) {
+          error = 'Please enter a valid phone number (7-20 digits, spaces/hyphens allowed).'
+        }
+        break
+      case 'message':
+        if (!value.trim()) {
+          error = 'Message is required.'
+        } else if (value.trim().length < 10) {
+          error = 'Message must be at least 10 characters long.'
+        } else if (value.trim().length > 1000) {
+          error = 'Message cannot exceed 1000 characters.'
+        }
+        break
+      default:
+        break
+    }
+    return error
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    
+    // Clear or update field validation error on change
+    const error = validateField(name, value)
+    setErrors(prev => ({ ...prev, [name]: error }))
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setActiveInput(null)
+    const { name, value } = e.target
+    const error = validateField(name, value)
+    setErrors(prev => ({ ...prev, [name]: error }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Basic validation
-    if (!formData.fullName || !formData.email || !formData.message) {
+    // Validate all fields strictly
+    const newErrors: ValidationErrors = {}
+    Object.keys(formData).forEach((key) => {
+      const error = validateField(key, formData[key as keyof typeof formData])
+      if (error) {
+        newErrors[key as keyof ValidationErrors] = error
+      }
+    })
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
       setSubmitStatus('error')
       setTimeout(() => setSubmitStatus(null), 5000)
+      
+      // Scroll to first error field for accessibility
+      const firstErrorField = Object.keys(newErrors)[0]
+      const element = document.getElementsByName(firstErrorField)[0]
+      if (element) {
+        element.focus()
+      }
       return
     }
 
@@ -57,11 +139,20 @@ const Contact: React.FC = () => {
           phoneNumber: '',
           message: ''
         })
+        setErrors({})
         if (data.previewUrl) {
           console.log("Test email preview link (Ethereal):", data.previewUrl)
         }
       } else {
         setSubmitStatus('error')
+        if (data.errors && Array.isArray(data.errors)) {
+          // If backend returns detailed validation errors, map them to UI
+          const backendErrors: ValidationErrors = {}
+          data.errors.forEach((err: { field: string; message: string }) => {
+            backendErrors[err.field as keyof ValidationErrors] = err.message
+          })
+          setErrors(backendErrors)
+        }
       }
     } catch (error) {
       console.error("Form submit error:", error)
@@ -138,7 +229,7 @@ const Contact: React.FC = () => {
                   Address:
                 </span>
                 <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
-                  The Offices 4,<br />One Central, Dubai, UAE
+                  Gate No. 13, Warehouse No. 6<br />Mena Jabal Ali - Dubai - UAE
                 </p>
               </div>
             </div>
@@ -153,10 +244,10 @@ const Contact: React.FC = () => {
                   E-mail:
                 </span>
                 <a 
-                  href="mailto:Info@insightexpo.ae" 
+                  href="mailto:info@backdrops.ae" 
                   className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
                 >
-                  Info@insightexpo.ae
+                  info@backdrops.ae
                 </a>
               </div>
             </div>
@@ -171,10 +262,10 @@ const Contact: React.FC = () => {
                   Telephone:
                 </span>
                 <a 
-                  href="tel:+971527725374" 
+                  href="tel:+971545502356" 
                   className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
                 >
-                  +971 52 772 5374
+                  +971 54 550 2356
                 </a>
               </div>
             </div>
@@ -196,15 +287,19 @@ const Contact: React.FC = () => {
               Contact us
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-10" noValidate>
               {/* Full Name */}
-              <div className="relative border-b border-brand-white/15 focus-within:border-brand-gold transition-colors duration-300 py-3">
+              <div className={`relative border-b transition-colors duration-300 py-3 ${
+                errors.fullName 
+                  ? 'border-red-500/40 focus-within:border-red-500' 
+                  : 'border-brand-white/15 focus-within:border-brand-gold'
+              }`}>
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'fullName' || formData.fullName
-                      ? '-top-6 text-[1.5rem] text-brand-gold font-medium'
+                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
                       : 'top-2 text-brand-text-muted/70'
-                  }`}
+                  } ${errors.fullName ? 'text-red-400' : ''}`}
                 >
                   Full name <span className="text-brand-gold">*</span>
                 </label>
@@ -214,20 +309,36 @@ const Contact: React.FC = () => {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   onFocus={() => setActiveInput('fullName')}
-                  onBlur={() => setActiveInput(null)}
+                  onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[2.2rem] pt-2 text-brand-white focus:outline-none"
+                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
                 />
+                <AnimatePresence>
+                  {errors.fullName && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="text-red-500 font-circe text-[1.6rem] mt-2 flex items-center gap-1.5"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" /> {errors.fullName}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Company Name */}
-              <div className="relative border-b border-brand-white/15 focus-within:border-brand-gold transition-colors duration-300 py-3">
+              <div className={`relative border-b transition-colors duration-300 py-3 ${
+                errors.companyName 
+                  ? 'border-red-500/40 focus-within:border-red-500' 
+                  : 'border-brand-white/15 focus-within:border-brand-gold'
+              }`}>
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'companyName' || formData.companyName
-                      ? '-top-6 text-[1.5rem] text-brand-gold font-medium'
+                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
                       : 'top-2 text-brand-text-muted/70'
-                  }`}
+                  } ${errors.companyName ? 'text-red-400' : ''}`}
                 >
                   Company name <span className="text-brand-gold">*</span>
                 </label>
@@ -237,20 +348,36 @@ const Contact: React.FC = () => {
                   value={formData.companyName}
                   onChange={handleInputChange}
                   onFocus={() => setActiveInput('companyName')}
-                  onBlur={() => setActiveInput(null)}
+                  onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[2.2rem] pt-2 text-brand-white focus:outline-none"
+                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
                 />
+                <AnimatePresence>
+                  {errors.companyName && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="text-red-500 font-circe text-[1.6rem] mt-2 flex items-center gap-1.5"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" /> {errors.companyName}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* E-mail */}
-              <div className="relative border-b border-brand-white/15 focus-within:border-brand-gold transition-colors duration-300 py-3">
+              <div className={`relative border-b transition-colors duration-300 py-3 ${
+                errors.email 
+                  ? 'border-red-500/40 focus-within:border-red-500' 
+                  : 'border-brand-white/15 focus-within:border-brand-gold'
+              }`}>
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'email' || formData.email
-                      ? '-top-6 text-[1.5rem] text-brand-gold font-medium'
+                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
                       : 'top-2 text-brand-text-muted/70'
-                  }`}
+                  } ${errors.email ? 'text-red-400' : ''}`}
                 >
                   E-mail <span className="text-brand-gold">*</span>
                 </label>
@@ -260,20 +387,36 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   onFocus={() => setActiveInput('email')}
-                  onBlur={() => setActiveInput(null)}
+                  onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[2.2rem] pt-2 text-brand-white focus:outline-none"
+                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
                 />
+                <AnimatePresence>
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="text-red-500 font-circe text-[1.6rem] mt-2 flex items-center gap-1.5"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" /> {errors.email}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Phone Number */}
-              <div className="relative border-b border-brand-white/15 focus-within:border-brand-gold transition-colors duration-300 py-3">
+              <div className={`relative border-b transition-colors duration-300 py-3 ${
+                errors.phoneNumber 
+                  ? 'border-red-500/40 focus-within:border-red-500' 
+                  : 'border-brand-white/15 focus-within:border-brand-gold'
+              }`}>
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'phoneNumber' || formData.phoneNumber
-                      ? '-top-6 text-[1.5rem] text-brand-gold font-medium'
+                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
                       : 'top-2 text-brand-text-muted/70'
-                  }`}
+                  } ${errors.phoneNumber ? 'text-red-400' : ''}`}
                 >
                   Phone number <span className="text-brand-gold">*</span>
                 </label>
@@ -283,20 +426,36 @@ const Contact: React.FC = () => {
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   onFocus={() => setActiveInput('phoneNumber')}
-                  onBlur={() => setActiveInput(null)}
+                  onBlur={handleBlur}
                   required
-                  className="w-full bg-transparent border-none text-[2.2rem] pt-2 text-brand-white focus:outline-none"
+                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white focus:outline-none"
                 />
+                <AnimatePresence>
+                  {errors.phoneNumber && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="text-red-500 font-circe text-[1.6rem] mt-2 flex items-center gap-1.5"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" /> {errors.phoneNumber}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Message */}
-              <div className="relative border-b border-brand-white/15 focus-within:border-brand-gold transition-colors duration-300 py-3">
+              <div className={`relative border-b transition-colors duration-300 py-3 ${
+                errors.message 
+                  ? 'border-red-500/40 focus-within:border-red-500' 
+                  : 'border-brand-white/15 focus-within:border-brand-gold'
+              }`}>
                 <label 
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'message' || formData.message
-                      ? '-top-6 text-[1.5rem] text-brand-gold font-medium'
+                      ? '-top-12 text-[2.6rem] text-brand-gold font-medium'
                       : 'top-2 text-brand-text-muted/70'
-                  }`}
+                  } ${errors.message ? 'text-red-400' : ''}`}
                 >
                   Message <span className="text-brand-gold">*</span>
                 </label>
@@ -305,11 +464,23 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   onFocus={() => setActiveInput('message')}
-                  onBlur={() => setActiveInput(null)}
+                  onBlur={handleBlur}
                   required
                   rows={2}
-                  className="w-full bg-transparent border-none text-[2.2rem] pt-2 text-brand-white resize-none focus:outline-none"
+                  className="w-full bg-transparent border-none text-[4rem] pt-2 text-brand-white resize-none focus:outline-none"
                 />
+                <AnimatePresence>
+                  {errors.message && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="text-red-500 font-circe text-[1.6rem] mt-2 flex items-center gap-1.5"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" /> {errors.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Status Alert Panels */}
@@ -333,7 +504,7 @@ const Contact: React.FC = () => {
                     className="p-4 bg-rose-500/10 border border-rose-500/35 rounded-xs flex items-center gap-3 text-rose-400"
                   >
                     <AlertCircle className="w-5 h-5 shrink-0" />
-                    <span className="font-circe text-[1.8rem]">Please fill out all required fields marked with *.</span>
+                    <span className="font-circe text-[1.8rem]">Form submission failed. Please correct the highlighted errors.</span>
                   </motion.div>
                 )}
               </AnimatePresence>

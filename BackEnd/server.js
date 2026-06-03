@@ -83,8 +83,47 @@ initMailer();
 app.post('/api/contact', async (req, res) => {
   const { fullName, companyName, email, phoneNumber, message } = req.body;
 
-  if (!fullName || !email || !message) {
-    return res.status(400).json({ success: false, error: 'Full Name, Email, and Message are required fields.' });
+  const errors = [];
+
+  // 1. Full Name Validation
+  if (!fullName || !fullName.trim()) {
+    errors.push({ field: 'fullName', message: 'Full name is required.' });
+  } else if (!/^[a-zA-Z\s]{2,50}$/.test(fullName.trim())) {
+    errors.push({ field: 'fullName', message: 'Full name must be 2-50 characters (letters and spaces only).' });
+  }
+
+  // 2. Company Name Validation
+  if (!companyName || !companyName.trim()) {
+    errors.push({ field: 'companyName', message: 'Company name is required.' });
+  } else if (companyName.trim().length < 2 || companyName.trim().length > 100) {
+    errors.push({ field: 'companyName', message: 'Company name must be between 2 and 100 characters.' });
+  }
+
+  // 3. Email Validation
+  if (!email || !email.trim()) {
+    errors.push({ field: 'email', message: 'Email address is required.' });
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    errors.push({ field: 'email', message: 'Please enter a valid email address.' });
+  }
+
+  // 4. Phone Number Validation
+  if (!phoneNumber || !phoneNumber.trim()) {
+    errors.push({ field: 'phoneNumber', message: 'Phone number is required.' });
+  } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(phoneNumber.trim())) {
+    errors.push({ field: 'phoneNumber', message: 'Please enter a valid phone number (7-20 digits).' });
+  }
+
+  // 5. Message Validation
+  if (!message || !message.trim()) {
+    errors.push({ field: 'message', message: 'Message is required.' });
+  } else if (message.trim().length < 10) {
+    errors.push({ field: 'message', message: 'Message must be at least 10 characters long.' });
+  } else if (message.trim().length > 1000) {
+    errors.push({ field: 'message', message: 'Message cannot exceed 1000 characters.' });
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).json({ success: false, errors });
   }
 
   const receiverEmail = process.env.RECEIVER_EMAIL || 'ansarpanoor311@gmail.com';
