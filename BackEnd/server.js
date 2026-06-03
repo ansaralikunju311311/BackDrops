@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 5000;
 // Enable CORS dynamically for localhost and hosted environments
 app.use(cors({
   origin: [
-    "https://back-drops-6juov2fyh-ansar-as-projects.vercel.app"
+    "https://back-drops-boqu133kl-ansar-as-projects.vercel.app/"
+  
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
