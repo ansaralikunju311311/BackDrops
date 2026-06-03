@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     // Basic validation
@@ -31,19 +31,45 @@ const Contact: React.FC = () => {
 
     setIsSubmitting(true)
     
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitStatus('success')
-      setFormData({
-        fullName: '',
-        companyName: '',
-        email: '',
-        phoneNumber: '',
-        message: ''
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          companyName: formData.companyName,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
+          message: formData.message
+        })
       })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success')
+        setFormData({
+          fullName: '',
+          companyName: '',
+          email: '',
+          phoneNumber: '',
+          message: ''
+        })
+        if (data.previewUrl) {
+          console.log("Test email preview link (Ethereal):", data.previewUrl)
+        }
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error("Form submit error:", error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
       setTimeout(() => setSubmitStatus(null), 5000)
-    }, 1500)
+    }
   }
 
   return (
