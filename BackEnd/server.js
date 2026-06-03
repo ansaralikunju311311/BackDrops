@@ -131,17 +131,166 @@ app.post('/api/contact', async (req, res) => {
   const mailOptions = {
     from: process.env.SMTP_USER || '"BackDrops Site Form" <no-reply@backdrops.ae>',
     to: receiverEmail,
-    subject: `New Contact Form Inquiry from ${fullName}`,
+    subject: `⚡ New Contact Inquiry from ${fullName}`,
     html: `
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Full Name:</strong> ${fullName}</p>
-      <p><strong>Company:</strong> ${companyName || 'N/A'}</p>
-      <p><strong>Email Address:</strong> ${email}</p>
-      <p><strong>Phone Number:</strong> ${phoneNumber || 'N/A'}</p>
-      <p><strong>Message:</strong></p>
-      <blockquote style="background: #f9f9f9; border-left: 5px solid #ccc; padding: 10px 15px; margin: 10px 0;">
-        ${message.replace(/\n/g, '<br>') || 'N/A'}
-      </blockquote>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Inquiry</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f6f8fa;
+      color: #333333;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrapper {
+      width: 100%;
+      background-color: #f6f8fa;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e1e8ed;
+    }
+    .header {
+      background-color: #0B0C10;
+      padding: 35px 40px;
+      text-align: center;
+      border-bottom: 4px solid #9E5330;
+    }
+    .header h1 {
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .header p {
+      color: #A0A5B5;
+      font-size: 14px;
+      margin: 8px 0 0 0;
+      letter-spacing: 1px;
+    }
+    .content {
+      padding: 40px;
+    }
+    .intro {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555555;
+      margin-bottom: 30px;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    .info-table td {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f2f5;
+      font-size: 15px;
+      vertical-align: top;
+    }
+    .info-table td.label {
+      width: 30%;
+      font-weight: 700;
+      color: #9E5330;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+    .info-table td.value {
+      color: #2D3748;
+    }
+    .message-box {
+      background-color: #FAF6F4;
+      border-left: 4px solid #9E5330;
+      padding: 20px 25px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .message-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #9E5330;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .message-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #2D3748;
+      margin: 0;
+    }
+    .footer {
+      background-color: #f8fafc;
+      padding: 25px 40px;
+      text-align: center;
+      border-top: 1px solid #e1e8ed;
+      font-size: 12px;
+      color: #718096;
+      line-height: 1.5;
+    }
+    .footer a {
+      color: #9E5330;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="header">
+        <h1>BackDrops</h1>
+        <p>New Website Inquiry</p>
+      </div>
+      <div class="content">
+        <p class="intro">Hello, you have received a new contact submission from your landing page. Here are the details:</p>
+        <table class="info-table">
+          <tr>
+            <td class="label">Full Name</td>
+            <td class="value"><strong>${fullName}</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Company</td>
+            <td class="value">${companyName || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td class="label">Email</td>
+            <td class="value"><a href="mailto:${email}" style="color: #9E5330; text-decoration: none;">${email}</a></td>
+          </tr>
+          <tr>
+            <td class="label">Phone</td>
+            <td class="value">${phoneNumber || 'N/A'}</td>
+          </tr>
+        </table>
+        
+        <div class="message-box">
+          <div class="message-title">Message Details</div>
+          <p class="message-text">${message.replace(/\n/g, '<br>')}</p>
+        </div>
+      </div>
+      <div class="footer">
+        <p>This message was automatically generated from the contact form on your website.</p>
+        <p>&copy; ${new Date().getFullYear()} <a href="https://backdrops.ae" style="color: #9E5330;">BackDrops FZE</a>. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
     `
   };
 
