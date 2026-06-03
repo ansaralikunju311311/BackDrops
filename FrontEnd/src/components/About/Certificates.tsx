@@ -75,11 +75,6 @@ const Certificates: React.FC = () => {
       num: "# 02",
       title: "Business License in UAE",
       link: "#"
-    },
-    {
-      num: "# 03",
-      title: "IFES membership",
-      link: "#"
     }
   ]
 
@@ -99,7 +94,7 @@ const Certificates: React.FC = () => {
         </div>
 
         {/* Certificates Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 max-w-[95rem]">
           {certs.map((cert, idx) => (
             <CertificateCard
               key={idx}

@@ -39,29 +39,6 @@ const Header: React.FC = () => {
           <BexLogo scale={isScrolled ? 0.85 : 0.95} />
         </Link>
 
-        {/* Center: IFES Badge (Desktop Only) - hidden when scrolled */}
-        <div className="hidden lg:block">
-          <AnimatePresence>
-            {!isScrolled && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="flex items-center border border-brand-white/5 px-6 py-2.5 gap-4 bg-brand-white/[0.02] rounded-xs shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:border-brand-gold/30 hover:bg-brand-white/[0.04] transition-all duration-300"
-              >
-                <span className="font-urw font-black text-[2.2rem] tracking-widest text-brand-gold">
-                  IFES
-                </span>
-                <div className="w-[1px] h-6 bg-brand-white/10" />
-                <div className="font-euclid font-normal text-[1.5rem] text-brand-text-muted leading-tight">
-                  International Federation<br />of Event Services
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
         {/* Right: Navigation Links and Optional Scrolled Action Button */}
         <div className="hidden lg:flex items-center gap-8">
           <nav className="flex items-center gap-2 relative">

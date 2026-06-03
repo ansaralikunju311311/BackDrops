@@ -30,7 +30,7 @@ const HomeView: React.FC = () => {
       {/* Section 2.5 - Our Main Mission */}
       <Mission />
 
-      {/* Section 3 - Certificates Grid (ISO, License, IFES Badge) */}
+      {/* Section 3 - Certificates Grid (Compliance, License) */}
       <Certificates />
     </>
   )
