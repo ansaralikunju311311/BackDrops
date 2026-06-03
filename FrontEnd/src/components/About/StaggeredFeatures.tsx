@@ -140,14 +140,23 @@ const StaggeredFeatures: React.FC = () => {
                   <motion.div
                     variants={cardVariants(isTop)}
                     whileHover={{ y: isTop ? -8 : 8 }}
-                    className={`w-full h-[24rem] p-8 flex flex-col justify-between rounded-sm cursor-default transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group ${
+                    className={`w-full h-[24rem] p-8 flex flex-col justify-between rounded-sm cursor-default transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group relative ${
                       card.isGold
-                        ? 'bg-[#9E5330] border-[#9E5330]/20 text-white hover:shadow-[0_20px_45px_-10px_rgba(158,83,48,0.4)]'
-                        : 'bg-brand-dark-accent/80 border-brand-white/5 hover:border-brand-gold/35 hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.8)] text-white'
+                        ? 'bg-[#9E5330] border-[#9E5330]/20 text-white hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15),_0_20px_45px_-10px_rgba(158,83,48,0.4)]'
+                        : 'bg-brand-dark-accent/80 border-brand-white/5 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15),_0_20px_45px_-10px_rgba(0,0,0,0.8)] text-white'
                     }`}
                   >
+                    {/* Top glowing white line expanding on hover */}
+                    <span className="absolute top-0 left-0 right-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center shadow-[0_0_8px_rgba(255,255,255,0.8)] pointer-events-none" />
+
+                    {/* Radial background glow on hover */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                    {/* Diagonal light beam sweep reflection on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.12] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
                     {/* Shimmer Sweep Effect overlay */}
-                    <div className="absolute inset-0 shimmer-sweep opacity-20 pointer-events-none" />
+                    <div className="absolute inset-0 shimmer-sweep opacity-10 pointer-events-none" />
 
                     {/* Top: Icon & Number */}
                     <div className="flex items-center justify-between">
@@ -184,11 +193,20 @@ const StaggeredFeatures: React.FC = () => {
                 whileHover={{ scale: 1.03 }}
                 className={`h-[22rem] p-8 flex flex-col justify-between rounded-sm border transition-all duration-300 relative overflow-hidden group ${
                   card.isGold
-                    ? 'bg-[#9E5330] border-[#9E5330]/20 text-white'
-                    : 'bg-brand-dark-accent/80 border-brand-white/5 text-white'
+                    ? 'bg-[#9E5330] border-[#9E5330]/20 text-white hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]'
+                    : 'bg-brand-dark-accent/80 border-brand-white/5 text-white hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]'
                 }`}
               >
-                <div className="absolute inset-0 shimmer-sweep opacity-20 pointer-events-none" />
+                {/* Top glowing white line expanding on hover */}
+                <span className="absolute top-0 left-0 right-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center shadow-[0_0_8px_rgba(255,255,255,0.8)] pointer-events-none" />
+
+                {/* Radial background glow on hover */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                {/* Diagonal light beam sweep reflection on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.12] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+
+                <div className="absolute inset-0 shimmer-sweep opacity-10 pointer-events-none" />
                 {/* Top: Icon & Number */}
                 <div className="flex items-center justify-between">
                   <div className={`w-12 h-12 flex items-center justify-center rounded-full border ${
