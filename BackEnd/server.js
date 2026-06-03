@@ -10,12 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow all origins dynamically (localhost, Vercel, Render)
-    callback(null, true);
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
+  origin: '*',
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 };
 
 app.use(cors(corsOptions));
