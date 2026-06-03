@@ -6,6 +6,7 @@ import StaggeredFeatures from './components/About/StaggeredFeatures'
 import Mission from './components/About/Mission'
 import Certificates from './components/About/Certificates'
 import Contact from './components/Contact'
+import Services from './components/Services'
 import Footer from './components/Footer'
 
 const ScrollToTop: React.FC = () => {
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<HomeView />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/contacts" element={<Contact />} />
           </Routes>
         </main>

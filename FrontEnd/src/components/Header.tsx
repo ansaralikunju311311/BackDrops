@@ -57,12 +57,16 @@ const Header: React.FC = () => {
             {menuItems.map((item, idx) => {
               const isServices = item.toLowerCase() === 'services'
               const isContacts = item.toLowerCase() === 'contacts'
-              const hrefPath = isContacts 
-                ? '/contacts' 
-                : (location.pathname === '/contacts' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+              const isClientRoute = isServices || isContacts
               
-              const Component = isContacts ? Link : 'a'
-              const props = isContacts ? { to: '/contacts' } : { href: hrefPath }
+              const hrefPath = isServices
+                ? '/services'
+                : isContacts 
+                  ? '/contacts' 
+                  : (location.pathname === '/contacts' || location.pathname === '/services' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+              
+              const Component = isClientRoute ? Link : 'a'
+              const props = isClientRoute ? { to: hrefPath } : { href: hrefPath }
 
               if (isServices) {
                 return (
@@ -78,8 +82,8 @@ const Header: React.FC = () => {
                       setIsServicesHovered(false)
                     }}
                   >
-                    <a
-                      href={hrefPath}
+                    <Link
+                      to="/services"
                       className="font-euclid font-bold text-[2.1rem] tracking-wider uppercase text-brand-white/80 hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs flex items-center gap-1.5"
                     >
                       <span className="relative z-10">{item}</span>
@@ -99,7 +103,7 @@ const Header: React.FC = () => {
                           />
                         )}
                       </AnimatePresence>
-                    </a>
+                    </Link>
 
                     {/* Desktop Hover Dropdown Menu */}
                     <AnimatePresence>
@@ -111,10 +115,10 @@ const Header: React.FC = () => {
                           transition={{ duration: 0.2, ease: "easeOut" }}
                           className="absolute top-full left-0 mt-2 w-[42rem] bg-brand-bg/95 backdrop-blur-md border border-brand-white/10 p-6 rounded-xs shadow-[0_20px_50px_rgba(0,0,0,0.6)] z-50 flex flex-col gap-4 text-left"
                         >
-                          {servicesList.map((service) => (
+                          {servicesList.map((service, sIdx) => (
                             <Link
                               key={service}
-                              to={`/contacts?service=${encodeURIComponent(service)}`}
+                              to={`/services?id=${sIdx}`}
                               onClick={() => setIsServicesHovered(false)}
                               className="font-euclid font-bold text-brand-white/70 hover:text-brand-gold transition-all duration-300 hover:translate-x-1 flex items-center gap-3 group/item"
                               style={{ fontSize: '2.1rem' }}
@@ -201,12 +205,16 @@ const Header: React.FC = () => {
                 {menuItems.map((item) => {
                   const isServices = item.toLowerCase() === 'services'
                   const isContacts = item.toLowerCase() === 'contacts'
-                  const hrefPath = isContacts 
-                    ? '/contacts' 
-                    : (location.pathname === '/contacts' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+                  const isClientRoute = isServices || isContacts
                   
-                  const Component = isContacts ? Link : 'a'
-                  const props = isContacts ? { to: '/contacts' } : { href: hrefPath }
+                  const hrefPath = isServices
+                    ? '/services'
+                    : isContacts 
+                      ? '/contacts' 
+                      : (location.pathname === '/contacts' || location.pathname === '/services' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+                  
+                  const Component = isClientRoute ? Link : 'a'
+                  const props = isClientRoute ? { to: hrefPath } : { href: hrefPath }
 
                   if (isServices) {
                     return (
@@ -230,10 +238,10 @@ const Header: React.FC = () => {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden pl-6 flex flex-col gap-4 py-4 border-l border-brand-white/10 mt-2 bg-brand-white/[0.01]"
                             >
-                              {servicesList.map((service) => (
+                              {servicesList.map((service, sIdx) => (
                                 <Link
                                   key={service}
-                                  to={`/contacts?service=${encodeURIComponent(service)}`}
+                                  to={`/services?id=${sIdx}`}
                                   onClick={() => {
                                     setIsMobileServicesOpen(false)
                                     setIsMobileMenuOpen(false)
