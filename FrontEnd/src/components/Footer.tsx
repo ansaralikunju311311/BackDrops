@@ -248,7 +248,7 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Legal Policy Links */}
           <div className="flex flex-col gap-2 md:items-end">
-            {['Privacy Policy', 'Terms & Conditions', 'Sitemap', 'Search'].map((policy) => (
+            {['Privacy Policy', 'Terms & Conditions'].map((policy) => (
               <a
                 key={policy}
                 href="#"
