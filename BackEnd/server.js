@@ -9,9 +9,12 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS for frontend dev server
+// Enable CORS dynamically for localhost and hosted environments
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: (origin, callback) => {
+    // Allow all origins (including localhost, Vercel, and Render)
+    callback(null, true);
+  },
   credentials: true
 }));
 
