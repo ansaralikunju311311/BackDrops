@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Palette, Clock, Layers, Workflow, Hammer, Award, Truck } from 'lucide-react'
+import { MessageSquare, ShieldCheck, Settings, Award, Briefcase, Sliders, Heart } from 'lucide-react'
 
 const StaggeredFeatures: React.FC = () => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
@@ -8,50 +8,50 @@ const StaggeredFeatures: React.FC = () => {
   const cards = [
     {
       num: "# 01",
-      icon: <Palette className="w-6 h-6 transition-transform duration-300" />,
-      title: "Creative Design Team",
-      isGold: true,
+      icon: <MessageSquare className="w-6 h-6 transition-transform duration-300" />,
+      title: "Professional multilingual team",
+      isGold: false,
       align: "top"
     },
     {
       num: "# 02",
-      icon: <Clock className="w-6 h-6 transition-transform duration-300" />,
-      title: "Reliable Project Delivery",
+      icon: <ShieldCheck className="w-6 h-6 transition-transform duration-300" />,
+      title: "High responsibility for results",
       isGold: true,
       align: "bottom"
     },
     {
       num: "# 03",
-      icon: <Layers className="w-6 h-6 transition-transform duration-300" />,
-      title: "Custom Exhibition Stands",
+      icon: <Settings className="w-6 h-6 transition-transform duration-300" />,
+      title: "Individual and careful approach to each client",
       isGold: false,
       align: "top"
     },
     {
       num: "# 04",
-      icon: <Workflow className="w-6 h-6 transition-transform duration-300" />,
-      title: "End-to-End Event Solutions",
+      icon: <Award className="w-6 h-6 transition-transform duration-300" />,
+      title: "Reliable network of partner companies around the world",
       isGold: true,
       align: "bottom"
     },
     {
       num: "# 05",
-      icon: <Hammer className="w-6 h-6 transition-transform duration-300" />,
-      title: "In-House Fabrication",
+      icon: <Briefcase className="w-6 h-6 transition-transform duration-300" />,
+      title: "International manufacturing capabilities",
       isGold: false,
       align: "top"
     },
     {
       num: "# 06",
-      icon: <Award className="w-6 h-6 transition-transform duration-300" />,
-      title: "International Work Standards",
+      icon: <Sliders className="w-6 h-6 transition-transform duration-300" />,
+      title: "Management at the level of international standards",
       isGold: true,
       align: "bottom"
     },
     {
       num: "# 07",
-      icon: <Truck className="w-6 h-6 transition-transform duration-300" />,
-      title: "Global Logistics & Dismantling",
+      icon: <Heart className="w-6 h-6 transition-transform duration-300" />,
+      title: "High-quality installation and decoration of the stand",
       isGold: false,
       align: "top"
     }
@@ -90,8 +90,8 @@ const StaggeredFeatures: React.FC = () => {
         
         {/* Section Heading */}
         <div className="mb-24 relative">
-          <h2 className="font-urw font-extrabold text-[4.5rem] md:text-[6rem] text-brand-white uppercase tracking-wider leading-tight">
-            By Choosing BackDrops, You Get
+          <h2 className="font-urw font-extrabold text-[4.5rem] md:text-[5.5rem] text-brand-white uppercase tracking-wider leading-tight">
+            By choosing BackDrops, you get
           </h2>
           <div className="w-24 h-[2px] bg-brand-gold mt-6" />
         </div>
@@ -104,11 +104,11 @@ const StaggeredFeatures: React.FC = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="relative"
         >
-          {/* Main Horizontal Timeline Line with light pulse animation */}
-          <div className="absolute top-[28rem] left-0 right-0 h-[2px] timeline-pulse-line hidden lg:block" />
+          {/* Main Horizontal Timeline Line in silver/white */}
+          <div className="absolute top-[26rem] left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none hidden lg:block" />
 
-          {/* Desktop Timeline Layout */}
-          <div className="hidden lg:flex justify-between items-center relative h-[56rem] w-full gap-6">
+          {/* Desktop Timeline Layout (7 Columns, Staggered Top/Bottom alignment) */}
+          <div className="hidden lg:grid grid-cols-7 gap-6 relative h-[52rem] w-full">
             {cards.map((card, idx) => {
               const isTop = card.align === "top"
               const isHovered = hoveredIdx === idx
@@ -116,72 +116,60 @@ const StaggeredFeatures: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="relative flex flex-col items-center flex-1 h-full justify-between"
+                  className={`flex flex-col h-full relative ${isTop ? 'justify-start' : 'justify-end'}`}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
-                  
-                  {/* Vertical Connection Line (Glows gold on card hover) */}
+                  {/* Vertical Connection Line */}
                   {isTop ? (
-                    <div className={`absolute top-[21rem] bottom-[28rem] w-[2px] transition-all duration-500 origin-bottom ${
-                      isHovered
-                        ? 'bg-gradient-to-b from-brand-gold to-brand-gold-dark shadow-[0_0_8px_rgba(212,175,55,0.8)] scale-y-105'
-                        : 'bg-gradient-to-b from-transparent to-brand-white/10'
+                    <div className={`absolute top-[24rem] bottom-[26rem] left-1/2 w-[1.5px] transition-all duration-300 pointer-events-none origin-bottom ${
+                      isHovered ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-y-105' : 'bg-white/15'
                     }`} />
                   ) : (
-                    <div className={`absolute top-[28rem] bottom-[21rem] w-[2px] transition-all duration-500 origin-top ${
-                      isHovered
-                        ? 'bg-gradient-to-t from-brand-gold to-brand-gold-dark shadow-[0_0_8px_rgba(212,175,55,0.8)] scale-y-105'
-                        : 'bg-gradient-to-t from-transparent to-brand-white/10'
+                    <div className={`absolute top-[26rem] bottom-[24rem] left-1/2 w-[1.5px] transition-all duration-300 pointer-events-none origin-top ${
+                      isHovered ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-y-105' : 'bg-white/15'
                     }`} />
                   )}
 
-                  {/* Connecting Node Dot (Pulsing ring at intersection points) */}
-                  <div className={`absolute top-[27.2rem] w-5 h-5 rounded-full transition-all duration-500 z-10 ${
-                    isHovered
-                      ? 'bg-brand-gold border-4 border-[#0B0C10] scale-135 shadow-[0_0_15px_rgba(212,175,55,1)]'
-                      : 'bg-brand-white/20 border-2 border-[#0B0C10] scale-100'
+                  {/* Connecting Node Dot */}
+                  <div className={`absolute top-[25.2rem] left-[calc(50%-8px)] w-4 h-4 rounded-full transition-all duration-300 z-10 pointer-events-none border-2 border-[#0B0C10] ${
+                    isHovered ? 'bg-white shadow-[0_0_12px_rgba(255,255,255,1)] scale-125' : 'bg-white/30'
                   }`} />
 
                   {/* Card Element */}
                   <motion.div
                     variants={cardVariants(isTop)}
                     whileHover={{ y: isTop ? -8 : 8 }}
-                    className={`absolute w-full h-[21rem] p-8 flex flex-col justify-between rounded-sm cursor-default transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group ${
-                      isTop ? 'top-0' : 'bottom-0'
-                    } ${
+                    className={`w-full h-[24rem] p-8 flex flex-col justify-between rounded-sm cursor-default transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group ${
                       card.isGold
-                        ? 'bg-gradient-to-br from-brand-gold-light via-brand-gold to-brand-gold-dark border-brand-gold-light/20 text-brand-dark hover:shadow-[0_20px_45px_-10px_rgba(212,175,55,0.35)]'
-                        : 'bg-gradient-to-br from-brand-dark-accent/80 via-[#0e1017] to-brand-bg/90 border-brand-white/5 hover:border-brand-gold/35 hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.8)]'
+                        ? 'bg-[#9E5330] border-[#9E5330]/20 text-white hover:shadow-[0_20px_45px_-10px_rgba(158,83,48,0.4)]'
+                        : 'bg-brand-dark-accent/80 border-brand-white/5 hover:border-brand-gold/35 hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.8)] text-white'
                     }`}
                   >
                     {/* Shimmer Sweep Effect overlay */}
-                    <div className="absolute inset-0 shimmer-sweep opacity-40 pointer-events-none" />
+                    <div className="absolute inset-0 shimmer-sweep opacity-20 pointer-events-none" />
 
                     {/* Top: Icon & Number */}
                     <div className="flex items-center justify-between">
-                      <div className={`w-14 h-14 flex items-center justify-center rounded-full border transition-all duration-300 ${
+                      <div className={`w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-300 ${
                         card.isGold
-                          ? 'bg-brand-dark/5 border-brand-dark/10 text-brand-dark group-hover:bg-brand-dark/10 group-hover:scale-110'
-                          : 'bg-brand-white/[0.03] border-brand-white/10 text-brand-gold group-hover:bg-brand-gold/15 group-hover:scale-110'
+                          ? 'bg-white/10 border-white/20 text-white group-hover:scale-110'
+                          : 'bg-brand-white/[0.03] border-brand-white/10 text-brand-gold group-hover:scale-110'
                       }`}>
                         {card.icon}
                       </div>
-                      <span className={`font-euclid font-bold text-[1.4rem] tracking-wider ${
-                        card.isGold ? 'text-brand-dark/50' : 'text-brand-text-muted'
+                      <span className={`font-circe font-light text-[1.8rem] ${
+                        card.isGold ? 'text-white/60' : 'text-brand-text-muted'
                       }`}>
                         {card.num}
                       </span>
                     </div>
 
                     {/* Bottom: Title */}
-                    <h3 className={`font-urw font-extrabold text-[1.8rem] xl:text-[2rem] leading-tight tracking-tight ${
-                      card.isGold ? 'text-brand-dark' : 'text-brand-white'
-                    }`}>
+                    <h3 className="font-circe font-light text-[2.2rem] xl:text-[2.4rem] leading-snug tracking-normal text-white">
                       {card.title}
                     </h3>
                   </motion.div>
-
                 </div>
               )
             })}
@@ -194,31 +182,31 @@ const StaggeredFeatures: React.FC = () => {
                 key={idx}
                 variants={cardVariants(true)}
                 whileHover={{ scale: 1.03 }}
-                className={`h-[21rem] p-8 flex flex-col justify-between rounded-sm border transition-all duration-300 relative overflow-hidden group ${
+                className={`h-[22rem] p-8 flex flex-col justify-between rounded-sm border transition-all duration-300 relative overflow-hidden group ${
                   card.isGold
-                    ? 'bg-gradient-to-br from-brand-gold-light via-brand-gold to-brand-gold-dark border-brand-gold-light/20 text-brand-dark'
-                    : 'bg-gradient-to-br from-brand-dark-accent/80 via-[#0e1017] to-brand-bg/90 border-brand-white/5'
+                    ? 'bg-[#9E5330] border-[#9E5330]/20 text-white'
+                    : 'bg-brand-dark-accent/80 border-brand-white/5 text-white'
                 }`}
               >
-                <div className="absolute inset-0 shimmer-sweep opacity-30 pointer-events-none" />
+                <div className="absolute inset-0 shimmer-sweep opacity-20 pointer-events-none" />
                 {/* Top: Icon & Number */}
                 <div className="flex items-center justify-between">
-                  <div className={`w-14 h-14 flex items-center justify-center rounded-full border ${
+                  <div className={`w-12 h-12 flex items-center justify-center rounded-full border ${
                     card.isGold
-                      ? 'bg-brand-dark/5 border-brand-dark/10 text-brand-dark'
+                      ? 'bg-white/10 border-white/20 text-white'
                       : 'bg-brand-white/[0.03] border-brand-white/10 text-brand-gold'
                   }`}>
                     {card.icon}
                   </div>
-                  <span className={`font-euclid font-bold text-[1.4rem] ${
-                    card.isGold ? 'text-brand-dark/50' : 'text-brand-text-muted'
+                  <span className={`font-circe font-light text-[1.8rem] ${
+                    card.isGold ? 'text-white/60' : 'text-brand-text-muted'
                   }`}>
                     {card.num}
                   </span>
                 </div>
 
                 {/* Bottom: Title */}
-                <h3 className="font-urw font-extrabold text-[2.2rem] leading-tight tracking-tight">
+                <h3 className="font-circe font-light text-[2.4rem] leading-tight tracking-tight text-white">
                   {card.title}
                 </h3>
               </motion.div>

@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X } from 'lucide-react'
+import BexLogo from './BexLogo'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
   const [isDividerHovered, setIsDividerHovered] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const socials = [
     {
       name: 'Instagram',
-      url: 'https://instagram.com',
+      url: 'https://www.instagram.com/_backdrops.ae?igsh=dGlwbWpqazFybXd3',
       icon: (
         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
@@ -24,11 +28,11 @@ const Footer: React.FC = () => {
       )
     },
     {
-      name: 'Facebook',
-      url: 'https://facebook.com',
+      name: 'YouTube',
+      url: 'http://www.youtube.com/@BackdropsDXB',
       icon: (
         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
         </svg>
       )
     }
@@ -44,7 +48,7 @@ const Footer: React.FC = () => {
         <div className="absolute w-24 h-24 rounded-full bg-[#25D366] animate-pulse-ring pointer-events-none" style={{ animationDelay: '0.8s' }} />
         
         <a
-          href="https://wa.me/971527725374"
+          href="https://wa.me/971545502356"
           target="_blank"
           rel="noopener noreferrer"
           className="relative w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20ba5a] flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group cursor-pointer"
@@ -58,8 +62,51 @@ const Footer: React.FC = () => {
 
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
         
-        {/* Main Divider Line with Center Button (LEARN MORE +) */}
-        <div className="relative flex items-center justify-center mb-24">
+        {/* Collapsible About Content */}
+        <AnimatePresence initial={false}>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden border-t border-brand-white/10"
+            >
+              <div className="flex flex-col text-left py-12 select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-10 max-w-[120rem] mx-auto">
+                {/* Intro block */}
+                <p>
+                  <strong className="text-white font-bold">BackDrops</strong> is a full-service event agency specializing in the creation and management of temporary construction projects. Since 2019, we have been providing a wide range of services for the production of exclusive exhibition stands, using innovative technologies and following trends in the exhibition industry. Our team has successful experience working not only with UAE projects, but also with foreign projects in more than 30 countries around the world. Thanks to the competencies of our specialists, we are improving every year, expanding our capabilities and expanding the list of countries in which we implement our projects.
+                </p>
+
+                {/* The main mission */}
+                <div className="space-y-4">
+                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide">
+                    The main mission
+                  </h3>
+                  <p>
+                    To help clients effectively and efficiently present their company and products at the event. Our company’s guiding principle is to ensure that every project we create meets your individual needs. Our team responsibly accompanies you at every stage of implementation, which allows you to comprehensively control this process.
+                  </p>
+                </div>
+
+                {/* Why choose us? */}
+                <div className="space-y-4">
+                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide">
+                    Why choose us?
+                  </h3>
+                  <p>
+                    We have many years of experience in creating and implementing projects for various types of events.
+                  </p>
+                  <p>
+                    By choosing our company, you get high-quality construction, work with a professional team of our specialists, strict adherence to deadlines and the opportunity to successfully present your company at the event. We are also ready to help you achieve your business goals. Our team of highly qualified specialists is always happy to implement your ideas and create a stand that will reflect the main concept of your company. The key to a successful exhibition event is well-planned work and responsibility for the result, which you will receive by choosing BackDrops.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main Divider Line with Center Button (LEARN MORE + / —) */}
+        <div className="relative flex items-center justify-center mb-24 mt-8">
           <div className={`absolute left-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-right ${
             isDividerHovered ? 'bg-gradient-to-r from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
           }`} />
@@ -69,9 +116,10 @@ const Footer: React.FC = () => {
           <button
             onMouseEnter={() => setIsDividerHovered(true)}
             onMouseLeave={() => setIsDividerHovered(false)}
+            onClick={() => setIsExpanded(!isExpanded)}
             className="relative z-10 px-12 py-5 bg-brand-bg border border-brand-white/10 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 font-euclid font-bold text-[1.8rem] uppercase tracking-wider flex items-center gap-3 rounded-xs cursor-pointer hover:shadow-[0_0_25px_rgba(212,175,55,0.15)] group"
           >
-            Learn More <span className="text-brand-gold font-light group-hover:rotate-90 transition-transform duration-300">+</span>
+            Learn More <span className="text-brand-gold font-light transition-transform duration-300">{isExpanded ? '—' : '+'}</span>
           </button>
         </div>
 
@@ -79,11 +127,8 @@ const Footer: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-24">
           
           {/* Logo on the left */}
-          <a href="#" className="flex items-center gap-2 group">
-            <span className="font-urw font-black text-[3.8rem] tracking-tight text-brand-white uppercase leading-none">
-              Back<span className="text-brand-gold group-hover:text-brand-gold-light transition-colors duration-300">Drops</span>
-            </span>
-            <span className="w-2 h-2 bg-brand-gold group-hover:bg-brand-gold-light rounded-full mt-1 transition-colors duration-300" />
+          <a href="#" className="flex items-center group py-1">
+            <BexLogo scale={0.95} />
           </a>
 
           {/* Navigation in the center */}
@@ -92,7 +137,7 @@ const Footer: React.FC = () => {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="font-euclid font-bold text-[1.5rem] uppercase tracking-wider text-brand-white/70 hover:text-brand-gold transition-colors duration-300 relative py-2 group"
+                className="font-euclid font-bold text-[2.1rem] uppercase tracking-wider text-brand-white/70 hover:text-brand-gold transition-colors duration-300 relative py-2 group"
               >
                 {link}
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -117,30 +162,30 @@ const Footer: React.FC = () => {
           
           {/* Column 1: Office Address info */}
           <div>
-            <span className="font-urw font-extrabold text-[2.2rem] tracking-wider text-brand-white block mb-4">
+            <span className="font-urw font-extrabold text-[2.8rem] tracking-wider text-brand-white block mb-4">
               BackDrops FZE
             </span>
-            <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed">
-              Marina Plaza, Office 2402, Dubai Marina, UAE
+            <p className="font-circe font-light text-[2.4rem] text-brand-text-muted leading-relaxed">
+              Gate No. 13, Warehouse No. 6 - Mena Jabal Ali - Dubai - UAE
             </p>
           </div>
 
           {/* Column 2: Contacts info */}
           <div>
-            <span className="font-urw font-extrabold text-[2.2rem] tracking-wider text-brand-white block mb-4">
+            <span className="font-urw font-extrabold text-[2.8rem] tracking-wider text-brand-white block mb-4">
               Contacts
             </span>
             <a
-              href="tel:+971527725374"
-              className="font-circe font-light text-[1.8rem] text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
+              href="tel:+971545502356"
+              className="font-circe font-light text-[2.4rem] text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
             >
-              +971 52 772 5374
+              +971 54 550 2356
             </a>
             <a
-              href="mailto:info@backdrops.co"
-              className="font-circe font-light text-[1.8rem] text-brand-white hover:text-brand-gold block transition-colors duration-300"
+              href="mailto:info@backdrops.ae"
+              className="font-circe font-light text-[2.4rem] text-brand-white hover:text-brand-gold block transition-colors duration-300"
             >
-              info@backdrops.co
+              info@backdrops.ae
             </a>
           </div>
 
@@ -150,7 +195,7 @@ const Footer: React.FC = () => {
               <a
                 key={policy}
                 href="#"
-                className="font-euclid font-normal text-[1.7rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
+                className="font-euclid font-normal text-[2.2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
               >
                 {policy}
               </a>
@@ -160,8 +205,8 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copy Line & Socials */}
-        <div className="flex flex-col sm:flex-row justify-between items-center text-brand-text-muted text-[1.5rem] border-t border-brand-white/5 pt-12 gap-6">
-          <p>&copy; {currentYear} BackDrops. All rights reserved.</p>
+        <div className="flex flex-col sm:flex-row justify-between items-center text-brand-text-muted text-[2rem] border-t border-brand-white/5 pt-12 gap-6">
+          <p>&copy; {currentYear} BEX Backdrops. All rights reserved.</p>
           
           {/* Social Badges */}
           <div className="flex items-center gap-4">

@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/Header'
 import Hero from './components/About/Hero'
 import StaggeredFeatures from './components/About/StaggeredFeatures'
+import Mission from './components/About/Mission'
 import Certificates from './components/About/Certificates'
 import Footer from './components/Footer'
 
@@ -18,6 +19,9 @@ const App: React.FC = () => {
 
         {/* Section 2 - Staggered Advantages Timeline ("By choosing BackDrops, you get") */}
         <StaggeredFeatures />
+
+        {/* Section 2.5 - Our Main Mission */}
+        <Mission />
 
         {/* Section 3 - Certificates Grid (ISO, License, IFES Badge) */}
         <Certificates />
