@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;700;800;900&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -86,20 +87,30 @@
 }
 
 @theme {
-  --font-gilroy: "Gilroy", sans-serif;
-  --font-circe: "Circe", sans-serif;
-  --font-urw: "URW Geometric Extended", sans-serif;
-  --font-euclid: "Euclid Circular", sans-serif;
-  --color-brand-red: #E41713;
-  --color-brand-bg: #1C202A;
-  --color-brand-input: #43474F;
-  --color-brand-green: #2BEA60;
-  --color-brand-card: #2A2F3D;
-  --color-brand-border: #393D48;
+  --font-gilroy: "Gilroy", "Outfit", sans-serif;
+  --font-circe: "Circe", "Inter", sans-serif;
+  --font-urw: "URW Geometric Extended", "Outfit", sans-serif;
+  --font-euclid: "Euclid Circular", "Inter", sans-serif;
+  
+  --color-brand-gold: #D4AF37;
+  --color-brand-gold-light: #F3D078;
+  --color-brand-gold-dark: #AA7C11;
+  --color-brand-bg: #0B0C10;
+  --color-brand-dark: #050608;
+  --color-brand-dark-accent: #171923;
+  --color-brand-light: #F8F8F8;
+  --color-brand-white: #FFFFFF;
+  --color-brand-text: #FFFFFF;
+  --color-brand-text-muted: #A0A5B5;
+  --color-brand-border: #232735;
+  
+  --font-outfit: "Outfit", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 :root {
   font-size: 0.520835vw;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 768px) {
@@ -113,11 +124,110 @@ body {
   padding: 0;
   font-family: var(--font-gilroy);
   background-color: var(--color-brand-bg);
-  color: #ffffff;
-  line-height: 1.2;
+  color: var(--color-brand-text);
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 input, textarea, button, a {
   outline: none;
   font: inherit;
 }
+
+/* Premium Light Pulse and Card Glow Effects */
+@keyframes pulse-line {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.timeline-pulse-line {
+  background: linear-gradient(90deg, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0.6) 50%, rgba(212,175,55,0.05) 100%);
+  background-size: 200% 100%;
+  animation: pulse-line 6s linear infinite;
+}
+
+@keyframes float-badge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float-badge {
+  animation: float-badge 3s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-sweep {
+  background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 60%, rgba(255,255,255,0) 70%);
+  background-size: 200% 100%;
+  animation: shimmer-sweep 5s infinite linear;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.08) rotate(180deg);
+  }
+}
+
+.animate-float-orb {
+  animation: float-orb 15s ease-in-out infinite;
+}
+
+@keyframes draw-line {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-draw-line {
+  animation: draw-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Glassmorphism utility card */
+.glass-panel {
+  background: rgba(23, 25, 35, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
