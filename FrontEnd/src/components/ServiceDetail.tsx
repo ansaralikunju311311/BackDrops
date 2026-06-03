@@ -326,6 +326,14 @@ const ServiceDetail: React.FC = () => {
             {service.title}
           </h1>
 
+          {/* Call to Action Button */}
+          <button
+            onClick={handleSendRequest}
+            className="block bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.8rem] tracking-wider uppercase px-12 py-6 rounded-sm shadow-[0_15px_30px_rgba(229,29,29,0.35)] hover:scale-105 transition-all duration-300 cursor-pointer w-max"
+          >
+            Send Request <span className="font-light ml-2 text-[2rem] inline-block hover:translate-x-0.5 transition-transform">+</span>
+          </button>
+
           {/* Bottom Right Label: BEX */}
           <div className="absolute right-12 bottom-12 text-right hidden sm:block">
             <span className="font-urw font-bold text-[2rem] tracking-[0.25em] text-brand-dark block uppercase">
@@ -336,14 +344,6 @@ const ServiceDetail: React.FC = () => {
             </span>
           </div>
         </div>
-
-        {/* Overlapping Red Button SEND REQUEST + (Placed at root to avoid image container overflow-hidden clipping) */}
-        <button
-          onClick={handleSendRequest}
-          className="relative lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 mx-auto mt-8 -mb-4 lg:mt-0 lg:-mb-0 block bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.8rem] tracking-wider uppercase px-12 py-6 rounded-sm shadow-[0_15px_30px_rgba(229,29,29,0.3)] hover:scale-105 transition-all duration-300 cursor-pointer w-max"
-        >
-          Send Request <span className="font-light ml-2 text-[2rem] inline-block hover:translate-x-0.5 transition-transform">+</span>
-        </button>
       </section>
 
       {/* SECTION 2: Content Column + Sidebar */}
