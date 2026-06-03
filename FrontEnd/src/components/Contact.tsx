@@ -26,6 +26,7 @@ const Contact: React.FC = () => {
   const [rotateY, setRotateY] = useState(0)
   const [showQuickHelp, setShowQuickHelp] = useState(false)
   const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null)
+  const [mapView, setMapView] = useState<'roadmap' | 'satellite'>('roadmap')
 
   const hotspots = [
     {
@@ -210,7 +211,8 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section 
+    <>
+      <section 
       id="contacts" 
       className="relative min-h-screen bg-brand-bg text-brand-white py-24 md:py-32 overflow-hidden"
     >
@@ -908,7 +910,116 @@ const Contact: React.FC = () => {
 
       </div>
     </section>
+
+    {/* Map Section */}
+    <section className="relative bg-brand-bg text-brand-white pb-24 md:pb-32 overflow-hidden border-t border-brand-white/5">
+      {/* Background shadow overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div 
+          className="absolute bottom-0 right-0 w-[50%] h-[100%] bg-linear-to-tl from-brand-white/2 via-transparent to-transparent opacity-40 transform rotate-12 translate-x-[10%] translate-y-[20%]"
+          style={{
+            clipPath: 'polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%)',
+            backdropFilter: 'blur(4px)',
+          }}
+        />
+      </div>
+
+      {/* Header & Toggle Centered Container */}
+      <div className="max-w-560 mx-auto px-6 md:px-12 lg:px-24 relative z-10 mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div>
+            <span className="font-euclid font-bold text-[1.8rem] text-brand-gold uppercase tracking-wider block mb-2">
+              Find Us
+            </span>
+            <h2 className="font-urw font-extrabold text-[3.5rem] md:text-[4.5rem] tracking-wider uppercase leading-none">
+              Our Location
+            </h2>
+          </div>
+          
+          {/* View Toggle */}
+          <div className="relative bg-brand-white/[0.03] border border-brand-white/10 p-1.5 rounded-full flex gap-2 shadow-lg z-20">
+            <button
+              type="button"
+              onClick={() => setMapView('roadmap')}
+              className={`relative px-8 py-3.5 rounded-full font-euclid font-bold text-[1.4rem] uppercase tracking-wider transition-colors duration-300 cursor-pointer z-10 ${
+                mapView === 'roadmap' ? 'text-brand-dark font-extrabold' : 'text-brand-white/60 hover:text-brand-white'
+              }`}
+            >
+              {mapView === 'roadmap' && (
+                <motion.div
+                  layoutId="activeMapTab"
+                  className="absolute inset-0 bg-brand-gold rounded-full -z-10"
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                />
+              )}
+              Standard Map
+            </button>
+            <button
+              type="button"
+              onClick={() => setMapView('satellite')}
+              className={`relative px-8 py-3.5 rounded-full font-euclid font-bold text-[1.4rem] uppercase tracking-wider transition-colors duration-300 cursor-pointer z-10 ${
+                mapView === 'satellite' ? 'text-brand-dark font-extrabold' : 'text-brand-white/60 hover:text-brand-white'
+              }`}
+            >
+              {mapView === 'satellite' && (
+                <motion.div
+                  layoutId="activeMapTab"
+                  className="absolute inset-0 bg-brand-gold rounded-full -z-10"
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                />
+              )}
+              Satellite View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Full-width Map Frame */}
+      <div className="relative w-full border-y border-brand-white/10 bg-brand-white/[0.01] shadow-[0_30px_60px_rgba(0,0,0,0.5)] group overflow-hidden z-10">
+        <div className="absolute inset-0 bg-linear-to-tr from-brand-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-750 pointer-events-none z-10" />
+        
+        {/* Map Frame Container */}
+        <div className="w-full h-[500px] md:h-[650px] overflow-hidden relative">
+          <iframe
+            title="Backdrops Location Map"
+            src={
+              mapView === 'roadmap'
+                ? "https://maps.google.com/maps?q=Backdrops%20exhibition,%20Gate%20No.%2013,%20Warehouse%20No.%206%20-%20Mena%20Jabal%20Ali%20-%20Dubai%20-%20United%20Arab%20Emirates&t=m&z=15&ie=UTF8&iwloc=&output=embed"
+                : "https://maps.google.com/maps?q=Backdrops%20exhibition,%20Gate%20No.%2013,%20Warehouse%20No.%206%20-%20Mena%20Jabal%20Ali%20-%20Dubai%20-%20United%20Arab%20Emirates&t=k&z=18&ie=UTF8&iwloc=&output=embed"
+            }
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full h-full filter grayscale-[15%] contrast-[105%] hover:grayscale-0 transition-all duration-700"
+          />
+        </div>
+
+        {/* Floating Info Card (Compact Size on the Right Side) */}
+        <div className="absolute bottom-12 right-6 left-6 md:left-auto md:right-[10%] lg:right-[16%] md:w-[38rem] bg-brand-bg/95 backdrop-blur-md border border-brand-white/10 p-6 md:p-8 rounded-xs shadow-2xl z-20 transition-transform duration-300 group-hover:translate-y-[-2px]">
+          <span className="font-euclid font-bold text-[1.5rem] text-brand-gold uppercase tracking-wider block mb-2">
+            Backdrops UAE Showroom & Exhibition
+          </span>
+          <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed mb-6">
+            Gate No. 13, Warehouse No. 6<br />Mena Jabal Ali - Dubai - United Arab Emirates
+          </p>
+          <a
+            href="https://maps.google.com/?q=Backdrops+exhibition+Gate+No.+13+Warehouse+No.+6+Mena+Jabal+Ali+Dubai+United+Arab+Emirates"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 font-euclid font-bold text-[1.5rem] uppercase tracking-wider text-brand-gold hover:text-brand-white transition-colors duration-300 group/link cursor-pointer"
+          >
+            Get Directions
+            <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+          </a>
+        </div>
+      </div>
+    </section>
+    </>
   )
 }
+
 
 export default Contact
