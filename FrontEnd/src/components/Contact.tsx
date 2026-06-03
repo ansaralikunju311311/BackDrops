@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MapPin, Phone, Mail, ArrowUpRight, MessageSquare, Check, AlertCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, ArrowUpRight, MessageSquare, Check, AlertCircle, X, ExternalLink } from 'lucide-react'
 interface ValidationErrors {
   fullName?: string;
   companyName?: string;
@@ -20,6 +20,55 @@ const Contact: React.FC = () => {
   const [activeInput, setActiveInput] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+
+  // Interactive states for right-side visual component
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
+  const [showQuickHelp, setShowQuickHelp] = useState(false)
+  const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null)
+
+  const hotspots = [
+    {
+      id: 'dubai-hq',
+      top: '28%',
+      left: '32%',
+      title: 'Dubai HQ Showroom',
+      desc: 'Mena Jabal Ali, Warehouse 6'
+    },
+    {
+      id: 'fabrication',
+      top: '62%',
+      left: '74%',
+      title: 'Fabrication Center',
+      desc: 'Advanced Backdrops Production'
+    },
+    {
+      id: 'support-team',
+      top: '48%',
+      left: '45%',
+      title: 'Design Hub',
+      desc: 'Creative Consultations'
+    }
+  ]
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget
+    const box = card.getBoundingClientRect()
+    const x = e.clientX - box.left - box.width / 2
+    const y = e.clientY - box.top - box.height / 2
+    
+    // Limits max tilt to ~12 degrees
+    const factorX = 12 / (box.height / 2)
+    const factorY = 12 / (box.width / 2)
+    
+    setRotateX(-y * factorX)
+    setRotateY(x * factorY)
+  }
+
+  const handleMouseLeave = () => {
+    setRotateX(0)
+    setRotateY(0)
+  }
 
   const validateField = (name: string, value: string): string => {
     let error = ''
@@ -543,19 +592,63 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 relative mt-12 lg:mt-0 flex justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-200 aspect-4/5 z-10 select-none group">
+            <motion.div 
+              style={{ 
+                perspective: 1000,
+                transformStyle: 'preserve-3d'
+              }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              animate={{ 
+                rotateX, 
+                rotateY 
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 150,
+                damping: 20,
+                mass: 0.5
+              }}
+              className="relative w-full max-w-200 aspect-square z-10 select-none group"
+            >
               
               {/* Backing Outline decorative Box 1 (Offset Top-Left) */}
-              <div className="absolute -top-6 -left-6 border border-brand-white/10 w-2/3 h-2/3 -z-10 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2">
-                {/* Tiny orange corner box */}
-                <div className="w-4 h-4 bg-brand-gold absolute -top-2 -left-2" />
-              </div>
+              <div className="absolute -top-[5%] -left-[5%] w-[25%] h-[25%] border border-brand-white/15 pointer-events-none -z-10" />
 
               {/* Backing Outline decorative Box 2 (Offset Bottom-Right) */}
-              <div className="absolute -bottom-6 -right-6 border border-brand-white/10 w-2/3 h-2/3 -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
+              <div className="absolute -bottom-[5%] -right-[5%] w-[25%] h-[25%] border border-brand-white/15 pointer-events-none -z-10" />
+
+              {/* Backing Outline decorative Box 3 (Offset Top-Right) */}
+              <div className="absolute -top-[5%] -right-[5%] w-[25%] h-[25%] border border-brand-gold/45 pointer-events-none -z-10" />
+
+              {/* Backing Outline decorative Box 4 (Offset Bottom-Left) */}
+              <div className="absolute -bottom-[5%] -left-[5%] w-[25%] h-[25%] border border-brand-white/15 pointer-events-none -z-10" />
+
+              {/* Vertical line extending down bottom-left */}
+              <div className="absolute left-[2%] -bottom-[15%] w-[1px] h-[25%] bg-brand-gold/40 pointer-events-none -z-10" />
+
+              {/* Top-Left Stepped Box (Nested Solid Accent Square) */}
+              <div className="absolute top-[2%] left-[2%] w-[8%] h-[8%] bg-brand-bg/95 border border-brand-white/10 flex items-center justify-center pointer-events-none z-20">
+                <div className="w-[45%] h-[45%] bg-brand-gold shadow-[0_0_8px_rgba(212,163,89,0.5)]" />
+              </div>
+
+              {/* Bottom-Right Stepped Box (Nested Solid Accent Square) */}
+              <div className="absolute bottom-[2%] right-[2%] w-[8%] h-[8%] bg-brand-bg/95 border border-brand-white/10 flex items-center justify-center pointer-events-none z-20">
+                <div className="w-[45%] h-[45%] bg-brand-gold shadow-[0_0_8px_rgba(212,163,89,0.5)]" />
+              </div>
+
+              {/* Bottom-Left Stepped Box (Nested Larger Solid Accent Square) */}
+              <div className="absolute bottom-[2%] left-[2%] w-[8%] h-[8%] bg-brand-bg/95 border border-brand-white/10 flex items-center justify-center pointer-events-none z-20">
+                <div className="w-[65%] h-[65%] bg-brand-gold shadow-[0_0_8px_rgba(212,163,89,0.5)]" />
+              </div>
 
               {/* Main Image */}
-              <div className="w-full h-full overflow-hidden rounded-xs border border-brand-white/5 shadow-2xl relative">
+              <div 
+                className="w-full h-full overflow-hidden border border-brand-white/5 shadow-2xl relative"
+                style={{
+                  clipPath: 'polygon(12% 0%, 88% 0%, 88% 12%, 100% 12%, 100% 88%, 88% 88%, 88% 100%, 12% 100%, 12% 88%, 0% 88%, 0% 12%, 12% 12%)'
+                }}
+              >
                 <img 
                   src="/assets/workspace_meeting.png" 
                   alt="Workspace Meeting" 
@@ -565,6 +658,56 @@ const Contact: React.FC = () => {
                 {/* Gradient overlay inside image bottom */}
                 <div className="absolute inset-0 bg-linear-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
               </div>
+
+              {/* Pulsing Hotspots (Only visible when overlay is NOT open) */}
+              {!showQuickHelp && hotspots.map((spot) => (
+                <div
+                  key={spot.id}
+                  className="absolute z-20"
+                  style={{ top: spot.top, left: spot.left }}
+                >
+                  <button
+                    type="button"
+                    onMouseEnter={() => setHoveredHotspot(spot.id)}
+                    onMouseLeave={() => setHoveredHotspot(null)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setShowQuickHelp(true)
+                    }}
+                    className="relative w-8 h-8 flex items-center justify-center cursor-pointer group/spot"
+                    aria-label={`View ${spot.title}`}
+                  >
+                    {/* Ring 1 - Ping pulse */}
+                    <span className="absolute inset-0 rounded-full bg-brand-gold/60 animate-ping opacity-75" />
+                    {/* Ring 2 - Steady translucent ring */}
+                    <span className="absolute w-5 h-5 rounded-full bg-brand-gold/30 border border-brand-gold/50 scale-100 group-hover/spot:scale-125 transition-transform duration-300" />
+                    {/* Core - solid gold dot */}
+                    <span className="absolute w-2.5 h-2.5 rounded-full bg-brand-gold shadow-[0_0_10px_rgba(212,163,89,0.8)]" />
+                  </button>
+
+                  {/* Glassmorphic Tooltip */}
+                  <AnimatePresence>
+                    {hoveredHotspot === spot.id && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-brand-bg/90 backdrop-blur-md border border-brand-white/10 px-4 py-3 rounded-xs shadow-[0_10px_30px_rgba(0,0,0,0.5)] pointer-events-none min-w-56 text-center select-none"
+                      >
+                        <span className="font-euclid font-bold text-[1.4rem] text-brand-gold block leading-tight mb-1">
+                          {spot.title}
+                        </span>
+                        <span className="font-circe font-light text-[1.2rem] text-brand-text-muted">
+                          {spot.desc}
+                        </span>
+                        {/* Tiny bottom pointing arrow */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-brand-bg/90" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
 
               {/* Floating Social Bar (Right edge vertical align) */}
               <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-brand-white py-6 px-3 flex flex-col gap-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 transition-all duration-300 hover:scale-105 border border-black/5">
@@ -603,18 +746,163 @@ const Contact: React.FC = () => {
                 </a>
               </div>
 
-              {/* Decorative Circle Chat Action Button (Bottom-Right corner overlay) */}
-              <motion.a 
-                href="#contacts"
+              {/* Quick Connect Glassmorphic Overlay */}
+              <AnimatePresence>
+                {showQuickHelp && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-brand-bg/95 backdrop-blur-md z-30 p-8 flex flex-col justify-between border border-brand-white/10 rounded-xs"
+                  >
+                    {/* Header */}
+                    <div className="flex items-center justify-between border-b border-brand-white/10 pb-4">
+                      <div>
+                        <h4 className="font-urw font-extrabold text-[2.4rem] tracking-wider uppercase text-brand-gold">
+                          Quick Connect
+                        </h4>
+                        <p className="font-circe font-light text-[1.4rem] text-brand-text-muted/80">
+                          Get in touch with our team instantly
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setShowQuickHelp(false)
+                        }}
+                        className="w-10 h-10 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-text-muted hover:text-brand-gold hover:border-brand-gold/40 hover:bg-brand-white/5 transition-all duration-300 cursor-pointer"
+                        aria-label="Close panel"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    {/* Action Cards List */}
+                    <div className="flex-1 flex flex-col justify-center gap-4 py-6">
+                      {/* WhatsApp */}
+                      <a
+                        href="https://wa.me/971545502356"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-300">
+                            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.739-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.906-6.99C16.255 1.876 13.779 1.042 11.14 1.04 5.707 1.04 1.282 5.461 1.277 10.899c-.001 1.816.486 3.594 1.417 5.158l-.979 3.57 3.655-.959c1.506.82 3.1 1.249 4.677 1.25zM17.5 13.9c-.3-.15-1.785-.88-2.087-.99-.3-.105-.52-.15-.74.15-.22.3-.85.99-1.04 1.2-.19.21-.38.24-.68.09-.3-.15-1.265-.465-2.41-1.485-.89-.79-1.49-1.77-1.665-2.07-.175-.3-.02-.46.13-.61.135-.135.3-.35.45-.52.15-.17.2-.28.3-.47.1-.19.05-.36-.02-.51-.07-.15-.74-1.785-1.015-2.445-.27-.65-.545-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73s1.18 3.17 1.34 3.39c.17.22 2.32 3.54 5.62 4.97.785.34 1.395.54 1.87.69.79.25 1.51.21 2.08.13.635-.09 1.785-.73 2.035-1.43.25-.7.25-1.3.175-1.43-.075-.1-.275-.15-.575-.3z"/>
+                            </svg>
+                          </div>
+                          <div className="text-left">
+                            <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
+                              WhatsApp Chat
+                            </span>
+                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                              Message direct for quick updates
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                      </a>
+
+                      {/* Phone Call */}
+                      <a
+                        href="tel:+971545502356"
+                        className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold group-hover:scale-105 transition-transform duration-300">
+                            <Phone className="w-5 h-5" />
+                          </div>
+                          <div className="text-left">
+                            <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
+                              Call Direct
+                            </span>
+                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                              +971 54 550 2356
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                      </a>
+
+                      {/* E-mail */}
+                      <a
+                        href="mailto:info@backdrops.ae"
+                        className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform duration-300">
+                            <Mail className="w-5 h-5" />
+                          </div>
+                          <div className="text-left">
+                            <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
+                              Email Info
+                            </span>
+                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                              info@backdrops.ae
+                            </span>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                      </a>
+
+                      {/* Google Maps Location */}
+                      <a
+                        href="https://maps.google.com/?q=Gate+13+Warehouse+6+Mena+Jabal+Ali+Dubai+UAE"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 group-hover:scale-105 transition-transform duration-300">
+                            <MapPin className="w-5 h-5" />
+                          </div>
+                          <div className="text-left">
+                            <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
+                              Showroom Map
+                            </span>
+                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                              Get directions to Mena Jabal Ali
+                            </span>
+                          </div>
+                        </div>
+                        <ExternalLink className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:scale-105 transition-all duration-300" />
+                      </a>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="text-center border-t border-brand-white/5 pt-4">
+                      <span className="font-circe font-light text-[1.2rem] text-brand-text-muted/60">
+                        Typical response time: &lt; 15 minutes
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Circular Action Toggle Button (Bottom-Right corner overlay) */}
+              <motion.button 
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setShowQuickHelp(prev => !prev)
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="absolute -bottom-7 -right-7 w-16 h-16 bg-brand-gold hover:bg-brand-gold-light text-brand-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-20 group"
-                aria-label="Send direct query"
+                className="absolute -bottom-7 -right-7 w-16 h-16 bg-brand-gold hover:bg-brand-gold-light text-brand-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-40 group border-2 border-brand-bg"
+                aria-label={showQuickHelp ? "Close panel" : "Quick Connect options"}
               >
-                <MessageSquare className="w-7 h-7 transition-transform duration-300 group-hover:rotate-15" />
-              </motion.a>
-            </div>
+                {showQuickHelp ? (
+                  <X className="w-7 h-7" />
+                ) : (
+                  <MessageSquare className="w-7 h-7 transition-transform duration-300 group-hover:rotate-15" />
+                )}
+              </motion.button>
+            </motion.div>
           </motion.div>
+
 
         </div>
 
