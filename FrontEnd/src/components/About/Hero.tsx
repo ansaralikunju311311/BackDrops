@@ -148,7 +148,7 @@ const Hero: React.FC = () => {
             {/* Chat Floating Button */}
             <div className="flex-shrink-0 self-end mb-2">
               <button 
-                onClick={() => window.open('https://wa.me/971545502356', '_blank')}
+                onClick={() => window.open('https://wa.me/971552291691', '_blank')}
                 className="w-16 h-16 rounded-full bg-[#9E5330] hover:bg-[#b35e38] flex items-center justify-center text-brand-white shadow-[0_10px_25px_rgba(158,83,48,0.3)] hover:scale-110 transition-all duration-300 cursor-pointer"
                 aria-label="Chat with us"
               >
@@ -171,7 +171,7 @@ const Hero: React.FC = () => {
             className="fixed right-0 top-[30%] z-50 bg-white py-20 px-6 flex flex-col gap-16 items-center shadow-[-5px_0_30px_rgba(0,0,0,0.18)] rounded-l-3xl border-y border-l border-gray-100 hidden md:flex w-28"
           >
             {/* Telephone */}
-            <a href="tel:+971545502356" className="relative group flex items-center justify-center">
+            <a href="tel:+971552291691" className="relative group flex items-center justify-center">
               <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
                 <Phone className="w-10 h-10" />
               </div>
@@ -188,7 +188,7 @@ const Hero: React.FC = () => {
             </a>
 
             {/* WhatsApp/Chat */}
-            <a href="https://wa.me/971545502356" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
+            <a href="https://wa.me/971552291691" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
               <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
                 <WhatsAppIcon className="w-10 h-10" />
               </div>

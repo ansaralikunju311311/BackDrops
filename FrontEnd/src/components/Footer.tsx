@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
         <div className="absolute w-24 h-24 rounded-full bg-[#25D366] animate-pulse-ring pointer-events-none" style={{ animationDelay: '0.8s' }} />
         
         <a
-          href="https://wa.me/971545502356"
+          href="https://wa.me/971552291691"
           target="_blank"
           rel="noopener noreferrer"
           className="relative w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20ba5a] flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group cursor-pointer"
@@ -169,24 +169,31 @@ const Footer: React.FC = () => {
           </div>
 
         </div>
-
          {/* Bottom Details Grid (Structured) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-brand-white/10 pt-16 mb-16">
           
           {/* Column 1: Office Address info */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
               <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white block mb-2">
-                BackDrops FZE
+                Backdrops Technical Services L.L.C
               </span>
               <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed">
-                Gate No. 13, Warehouse No. 6 - Mena Jabal Ali - Dubai - UAE
+                Warehouse no- 6, Gate no.13<br />
+                Jebel Ali Industrial area 1<br />
+                Dubai - U.A.E
               </p>
+              <a
+                href="tel:+971552291691"
+                className="font-circe font-light text-[1.8rem] text-brand-gold hover:text-brand-white block mt-2 transition-colors duration-300"
+              >
+                +971 55 229 1691
+              </a>
             </div>
-            <div className="pt-4 border-t border-brand-white/10">
+            <div className="pt-6 border-t border-brand-white/10">
               <div className="flex items-center justify-between gap-4 mb-2">
                 <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white">
-                  Creo Construction Experts
+                  CREO Construction Experts
                 </span>
                 <a
                   href="https://www.instagram.com/creo_designs?igsh=Nno4YWgxdWx4M3Jw"
@@ -201,8 +208,16 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed">
-                India office: Arullil arcade, Pazhuvil, Near Chazhur panchayath office, Thrissur DT
+                Arullil Arcade, Pazhuvil<br />
+                Near Chazhur panchayath office<br />
+                Thrissur Dt., Kerala - INDIA
               </p>
+              <a
+                href="tel:+919605218618"
+                className="font-circe font-light text-[1.8rem] text-brand-gold hover:text-brand-white block mt-2 transition-colors duration-300"
+              >
+                +91 9605 218618
+              </a>
             </div>
           </div>
 
@@ -212,10 +227,16 @@ const Footer: React.FC = () => {
               Contacts
             </span>
             <a
-              href="tel:+971545502356"
+              href="tel:+971552291691"
               className="font-circe font-light text-[1.8rem] md:text-[2rem] text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
             >
-              +971 54 550 2356
+              +971 55 229 1691
+            </a>
+            <a
+              href="tel:+919605218618"
+              className="font-circe font-light text-[1.8rem] md:text-[2rem] text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
+            >
+              +91 9605 218618
             </a>
             <a
               href="mailto:info@backdrops.ae"

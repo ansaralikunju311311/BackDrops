@@ -286,7 +286,7 @@ app.post('/api/contact', async (req, res) => {
       </div>
       <div class="footer">
         <p>This message was automatically generated from the contact form on your website.</p>
-        <p>&copy; ${new Date().getFullYear()} <a href="https://backdrops.ae" style="color: #9E5330;">BackDrops FZE</a>. All rights reserved.</p>
+        <p>&copy; ${new Date().getFullYear()} <a href="https://backdrops.ae" style="color: #9E5330;">Backdrops Technical Services L.L.C</a>. All rights reserved.</p>
       </div>
     </div>
   </div>

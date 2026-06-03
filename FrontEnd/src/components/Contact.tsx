@@ -34,7 +34,7 @@ const Contact: React.FC = () => {
       top: '28%',
       left: '32%',
       title: 'Dubai HQ Showroom',
-      desc: 'Mena Jabal Ali, Warehouse 6'
+      desc: 'Jebel Ali Industrial area 1, Warehouse 6'
     },
     {
       id: 'fabrication',
@@ -257,7 +257,7 @@ const Contact: React.FC = () => {
           </h1>
         </motion.div>
 
-        {/* UAE Section */}
+        {/* UAE & India Sections */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -265,59 +265,130 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mb-24"
         >
-          <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase mb-12">
-            UAE
-          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* UAE Column */}
+            <div className="space-y-12">
+              <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
+                UAE
+              </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12 max-w-360">
-            {/* Address Row */}
-            <div className="flex gap-6 items-start group">
-              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div className="space-y-2">
-                <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                  Address:
-                </span>
-                <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
-                  Gate No. 13, Warehouse No. 6<br />Mena Jabal Ali - Dubai - UAE
-                </p>
+              <div className="flex flex-col gap-8">
+                {/* Address Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      Address:
+                    </span>
+                    <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
+                      Backdrops Technical Services L.L.C<br />
+                      Warehouse no- 6, Gate no.13<br />
+                      Jebel Ali Industrial area 1<br />
+                      Dubai - U.A.E
+                    </p>
+                  </div>
+                </div>
+
+                {/* Email Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      E-mail:
+                    </span>
+                    <a 
+                      href="mailto:info@backdrops.ae" 
+                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                    >
+                      info@backdrops.ae
+                    </a>
+                  </div>
+                </div>
+
+                {/* Telephone Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      Telephone:
+                    </span>
+                    <a 
+                      href="tel:+971552291691" 
+                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                    >
+                      +971 55 229 1691
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Email Row */}
-            <div className="flex gap-6 items-start group">
-              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div className="space-y-2">
-                <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                  E-mail:
-                </span>
-                <a 
-                  href="mailto:info@backdrops.ae" 
-                  className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-                >
-                  info@backdrops.ae
-                </a>
-              </div>
-            </div>
+            {/* India Column */}
+            <div className="space-y-12">
+              <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
+                India
+              </h2>
 
-            {/* Telephone Row */}
-            <div className="flex gap-6 items-start group">
-              <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div className="space-y-2">
-                <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                  Telephone:
-                </span>
-                <a 
-                  href="tel:+971545502356" 
-                  className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-                >
-                  +971 54 550 2356
-                </a>
+              <div className="flex flex-col gap-8">
+                {/* Address Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      Address:
+                    </span>
+                    <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
+                      CREO Construction Experts<br />
+                      Arullil Arcade, Pazhuvil<br />
+                      Near Chazhur panchayath office<br />
+                      Thrissur Dt., Kerala - INDIA
+                    </p>
+                  </div>
+                </div>
+
+                {/* Email Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      E-mail:
+                    </span>
+                    <a 
+                      href="mailto:info@backdrops.ae" 
+                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                    >
+                      info@backdrops.ae
+                    </a>
+                  </div>
+                </div>
+
+                {/* Telephone Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      Telephone:
+                    </span>
+                    <a 
+                      href="tel:+919605218618" 
+                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                    >
+                      +91 9605 218618
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -739,7 +810,7 @@ const Contact: React.FC = () => {
                   </svg>
                 </a>
                 <a 
-                  href="https://wa.me/971545502356" 
+                  href="https://wa.me/971552291691" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-brand-dark hover:text-brand-gold transition-colors duration-300"
@@ -788,7 +859,7 @@ const Contact: React.FC = () => {
                     <div className="flex-1 flex flex-col justify-center gap-4 py-6">
                       {/* WhatsApp */}
                       <a
-                        href="https://wa.me/971545502356"
+                        href="https://wa.me/971552291691"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
@@ -813,7 +884,7 @@ const Contact: React.FC = () => {
 
                       {/* Phone Call */}
                       <a
-                        href="tel:+971545502356"
+                        href="tel:+971552291691"
                         className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
                       >
                         <div className="flex items-center gap-4">
@@ -825,7 +896,7 @@ const Contact: React.FC = () => {
                               Call Direct
                             </span>
                             <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
-                              +971 54 550 2356
+                              +971 55 229 1691
                             </span>
                           </div>
                         </div>
@@ -855,7 +926,7 @@ const Contact: React.FC = () => {
 
                       {/* Google Maps Location */}
                       <a
-                        href="https://maps.google.com/?q=Gate+13+Warehouse+6+Mena+Jabal+Ali+Dubai+UAE"
+                        href="https://maps.google.com/?q=Warehouse+6+Gate+13+Jebel+Ali+Industrial+area+1+Dubai+UAE"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
@@ -869,7 +940,7 @@ const Contact: React.FC = () => {
                               Showroom Map
                             </span>
                             <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
-                              Get directions to Mena Jabal Ali
+                              Get directions to Jebel Ali Industrial area 1
                             </span>
                           </div>
                         </div>
@@ -987,8 +1058,8 @@ const Contact: React.FC = () => {
             title="Backdrops Location Map"
             src={
               mapView === 'roadmap'
-                ? "https://maps.google.com/maps?q=Backdrops%20exhibition,%20Gate%20No.%2013,%20Warehouse%20No.%206%20-%20Mena%20Jabal%20Ali%20-%20Dubai%20-%20United%20Arab%20Emirates&t=m&z=15&ie=UTF8&iwloc=&output=embed"
-                : "https://maps.google.com/maps?q=Backdrops%20exhibition,%20Gate%20No.%2013,%20Warehouse%20No.%206%20-%20Mena%20Jabal%20Ali%20-%20Dubai%20-%20United%20Arab%20Emirates&t=k&z=18&ie=UTF8&iwloc=&output=embed"
+                ? "https://maps.google.com/maps?q=Backdrops%20exhibition,%20Warehouse%20no-%206,%20Gate%20no.13%20-%20Jebel%20Ali%20Industrial%20area%201%20-%20Dubai%20-%20United%20Arab%20Emirates&t=m&z=15&ie=UTF8&iwloc=&output=embed"
+                : "https://maps.google.com/maps?q=Backdrops%20exhibition,%20Warehouse%20no-%206,%20Gate%20no.13%20-%20Jebel%20Ali%20Industrial%20area%201%20-%20Dubai%20-%20United%20Arab%20Emirates&t=k&z=18&ie=UTF8&iwloc=&output=embed"
             }
             width="100%"
             height="100%"
@@ -1006,10 +1077,10 @@ const Contact: React.FC = () => {
             Backdrops UAE Showroom & Exhibition
           </span>
           <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed mb-6">
-            Gate No. 13, Warehouse No. 6<br />Mena Jabal Ali - Dubai - United Arab Emirates
+            Warehouse no- 6, Gate no.13<br />Jebel Ali Industrial area 1 - Dubai - United Arab Emirates
           </p>
           <a
-            href="https://maps.google.com/?q=Backdrops+exhibition+Gate+No.+13+Warehouse+No.+6+Mena+Jabal+Ali+Dubai+United+Arab+Emirates"
+            href="https://maps.google.com/?q=Backdrops+exhibition+Warehouse+no-+6+Gate+no.13+Jebel+Ali+Industrial+area+1+Dubai+United+Arab+Emirates"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 font-euclid font-bold text-[1.5rem] uppercase tracking-wider text-brand-gold hover:text-brand-white transition-colors duration-300 group/link cursor-pointer"
