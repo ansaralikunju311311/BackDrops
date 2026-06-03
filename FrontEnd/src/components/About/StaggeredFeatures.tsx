@@ -105,10 +105,10 @@ const StaggeredFeatures: React.FC = () => {
           className="relative"
         >
           {/* Main Horizontal Timeline Line in silver/white */}
-          <div className="absolute top-[26rem] left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none hidden lg:block" />
+          <div className="absolute top-[26rem] left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none hidden xl:block" />
 
           {/* Desktop Timeline Layout (7 Columns, Staggered Top/Bottom alignment) */}
-          <div className="hidden lg:grid grid-cols-7 gap-6 relative h-[52rem] w-full">
+          <div className="hidden xl:grid grid-cols-7 gap-6 relative h-[52rem] w-full">
             {cards.map((card, idx) => {
               const isTop = card.align === "top"
               const isHovered = hoveredIdx === idx
@@ -185,7 +185,7 @@ const StaggeredFeatures: React.FC = () => {
           </div>
 
           {/* Mobile & Tablet Grid Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 xl:hidden">
             {cards.map((card, idx) => (
               <motion.div
                 key={idx}
