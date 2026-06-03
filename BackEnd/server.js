@@ -11,14 +11,12 @@ const PORT = process.env.PORT || 5000;
 
 // Enable CORS dynamically for localhost and hosted environments
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow all origins (including localhost, Vercel, and Render)
-    callback(null, true);
-  },
+  origin: [
+    "https://back-drops-6juov2fyh-ansar-as-projects.vercel.app"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
-
 app.options(/^(.*)$/, cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
