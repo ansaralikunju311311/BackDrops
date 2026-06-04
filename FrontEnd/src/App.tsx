@@ -9,6 +9,7 @@ import Contact from './components/Contact'
 import Services from './components/Services'
 import ServiceDetail from './components/ServiceDetail'
 import PortfolioDetail from './components/PortfolioDetail'
+import Home from './components/Home'
 import Footer from './components/Footer'
 
 const ScrollToTop: React.FC = () => {
@@ -50,7 +51,9 @@ const App: React.FC = () => {
         {/* Main Sections */}
         <main>
           <Routes>
-            <Route path="/" element={<HomeView />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about-us" element={<HomeView />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/detail" element={<ServiceDetail />} />
             <Route path="/portfolio/detail" element={<PortfolioDetail />} />

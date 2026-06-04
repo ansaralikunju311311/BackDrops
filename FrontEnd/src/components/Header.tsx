@@ -55,15 +55,18 @@ const Header: React.FC = () => {
         <div className="hidden lg:flex items-center gap-8">
           <nav className="flex items-center gap-2 relative">
             {menuItems.map((item, idx) => {
+              const isAbout = item.toLowerCase() === 'about us'
               const isServices = item.toLowerCase() === 'services'
               const isContacts = item.toLowerCase() === 'contacts'
-              const isClientRoute = isServices || isContacts
+              const isClientRoute = isAbout || isServices || isContacts
               
-              const hrefPath = isServices
-                ? '/services'
-                : isContacts 
-                  ? '/contacts' 
-                  : (location.pathname === '/contacts' || location.pathname === '/services' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+              const hrefPath = isAbout
+                ? '/about-us'
+                : isServices
+                  ? '/services'
+                  : isContacts 
+                    ? '/contacts' 
+                    : (location.pathname !== '/' && location.pathname !== '/home' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
               
               const Component = isClientRoute ? Link : 'a'
               const props = isClientRoute ? { to: hrefPath } : { href: hrefPath }
@@ -203,15 +206,18 @@ const Header: React.FC = () => {
             <div className="flex flex-col p-8 gap-8 h-full">
               <nav className="flex flex-col gap-4">
                 {menuItems.map((item) => {
+                  const isAbout = item.toLowerCase() === 'about us'
                   const isServices = item.toLowerCase() === 'services'
                   const isContacts = item.toLowerCase() === 'contacts'
-                  const isClientRoute = isServices || isContacts
+                  const isClientRoute = isAbout || isServices || isContacts
                   
-                  const hrefPath = isServices
-                    ? '/services'
-                    : isContacts 
-                      ? '/contacts' 
-                      : (location.pathname === '/contacts' || location.pathname === '/services' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+                  const hrefPath = isAbout
+                    ? '/about-us'
+                    : isServices
+                      ? '/services'
+                      : isContacts 
+                        ? '/contacts' 
+                        : (location.pathname !== '/' && location.pathname !== '/home' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
                   
                   const Component = isClientRoute ? Link : 'a'
                   const props = isClientRoute ? { to: hrefPath } : { href: hrefPath }
