@@ -81,6 +81,15 @@ async function initMailer() {
 initMailer();
 
 // 1. Endpoint: Form Submission Email Forwarding
+
+
+
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend is running"
+  });
+});
 app.post('/api/contact', async (req, res) => {
   const { fullName, companyName, email, phoneNumber, message } = req.body;
 
