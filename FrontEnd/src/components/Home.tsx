@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import ParticleWaveBackground from './ParticleWaveBackground'
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -11,19 +12,11 @@ const Home: React.FC = () => {
       {/* SECTION 1: Full-Screen Background Video Hero */}
       <section className="relative h-screen w-full overflow-hidden bg-brand-bg flex items-center justify-center">
         
-        {/* Background Autoplay Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
-        >
-          <source src="/assets/Create_a_luxurious_cinematic_.mp4" type="video/mp4" />
-        </video>
+        {/* Particle Wave 3D Canvas Background */}
+        <ParticleWaveBackground />
 
         {/* Cinematic Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-[#121214] z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#121214] z-10 pointer-events-none" />
 
         {/* Decorative Grid Lines Overlay (Architectural Look) */}
         <div className="absolute left-[33%] top-0 bottom-0 w-[1px] bg-white/[0.06] z-15 pointer-events-none hidden md:block" />
