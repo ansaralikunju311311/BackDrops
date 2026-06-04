@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
     setIsSubmitting(true)
     
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:5000" : "https://backdrops.onrender.com");
+      const apiBaseUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(`${apiBaseUrl}/api/contact`, {
         method: "POST",
         headers: {
@@ -222,7 +222,7 @@ const Contact: React.FC = () => {
     }
   }
 
-  console.log(import.meta.env.VITE_API_URL);
+  console.log("checking they proprlty",import.meta.env.VITE_API_URL);
 
   return (
     <>
