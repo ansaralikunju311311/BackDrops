@@ -139,16 +139,21 @@ const Footer: React.FC = () => {
             {['Services', 'Portfolio', 'Reviews', 'Articles', 'Contacts', 'FAQ'].map((link) => {
               const isContacts = link.toLowerCase() === 'contacts'
               const isFaq = link.toLowerCase() === 'faq'
-              const isClientRoute = isContacts || isFaq
+              const isArticles = link.toLowerCase() === 'articles'
+              const isClientRoute = isContacts || isFaq || isArticles
               
               const hrefPath = isContacts 
                 ? '/contacts' 
                 : isFaq 
                   ? '/faq' 
-                  : (location.pathname === '/contacts' || location.pathname === '/faq' ? `/#${link.toLowerCase()}` : `#${link.toLowerCase()}`)
+                  : isArticles
+                    ? '/articles'
+                    : (location.pathname === '/contacts' || location.pathname === '/faq' ? `/#${link.toLowerCase()}` : `#${link.toLowerCase()}`)
               
               const Component = isClientRoute ? Link : 'a'
-              const props = isClientRoute ? { to: isContacts ? '/contacts' : '/faq' } : { href: hrefPath }
+              const props = isClientRoute 
+                ? { to: isContacts ? '/contacts' : (isFaq ? '/faq' : '/articles') } 
+                : { href: hrefPath }
 
               return (
                 <Component

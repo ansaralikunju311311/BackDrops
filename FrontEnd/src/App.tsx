@@ -12,6 +12,8 @@ import PortfolioDetail from './components/PortfolioDetail'
 import Home from './components/Home'
 import Footer from './components/Footer'
 import FAQ from './components/FAQ'
+import Articles from './components/Articles'
+import ArticleDetail from './components/ArticleDetail'
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation()
@@ -60,6 +62,8 @@ const App: React.FC = () => {
             <Route path="/portfolio/detail" element={<PortfolioDetail />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/detail" element={<ArticleDetail />} />
           </Routes>
         </main>
 
