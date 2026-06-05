@@ -3,6 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation, Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Phone } from 'lucide-react'
 
+import serv1 from '../assets/service/serv1.jpeg'
+import serv2 from '../assets/service/serv2.jpeg'
+import serv3 from '../assets/service/serv3.jpeg'
+import serv4 from '../assets/service/serv4.jpeg'
+import serv5 from '../assets/service/serv5.jpeg'
+import serv6 from '../assets/service/serv6.jpeg'
+import serv7 from '../assets/service/serv7.jpeg'
+import serv8 from '../assets/service/serv8.jpeg'
+import serv9 from '../assets/service/serv9.jpeg'
+import serv10 from '../assets/service/serv10.jpeg'
+
 // Direct SVG Icons for matching brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -26,42 +37,52 @@ const SERVICES_DATA: ServiceData[] = [
   {
     title: "Exhibition Stand Production",
     description: "We offer complete solutions for exhibition stand construction. From structural fabrication to on-site assembly, our team ensures your brand stands out with top-tier materials, precision joinery, and reliable execution.",
-    image: "/assets/journey.png"
+    image: serv1
   },
   {
     title: "Custom Fabrication & Joinery",
     description: "Our specialized in-house joinery workshop manufactures bespoke wooden structures, display counters, and interior styling elements. We combine traditional craftsmanship with modern technology to deliver premium finishes.",
-    image: "/assets/workspace_meeting.png"
+    image: serv2
   },
   {
     title: "Event & Activation Builds",
     description: "We build immersive environments for product launches, brand activations, and corporate events. Our interactive installations engage visitors and create memorable, photogenic touchpoints for your audience.",
-    image: "/assets/hero-bg.png"
+    image: serv3
   },
   {
     title: "On-site Installation & Project Management",
     description: "Our experienced project managers oversee all logistics, certifications, and local authority permits. We handle transportation and round-the-clock assembly, ensuring a stress-free launch for your event.",
-    image: "/assets/journey.png"
+    image: serv4
   },
   {
     title: "Mall & Retail Installations",
     description: "We create eye-catching window displays, promotional kiosks, and pop-up boutiques inside premium retail spaces. Compliant with strict shopping mall guidelines and safety standards.",
-    image: "/assets/showroom_retail_design.png"
+    image: serv5
   },
   {
     title: "Experiential Booth Engineering",
     description: "Blending technology with structure. We design and install interactive setups including integrated LED screens, smart lighting, sensory elements, and immersive media systems for cutting-edge booths.",
-    image: "/assets/hero-bg.png"
+    image: serv6
   },
   {
     title: "Office and Villa Interiors",
     description: "Beyond temporary events, we specialize in high-end fitouts for office headquarters, showrooms, and luxury residences. Custom wall panels, premium flooring, and architectural design.",
-    image: "/assets/showroom_retail_design.png"
+    image: serv7
   },
   {
     title: "Graphics and Signage",
     description: "High-resolution large-format printing, 3D backlit signs, vinyl wraps, and custom branding elements. We handle complete printing, cutting, and finishing in-house for flawless quality control.",
-    image: "/assets/about-banner-bg.webp"
+    image: serv8
+  },
+  {
+    title: "Furniture Rentals",
+    description: "Premium event and exhibition furniture rentals. We provide high-end seating, modular counters, tables, showcase cabinets, bar stools, and custom lounge furniture to match your brand's style.",
+    image: serv9
+  },
+  {
+    title: "Storage Facilities",
+    description: "Safe and secure warehouse storage facilities for exhibition materials and custom stands. We manage post-event dismantling, inventory tracking, protective wrapping, and storage for your next expo.",
+    image: serv10
   }
 ]
 

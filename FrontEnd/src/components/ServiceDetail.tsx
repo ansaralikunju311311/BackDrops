@@ -3,6 +3,19 @@ import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Phone, ArrowUpRight, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import serv1 from '../assets/service/serv1.jpeg'
+import serv2 from '../assets/service/serv2.jpeg'
+import serv3 from '../assets/service/serv3.jpeg'
+import serv4 from '../assets/service/serv4.jpeg'
+import serv5 from '../assets/service/serv5.jpeg'
+import serv6 from '../assets/service/serv6.jpeg'
+import serv7 from '../assets/service/serv7.jpeg'
+import serv8 from '../assets/service/serv8.jpeg'
+import serv9 from '../assets/service/serv9.jpeg'
+import serv10 from '../assets/service/serv10.jpeg'
+
+export const serviceImages = [serv1, serv2, serv3, serv4, serv5, serv6, serv7, serv8, serv9, serv10]
+
 // Direct SVG Icons matching the brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -34,8 +47,7 @@ interface PortfolioProject {
   materials?: string[]
 }
 
-
-interface ServiceDetailData {
+export interface ServiceDetailData {
   title: string
   image: string
   p1: string
@@ -45,10 +57,10 @@ interface ServiceDetailData {
   portfolio: PortfolioProject[]
 }
 
-const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
+export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   {
     title: "Exhibition Stand Production",
-    image: "/assets/journey.png",
+    image: serv1,
     p1: "For most companies, participation in the exhibition is a great way to demonstrate their products or services to interested visitors, find buyers or partners, and declare themselves.",
     p2: "When participating in exhibitions abroad, customers prefer to entrust all organizational issues related to the exhibition to us. We operate fully equipped joinery and electrical facilities to execute custom stand construction of any complexity.",
     p3: "We help with the selection and rental of exhibition space with the subsequent exclusive construction of exhibition stands according to the agreed design, matching all corporate guidelines.",
@@ -71,7 +83,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "Custom Fabrication & Joinery",
-    image: "/assets/workspace_meeting.png",
+    image: serv2,
     p1: "Our custom joinery division manufactures premium bespoke wooden structures, display furniture, counter desks, and wall paneling that module stands cannot replicate.",
     p2: "Using advanced machinery alongside meticulous craftsmanship, we build details that enrich spatial aesthetics and reflect absolute class. We select top-tier raw materials to guarantee premium visual and structural outcomes.",
     p3: "From design drawings to final gloss coat, our carpentry workshops ensure a seamless and robust finish built to survive high-footfall event venues.",
@@ -94,7 +106,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "Event & Activation Builds",
-    image: "/assets/hero-bg.png",
+    image: serv3,
     p1: "Brand activations and events require fast, high-quality fabrication of stages, interactive photo zones, and promotional displays that capture attention instantly.",
     p2: "We construct durable structures that align with structural certifications and safety norms, designed specifically for rapid assembly and dismantling on site.",
     p3: "Our team handles full structural engineering, audio-visual layouts, dynamic lighting, and graphic wraps to provide an immersive brand experience.",
@@ -117,7 +129,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "On-site Installation & Project Management",
-    image: "/assets/journey.png",
+    image: serv4,
     p1: "Ensuring exhibition stands and events are delivered on time requires strict project scheduling, safety calculations, and round-the-clock shift management.",
     p2: "Our managers handle all authority submissions, hall permits, structural drawings, electricity request layouts, and safety compliance certificates.",
     p3: "We coordinate transport, safe unloading, structural hoisting, clean up, and visual styling to deliver a complete turnkey handover for stress-free launches.",
@@ -140,7 +152,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "Mall & Retail Installations",
-    image: "/assets/showroom_retail_design.png",
+    image: serv5,
     p1: "Commercial retail environments demand outstanding craftsmanship and extreme safety compliance. We design window displays, promotional kiosks, and temporary boutique stands.",
     p2: "We construct stands strictly using non-combustible materials, fire-rated electrical wiring, and stable structures that comply with premium shopping mall rules.",
     p3: "Our designs target immediate customer attraction, maximizing product placement utility and integrating structural premium aesthetic highlights.",
@@ -163,7 +175,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "Experiential Booth Engineering",
-    image: "/assets/hero-bg.png",
+    image: serv6,
     p1: "We engineer next-generation exhibition booths that blend physical carpentry with digital technologies like interactive LED walls, projection mapping, and motion sensors.",
     p2: "Our tech divisions integrate hidden wiring tracks, ventilation systems, cooling fans, and sturdy steel reinforcement brackets for heavy LED panel mounts.",
     p3: "We coordinate with software designers to deliver immersive customer journeys, including sensory corridors, touch screens, and VR experiences.",
@@ -176,8 +188,8 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
       { title: "Tech Brand Experience Zone", area: "50 m²", details: ["Touchscreen demo desks", "Gypsum curved arches", "Indirect linear glow styling"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
       { title: "Projection Mapping Studio", area: "30 m²", details: ["Ultra short throw setup", "Special projection paints", "Precision mapping grids"], image: "/assets/02-1024x768.jpg" },
       { title: "VR Flight Simulator Hub", area: "25 m²", details: ["Rigid platform bounds", "Cable suspenders hooks", "LED sound responsive lights"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Sensory Audio Dome", area: "20 m²", details: ["Acoustic wall felts", "Directional sound domes", "Soft dimming accent lights"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Smart Mirror Display", area: "12 m²", details: ["Reflective display panels", "Motion capture cameras", "Backlit aluminum frame"], image: "/assets/1-8-1024x768.jpg" },
+      { title: "Sensory Audio Dome", area: "20 m²", details: ["Acoustic wall felt", "Directional sound domes", "Soft dimming accent lights"], image: "/assets/2_web-1024x768.jpg" },
+      { title: "Smart Mirror Display", area: "12 h", details: ["Reflective display panels", "Motion capture cameras", "Backlit aluminum frame"], image: "/assets/1-8-1024x768.jpg" },
       { title: "Holofused Stand Counter", area: "15 m²", details: ["3D hologram fan mounts", "Frosted acrylic podium", "Cable management tracks"], image: "/assets/1-1024x768.jpeg" },
       { title: "Kinetic Light Installation", area: "45 m²", details: ["Motorized LED globes", "Synchronized controller", "Custom truss frame mounts"], image: "/assets/1-1-1024x768.jpeg" },
       { title: "Mobile App Activation Zone", area: "18 m²", details: ["Tablet stand pods", "QR display banners", "Soft neon sign backdrops"], image: "/assets/showroom_retail_design.png" },
@@ -186,7 +198,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "Office and Villa Interiors",
-    image: "/assets/showroom_retail_design.png",
+    image: serv7,
     p1: "We specialize in permanent luxury interior fit-outs for offices, corporate headquarters, brand showrooms, boutiques, and high-end residential villas.",
     p2: "Our fit-out services cover custom partition walls, decorative ceilings, premium wood floors, double-glazed glass framing, and architectural layout plans.",
     p3: "We balance layout ergonomics with high-end finishes, creating workspaces that increase efficiency and private residences that project luxury and comfort.",
@@ -209,7 +221,7 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   },
   {
     title: "Graphics and Signage",
-    image: "/assets/about-banner-bg.webp",
+    image: serv8,
     p1: "Graphics and branding elements complete the premium look of stands and interiors. We operate large-format print lines, vinyl cutting, and neon-styling divisions.",
     p2: "We manufacture backlit fabric frames, dimensional 3D acrylic letters, stainless steel signage, and custom lightboxes with strict color calibration and quality controls.",
     p3: "Our vinyl and graphic wrap installers guarantee bubble-free, seamless finishes on complex structures, and hidden electrical wire setups.",
@@ -228,6 +240,37 @@ const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
       { title: "Large Scale Banner Print", area: "120 m²", details: ["Reinforced vinyl borders", "Wind-outlet safety cuts", "Heavy duty mounting eyelets"], image: "/assets/1-1024x768.jpeg" },
       { title: "Retail Lightbox Displays", area: "15 m²", details: ["Fast graphic change tracks", "Low profile borders", "High brightness LEDs"], image: "/assets/showroom_retail_design.png" },
       { title: "3D Backlit Metallic Letters", area: "6 m²", details: ["Brushed brass contours", "Internal safety transformers", "Wall stencil template fit"], image: "/assets/workspace_meeting.png" }
+    ]
+  },
+  {
+    title: "Furniture Rentals",
+    image: serv9,
+    p1: "Exhibition stand aesthetics are completed by the right choice of furniture. We provide an extensive range of premium event and exhibition furniture rentals across the UAE.",
+    p2: "Our catalogue includes designer seating, bar stools, reception counters, display cabinets, meeting tables, and premium lounge setups designed to match your brand's color theme.",
+    p3: "We manage complete logistics, delivery, visual placement, and post-event collection, ensuring that your stand looks immaculate and serves your visitors comfortably.",
+    related: [
+      { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." },
+      { idx: 1, title: "Custom Fabrication & Joinery", image: "/assets/workspace_meeting.png", snippet: "Order custom fabrication and wooden structures for your unique promotional needs." }
+    ],
+    portfolio: [
+      { title: "VIP Bar & Stools Set", area: "15 m²", details: ["Premium bar stools", "Illuminated counters", "Sleek metallic accents"], image: "/assets/1-3-1024x768.jpeg" },
+      { title: "Corporate Lounge Setup", area: "24 m²", details: ["Plush armchairs", "Tempered glass tables", "Custom brand color cushions"], image: "/assets/workspace_meeting.png" },
+      { title: "Interactive Demo Desks", area: "10 m²", details: ["Built-in tablet brackets", "Internal cable management", "Under-counter storage"], image: "/assets/showroom_retail_design.png" }
+    ]
+  },
+  {
+    title: "Storage Facilities",
+    image: serv10,
+    p1: "Custom-built joinery exhibition stands represent a significant corporate investment. Instead of discarding them, we offer safe, secure storage facilities to preserve your assets.",
+    p2: "Our Jebel Ali warehouse features managed storage spaces where stand components are carefully dismantled, catalogued, bubble-wrapped, and loaded into containers for future re-use.",
+    p3: "We offer end-to-end multi-event asset management, helping you store, transport, refurbish, and reinstall your stands for subsequent trade shows, saving cost and reducing waste.",
+    related: [
+      { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." },
+      { idx: 3, title: "On-site Installation & Project Management", image: "/assets/journey.png", snippet: "Coordinating transport, permits, assembly, and dismantling." }
+    ],
+    portfolio: [
+      { title: "Multi-Event Stand Storage", area: "120 m²", details: ["Safe warehouse storage", "Bubble-wrapped packaging", "Inventory database logs"], image: "/assets/1-1024x768.jpeg" },
+      { title: "Expo Materials Log", area: "80 m²", details: ["Secure storage bays", "Dismantling supervision", "Refurbishment workshops"], image: "/assets/journey.png" }
     ]
   }
 ]
@@ -383,7 +426,7 @@ const ServiceDetail: React.FC = () => {
                     {/* Thumbnail Image */}
                     <div className="w-32 h-24 sm:w-36 sm:h-28 shrink-0 overflow-hidden rounded-xs border border-brand-white/5">
                       <img
-                        src={rel.image}
+                        src={serviceImages[rel.idx]}
                         alt={rel.title}
                         className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
                       />
