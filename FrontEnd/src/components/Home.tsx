@@ -578,6 +578,91 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* SECTION 1.9: Installing Exhibit Booths Section */}
+      <section className="py-36 bg-[#101012] relative z-10 border-t border-brand-white/5 overflow-hidden">
+        {/* Faint Architectural Background lines */}
+        <div className="absolute left-[33%] top-0 bottom-0 w-[1px] bg-white/[0.04] pointer-events-none hidden md:block" />
+        <div className="absolute left-[66%] top-0 bottom-0 w-[1px] bg-white/[0.04] pointer-events-none hidden md:block" />
+
+        {/* Faint INSTALL label behind */}
+        <div className="absolute right-6 bottom-[10%] text-[10rem] sm:text-[14rem] md:text-[18rem] lg:text-[22rem] font-urw font-black text-brand-white/[0.015] tracking-[0.1em] select-none pointer-events-none uppercase">
+          INSTALL
+        </div>
+
+        <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-tight mb-12"
+          >
+            Installing exhibit booths
+          </motion.h2>
+
+          {/* Booth Image Wrapper with 3D Mouse Tilt and Radial Glow Spotlight */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-brand-dark-accent/10 mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.4)] group cursor-pointer"
+            style={{
+              transition: 'transform 0.1s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+            }}
+          >
+            {/* Card Glow Layer */}
+            <div className="card-glow absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-20" />
+            
+            <img 
+              src="/assets/car.jpeg" 
+              alt="Installing exhibit booths"
+              className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] z-10"
+            />
+          </motion.div>
+
+          {/* Descriptions Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Left Column */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col gap-10"
+            >
+              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+                Layout of any expo booth is the dominant factor of a display as a whole, a cornerstone of shaping positive company image, services provided and produce in the eye of a potential client.
+              </p>
+              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+                Project designing and visualising using three dimensional modeling helps to work out all the aspects in detail, take into account peculiar features of corporate identity and a client's expectations, make all the necessary adjustments and at the same time do not exceed budget limitations.
+              </p>
+            </motion.div>
+
+            {/* Right Column */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col gap-10"
+            >
+              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+                Due to our highly qualified staff and all the necessary state-of-the-art equipment the processes of manufacturing followed by installation of a display are fulfilled in the shortest possible time and are of superior quality.
+              </p>
+              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+                We offer not only exclusive expo booths production of any complexity but also multimedia equipment, furniture, writing software, professional creation of audio-visual content.
+              </p>
+              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+                Throughout the years we have been successfully implementing projects in the expo sector, delivering world-class exhibition spaces that captivate and command attention globally.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 2: Contact CTA Section */}
       <section className="py-36 bg-[#121214] relative z-10 border-t border-brand-white/5 select-none">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 text-center">
