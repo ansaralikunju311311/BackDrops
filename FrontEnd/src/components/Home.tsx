@@ -1,7 +1,37 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import ParticleWaveBackground from './ParticleWaveBackground'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.3,
+    },
+  },
+}
+
+const letterVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.85,
+    rotate: -5
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 100,
+    }
+  }
+}
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -12,8 +42,16 @@ const Home: React.FC = () => {
       {/* SECTION 1: Full-Screen Background Video Hero */}
       <section className="relative h-screen w-full overflow-hidden bg-brand-bg flex items-center justify-center">
         
-        {/* Particle Wave 3D Canvas Background */}
-        <ParticleWaveBackground />
+        {/* Full-Screen Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
+        >
+          <source src="/assets/company_name_chnage_to_the_Bac.mp4" type="video/mp4" />
+        </video>
 
         {/* Cinematic Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#121214] z-10 pointer-events-none" />
@@ -28,12 +66,52 @@ const Home: React.FC = () => {
         {/* Centered Massive Title text */}
         <div className="relative z-20 text-center max-w-[120rem] px-6 select-none pointer-events-none">
           <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="font-urw font-extrabold text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[19rem] text-white tracking-widest uppercase leading-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.6)]"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="font-urw font-extrabold text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[19rem] text-white uppercase leading-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.6)] flex flex-wrap justify-center gap-x-[3vw]"
           >
-            WE CREATE
+            {["WE", "CREATE"].map((word, wordIndex) => (
+              <span key={wordIndex} className="inline-block whitespace-nowrap">
+                {Array.from(word).map((char, charIndex) => {
+                  const globalIndex = wordIndex * 3 + charIndex
+                  return (
+                    <motion.span
+                      key={charIndex}
+                      variants={letterVariants}
+                      animate={{
+                        y: [0, -12, 0],
+                        rotate: [0, wordIndex === 0 ? -1.5 : 1.5, 0],
+                      }}
+                      transition={{
+                        y: {
+                          duration: 3.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: globalIndex * 0.15,
+                        },
+                        rotate: {
+                          duration: 4.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: globalIndex * 0.15,
+                        }
+                      }}
+                      whileHover={{
+                        y: -20,
+                        scale: 1.1,
+                        color: "#C47956",
+                        textShadow: "0px 0px 30px rgba(196,121,86,0.7)",
+                        transition: { type: "spring", stiffness: 400, damping: 10 }
+                      }}
+                      className="inline-block cursor-default select-none pointer-events-auto origin-bottom mr-[0.15em] last:mr-0"
+                    >
+                      {char}
+                    </motion.span>
+                  )
+                })}
+              </span>
+            ))}
           </motion.h1>
         </div>
 
