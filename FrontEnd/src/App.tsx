@@ -14,6 +14,8 @@ import Footer from './components/Footer'
 import FAQ from './components/FAQ'
 import Articles from './components/Articles'
 import ArticleDetail from './components/ArticleDetail'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import TermsConditions from './components/TermsConditions'
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation()
@@ -64,6 +66,8 @@ const App: React.FC = () => {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/detail" element={<ArticleDetail />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-conditions" element={<TermsConditions />} />
           </Routes>
         </main>
 

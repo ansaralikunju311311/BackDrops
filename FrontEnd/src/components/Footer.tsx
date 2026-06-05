@@ -258,15 +258,18 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Legal Policy Links */}
           <div className="flex flex-col gap-2 md:items-end">
-            {['Privacy Policy', 'Terms & Conditions'].map((policy) => (
-              <a
-                key={policy}
-                href="#"
-                className="font-euclid font-normal text-[1.8rem] md:text-[2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
-              >
-                {policy}
-              </a>
-            ))}
+            <Link
+              to="/privacy-policy"
+              className="font-euclid font-normal text-[1.8rem] md:text-[2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-conditions"
+              className="font-euclid font-normal text-[1.8rem] md:text-[2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
+            >
+              Terms & Conditions
+            </Link>
           </div>
 
         </div>
