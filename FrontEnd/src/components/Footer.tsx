@@ -138,12 +138,17 @@ const Footer: React.FC = () => {
           <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4">
             {['Services', 'Portfolio', 'Reviews', 'Articles', 'Contacts', 'FAQ'].map((link) => {
               const isContacts = link.toLowerCase() === 'contacts'
+              const isFaq = link.toLowerCase() === 'faq'
+              const isClientRoute = isContacts || isFaq
+              
               const hrefPath = isContacts 
                 ? '/contacts' 
-                : (location.pathname === '/contacts' ? `/#${link.toLowerCase()}` : `#${link.toLowerCase()}`)
+                : isFaq 
+                  ? '/faq' 
+                  : (location.pathname === '/contacts' || location.pathname === '/faq' ? `/#${link.toLowerCase()}` : `#${link.toLowerCase()}`)
               
-              const Component = isContacts ? Link : 'a'
-              const props = isContacts ? { to: '/contacts' } : { href: hrefPath }
+              const Component = isClientRoute ? Link : 'a'
+              const props = isClientRoute ? { to: isContacts ? '/contacts' : '/faq' } : { href: hrefPath }
 
               return (
                 <Component
