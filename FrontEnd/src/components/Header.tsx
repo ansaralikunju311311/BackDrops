@@ -92,7 +92,8 @@ const Header: React.FC = () => {
                   >
                     <Link
                       to="/services"
-                      className="font-euclid font-bold text-[2.1rem] tracking-wider uppercase text-brand-white/80 hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs flex items-center gap-1.5"
+                      className="font-euclid text-brand-white hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs flex items-center gap-1.5"
+                      style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.05em' }}
                     >
                       <span className="relative z-10">{item}</span>
                       <svg className={`w-4 h-4 transition-transform duration-300 z-10 ${isServicesHovered ? 'rotate-180 text-brand-gold' : 'text-brand-white/60'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,7 +147,8 @@ const Header: React.FC = () => {
                 <Component
                   key={item}
                   {...props}
-                  className="font-euclid font-bold text-[2.1rem] tracking-wider uppercase text-brand-white/80 hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs"
+                  className="font-euclid text-brand-white hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs"
+                  style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.05em' }}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -235,7 +237,8 @@ const Header: React.FC = () => {
                       <div key={item} className="flex flex-col">
                         <button
                           onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                          className="font-urw font-bold text-[2.2rem] uppercase tracking-wider text-brand-white hover:text-brand-gold py-3 border-b border-brand-white/5 transition-colors duration-300 flex items-center justify-between text-left w-full cursor-pointer"
+                          className="font-urw text-brand-white hover:text-brand-gold py-3 border-b border-brand-white/5 transition-colors duration-300 flex items-center justify-between text-left w-full cursor-pointer"
+                          style={{ fontSize: '2.0rem', fontWeight: 400, letterSpacing: '0.05em' }}
                         >
                           {item}
                           <svg className={`w-5 h-5 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-brand-gold' : 'text-brand-white/40'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,7 +281,8 @@ const Header: React.FC = () => {
                       key={item}
                       {...props}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="font-urw font-bold text-[2.2rem] uppercase tracking-wider text-brand-white hover:text-brand-gold py-3 border-b border-brand-white/5 transition-colors duration-300"
+                      className="font-urw text-brand-white hover:text-brand-gold py-3 border-b border-brand-white/5 transition-colors duration-300"
+                      style={{ fontSize: '2.0rem', fontWeight: 400, letterSpacing: '0.05em' }}
                     >
                       {item}
                     </Component>

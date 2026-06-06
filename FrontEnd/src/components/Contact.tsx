@@ -313,7 +313,8 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="mailto:info@backdrops.ae" 
-                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
                     >
                       info@backdrops.ae
                     </a>
@@ -331,7 +332,8 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="tel:+971552291691" 
-                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
                     >
                       +971 55 229 1691
                     </a>
@@ -376,7 +378,8 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="mailto:info@backdrops.ae" 
-                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
                     >
                       info@backdrops.ae
                     </a>
@@ -394,7 +397,8 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="tel:+919605218618" 
-                      className="font-circe font-light text-[2.2rem] text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
                     >
                       +91 9605 218618
                     </a>

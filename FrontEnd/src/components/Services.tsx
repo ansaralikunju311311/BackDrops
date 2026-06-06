@@ -332,10 +332,11 @@ const Services: React.FC = () => {
             <div className="mt-8 lg:mt-12">
               <Link
                 to={`/services/detail?id=${activeIdx}`}
-                className="inline-flex font-euclid font-bold text-[2rem] tracking-wider uppercase text-brand-gold hover:text-white transition-colors duration-300 items-center gap-3 group/btn"
+                className="inline-flex font-euclid font-bold tracking-wider uppercase text-brand-gold hover:text-white transition-colors duration-300 items-center gap-3 group/btn"
+                style={{ fontSize: '2.2rem' }}
               >
                 <span>Read more</span>
-                <span className="text-[2.4rem] font-light group-hover:translate-x-1.5 transition-transform duration-300">»</span>
+                <span className="font-light group-hover:translate-x-1.5 transition-transform duration-300" style={{ fontSize: '2.6rem' }}>»</span>
               </Link>
             </div>
           </div>

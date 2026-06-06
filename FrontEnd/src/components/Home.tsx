@@ -285,7 +285,7 @@ const Home: React.FC = () => {
               <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-tight mb-8">
                 Video cases
               </h2>
-              <p className="font-circe font-light text-[1.6rem] sm:text-[1.8rem] text-brand-text-muted leading-relaxed max-w-[32rem] mb-12">
+              <p className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[32rem] mb-12" style={{ fontSize: '1.8rem' }}>
                 Creative solutions for exhibition projects
               </p>
 
@@ -334,23 +334,17 @@ const Home: React.FC = () => {
               </div>
 
               <motion.div
-                animate={{ x: `-${currentVideoIndex * (100 / visibleCards)}%` }}
+                animate={{ x: `calc(-${currentVideoIndex} * (100% + 2rem) / ${visibleCards})` }}
                 transition={{ type: "spring", stiffness: 220, damping: 24 }}
-                className="flex gap-8"
-                style={{ width: `${videos.length * (100 / visibleCards)}%` }}
+                className="flex gap-8 w-full"
               >
                 {videos.map((vid) => (
                   <div 
                     key={vid.id} 
-                    className="w-full relative group cursor-pointer rounded-2xl p-5 bg-brand-dark-accent/20 border border-white/[0.03] hover:border-brand-gold/30 overflow-hidden"
+                    className="relative group cursor-pointer rounded-2xl p-5 bg-brand-dark-accent/20 border border-white/[0.03] hover:border-brand-gold/30 overflow-hidden"
                     style={{ 
-                      flex: `0 0 ${
-                        visibleCards === 1 
-                          ? '100%' 
-                          : visibleCards === 2 
-                            ? 'calc(50% - 16px)' 
-                            : 'calc(33.333% - 16px)'
-                      }`,
+                      flex: '0 0 auto',
+                      width: `calc((100% - ${(visibleCards - 1) * 2}rem) / ${visibleCards})`,
                       transition: 'transform 0.1s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out',
                       boxShadow: '0 4px 30px rgba(0,0,0,0.2)'
                     }}
@@ -514,10 +508,10 @@ const Home: React.FC = () => {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <p className="font-circe font-light text-[1.6rem] text-brand-text-muted leading-relaxed">
+                <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
                   BackDrops offers exhibition related services all around the world. We have stand construction experience in more than 15 different countries, and this list of worldwide cooperation is expanding every year.
                 </p>
-                <p className="font-circe font-light text-[1.6rem] text-brand-text-muted leading-relaxed">
+                <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
                   Our team has competence and experience to implement your project globally.
                 </p>
               </div>
@@ -536,40 +530,45 @@ const Home: React.FC = () => {
           </h2>
 
           {/* Timeline Nodes */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-4 relative max-w-[125rem] mx-auto">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-1 relative max-w-[140rem] mx-auto overflow-x-auto lg:overflow-x-visible scrollbar-hide pb-6 lg:pb-0 px-4">
             {[
-              { num: '01', title: 'Filling out brief' },
-              { num: '02', title: 'Creating design and concept' },
-              { num: '03', title: 'Production' },
-              { num: '04', title: 'Installation' },
-              { num: '05', title: 'Completed project presentation' },
-              { num: '06', title: 'Support during the event' },
-              { num: '07', title: 'Dismantling' }
+              { num: '01', title: 'Client Briefing & Requirement Gathering' },
+              { num: '02', title: 'Concept Development & Strategy' },
+              { num: '03', title: 'Design Development (3D & Visualization)' },
+              { num: '04', title: 'Technical Drawings & Engineering' },
+              { num: '05', title: 'Production & Fabrication' },
+              { num: '06', title: 'Mock-Up Presentation & Approval' },
+              { num: '07', title: 'Logistics & Transportation' },
+              { num: '08', title: 'On-Site Installation (Build-Up)' },
+              { num: '09', title: 'Pre-Event Testing & Handover' },
+              { num: '10', title: 'Event On-Site Support' },
+              { num: '11', title: 'Dismantling & Post-Event Closure' },
+              { num: '12', title: 'Post-Event Review & Reporting' }
             ].map((step, idx, arr) => (
               <React.Fragment key={step.num}>
                 {/* Step Node */}
-                <div className="flex flex-col items-center w-full lg:max-w-[15rem] relative">
+                <div className="flex flex-col items-center w-full lg:w-[10.5rem] lg:min-w-[9rem] flex-shrink-0 relative">
                   <motion.div
                     whileHover={{ scale: 1.08 }}
-                    className="w-24 h-24 rounded-full border border-white/[0.08] bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.6rem] text-white/90 z-10 transition-all duration-300 hover:border-[#E51D1D] hover:text-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
+                    className="w-20 h-20 rounded-full border border-white/[0.08] bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.4rem] text-white/90 z-10 transition-all duration-300 hover:border-[#E51D1D] hover:text-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
                   >
                     # {step.num}
                   </motion.div>
-                  <p className="font-circe font-light text-[1.4rem] sm:text-[1.5rem] text-brand-text-muted mt-6 text-center leading-relaxed">
+                  <p className="font-circe font-light text-brand-text-muted mt-5 text-center leading-relaxed" style={{ fontSize: '1.5rem' }}>
                     {step.title}
                   </p>
                 </div>
 
-                {/* Connecting dots */}
+                {/* Connecting dots (Desktop) / Line (Mobile) */}
                 {idx < arr.length - 1 && (
-                  <>
+                  <React.Fragment>
                     {/* Desktop Dots */}
-                    <div className="hidden lg:flex items-center text-white/20 text-3xl font-bold tracking-[0.3em] h-24 flex-shrink-0 z-0">
-                      ...
+                    <div className="hidden lg:flex items-center text-white/10 text-xl font-bold tracking-[0.1em] h-20 flex-shrink-0 z-0">
+                      ..
                     </div>
                     {/* Mobile Line */}
                     <div className="lg:hidden w-[1px] h-10 border-l border-dashed border-white/20 my-4" />
-                  </>
+                  </React.Fragment>
                 )}
               </React.Fragment>
             ))}
@@ -633,10 +632,10 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col gap-10"
             >
-              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
                 Layout of any expo booth is the dominant factor of a display as a whole, a cornerstone of shaping positive company image, services provided and produce in the eye of a potential client.
               </p>
-              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
                 Project designing and visualising using three dimensional modeling helps to work out all the aspects in detail, take into account peculiar features of corporate identity and a client's expectations, make all the necessary adjustments and at the same time do not exceed budget limitations.
               </p>
             </motion.div>
@@ -649,13 +648,13 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col gap-10"
             >
-              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
                 Due to our highly qualified staff and all the necessary state-of-the-art equipment the processes of manufacturing followed by installation of a display are fulfilled in the shortest possible time and are of superior quality.
               </p>
-              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
                 We offer not only exclusive expo booths production of any complexity but also multimedia equipment, furniture, writing software, professional creation of audio-visual content.
               </p>
-              <p className="font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default">
+              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
                 Throughout the years we have been successfully implementing projects in the expo sector, delivering world-class exhibition spaces that captivate and command attention globally.
               </p>
             </motion.div>
@@ -679,7 +678,7 @@ const Home: React.FC = () => {
             </h2>
 
             {/* Description */}
-            <p className="font-circe font-light text-[1.8rem] sm:text-[2rem] text-brand-text-muted leading-relaxed max-w-[70rem] mb-16">
+            <p className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[70rem] mb-16" style={{ fontSize: '2.0rem' }}>
               Our Dubai joinery workshop and experiential tech engineering teams stand ready to bring your brand pavilion, bespoke boutique window, or event stage setup to absolute life.
             </p>
 
@@ -704,9 +703,18 @@ const Home: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-6 pointer-events-auto"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md p-6 pointer-events-auto"
             onClick={() => setSelectedVideoId(null)}
           >
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedVideoId(null)}
+              className="absolute top-6 right-6 z-[110] w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shadow-lg"
+              aria-label="Close modal"
+            >
+              <X className="w-8 h-8" />
+            </button>
+
             {/* Modal Box */}
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
@@ -716,15 +724,6 @@ const Home: React.FC = () => {
               className="relative w-full max-w-[100rem] aspect-video rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
-              <button
-                onClick={() => setSelectedVideoId(null)}
-                className="absolute top-4 right-4 z-50 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center border border-white/10 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X className="w-6 h-6" />
-              </button>
-
               {/* Responsive YouTube Embed */}
               <iframe
                 src={`https://www.youtube.com/embed/${selectedVideoId}?autoplay=1&rel=0`}
