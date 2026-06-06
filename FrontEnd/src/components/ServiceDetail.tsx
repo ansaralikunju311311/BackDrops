@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Phone, ArrowUpRight, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useQuery } from '@tanstack/react-query'
 
 import serv1 from '../assets/service/serv1.jpeg'
 import serv2 from '../assets/service/serv2.jpeg'
@@ -45,6 +46,11 @@ interface PortfolioProject {
   location?: string
   facility?: string
   materials?: string[]
+  isDb?: boolean
+  dbId?: string
+  category?: string
+  categories?: string[]
+  originalIdx?: number
 }
 
 export interface ServiceDetailData {
@@ -275,11 +281,26 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   }
 ]
 
+const fetchAllStands = async () => {
+  const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+  const res = await fetch(`${apiBaseUrl}/api/stands?limit=100`)
+  const data = await res.json()
+  if (!res.ok || !data.success) {
+    throw new Error(data.error || 'Failed to fetch stands')
+  }
+  return data.stands || []
+}
+
 const ServiceDetail: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const [activeIdx, setActiveIdx] = useState(0)
   const portfolioScrollRef = useRef<HTMLDivElement>(null)
+
+  const { data: dbStands = [] } = useQuery({
+    queryKey: ['allStands'],
+    queryFn: fetchAllStands
+  })
 
   useEffect(() => {
     // Read active ID from query params
@@ -318,9 +339,35 @@ const ServiceDetail: React.FC = () => {
     }, 4500)
 
     return () => clearInterval(interval)
-  }, [activeIdx])
+  }, [activeIdx, dbStands])
 
   const service = DETAIL_SERVICES_DATA[activeIdx]
+
+  // Map static stands
+  const staticMappedStands = service.portfolio.map((project, idx) => {
+    return {
+      ...project,
+      isDb: false,
+      originalIdx: idx
+    }
+  })
+
+  // Map database stands to the portfolio structure
+  const dbMappedStands = activeIdx === 0 ? dbStands.map((stand) => ({
+    title: stand.showName,
+    area: `${stand.standArea} m²`,
+    details: [
+      `Client: ${stand.client}`,
+      `Location: ${stand.location}`,
+      ...(stand.typeOfStands || [])
+    ].slice(0, 3),
+    image: stand.images && stand.images.length > 0 ? stand.images[0].url : '',
+    dbId: stand._id,
+    isDb: true
+  })) : []
+
+  // Show only database stands if Exhibition Stand Production (id 0), otherwise show static stands
+  const combinedPortfolio = activeIdx === 0 ? dbMappedStands : staticMappedStands
 
   const handlePortfolioScroll = (direction: 'left' | 'right') => {
     if (portfolioScrollRef.current) {
@@ -460,7 +507,7 @@ const ServiceDetail: React.FC = () => {
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           
           {/* Scroll Header Controls */}
-          <div className="flex justify-between items-end mb-16 select-none">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 select-none">
             <div className="flex flex-col gap-2 text-left">
               <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase">Showcase</span>
               <h2 className="font-urw font-bold text-[4.5rem] sm:text-[5.5rem] text-white uppercase tracking-wider leading-none">Portfolio</h2>
@@ -489,19 +536,31 @@ const ServiceDetail: React.FC = () => {
             ref={portfolioScrollRef}
             className="flex gap-10 overflow-x-auto scrollbar-hide pb-8 snap-x snap-mandatory scroll-smooth pt-4"
           >
-            {service.portfolio.map((project, idx) => (
+            {combinedPortfolio.map((project, idx) => (
               <div
-                key={idx}
-                onClick={() => navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${idx}`)}
+                key={project.isDb ? project.dbId : `static-${project.originalIdx}`}
+                onClick={() => {
+                  if (project.isDb && project.dbId) {
+                    navigate(`/portfolio/detail?dbId=${project.dbId}`)
+                  } else {
+                    navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${project.originalIdx}`)
+                  }
+                }}
                 className="flex-shrink-0 w-[28rem] sm:w-[36rem] cursor-pointer group transition-all duration-500 ease-out snap-start hover:-translate-y-4 hover:scale-[1.02]"
               >
                 {/* Project Image */}
                 <div className="relative aspect-[3/4] mb-6 overflow-hidden rounded-sm border border-brand-white/10 group-hover:border-brand-gold/60 transition-all duration-500">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 group-hover:scale-108 transition-all duration-700 select-none"
-                  />
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 group-hover:scale-108 transition-all duration-700 select-none"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-brand-dark-accent text-brand-text-muted font-circe font-light text-[1.4rem]">
+                      No Image
+                    </div>
+                  )}
                   {/* Dimension square badge */}
                   <div className="absolute bottom-5 left-5 bg-brand-dark/85 backdrop-blur-md border border-brand-white/10 px-5 py-3 rounded-xs font-urw font-bold text-[1.5rem] tracking-wide text-white select-none">
                     {project.area}
@@ -532,7 +591,11 @@ const ServiceDetail: React.FC = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${idx}`);
+                      if (project.isDb && project.dbId) {
+                        navigate(`/portfolio/detail?dbId=${project.dbId}`)
+                      } else {
+                        navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${project.originalIdx}`)
+                      }
                     }}
                     className="shrink-0 bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.3rem] tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(229,29,29,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
                     aria-label="View project details"

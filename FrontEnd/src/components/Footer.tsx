@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
 
           {/* Navigation in the center */}
           <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4">
-            {['Services', 'Portfolio', 'Reviews', 'Articles', 'Contacts', 'FAQ'].map((link) => {
+            {['Services', 'Portfolio', 'Articles', 'Contacts', 'FAQ'].map((link) => {
               const isContacts = link.toLowerCase() === 'contacts'
               const isFaq = link.toLowerCase() === 'faq'
               const isArticles = link.toLowerCase() === 'articles'

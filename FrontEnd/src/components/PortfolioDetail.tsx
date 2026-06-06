@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
-import { MapPin, Calendar, Box, Activity, ChevronLeft, ChevronRight } from 'lucide-react'
+import { MapPin, Calendar, Box, Activity, ChevronLeft, ChevronRight, Briefcase, RefreshCw } from 'lucide-react'
 import { DETAIL_SERVICES_DATA } from './ServiceDetail'
 
 interface PortfolioProject {
@@ -28,16 +28,53 @@ const PortfolioDetail: React.FC = () => {
   const [serviceId, setServiceId] = useState(0)
   const [projectId, setProjectId] = useState(0)
 
+  // Database stands states
+  const [dbStand, setDbStand] = useState<any | null>(null)
+  const [dbStands, setDbStands] = useState<any[]>([])
+  const [loadingDb, setLoadingDb] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
+  const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
   useEffect(() => {
+    setSelectedImage(null) // Reset interactive image state
     const params = new URLSearchParams(location.search)
+    const dbId = params.get('dbId')
     const sId = parseInt(params.get('serviceId') || '0', 10)
     const pId = parseInt(params.get('projectId') || '0', 10)
 
-    if (!isNaN(sId) && sId >= 0 && sId < PORTFOLIO_SERVICES_DATA.length) {
-      setServiceId(sId)
-    }
-    if (!isNaN(pId) && pId >= 0 && pId < PORTFOLIO_SERVICES_DATA[sId].portfolio.length) {
-      setProjectId(pId)
+    if (dbId) {
+      setLoadingDb(true)
+      const fetchDbData = async () => {
+        try {
+          // Fetch current stand
+          const resSingle = await fetch(`${apiBaseUrl}/api/stands/${dbId}`)
+          const dataSingle = await resSingle.json()
+          if (resSingle.ok && dataSingle.success) {
+            setDbStand(dataSingle.stand)
+          }
+
+          // Fetch all stands for navigation cycling
+          const resAll = await fetch(`${apiBaseUrl}/api/stands?limit=100`)
+          const dataAll = await resAll.json()
+          if (resAll.ok && dataAll.success) {
+            setDbStands(dataAll.stands)
+          }
+        } catch (err) {
+          console.error("Error fetching db stand details:", err)
+        } finally {
+          setLoadingDb(false)
+        }
+      }
+      fetchDbData()
+    } else {
+      setDbStand(null)
+      if (!isNaN(sId) && sId >= 0 && sId < PORTFOLIO_SERVICES_DATA.length) {
+        setServiceId(sId)
+      }
+      if (!isNaN(pId) && pId >= 0 && pId < PORTFOLIO_SERVICES_DATA[sId].portfolio.length) {
+        setProjectId(pId)
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [location])
@@ -45,6 +82,14 @@ const PortfolioDetail: React.FC = () => {
   const service = PORTFOLIO_SERVICES_DATA[serviceId]
   const project = service.portfolio[projectId]
 
+  const isDb = !!dbStand
+
+  // Resolve stand values (static vs database)
+  const currentTitle = isDb ? dbStand.showName : project.title
+  const currentArea = isDb ? `${dbStand.standArea} m²` : project.area
+  const currentImage = isDb && dbStand.images && dbStand.images.length > 0 ? dbStand.images[0].url : (isDb ? '' : project.image)
+  const mainImageToShow = selectedImage || currentImage
+  
   // Dynamic details generator for type of stand
   const getTypeOfStand = () => {
     const areaVal = parseInt(project.area, 10)
@@ -69,6 +114,8 @@ const PortfolioDetail: React.FC = () => {
     }
   }
 
+  const currentTypeOfStands = isDb ? dbStand.typeOfStands : getTypeOfStand()
+
   // Dynamic event type resolver
   const getTypeOfEvent = () => {
     if (serviceId === 0) return ["Conference"]
@@ -80,6 +127,8 @@ const PortfolioDetail: React.FC = () => {
     if (serviceId === 6) return ["Corporate Fit-out"]
     return ["Marketing Signage Campaign"]
   }
+
+  const currentTypeOfEvents = isDb ? dbStand.typeOfEvents : getTypeOfEvent()
 
   // Dynamic Exhibition Name
   const getExExhibition = () => {
@@ -97,6 +146,8 @@ const PortfolioDetail: React.FC = () => {
     return exhibitions[hash % exhibitions.length]
   }
 
+  const currentExhibitionName = isDb ? dbStand.showName : getExExhibition()
+
   // Dynamic Event Year
   const getExYear = () => {
     const years = ["2022", "2023", "2024", "2025", "2026"]
@@ -104,29 +155,102 @@ const PortfolioDetail: React.FC = () => {
     return years[hash % years.length]
   }
 
+  const currentExYear = isDb ? dbStand.year.toString() : getExYear()
+
   // Dynamic Event Location
   const getExLocation = () => {
     return "Dubai, UAE"
   }
 
-  // Get gallery thumbnails from other portfolio items in the same category
+  const currentExLocation = isDb ? dbStand.location : getExLocation()
+
+  // Get gallery thumbnails
   const getGalleryThumbnails = () => {
-    const list = service.portfolio
-    const leftIdx = (projectId + 1) % list.length
-    const rightIdx = (projectId + 2) % list.length
-    return [list[leftIdx].image, list[rightIdx].image]
+    if (isDb && dbStand.images && dbStand.images.length > 1) {
+      // Show all uploaded images except the main one currently shown
+      const activeMain = selectedImage || dbStand.images[0].url
+      return dbStand.images
+        .map((img: any) => img.url)
+        .filter((url: string) => url !== activeMain)
+    } else if (isDb && dbStands.length > 1) {
+      // If only one uploaded, show other stand photos
+      const currentIdx = dbStands.findIndex(s => s._id === dbStand._id)
+      const leftIdx = (currentIdx + 1) % dbStands.length
+      const rightIdx = (currentIdx + 2) % dbStands.length
+      
+      const leftUrl = dbStands[leftIdx]?.images?.[0]?.url || ''
+      const rightUrl = dbStands[rightIdx]?.images?.[0]?.url || ''
+      return [leftUrl, rightUrl].filter(Boolean)
+    } else {
+      const list = service.portfolio
+      const leftIdx = (projectId + 1) % list.length
+      const rightIdx = (projectId + 2) % list.length
+      return [list[leftIdx].image, list[rightIdx].image]
+    }
+  }
+
+  const handleThumbnailClick = (thumbUrl: string) => {
+    // If it's one of the current stand's images, switch main image
+    if (isDb && dbStand.images && dbStand.images.some((img: any) => img.url === thumbUrl)) {
+      setSelectedImage(thumbUrl)
+    } else {
+      // Otherwise, it's a fallback project thumbnail, so navigate to it!
+      if (isDb) {
+        const targetStand = dbStands.find(s => s.images?.[0]?.url === thumbUrl)
+        if (targetStand) {
+          navigate(`/portfolio/detail?dbId=${targetStand._id}`)
+        }
+      } else {
+        const targetIdx = service.portfolio.findIndex(p => p.image === thumbUrl)
+        if (targetIdx !== -1) {
+          navigate(`/portfolio/detail?serviceId=${serviceId}&projectId=${targetIdx}`)
+        }
+      }
+    }
   }
 
   const handlePrev = () => {
-    const total = service.portfolio.length
-    const prevId = (projectId - 1 + total) % total
-    navigate(`/portfolio/detail?serviceId=${serviceId}&projectId=${prevId}`)
+    if (isDb && dbStands.length > 0) {
+      const idx = dbStands.findIndex(s => s._id === dbStand._id)
+      if (idx !== -1) {
+        const total = dbStands.length
+        const prevIdx = (idx - 1 + total) % total
+        navigate(`/portfolio/detail?dbId=${dbStands[prevIdx]._id}`)
+      }
+    } else {
+      const total = service.portfolio.length
+      const prevId = (projectId - 1 + total) % total
+      navigate(`/portfolio/detail?serviceId=${serviceId}&projectId=${prevId}`)
+    }
   }
 
   const handleNext = () => {
-    const total = service.portfolio.length
-    const nextId = (projectId + 1) % total
-    navigate(`/portfolio/detail?serviceId=${serviceId}&projectId=${nextId}`)
+    if (isDb && dbStands.length > 0) {
+      const idx = dbStands.findIndex(s => s._id === dbStand._id)
+      if (idx !== -1) {
+        const total = dbStands.length
+        const nextIdx = (idx + 1) % total
+        navigate(`/portfolio/detail?dbId=${dbStands[nextIdx]._id}`)
+      }
+    } else {
+      const total = service.portfolio.length
+      const nextId = (projectId + 1) % total
+      navigate(`/portfolio/detail?serviceId=${serviceId}&projectId=${nextId}`)
+    }
+  }
+
+  if (loadingDb) {
+    return (
+      <div className="bg-[#121214] text-brand-white min-h-screen flex items-center justify-center relative overflow-hidden select-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vh] h-[40vh] bg-brand-gold/10 rounded-full blur-[100px]" />
+        <div className="flex flex-col items-center gap-[2rem] z-10">
+          <RefreshCw className="w-[4rem] h-[4rem] text-brand-gold animate-spin" />
+          <p className="font-circe font-light text-[1.8rem] text-brand-text-muted tracking-widest uppercase">
+            Loading Project Details...
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -144,9 +268,13 @@ const PortfolioDetail: React.FC = () => {
         <nav className="font-circe font-light text-[1.4rem] sm:text-[1.6rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-16 text-left">
           <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
           <span className="opacity-40">/</span>
-          <Link to={`/services/detail?id=${serviceId}`} className="hover:text-brand-gold transition-colors duration-300">{service.title}</Link>
+          {isDb ? (
+            <Link to={`/services/detail?id=0`} className="hover:text-brand-gold transition-colors duration-300">Exhibition Stand Production</Link>
+          ) : (
+            <Link to={`/services/detail?id=${serviceId}`} className="hover:text-brand-gold transition-colors duration-300">{service.title}</Link>
+          )}
           <span className="opacity-40">/</span>
-          <span className="text-white font-normal">{project.title}</span>
+          <span className="text-white font-normal">{currentTitle}</span>
         </nav>
 
         {/* 2-Column Split Grid */}
@@ -166,11 +294,17 @@ const PortfolioDetail: React.FC = () => {
 
               {/* Main Image */}
               <div className="w-full h-full overflow-hidden rounded-xs border border-brand-white/15 bg-brand-dark-accent">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                />
+                {mainImageToShow ? (
+                  <img
+                    src={mainImageToShow}
+                    alt={currentTitle}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-brand-text-muted">
+                    No Image Available
+                  </div>
+                )}
               </div>
             </div>
 
@@ -179,7 +313,7 @@ const PortfolioDetail: React.FC = () => {
               <div>
                 <h4 className="font-urw font-bold text-[1.8rem] text-brand-white/90 uppercase tracking-wide mb-3">Type of stand:</h4>
                 <ul className="flex flex-col gap-2">
-                  {getTypeOfStand().map((item, idx) => (
+                  {currentTypeOfStands.map((item: string, idx: number) => (
                     <li key={idx} className="flex items-center gap-3 font-circe font-light text-[1.5rem] text-brand-text-muted">
                       <span className="w-2.5 h-2.5 bg-[#E51D1D] shrink-0" />
                       {item}
@@ -191,7 +325,7 @@ const PortfolioDetail: React.FC = () => {
               <div>
                 <h4 className="font-urw font-bold text-[1.8rem] text-brand-white/90 uppercase tracking-wide mb-3">Type of event:</h4>
                 <ul className="flex flex-col gap-2">
-                  {getTypeOfEvent().map((item, idx) => (
+                  {currentTypeOfEvents.map((item: string, idx: number) => (
                     <li key={idx} className="flex items-center gap-3 font-circe font-light text-[1.5rem] text-brand-text-muted">
                       <span className="w-2.5 h-2.5 bg-[#E51D1D] shrink-0" />
                       {item}
@@ -211,7 +345,7 @@ const PortfolioDetail: React.FC = () => {
               
               {/* Title */}
               <h1 className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] text-white leading-tight tracking-wide mb-10">
-                {project.title}
+                {currentTitle}
               </h1>
 
               {/* Vertical list of key specs with clean, minimalist white/grey icons */}
@@ -222,7 +356,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
                     <Activity className="w-6 h-6" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{getExExhibition()}</span>
+                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{currentExhibitionName}</span>
                 </div>
 
                 {/* Location Spec */}
@@ -230,7 +364,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
                     <MapPin className="w-6 h-6" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{getExLocation()}</span>
+                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{currentExLocation}</span>
                 </div>
 
                 {/* Year Spec */}
@@ -238,7 +372,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
                     <Calendar className="w-6 h-6" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{getExYear()}</span>
+                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{currentExYear}</span>
                 </div>
 
                 {/* Area Spec */}
@@ -247,9 +381,21 @@ const PortfolioDetail: React.FC = () => {
                     <Box className="w-6 h-6" />
                   </div>
                   <span className="font-circe font-light text-[1.7rem] text-brand-white/80">
-                    Building area: <span className="font-urw font-bold text-[2rem] text-white ml-1">{project.area}</span>
+                    Building area: <span className="font-urw font-bold text-[2rem] text-white ml-1">{currentArea}</span>
                   </span>
                 </div>
+
+                {/* Client Spec */}
+                {isDb && dbStand.client && (
+                  <div className="flex items-center gap-5">
+                    <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
+                      <Briefcase className="w-6 h-6" />
+                    </div>
+                    <span className="font-circe font-light text-[1.7rem] text-brand-white/80">
+                      Client: <span className="text-white font-medium ml-1">{dbStand.client}</span>
+                    </span>
+                  </div>
+                )}
 
               </div>
 
@@ -258,12 +404,18 @@ const PortfolioDetail: React.FC = () => {
             {/* Gallery Thumbnail Preview Images */}
             <div className="grid grid-cols-2 gap-6 max-w-[500px]">
               {getGalleryThumbnails().map((thumb, idx) => (
-                <div key={idx} className="aspect-[4/3] overflow-hidden rounded-xs border border-brand-white/10 shadow-lg">
-                  <img
-                    src={thumb}
-                    alt={`Detail view ${idx + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-108 cursor-pointer select-none"
-                  />
+                <div 
+                  key={idx} 
+                  onClick={() => handleThumbnailClick(thumb)}
+                  className="aspect-[4/3] overflow-hidden rounded-xs border border-brand-white/10 shadow-lg bg-brand-dark-accent cursor-pointer"
+                >
+                  {thumb && (
+                    <img
+                      src={thumb}
+                      alt={`Detail view ${idx + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-108 select-none"
+                    />
+                  )}
                 </div>
               ))}
             </div>

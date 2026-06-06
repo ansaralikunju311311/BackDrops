@@ -59,16 +59,19 @@ const Header: React.FC = () => {
             {menuItems.map((item, idx) => {
               const isAbout = item.toLowerCase() === 'about us'
               const isServices = item.toLowerCase() === 'services'
+              const isPortfolio = item.toLowerCase() === 'portfolio'
               const isContacts = item.toLowerCase() === 'contacts'
-              const isClientRoute = isAbout || isServices || isContacts
+              const isClientRoute = isAbout || isServices || isPortfolio || isContacts
               
               const hrefPath = isAbout
                 ? '/about-us'
                 : isServices
                   ? '/services'
-                  : isContacts 
-                    ? '/contacts' 
-                    : (location.pathname !== '/' && location.pathname !== '/home' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+                  : isPortfolio
+                    ? '/portfolio'
+                    : isContacts 
+                      ? '/contacts' 
+                      : (location.pathname !== '/' && location.pathname !== '/home' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
               
               const Component = isClientRoute ? Link : 'a'
               const props = isClientRoute ? { to: hrefPath } : { href: hrefPath }
@@ -210,16 +213,19 @@ const Header: React.FC = () => {
                 {menuItems.map((item) => {
                   const isAbout = item.toLowerCase() === 'about us'
                   const isServices = item.toLowerCase() === 'services'
+                  const isPortfolio = item.toLowerCase() === 'portfolio'
                   const isContacts = item.toLowerCase() === 'contacts'
-                  const isClientRoute = isAbout || isServices || isContacts
+                  const isClientRoute = isAbout || isServices || isPortfolio || isContacts
                   
                   const hrefPath = isAbout
                     ? '/about-us'
                     : isServices
                       ? '/services'
-                      : isContacts 
-                        ? '/contacts' 
-                        : (location.pathname !== '/' && location.pathname !== '/home' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
+                      : isPortfolio
+                        ? '/portfolio'
+                        : isContacts 
+                          ? '/contacts' 
+                          : (location.pathname !== '/' && location.pathname !== '/home' ? `/#${item.toLowerCase().replace(' ', '-')}` : `#${item.toLowerCase().replace(' ', '-')}`)
                   
                   const Component = isClientRoute ? Link : 'a'
                   const props = isClientRoute ? { to: hrefPath } : { href: hrefPath }
