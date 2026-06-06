@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import BexLogo from './BexLogo'
 
 const Footer: React.FC = () => {
-  const location = useLocation()
   const currentYear = new Date().getFullYear()
   const [isDividerHovered, setIsDividerHovered] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
@@ -137,33 +136,17 @@ const Footer: React.FC = () => {
           {/* Navigation in the center */}
           <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4">
             {['Services', 'Portfolio', 'Articles', 'Contacts', 'FAQ'].map((link) => {
-              const isContacts = link.toLowerCase() === 'contacts'
-              const isFaq = link.toLowerCase() === 'faq'
-              const isArticles = link.toLowerCase() === 'articles'
-              const isClientRoute = isContacts || isFaq || isArticles
-              
-              const hrefPath = isContacts 
-                ? '/contacts' 
-                : isFaq 
-                  ? '/faq' 
-                  : isArticles
-                    ? '/articles'
-                    : (location.pathname === '/contacts' || location.pathname === '/faq' ? `/#${link.toLowerCase()}` : `#${link.toLowerCase()}`)
-              
-              const Component = isClientRoute ? Link : 'a'
-              const props = isClientRoute 
-                ? { to: isContacts ? '/contacts' : (isFaq ? '/faq' : '/articles') } 
-                : { href: hrefPath }
+              const path = `/${link.toLowerCase()}`
 
               return (
-                <Component
+                <Link
                   key={link}
-                  {...props}
+                  to={path}
                   className="font-euclid font-bold text-[2.1rem] uppercase tracking-wider text-brand-white/70 hover:text-brand-gold transition-colors duration-300 relative py-2 group"
                 >
                   {link}
                   <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                </Component>
+                </Link>
               )
             })}
           </nav>
