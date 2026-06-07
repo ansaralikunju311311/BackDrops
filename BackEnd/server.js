@@ -191,6 +191,7 @@ const standSchema = new mongoose.Schema({
   standArea: { type: Number, required: true }, // in sqm
   location: { type: String, required: true },
   client: { type: String, required: true },
+  listed: { type: Boolean, default: true },
   images: [{
     url: { type: String, required: true },
     publicId: { type: String, required: true }
@@ -202,7 +203,7 @@ const Stand = mongoose.model('Stand', standSchema);
 
 const corsOptions = {
   origin: '*',
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
 };
 
 app.use(cors(corsOptions));
@@ -778,7 +779,8 @@ app.post('/api/stands', verifyToken, upload.array('images', 10), async (req, res
       standArea: parseFloat(targetStandArea),
       location: targetLocation,
       client: targetClient,
-      images: uploadedImages
+      images: uploadedImages,
+      listed: true
     });
 
     await stand.save();
@@ -827,7 +829,24 @@ app.get('/api/stands', async (req, res) => {
   try {
     const { page = 1, limit = 9, typeOfStand, category, year, search } = req.query;
 
+    const authHeader = req.headers['authorization'];
+    let isAdmin = false;
+    if (authHeader) {
+      const token = authHeader.split(' ')[1];
+      if (token) {
+        try {
+          const decoded = jwt.verify(token, JWT_SECRET);
+          if (decoded) {
+            isAdmin = true;
+          }
+        } catch (e) {}
+      }
+    }
+
     const query = {};
+    if (!isAdmin) {
+      query.listed = { $ne: false };
+    }
 
     // 1. Search Query (matches showName, client, or location case-insensitively)
     if (search && search.trim()) {
@@ -896,8 +915,22 @@ app.get('/api/stands', async (req, res) => {
 // GET /api/stands/:id - Retrieve a single stand (public)
 app.get('/api/stands/:id', async (req, res) => {
   try {
+    const authHeader = req.headers['authorization'];
+    let isAdmin = false;
+    if (authHeader) {
+      const token = authHeader.split(' ')[1];
+      if (token) {
+        try {
+          const decoded = jwt.verify(token, JWT_SECRET);
+          if (decoded) {
+            isAdmin = true;
+          }
+        } catch (e) {}
+      }
+    }
+
     const stand = await Stand.findById(req.params.id);
-    if (!stand) {
+    if (!stand || (!isAdmin && stand.listed === false)) {
       return res.status(404).json({ success: false, error: 'Stand not found.' });
     }
     return res.json({ success: true, stand });
@@ -934,6 +967,28 @@ app.delete('/api/stands/:id', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Error deleting stand:', error);
     return res.status(500).json({ success: false, error: 'Failed to delete stand.' });
+  }
+});
+
+// PATCH /api/stands/:id/toggle-listed - Toggle a stand's listed/unlisted status (protected by verifyToken)
+app.patch('/api/stands/:id/toggle-listed', verifyToken, async (req, res) => {
+  try {
+    const stand = await Stand.findById(req.params.id);
+    if (!stand) {
+      return res.status(404).json({ success: false, error: 'Stand not found.' });
+    }
+
+    stand.listed = stand.listed === false ? true : false;
+    await stand.save();
+
+    return res.json({
+      success: true,
+      message: `Stand status updated to ${stand.listed ? 'listed' : 'unlisted'}.`,
+      stand
+    });
+  } catch (error) {
+    console.error('Error toggling stand listed status:', error);
+    return res.status(500).json({ success: false, error: 'Failed to update stand status.' });
   }
 });
 

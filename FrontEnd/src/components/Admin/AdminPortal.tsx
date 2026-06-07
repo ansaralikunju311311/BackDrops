@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   XCircle, LogOut, Lock, RefreshCw, ArrowRight, UploadCloud, 
-  Trash2, Plus, CheckCircle, X
+  Trash2, Plus, CheckCircle, X, Eye, EyeOff
 } from 'lucide-react'
 
 // Stand Interface
@@ -24,6 +24,7 @@ interface Stand {
   location: string;
   client: string;
   images: StandImage[];
+  listed?: boolean;
   createdAt: string;
 }
 
@@ -83,6 +84,7 @@ const AdminPortal: React.FC = () => {
   const [uploadError, setUploadError] = useState<string | null>(null)
 
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [togglingId, setTogglingId] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
@@ -269,6 +271,39 @@ const AdminPortal: React.FC = () => {
       setDeletingId(null)
     }
   }
+
+  const handleToggleListed = async (id: string) => {
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    setTogglingId(id)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/stands/${id}/toggle-listed`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setStands(prev => prev.map(s => {
+          if (s._id === id) {
+            return { ...s, listed: data.stand.listed }
+          }
+          return s
+        }))
+      } else {
+        alert(data.error || 'Failed to toggle stand listing status.')
+      }
+    } catch (err) {
+      console.error('Toggle status error:', err)
+      alert('Failed to toggle status due to a network error.')
+    } finally {
+      setTogglingId(null)
+    }
+  }
+
 
   const handleUploadSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -475,7 +510,7 @@ const AdminPortal: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="admin@backdrops.ae"
-                      className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/20"
+                      className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/20"
                     />
                   </div>
 
@@ -490,7 +525,7 @@ const AdminPortal: React.FC = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/20"
+                      className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/20"
                     />
                   </div>
 
@@ -575,7 +610,7 @@ const AdminPortal: React.FC = () => {
                           value={showName}
                           onChange={(e) => setShowName(e.target.value)}
                           placeholder="e.g. Gitex Global 2026"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
                         />
                       </div>
 
@@ -590,7 +625,7 @@ const AdminPortal: React.FC = () => {
                           value={client}
                           onChange={(e) => setClient(e.target.value)}
                           placeholder="e.g. Google Cloud"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
                         />
                       </div>
 
@@ -607,7 +642,7 @@ const AdminPortal: React.FC = () => {
                                 key={type.value}
                                 type="button"
                                 onClick={() => toggleStandType(type.value)}
-                                className={`px-4 py-2 text-[1.3rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
+                                className={`px-4 py-2 text-[1.6rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
                                   isSelected
                                     ? 'bg-brand-gold text-white border-brand-gold shadow-[0_4px_12px_rgba(158,83,48,0.2)] font-semibold'
                                     : 'bg-brand-dark/20 text-brand-text-muted border-white/5 hover:border-brand-gold/30 hover:text-white'
@@ -633,7 +668,7 @@ const AdminPortal: React.FC = () => {
                                 key={type.value}
                                 type="button"
                                 onClick={() => toggleEventType(type.value)}
-                                className={`px-4 py-2 text-[1.3rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
+                                className={`px-4 py-2 text-[1.6rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
                                   isSelected
                                     ? 'bg-brand-gold text-white border-brand-gold shadow-[0_4px_12px_rgba(158,83,48,0.2)] font-semibold'
                                     : 'bg-brand-dark/20 text-brand-text-muted border-white/5 hover:border-brand-gold/30 hover:text-white'
@@ -660,7 +695,7 @@ const AdminPortal: React.FC = () => {
                           value={year}
                           onChange={(e) => setYear(e.target.value)}
                           placeholder="e.g. 2026"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
                         />
                       </div>
 
@@ -676,7 +711,7 @@ const AdminPortal: React.FC = () => {
                           value={standArea}
                           onChange={(e) => setStandArea(e.target.value)}
                           placeholder="e.g. 54"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
                         />
                       </div>
 
@@ -691,7 +726,7 @@ const AdminPortal: React.FC = () => {
                           value={location}
                           onChange={(e) => setLocation(e.target.value)}
                           placeholder="e.g. DWTC, Dubai, UAE"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
                         />
                       </div>
 
@@ -704,7 +739,7 @@ const AdminPortal: React.FC = () => {
                           required
                           value={categories}
                           onChange={(e) => setCategories(e.target.value)}
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.6rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 [&>option]:bg-brand-bg [&>option]:text-white cursor-pointer"
+                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 [&>option]:bg-brand-bg [&>option]:text-white cursor-pointer"
                         >
                           <option value="" disabled>Select category</option>
                           <option value="UAE projects">UAE Projects</option>
@@ -841,7 +876,7 @@ const AdminPortal: React.FC = () => {
                       <input
                         type="text"
                         placeholder="Search stands..."
-                        className="bg-transparent font-circe text-[1.4rem] text-white outline-none placeholder:text-brand-text-muted/40 w-full"
+                        className="bg-transparent font-circe text-[1.6rem] text-white outline-none placeholder:text-brand-text-muted/40 w-full"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
@@ -886,6 +921,28 @@ const AdminPortal: React.FC = () => {
                               No Image Available
                             </div>
                           )}
+                          
+                          {/* Listed / Unlisted Badge */}
+                          <div className="absolute top-3 left-3 flex gap-2">
+                            <span className={`flex items-center gap-1.5 font-mono text-[1.1rem] py-1 px-2.5 rounded font-bold uppercase ${
+                              stand.listed !== false 
+                                ? 'bg-emerald-500/90 text-white shadow-[0_2px_8px_rgba(16,185,129,0.3)]' 
+                                : 'bg-zinc-600/90 text-zinc-300 line-through'
+                            }`}>
+                              {stand.listed !== false ? (
+                                <>
+                                  <Eye className="w-3.5 h-3.5" />
+                                  Listed
+                                </>
+                              ) : (
+                                <>
+                                  <EyeOff className="w-3.5 h-3.5" />
+                                  Unlisted
+                                </>
+                              )}
+                            </span>
+                          </div>
+
                           <div className="absolute top-3 right-3 bg-brand-bg/85 border border-white/10 font-mono text-[1.2rem] py-1 px-2.5 rounded text-white font-bold">
                             {stand.year}
                           </div>
@@ -932,10 +989,52 @@ const AdminPortal: React.FC = () => {
                             )}
                           </div>
 
-                          <div className="pt-4 border-t border-white/5 flex justify-end">
+                          <div className="pt-4 border-t border-white/5 flex items-center justify-between gap-3">
+                            <div className="flex gap-2">
+                              {/* Toggle Listed/Unlisted Button */}
+                              <button
+                                onClick={() => handleToggleListed(stand._id)}
+                                disabled={togglingId === stand._id}
+                                className={`p-2.5 rounded-sm border transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold ${
+                                  stand.listed !== false
+                                    ? 'border-white/10 hover:border-amber-500 hover:text-amber-500 text-zinc-400'
+                                    : 'border-white/10 hover:border-emerald-500 hover:text-emerald-500 text-zinc-400'
+                                }`}
+                                title={stand.listed !== false ? "Click to Unlist" : "Click to List"}
+                              >
+                                {togglingId === stand._id ? (
+                                  <RefreshCw className="w-4 h-4 animate-spin" />
+                                ) : stand.listed !== false ? (
+                                  <>
+                                    <EyeOff className="w-4 h-4" />
+                                    Unlist
+                                  </>
+                                ) : (
+                                  <>
+                                    <Eye className="w-4 h-4" />
+                                    List
+                                  </>
+                                )}
+                              </button>
+
+                              {/* Delete Button */}
+                              <button
+                                onClick={() => handleDeleteStand(stand._id)}
+                                disabled={deletingId === stand._id}
+                                className="p-2.5 border border-white/10 hover:border-red-500 hover:text-red-500 text-zinc-400 rounded-sm transition-all duration-300 flex items-center justify-center cursor-pointer"
+                                title="Delete Stand"
+                              >
+                                {deletingId === stand._id ? (
+                                  <RefreshCw className="w-4 h-4 animate-spin" />
+                                ) : (
+                                  <Trash2 className="w-4 h-4" />
+                                )}
+                              </button>
+                            </div>
+
                             <button
                               onClick={() => navigate(`/portfolio/detail?dbId=${stand._id}`)}
-                              className="text-brand-gold hover:text-white hover:bg-brand-gold border border-brand-gold/20 hover:border-brand-gold px-5 py-2.5 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold"
+                              className="text-brand-gold hover:text-white hover:bg-brand-gold border border-brand-gold/20 hover:border-brand-gold px-4 py-2.5 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold"
                               title="View details"
                             >
                               View Details
