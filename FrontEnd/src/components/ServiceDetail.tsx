@@ -60,7 +60,7 @@ export interface ServiceDetailData {
   p2: string
   p3: string
   related: RelatedCard[]
-  portfolio: PortfolioProject[]
+  portfolio?: PortfolioProject[]
 }
 
 export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
@@ -73,18 +73,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 1, title: "Custom Fabrication & Joinery", image: "/assets/workspace_meeting.png", snippet: "Order custom fabrication and wooden structures for your unique promotional needs." },
       { idx: 2, title: "Event & Activation Builds", image: "/assets/hero-bg.png", snippet: "Fabricating stages, photo zones, and brand activation booths for events." }
-    ],
-    portfolio: [
-      { title: "BEX Exhibition Pavilion", area: "45 m²", details: ["Premium Layout", "Custom Joinery", "Backlit graphics"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Almaty Pavilion Stand", area: "28 m²", details: ["Area: 28 sq.m.", "Single Tier Open Layout", "Textured wall finishes"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "Corporate Tech Expo Booth", area: "60 m²", details: ["Double Deck structure", "Integrated LED system", "Lounge area"], image: "/assets/1-3-1024x768.jpeg" },
-      { title: "Automotive Exhibit Zone", area: "120 m²", details: ["Spacious Car layout", "High-power spotlights", "Branding arches"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Eco-Friendly Brand Stand", area: "35 m²", details: ["Recycled Timber timber", "Live planter walls", "Organic styling"], image: "/assets/02-1024x768.jpg" },
-      { title: "Telecom Solutions Zone", area: "50 m²", details: ["Glossy acrylic finishes", "Built-in tech bars", "Floating halo lights"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "Premium Retail Expo Booth", area: "40 m²", details: ["Curved wall contours", "Glass showcase displays", "Acoustic room"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Aerospace Exhibition Pavilion", area: "150 m²", details: ["Cantilever steel frame", "Wide-angle LED arches", "VIP lounge tier"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Real Estate Display Stand", area: "75 m²", details: ["Architectural model tables", "Touchscreen kiosk desks", "Modern finishes"], image: "/assets/showroom_retail_design.png" },
-      { title: "Health & Pharma Stand", area: "30 m²", details: ["Clean medical aesthetic", "Custom display shelving", "Indirect lighting"], image: "/assets/workspace_meeting.png" }
     ]
   },
   {
@@ -96,18 +84,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 6, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end turnkey interior fit-outs for offices and luxury residences." },
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." }
-    ],
-    portfolio: [
-      { title: "Luxury Reception Counters", area: "12 m²", details: ["Solid Oak Frame", "Corian Top finishing", "Under-glow lighting"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Commercial Display Cabinets", area: "24 m²", details: ["Premium Glass styling", "Integrated Spotlighting", "Hidden lock features"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Custom Wooden Archway", area: "18 m²", details: ["Laminated pine beams", "CNC precision carvings", "Eco-friendly varnishes"], image: "/assets/02-1024x768.jpg" },
-      { title: "Interactive Media Counter", area: "10 m²", details: ["Built-in tablet mounts", "Under-glow LED tracks", "Cable routing tracks"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Bespoke Exhibition Shelving", area: "20 m²", details: ["High-gloss lacquer coat", "Modular storage slots", "Branded side panels"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "Curved Fabricated Wall", area: "36 m²", details: ["Double bent plywood frame", "Seamless paint finishes", "Indirect lighting tracks"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Meeting Lounge Counter", area: "15 m²", details: ["Marbled vinyl counter", "Chrome footrests", "Built-in storage shelves"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "VIP Bar Installation", area: "22 m²", details: ["Solid timber bar counters", "Glass storage back wall", "Warm accent spotlights"], image: "/assets/1-3-1024x768.jpeg" },
-      { title: "Product Showcase Podiums", area: "8 m²", details: ["Rotating showcase tops", "Internal acrylic plaques", "Battery-operated LEDs"], image: "/assets/showroom_retail_design.png" },
-      { title: "Corporate Boardroom Console", area: "14 m²", details: ["Walnut veneer coating", "Soft close drawers", "Power grommet cutouts"], image: "/assets/workspace_meeting.png" }
     ]
   },
   {
@@ -119,18 +95,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 5, title: "Experiential Booth Engineering", image: "/assets/hero-bg.png", snippet: "Integrating digital tech, LED screens, and sensors with physical structures." },
       { idx: 7, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "In-house printing, dimensional logos, and lit signs." }
-    ],
-    portfolio: [
-      { title: "Dubai Mall Brand Zone", area: "32 m²", details: ["Interactive photo tunnel", "High-gloss acrylic floor", "RGB accent lines"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Corporate Stage Backdrop", area: "80 m²", details: ["80 sq.m stage area", "3D dimensional panels", "LED screen framing"], image: "/assets/02-1024x768.jpg" },
-      { title: "Outdoor Concert Stage", area: "150 m²", details: ["Heavy-duty truss frames", "Weatherproof wood decks", "Line array speaker towers"], image: "/assets/journey.png" },
-      { title: "Interactive Product Launch", area: "45 m²", details: ["Pneumatic reveal boxes", "Projection mapped walls", "Surround audio setups"], image: "/assets/hero-bg.png" },
-      { title: "Pop-up Photo Booth", area: "12 m²", details: ["Neon sign backgrounds", "Custom props display", "Camera stand rings"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "Premium VIP Event Lounge", area: "60 m²", details: ["Plush leather seatings", "Faux gold divider panels", "Under-lit cocktail bars"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Brand Activation Pavilion", area: "55 m²", details: ["Fabric ceiling sail structures", "Interactive touch grids", "Eco friendly timber logs"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Exhibition Entrance Arch", area: "25 m²", details: ["Double deck truss frames", "High resolution banners", "Downlight safety grids"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Fashion Runway Stage", area: "90 m²", details: ["Tempered glass floors", "Bright white edge LEDs", "VIP media backdrops"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "Outdoor Sport Activation", area: "70 m²", details: ["Synthetic turf lawns", "Weatherproof banners", "Integrated display flags"], image: "/assets/1-3-1024x768.jpeg" }
     ]
   },
   {
@@ -142,18 +106,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Custom stand fabrication and graphics application." },
       { idx: 4, title: "Mall & Retail Installations", image: "/assets/showroom_retail_design.png", snippet: "Window displays and promotional kiosks in shopping centers." }
-    ],
-    portfolio: [
-      { title: "Trade Show Logistics", area: "200 m²", details: ["Full scale logistics plan", "Hoisting & Rigging safety", "Overnight assembly shifts"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "International Pavilion Build", area: "150 m²", details: ["Multi-exhibitor structure", "Shared meeting lounges", "Turnkey maintenance crew"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Overnight Mall Kiosk Setup", area: "16 m²", details: ["Strict load out limits", "Silent assembly power tools", "Rapid structural latching"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Double Decker Stand Assembly", area: "90 m²", details: ["Steel structural checks", "Weight balance ratings", "Glass railing tests"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Outdoor Exhibition Rigging", area: "120 m²", details: ["High-wind structural tests", "Concrete base anchoring", "Waterproof electrical ducts"], image: "/assets/journey.png" },
-      { title: "Corporate Meeting Center Build", area: "85 m²", details: ["Fire retardant boards", "Door lock mechanism checks", "AC ventilation hooks"], image: "/assets/workspace_meeting.png" },
-      { title: "Global Summit Stage Setup", area: "110 m²", details: ["Precision truss layout", "AV integration checks", "Safety railing brackets"], image: "/assets/hero-bg.png" },
-      { title: "Retail Outlet Fit-out Setup", area: "48 m²", details: ["Mall safety certificates", "Out of hours delivery", "Custom floor protections"], image: "/assets/showroom_retail_design.png" },
-      { title: "Exhibition Hall Clean-Up", area: "300 m²", details: ["Post-construction vacuum", "Graphic bubble scraping", "Final touch up polish"], image: "/assets/02-1024x768.jpg" },
-      { title: "Dismantling & Storage Plan", area: "180 m²", details: ["Safe structural takedown", "Protective bubble wrap", "Container packing plans"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" }
     ]
   },
   {
@@ -165,18 +117,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 6, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end interior commercial and residential fit-outs." },
       { idx: 7, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Illuminated signs and graphic prints." }
-    ],
-    portfolio: [
-      { title: "Mall of the Emirates Kiosk", area: "15 m²", details: ["Glass display show counters", "Under-cabinet LED lighting", "Hidden storage compartments"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Boutique Window Styling", area: "8 m²", details: ["Custom wall backdrops", "Suspended display grids", "Premium vinyl wraps"], image: "/assets/02-1024x768.jpg" },
-      { title: "Luxury Perfume Kiosk", area: "18 m²", details: ["Marbled laminate pillars", "Acrylic bottle showcase", "Golden metal accents"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Pop-up Fashion Corner", area: "24 m²", details: ["Mesh hanging display grids", "Velvet changing stalls", "Branded header signages"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Department Store Counter", area: "10 m²", details: ["Integrated iPads setup", "Lockable cash drawers", "Frosted glass accents"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "Mall Central Plaza Display", area: "35 m²", details: ["Circular display stages", "Overhead truss rings", "Large resolution banner panels"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Jewelry Display Counter", area: "12 m²", details: ["Ultra clear glass cases", "Warm spot lighting", "Plush suede displays"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "Cosmetics Promotion Zone", area: "20 m²", details: ["Backlit mirror desks", "Custom makeup shelves", "Acrylic storage displays"], image: "/assets/1-3-1024x768.jpeg" },
-      { title: "Premium Retail Window", area: "6 m²", details: ["Fiberglass mannequin bases", "Matte painted back walls", "Spotlight focal tracks"], image: "/assets/showroom_retail_design.png" },
-      { title: "Interactive Electronics Hub", area: "30 m²", details: ["Anti-theft device displays", "Branded acrylic signs", "Integrated power channels"], image: "/assets/workspace_meeting.png" }
     ]
   },
   {
@@ -188,18 +128,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 2, title: "Event & Activation Builds", image: "/assets/hero-bg.png", snippet: "Stages and immersive installations for launches." },
       { idx: 7, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Large scale backlighting and branding sign designs." }
-    ],
-    portfolio: [
-      { title: "Interactive LED Corridor", area: "40 m²", details: ["Seamless wall LED tiles", "Motion-responsive graphics", "Spatial audio setup"], image: "/assets/1-3-1024x768.jpeg" },
-      { title: "Tech Brand Experience Zone", area: "50 m²", details: ["Touchscreen demo desks", "Gypsum curved arches", "Indirect linear glow styling"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Projection Mapping Studio", area: "30 m²", details: ["Ultra short throw setup", "Special projection paints", "Precision mapping grids"], image: "/assets/02-1024x768.jpg" },
-      { title: "VR Flight Simulator Hub", area: "25 m²", details: ["Rigid platform bounds", "Cable suspenders hooks", "LED sound responsive lights"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Sensory Audio Dome", area: "20 m²", details: ["Acoustic wall felt", "Directional sound domes", "Soft dimming accent lights"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Smart Mirror Display", area: "12 h", details: ["Reflective display panels", "Motion capture cameras", "Backlit aluminum frame"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "Holofused Stand Counter", area: "15 m²", details: ["3D hologram fan mounts", "Frosted acrylic podium", "Cable management tracks"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Kinetic Light Installation", area: "45 m²", details: ["Motorized LED globes", "Synchronized controller", "Custom truss frame mounts"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "Mobile App Activation Zone", area: "18 m²", details: ["Tablet stand pods", "QR display banners", "Soft neon sign backdrops"], image: "/assets/showroom_retail_design.png" },
-      { title: "Gamified Brand Booth", area: "36 m²", details: ["Large TV wall mounts", "Wireless buzzer podiums", "Glossy custom counter"], image: "/assets/workspace_meeting.png" }
     ]
   },
   {
@@ -211,18 +139,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 1, title: "Custom Fabrication & Joinery", image: "/assets/workspace_meeting.png", snippet: "Bespoke woodwork and custom panel designs." },
       { idx: 4, title: "Mall & Retail Installations", image: "/assets/showroom_retail_design.png", snippet: "Malls window structures and promotional kiosk fabrication." }
-    ],
-    portfolio: [
-      { title: "Luxury Headquarters Office", area: "180 m²", details: ["Custom executive rooms", "Glass partition panels", "Acoustic ceiling grids"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Premium Boutique Showroom", area: "110 m²", details: ["Modern clothing displays", "Velvet seating lounges", "Clean plaster molding styling"], image: "/assets/showroom_retail_design.png" },
-      { title: "Executive Meeting Room", area: "40 m²", details: ["Soundproof wall boards", "Bespoke conference desk", "Warm ceiling wood tracks"], image: "/assets/workspace_meeting.png" },
-      { title: "Residential Villa Fit-out", area: "320 m²", details: ["Gypsum decorative ceiling", "Premium marble floors", "Indirect gold wall LEDs"], image: "/assets/02-1024x768.jpg" },
-      { title: "Creative Agency Hub", area: "90 m²", details: ["Open layout workspaces", "Custom whiteboard walls", "Playful seating pods"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Luxury Villa Walk-in Closet", area: "28 m²", details: ["Veneered wardrobe lines", "Under-shelf lighting tracks", "Glass showcase drawers"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "Corporate Lounge area", area: "65 m²", details: ["Integrated mini bar counters", "Soft acoustic wall felt", "Chrome lighting panels"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Tech Startup HQ Office", area: "150 m²", details: ["Exposed ceiling layouts", "Color matching floors", "Dynamic custom signages"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Commercial Showroom Fit-out", area: "200 m²", details: ["High-power spotlights", "Custom mock wall bays", "Polished floor coverings"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "High-end Boardroom Suite", area: "45 m²", details: ["Integrated TV video wall", "Acoustic door framing", "Hidden cable compartments"], image: "/assets/1-3-1024x768.jpeg" }
     ]
   },
   {
@@ -234,18 +150,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 5, title: "Experiential Booth Engineering", image: "/assets/hero-bg.png", snippet: "Booths incorporating smart LED displays and digital backdrops." },
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Turnkey exhibition stand building and graphics panels installation." }
-    ],
-    portfolio: [
-      { title: "Exposition Lightbox Series", area: "30 m²", details: ["Dye-sublimation fabric print", "Slim profile aluminum frames", "Bright uniform LED panels"], image: "/assets/1-8-1024x768.jpg" },
-      { title: "3D Neon Sign Installations", area: "5 m²", details: ["Laser-cut acrylic backing", "Low-voltage flexible neon-LED", "Invisible ceiling suspenders"], image: "/assets/1-1-1024x768.jpeg" },
-      { title: "Backlit Corporate Logo", area: "8 m²", details: ["Stainless steel casings", "Warm gold halo LED lines", "Precise wall spacers setup"], image: "/assets/1-3-1024x768.jpeg" },
-      { title: "Commercial Wall Wraps", area: "60 m²", details: ["Matte visual vinyl wrap", "Seamless wall application", "Anti scratch coatings"], image: "/assets/btd1wkac03853ntp8l0e3vox6v3dunyi-1024x768.jpg" },
-      { title: "Exhibition Graphic Panels", area: "45 m²", details: ["High fidelity dye print", "Magnetic backing frames", "Fast mounting clips"], image: "/assets/02-1024x768.jpg" },
-      { title: "Outdoor Acrylic Signage", area: "12 m²", details: ["UV-resistant materials", "Waterproof internal LEDs", "Heavy duty metal mounts"], image: "/assets/1_web-1-1024x768.jpg" },
-      { title: "Frosted Glass Manifestation", area: "22 m²", details: ["Laser cut brand patterns", "Bubble free dry apply", "Privacy divider styling"], image: "/assets/2_web-1024x768.jpg" },
-      { title: "Large Scale Banner Print", area: "120 m²", details: ["Reinforced vinyl borders", "Wind-outlet safety cuts", "Heavy duty mounting eyelets"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Retail Lightbox Displays", area: "15 m²", details: ["Fast graphic change tracks", "Low profile borders", "High brightness LEDs"], image: "/assets/showroom_retail_design.png" },
-      { title: "3D Backlit Metallic Letters", area: "6 m²", details: ["Brushed brass contours", "Internal safety transformers", "Wall stencil template fit"], image: "/assets/workspace_meeting.png" }
     ]
   },
   {
@@ -257,11 +161,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." },
       { idx: 1, title: "Custom Fabrication & Joinery", image: "/assets/workspace_meeting.png", snippet: "Order custom fabrication and wooden structures for your unique promotional needs." }
-    ],
-    portfolio: [
-      { title: "VIP Bar & Stools Set", area: "15 m²", details: ["Premium bar stools", "Illuminated counters", "Sleek metallic accents"], image: "/assets/1-3-1024x768.jpeg" },
-      { title: "Corporate Lounge Setup", area: "24 m²", details: ["Plush armchairs", "Tempered glass tables", "Custom brand color cushions"], image: "/assets/workspace_meeting.png" },
-      { title: "Interactive Demo Desks", area: "10 m²", details: ["Built-in tablet brackets", "Internal cable management", "Under-counter storage"], image: "/assets/showroom_retail_design.png" }
     ]
   },
   {
@@ -273,10 +172,6 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." },
       { idx: 3, title: "On-site Installation & Project Management", image: "/assets/journey.png", snippet: "Coordinating transport, permits, assembly, and dismantling." }
-    ],
-    portfolio: [
-      { title: "Multi-Event Stand Storage", area: "120 m²", details: ["Safe warehouse storage", "Bubble-wrapped packaging", "Inventory database logs"], image: "/assets/1-1024x768.jpeg" },
-      { title: "Expo Materials Log", area: "80 m²", details: ["Secure storage bays", "Dismantling supervision", "Refurbishment workshops"], image: "/assets/journey.png" }
     ]
   }
 ]
@@ -343,17 +238,57 @@ const ServiceDetail: React.FC = () => {
 
   const service = DETAIL_SERVICES_DATA[activeIdx]
 
-  // Map static stands
-  const staticMappedStands = service.portfolio.map((project, idx) => {
-    return {
-      ...project,
-      isDb: false,
-      originalIdx: idx
+  // Map database stands to the portfolio structure for ALL active index pages
+  const filteredStands = (() => {
+    switch (activeIdx) {
+      case 0: // Exhibition Stand Production
+        return dbStands
+      case 1: // Custom Fabrication & Joinery
+        return dbStands.filter((stand: any) => 
+          stand.typeOfStands?.some((t: string) => t.toLowerCase().includes('custom'))
+        )
+      case 2: // Event & Activation Builds
+        return dbStands.filter((stand: any) => 
+          stand.typeOfEvents?.some((e: string) => 
+            ['activation', 'launch', 'festival', 'concert', 'sports', 'corporate'].some((kw: string) => 
+              e.toLowerCase().includes(kw)
+            )
+          )
+        )
+      case 3: // On-site Installation & Project Management
+        return dbStands
+      case 4: // Mall & Retail Installations
+        return dbStands.filter((stand: any) => 
+          ['mall', 'retail', 'shop', 'boutique'].some((kw: string) => 
+            stand.location?.toLowerCase().includes(kw) || 
+            stand.showName?.toLowerCase().includes(kw)
+          )
+        )
+      case 5: // Experiential Booth Engineering
+        return dbStands.filter((stand: any) => 
+          stand.typeOfStands?.some((t: string) => 
+            ['smart', 'double decker'].some((kw: string) => 
+              t.toLowerCase().includes(kw)
+            )
+          )
+        )
+      case 6: // Office and Villa Interiors
+        return dbStands.filter((stand: any) => 
+          ['office', 'villa', 'showroom', 'residential', 'interior', 'fitout', 'fit-out'].some((kw: string) => 
+            stand.location?.toLowerCase().includes(kw) || 
+            stand.showName?.toLowerCase().includes(kw) ||
+            stand.client?.toLowerCase().includes(kw)
+          )
+        )
+      default:
+        return dbStands
     }
-  })
+  })()
 
-  // Map database stands to the portfolio structure
-  const dbMappedStands = activeIdx === 0 ? dbStands.map((stand) => ({
+  // Fallback to all dbStands if no specific matches found, ensuring screen is never empty
+  const finalStandsToUse = filteredStands.length > 0 ? filteredStands : dbStands
+
+  const combinedPortfolio = finalStandsToUse.map((stand: any) => ({
     title: stand.showName,
     area: `${stand.standArea} m²`,
     details: [
@@ -363,11 +298,9 @@ const ServiceDetail: React.FC = () => {
     ].slice(0, 3),
     image: stand.images && stand.images.length > 0 ? stand.images[0].url : '',
     dbId: stand._id,
-    isDb: true
-  })) : []
-
-  // Show only database stands if Exhibition Stand Production (id 0), otherwise show static stands
-  const combinedPortfolio = activeIdx === 0 ? dbMappedStands : staticMappedStands
+    isDb: true,
+    originalIdx: 0
+  }))
 
   const handlePortfolioScroll = (direction: 'left' | 'right') => {
     if (portfolioScrollRef.current) {
