@@ -502,8 +502,11 @@ const AdminPortal: React.FC = () => {
 
                 <form onSubmit={handleLogin} className="space-y-[2.5rem]">
                   {/* Email Input */}
-                  <div className="space-y-[0.8rem]">
-                    <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block">
+                  <div className="space-y-[1rem]">
+                    <label 
+                      className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                      style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                    >
                       Email Address
                     </label>
                     <input
@@ -512,13 +515,17 @@ const AdminPortal: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="admin@backdrops.ae"
-                      className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/20"
+                      className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/40"
+                      style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                     />
                   </div>
 
                   {/* Password Input */}
-                  <div className="space-y-[0.8rem]">
-                    <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block">
+                  <div className="space-y-[1rem]">
+                    <label 
+                      className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                      style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                    >
                       Password
                     </label>
                     <input
@@ -527,7 +534,8 @@ const AdminPortal: React.FC = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/20"
+                      className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/40"
+                      style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                     />
                   </div>
 
@@ -602,8 +610,11 @@ const AdminPortal: React.FC = () => {
                     {/* Left Column */}
                     <div className="space-y-[2.5rem]">
                       {/* Show Name */}
-                      <div className="space-y-[0.8rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
+                      <div className="space-y-[1rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
                           Show Name
                         </label>
                         <input
@@ -612,13 +623,17 @@ const AdminPortal: React.FC = () => {
                           value={showName}
                           onChange={(e) => setShowName(e.target.value)}
                           placeholder="e.g. Gitex Global 2026"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                          style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                         />
                       </div>
 
                       {/* Client */}
-                      <div className="space-y-[0.8rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
+                      <div className="space-y-[1rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
                           Client Name
                         </label>
                         <input
@@ -627,16 +642,20 @@ const AdminPortal: React.FC = () => {
                           value={client}
                           onChange={(e) => setClient(e.target.value)}
                           placeholder="e.g. Google Cloud"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                          style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                         />
                       </div>
 
                       {/* Type of Stands - Multi-Select Pills */}
-                      <div className="space-y-[1.2rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
-                          Type of Stands <span className="text-brand-gold text-[1.1rem] lowercase font-normal">(select one or more - minimum 1 required)</span>
+                      <div className="space-y-[1.4rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
+                          Type of Stands <span className="text-brand-gold text-[1.4rem] lowercase font-normal">(select one or more - minimum 1 required)</span>
                         </label>
-                        <div className="flex flex-wrap gap-2.5">
+                        <div className="flex flex-wrap gap-3">
                           {STAND_TYPES.map((type) => {
                             const isSelected = typeOfStands.includes(type.value)
                             return (
@@ -644,11 +663,12 @@ const AdminPortal: React.FC = () => {
                                 key={type.value}
                                 type="button"
                                 onClick={() => toggleStandType(type.value)}
-                                className={`px-4 py-2 text-[1.6rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
+                                className={`px-6 py-3 text-[1.8rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
                                   isSelected
                                     ? 'bg-brand-gold text-white border-brand-gold shadow-[0_4px_12px_rgba(158,83,48,0.2)] font-semibold'
-                                    : 'bg-brand-dark/20 text-brand-text-muted border-white/5 hover:border-brand-gold/30 hover:text-white'
+                                    : 'bg-brand-dark/20 text-brand-text-muted border-white/10 hover:border-brand-gold/30 hover:text-white'
                                 }`}
+                                style={{ fontSize: '1.8rem', padding: '1.1rem 1.6rem' }}
                               >
                                 {type.label}
                               </button>
@@ -658,11 +678,14 @@ const AdminPortal: React.FC = () => {
                       </div>
 
                       {/* Type of Events - Multi-Select Pills */}
-                      <div className="space-y-[1.2rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
-                          Type of Events <span className="text-brand-gold text-[1.1rem] lowercase font-normal">(select one or more - minimum 1 required)</span>
+                      <div className="space-y-[1.4rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
+                          Type of Events <span className="text-brand-gold text-[1.4rem] lowercase font-normal">(select one or more - minimum 1 required)</span>
                         </label>
-                        <div className="flex flex-wrap gap-2.5">
+                        <div className="flex flex-wrap gap-3">
                           {EVENT_TYPES.map((type) => {
                             const isSelected = typeOfEvents.includes(type.value)
                             return (
@@ -670,11 +693,12 @@ const AdminPortal: React.FC = () => {
                                 key={type.value}
                                 type="button"
                                 onClick={() => toggleEventType(type.value)}
-                                className={`px-4 py-2 text-[1.6rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
+                                className={`px-6 py-3 text-[1.8rem] font-circe rounded-sm border transition-all duration-300 cursor-pointer ${
                                   isSelected
                                     ? 'bg-brand-gold text-white border-brand-gold shadow-[0_4px_12px_rgba(158,83,48,0.2)] font-semibold'
-                                    : 'bg-brand-dark/20 text-brand-text-muted border-white/5 hover:border-brand-gold/30 hover:text-white'
+                                    : 'bg-brand-dark/20 text-brand-text-muted border-white/10 hover:border-brand-gold/30 hover:text-white'
                                 }`}
+                                style={{ fontSize: '1.8rem', padding: '1.1rem 1.6rem' }}
                               >
                                 {type.label}
                               </button>
@@ -687,8 +711,11 @@ const AdminPortal: React.FC = () => {
                     {/* Right Column */}
                     <div className="space-y-[2.5rem]">
                       {/* Year */}
-                      <div className="space-y-[0.8rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
+                      <div className="space-y-[1rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
                           Year
                         </label>
                         <input
@@ -697,13 +724,17 @@ const AdminPortal: React.FC = () => {
                           value={year}
                           onChange={(e) => setYear(e.target.value)}
                           placeholder="e.g. 2026"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                          style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                         />
                       </div>
 
                       {/* Stand Area */}
-                      <div className="space-y-[0.8rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
+                      <div className="space-y-[1rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
                           Stand Area (sqm)
                         </label>
                         <input
@@ -713,13 +744,17 @@ const AdminPortal: React.FC = () => {
                           value={standArea}
                           onChange={(e) => setStandArea(e.target.value)}
                           placeholder="e.g. 54"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                          style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                         />
                       </div>
 
                       {/* Location */}
-                      <div className="space-y-[0.8rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
+                      <div className="space-y-[1rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
                           Location
                         </label>
                         <input
@@ -728,20 +763,25 @@ const AdminPortal: React.FC = () => {
                           value={location}
                           onChange={(e) => setLocation(e.target.value)}
                           placeholder="e.g. DWTC, Dubai, UAE"
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/10"
+                          className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                          style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                         />
                       </div>
 
                       {/* Categories */}
-                      <div className="space-y-[0.8rem]">
-                        <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-semibold">
+                      <div className="space-y-[1rem]">
+                        <label 
+                          className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                          style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                        >
                           Categories
                         </label>
                         <select
                           required
                           value={categories}
                           onChange={(e) => setCategories(e.target.value)}
-                          className="w-full bg-brand-dark/50 border border-brand-border rounded-xs px-[1.5rem] py-[1.2rem] text-[1.8rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 [&>option]:bg-brand-bg [&>option]:text-white cursor-pointer"
+                          className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 [&>option]:bg-brand-bg [&>option]:text-white cursor-pointer"
+                          style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                         >
                           <option value="" disabled>Select category</option>
                           <option value="UAE projects">UAE Projects</option>
@@ -753,11 +793,11 @@ const AdminPortal: React.FC = () => {
                   </div>
 
                   {/* Image Upload Area */}
-                  <div className="space-y-[1.2rem]">
-                    <label className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-bold">
+                  <div className="space-y-[1.4rem]">
+                    <label className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-bold">
                       Select Project Images
                     </label>
-                    <div className="border border-dashed border-white/20 hover:border-brand-gold/50 rounded-lg p-[3rem] text-center cursor-pointer transition-colors duration-300 relative bg-brand-dark/20 group">
+                    <div className="border border-dashed border-white/20 hover:border-brand-gold/50 rounded-lg p-[4rem] text-center cursor-pointer transition-colors duration-300 relative bg-brand-dark/20 group">
                       <input
                         type="file"
                         multiple
@@ -765,12 +805,12 @@ const AdminPortal: React.FC = () => {
                         onChange={handleFileChange}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                       />
-                      <div className="flex flex-col items-center justify-center space-y-3 pointer-events-none">
-                        <UploadCloud className="w-[4.8rem] h-[4.8rem] text-brand-text-muted group-hover:text-brand-gold transition-colors duration-300" />
-                        <p className="font-euclid text-[1.6rem] text-white font-semibold">
+                      <div className="flex flex-col items-center justify-center space-y-4 pointer-events-none">
+                        <UploadCloud className="w-[5.4rem] h-[5.4rem] text-brand-text-muted group-hover:text-brand-gold transition-colors duration-300" />
+                        <p className="font-euclid text-[2rem] text-white font-semibold">
                           Drag & Drop or Click to browse images
                         </p>
-                        <p className="font-circe text-[1.3rem] text-brand-text-muted">
+                        <p className="font-circe text-[1.6rem] text-brand-text-muted">
                           Supports PNG, JPG, JPEG, WEBP.
                         </p>
                       </div>
@@ -874,13 +914,14 @@ const AdminPortal: React.FC = () => {
                   </h2>
                   <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
                     {/* Search Input Box */}
-                    <div className="relative border border-white/10 bg-white/[0.02] rounded-xs px-4 py-2 flex items-center min-w-[24rem] w-full md:w-auto focus-within:border-brand-gold transition-colors duration-300">
+                    <div className="relative border border-white/20 bg-white/[0.02] rounded-xs px-6 py-3.5 flex items-center min-w-[30rem] w-full md:w-auto focus-within:border-brand-gold transition-colors duration-300">
                       <input
                         type="text"
                         placeholder="Search stands..."
-                        className="bg-transparent font-circe text-[1.6rem] text-white outline-none placeholder:text-brand-text-muted/40 w-full"
+                        className="bg-transparent font-circe text-[2.6rem] text-white outline-none placeholder:text-white/40 w-full"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        style={{ fontSize: '2.2rem' }}
                       />
                     </div>
                     <span className="bg-brand-gold/10 border border-brand-gold/20 text-brand-gold font-mono text-[1.4rem] py-1 px-3 rounded-full shrink-0">
