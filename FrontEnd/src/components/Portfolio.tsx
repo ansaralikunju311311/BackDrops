@@ -4,7 +4,7 @@ import { ChevronDown, RefreshCw } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 
 const fetchStands = async ({ queryKey }: any) => {
-  const [_, page, limit, typeOfStand, category, year] = queryKey
+  const [_, page, limit, typeOfStand, category, year, typeOfEvent] = queryKey
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
   
   const params = new URLSearchParams()
@@ -13,6 +13,7 @@ const fetchStands = async ({ queryKey }: any) => {
   if (typeOfStand && typeOfStand !== 'ALL') params.append('typeOfStand', typeOfStand)
   if (category && category !== 'ALL') params.append('category', category)
   if (year && year !== 'ALL') params.append('year', year)
+  if (typeOfEvent && typeOfEvent !== 'ALL') params.append('typeOfEvent', typeOfEvent)
 
   const res = await fetch(`${apiBaseUrl}/api/stands?${params.toString()}`)
   const data = await res.json()
@@ -30,10 +31,11 @@ const Portfolio: React.FC = () => {
   const [selectedType, setSelectedType] = useState('ALL')
   const [selectedCategory, setSelectedCategory] = useState('ALL')
   const [selectedYear, setSelectedYear] = useState('ALL')
+  const [selectedEvent, setSelectedEvent] = useState('ALL')
 
   // Query stands from backend via TanStack Query
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['stands', page, 9, selectedType, selectedCategory, selectedYear],
+    queryKey: ['stands', page, 9, selectedType, selectedCategory, selectedYear, selectedEvent],
     queryFn: fetchStands,
     placeholderData: (prev) => prev
   })
@@ -41,7 +43,7 @@ const Portfolio: React.FC = () => {
   // Scroll to top on query state changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [page, selectedType, selectedCategory, selectedYear])
+  }, [page, selectedType, selectedCategory, selectedYear, selectedEvent])
 
   // Filter change handlers that reset page index
   const handleTypeChange = (val: string) => {
@@ -56,6 +58,11 @@ const Portfolio: React.FC = () => {
 
   const handleYearChange = (val: string) => {
     setSelectedYear(val)
+    setPage(1)
+  }
+
+  const handleEventChange = (val: string) => {
+    setSelectedEvent(val)
     setPage(1)
   }
 
@@ -74,6 +81,24 @@ const Portfolio: React.FC = () => {
     category: stand.categories && stand.categories.length > 0 ? stand.categories[0] : 'UAE projects',
     typeOfStand: stand.typeOfStands && stand.typeOfStands.length > 0 ? stand.typeOfStands[0] : 'custom / built stand'
   }))
+
+  const getPageNumbers = () => {
+    const totalPages = data?.pagination?.totalPages || 1
+    const pages: (number | string)[] = []
+    const range = 1
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= page - range && i <= page + range)
+      ) {
+        pages.push(i)
+      } else if (pages[pages.length - 1] !== '...') {
+        pages.push('...')
+      }
+    }
+    return pages
+  }
 
   if (isLoading && !data) {
     return (
@@ -111,9 +136,6 @@ const Portfolio: React.FC = () => {
           
           {/* Header titles */}
           <div className="flex flex-col items-start gap-3 text-left">
-            <span className="font-circe font-light text-[1.5rem] tracking-[0.3em] text-brand-gold uppercase">
-              600+ projects
-            </span>
             <h1 className="font-urw font-extrabold text-[5.5rem] sm:text-[7rem] md:text-[8.5rem] text-white uppercase leading-none tracking-wider">
               Portfolio
             </h1>
@@ -144,7 +166,29 @@ const Portfolio: React.FC = () => {
               <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
             </div>
 
-            {/* Filter 2: Category */}
+            {/* Filter 2: Type of Event */}
+            <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[20rem]">
+              <select
+                id="filter-event-type"
+                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
+                value={selectedEvent}
+                onChange={(e) => handleEventChange(e.target.value)}
+              >
+                <option className="bg-[#121214] text-white" value="ALL">TYPE OF EVENT</option>
+                <option className="bg-[#121214] text-white" value="trade shows and exhibition">Trade Shows & Exhibitions</option>
+                <option className="bg-[#121214] text-white" value="conference">Conferences</option>
+                <option className="bg-[#121214] text-white" value="forum">Forums</option>
+                <option className="bg-[#121214] text-white" value="product launches">Product Launches</option>
+                <option className="bg-[#121214] text-white" value="Festivals & concerts">Festivals & Concerts</option>
+                <option className="bg-[#121214] text-white" value="brand activation">Brand Activations</option>
+                <option className="bg-[#121214] text-white" value="sports events">Sports Events</option>
+                <option className="bg-[#121214] text-white" value="corporate events">Corporate Events</option>
+                <option className="bg-[#121214] text-white" value="congress">Congresses</option>
+              </select>
+              <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
+            </div>
+
+            {/* Filter 3: Category */}
             <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[18rem]">
               <select
                 id="filter-category"
@@ -160,7 +204,7 @@ const Portfolio: React.FC = () => {
               <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
             </div>
 
-            {/* Filter 3: Year */}
+            {/* Filter 4: Year */}
             <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[14rem]">
               <select
                 id="filter-year"
@@ -232,7 +276,7 @@ const Portfolio: React.FC = () => {
             </div>
 
             {/* Pagination Controls */}
-            {data?.pagination && data.pagination.totalPages > 1 && (
+            {data?.pagination && data.pagination.totalPages >= 1 && mappedProjects.length > 0 && (
               <div className="flex items-center justify-center gap-6 mt-20 select-none">
                 {/* Prev Button */}
                 <button
@@ -247,14 +291,19 @@ const Portfolio: React.FC = () => {
                   Previous
                 </button>
 
-                {/* Page Numbers */}
                 <div className="flex items-center gap-3">
-                  {Array.from({ length: data.pagination.totalPages }).map((_, idx) => {
-                    const pNum = idx + 1
+                  {getPageNumbers().map((pNum, idx) => {
+                    if (pNum === '...') {
+                      return (
+                        <span key={`ell-${idx}`} className="w-12 h-12 flex items-center justify-center font-urw font-bold text-[1.4rem] text-brand-text-muted/60">
+                          ...
+                        </span>
+                      )
+                    }
                     return (
                       <button
                         key={pNum}
-                        onClick={() => setPage(pNum)}
+                        onClick={() => setPage(Number(pNum))}
                         className={`w-12 h-12 rounded-sm font-urw font-bold text-[1.4rem] flex items-center justify-center transition-all duration-300 cursor-pointer ${
                           page === pNum
                             ? 'bg-[#9E5330] text-white shadow-[0_5px_15px_rgba(158,83,48,0.3)]'

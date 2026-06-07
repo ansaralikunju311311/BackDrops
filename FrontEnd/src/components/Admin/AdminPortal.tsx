@@ -90,6 +90,7 @@ const AdminPortal: React.FC = () => {
   const [selectedDetailStand, setSelectedDetailStand] = useState<Stand | null>(null)
   const [editingStand, setEditingStand] = useState<Stand | null>(null)
   const [existingImagesToKeep, setExistingImagesToKeep] = useState<StandImage[]>([])
+  const [standsPage, setStandsPage] = useState(1)
   
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
@@ -110,6 +111,38 @@ const AdminPortal: React.FC = () => {
     return fieldsToSearch.some(field => field && field.toLowerCase().includes(query))
   })
 
+  useEffect(() => {
+    setStandsPage(1)
+  }, [searchQuery])
+
+  const itemsPerPage = 9
+  const standsTotalPages = Math.max(1, Math.ceil(filteredStands.length / itemsPerPage))
+
+  useEffect(() => {
+    if (standsPage > standsTotalPages) {
+      setStandsPage(standsTotalPages)
+    }
+  }, [filteredStands.length, standsTotalPages, standsPage])
+
+  const paginatedStands = filteredStands.slice((standsPage - 1) * itemsPerPage, standsPage * itemsPerPage)
+
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = []
+    const range = 1
+    for (let i = 1; i <= standsTotalPages; i++) {
+      if (
+        i === 1 ||
+        i === standsTotalPages ||
+        (i >= standsPage - range && i <= standsPage + range)
+      ) {
+        pages.push(i)
+      } else if (pages[pages.length - 1] !== '...') {
+        pages.push('...')
+      }
+    }
+    return pages
+  }
+
   // Fetch stands from DB
   const fetchStands = async (customToken?: string) => {
     const token = customToken || localStorage.getItem('backdrops_admin_token')
@@ -119,7 +152,7 @@ const AdminPortal: React.FC = () => {
     setStandsError(null)
 
     try {
-      const res = await fetch(`${apiBaseUrl}/api/stands`, {
+      const res = await fetch(`${apiBaseUrl}/api/stands?limit=3000`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -1043,155 +1076,214 @@ const AdminPortal: React.FC = () => {
                     No stands match your search query. Try searching for a different keyword.
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredStands.map((stand) => (
-                      <div key={stand._id} className="glass-panel border border-white/5 rounded-lg overflow-hidden flex flex-col h-full hover:border-white/10 transition-colors duration-300 shadow-lg group">
-                        {/* Stand Card Thumbnail */}
-                        <div className="aspect-video w-full overflow-hidden bg-brand-dark relative">
-                          {stand.images && stand.images.length > 0 ? (
-                            <img
-                              src={stand.images[0].url}
-                              alt={stand.showName}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center text-brand-text-muted">
-                              No Image Available
-                            </div>
-                          )}
-                          
-                          {/* Listed / Unlisted Badge */}
-                          <div className="absolute top-3 left-3 flex gap-2">
-                            <span className={`flex items-center gap-1.5 font-mono text-[1.1rem] py-1 px-2.5 rounded font-bold uppercase ${
-                              stand.listed !== false 
-                                ? 'bg-emerald-500/90 text-white shadow-[0_2px_8px_rgba(16,185,129,0.3)]' 
-                                : 'bg-zinc-600/90 text-zinc-300 line-through'
-                            }`}>
-                              {stand.listed !== false ? (
-                                <>
-                                  <Eye className="w-3.5 h-3.5" />
-                                  Listed
-                                </>
-                              ) : (
-                                <>
-                                  <EyeOff className="w-3.5 h-3.5" />
-                                  Unlisted
-                                </>
-                              )}
-                            </span>
-                          </div>
-
-                          <div className="absolute top-3 right-3 bg-brand-bg/85 border border-white/10 font-mono text-[1.2rem] py-1 px-2.5 rounded text-white font-bold">
-                            {stand.year}
-                          </div>
-                        </div>
-
-                        {/* Stand Metadata Content */}
-                        <div className="p-6 flex-1 flex flex-col justify-between space-y-6">
-                          <div className="space-y-4 text-left">
-                            <div>
-                              <p className="font-circe text-[1.2rem] text-brand-gold uppercase tracking-widest font-semibold">
-                                {stand.client}
-                              </p>
-                              <h3 className="font-urw font-extrabold text-[2rem] text-white uppercase tracking-wide truncate">
-                                {stand.showName}
-                              </h3>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4 pt-2 border-t border-white/5 text-[1.4rem] font-circe text-brand-text-muted">
-                              <div className="flex flex-col">
-                                <span className="text-[1.1rem] uppercase tracking-wider opacity-60">Stands Type</span>
-                                <span className="text-white font-medium truncate">
-                                  {stand.typeOfStands && Array.isArray(stand.typeOfStands) ? stand.typeOfStands.join(', ') : stand.typeOfStands}
-                                </span>
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-[1.1rem] uppercase tracking-wider opacity-60">Area</span>
-                                <span className="text-white font-medium">{stand.standArea} sqm</span>
-                              </div>
-                              <div className="flex flex-col col-span-2">
-                                <span className="text-[1.1rem] uppercase tracking-wider opacity-60">Location</span>
-                                <span className="text-white font-medium truncate">{stand.location}</span>
-                              </div>
-                            </div>
-
-                            {/* Categories tags */}
-                            {stand.categories && stand.categories.length > 0 && (
-                              <div className="flex flex-wrap gap-1.5 pt-2">
-                                {stand.categories.map((cat, i) => (
-                                  <span key={i} className="text-[1.1rem] bg-white/5 border border-white/10 text-brand-text-muted py-0.5 px-2 rounded-sm font-circe">
-                                    {cat}
-                                  </span>
-                                ))}
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {paginatedStands.map((stand) => (
+                        <div key={stand._id} className="glass-panel border border-white/5 rounded-lg overflow-hidden flex flex-col h-full hover:border-white/10 transition-colors duration-300 shadow-lg group">
+                          {/* Stand Card Thumbnail */}
+                          <div className="aspect-video w-full overflow-hidden bg-brand-dark relative">
+                            {stand.images && stand.images.length > 0 ? (
+                              <img
+                                src={stand.images[0].url}
+                                alt={stand.showName}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-brand-text-muted">
+                                No Image Available
                               </div>
                             )}
-                          </div>
-
-                          <div className="pt-4 border-t border-white/5 flex items-center justify-between gap-3">
-                            <div className="flex gap-2">
-                              {/* Toggle Listed/Unlisted Button */}
-                              <button
-                                onClick={() => handleToggleListed(stand._id)}
-                                disabled={togglingId === stand._id}
-                                className={`p-2.5 rounded-sm border transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold ${
-                                  stand.listed !== false
-                                    ? 'border-white/10 hover:border-amber-500 hover:text-amber-500 text-zinc-400'
-                                    : 'border-white/10 hover:border-emerald-500 hover:text-emerald-500 text-zinc-400'
-                                }`}
-                                title={stand.listed !== false ? "Click to Unlist" : "Click to List"}
-                              >
-                                {togglingId === stand._id ? (
-                                  <RefreshCw className="w-4 h-4 animate-spin" />
-                                ) : stand.listed !== false ? (
+                            
+                            {/* Listed / Unlisted Badge */}
+                            <div className="absolute top-3 left-3 flex gap-2">
+                              <span className={`flex items-center gap-1.5 font-mono text-[1.1rem] py-1 px-2.5 rounded font-bold uppercase ${
+                                stand.listed !== false 
+                                  ? 'bg-emerald-500/90 text-white shadow-[0_2px_8px_rgba(16,185,129,0.3)]' 
+                                  : 'bg-zinc-600/90 text-zinc-300 line-through'
+                              }`}>
+                                {stand.listed !== false ? (
                                   <>
-                                    <EyeOff className="w-4 h-4" />
-                                    Unlist
+                                    <Eye className="w-3.5 h-3.5" />
+                                    Listed
                                   </>
                                 ) : (
                                   <>
-                                    <Eye className="w-4 h-4" />
-                                    List
+                                    <EyeOff className="w-3.5 h-3.5" />
+                                    Unlisted
                                   </>
                                 )}
-                              </button>
-
-                              {/* Edit Button */}
-                              <button
-                                onClick={() => startEditingStand(stand)}
-                                className="p-2.5 border border-white/10 hover:border-brand-gold hover:text-brand-gold text-zinc-400 rounded-sm transition-all duration-300 flex items-center justify-center cursor-pointer"
-                                title="Edit Stand"
-                              >
-                                <Pencil className="w-4 h-4" />
-                              </button>
-
-                              {/* Delete Button */}
-                              <button
-                                onClick={() => handleDeleteStand(stand._id)}
-                                disabled={deletingId === stand._id}
-                                className="p-2.5 border border-white/10 hover:border-red-500 hover:text-red-500 text-zinc-400 rounded-sm transition-all duration-300 flex items-center justify-center cursor-pointer"
-                                title="Delete Stand"
-                              >
-                                {deletingId === stand._id ? (
-                                  <RefreshCw className="w-4 h-4 animate-spin" />
-                                ) : (
-                                  <Trash2 className="w-4 h-4" />
-                                )}
-                              </button>
+                              </span>
                             </div>
 
-                            <button
-                              onClick={() => setSelectedDetailStand(stand)}
-                              className="text-brand-gold hover:text-white hover:bg-brand-gold border border-brand-gold/20 hover:border-brand-gold px-4 py-2.5 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold"
-                              title="View details"
-                            >
-                              View Details
-                              <ArrowRight className="w-4 h-4" />
-                            </button>
+                            <div className="absolute top-3 right-3 bg-brand-bg/85 border border-white/10 font-mono text-[1.2rem] py-1 px-2.5 rounded text-white font-bold">
+                              {stand.year}
+                            </div>
+                          </div>
+
+                          {/* Stand Metadata Content */}
+                          <div className="p-6 flex-1 flex flex-col justify-between space-y-6">
+                            <div className="space-y-4 text-left">
+                              <div>
+                                <p className="font-circe text-[1.2rem] text-brand-gold uppercase tracking-widest font-semibold">
+                                  {stand.client}
+                                </p>
+                                <h3 className="font-urw font-extrabold text-[2rem] text-white uppercase tracking-wide truncate">
+                                  {stand.showName}
+                                </h3>
+                              </div>
+
+                              <div className="grid grid-cols-2 gap-4 pt-2 border-t border-white/5 text-[1.4rem] font-circe text-brand-text-muted">
+                                <div className="flex flex-col">
+                                  <span className="text-[1.1rem] uppercase tracking-wider opacity-60">Stands Type</span>
+                                  <span className="text-white font-medium truncate">
+                                    {stand.typeOfStands && Array.isArray(stand.typeOfStands) ? stand.typeOfStands.join(', ') : stand.typeOfStands}
+                                  </span>
+                                </div>
+                                <div className="flex flex-col">
+                                  <span className="text-[1.1rem] uppercase tracking-wider opacity-60">Area</span>
+                                  <span className="text-white font-medium">{stand.standArea} sqm</span>
+                                </div>
+                                <div className="flex flex-col col-span-2">
+                                  <span className="text-[1.1rem] uppercase tracking-wider opacity-60">Location</span>
+                                  <span className="text-white font-medium truncate">{stand.location}</span>
+                                </div>
+                              </div>
+
+                              {/* Categories tags */}
+                              {stand.categories && stand.categories.length > 0 && (
+                                <div className="flex flex-wrap gap-1.5 pt-2">
+                                  {stand.categories.map((cat, i) => (
+                                    <span key={i} className="text-[1.1rem] bg-white/5 border border-white/10 text-brand-text-muted py-0.5 px-2 rounded-sm font-circe">
+                                      {cat}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="pt-4 border-t border-white/5 flex items-center justify-between gap-3">
+                              <div className="flex gap-2">
+                                {/* Toggle Listed/Unlisted Button */}
+                                <button
+                                  onClick={() => handleToggleListed(stand._id)}
+                                  disabled={togglingId === stand._id}
+                                  className={`p-2.5 rounded-sm border transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold ${
+                                    stand.listed !== false
+                                      ? 'border-white/10 hover:border-amber-500 hover:text-amber-500 text-zinc-400'
+                                      : 'border-white/10 hover:border-emerald-500 hover:text-emerald-500 text-zinc-400'
+                                  }`}
+                                  title={stand.listed !== false ? "Click to Unlist" : "Click to List"}
+                                >
+                                  {togglingId === stand._id ? (
+                                    <RefreshCw className="w-4 h-4 animate-spin" />
+                                  ) : stand.listed !== false ? (
+                                    <>
+                                      <EyeOff className="w-4 h-4" />
+                                      Unlist
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Eye className="w-4 h-4" />
+                                      List
+                                    </>
+                                  )}
+                                </button>
+
+                                {/* Edit Button */}
+                                <button
+                                  onClick={() => startEditingStand(stand)}
+                                  className="p-2.5 border border-white/10 hover:border-brand-gold hover:text-brand-gold text-zinc-400 rounded-sm transition-all duration-300 flex items-center justify-center cursor-pointer"
+                                  title="Edit Stand"
+                                >
+                                  <Pencil className="w-4 h-4" />
+                                </button>
+
+                                {/* Delete Button */}
+                                <button
+                                  onClick={() => handleDeleteStand(stand._id)}
+                                  disabled={deletingId === stand._id}
+                                  className="p-2.5 border border-white/10 hover:border-red-500 hover:text-red-500 text-zinc-400 rounded-sm transition-all duration-300 flex items-center justify-center cursor-pointer"
+                                  title="Delete Stand"
+                                >
+                                  {deletingId === stand._id ? (
+                                    <RefreshCw className="w-4 h-4 animate-spin" />
+                                  ) : (
+                                    <Trash2 className="w-4 h-4" />
+                                  )}
+                                </button>
+                              </div>
+
+                              <button
+                                onClick={() => setSelectedDetailStand(stand)}
+                                className="text-brand-gold hover:text-white hover:bg-brand-gold border border-brand-gold/20 hover:border-brand-gold px-4 py-2.5 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold"
+                                title="View details"
+                              >
+                                View Details
+                                <ArrowRight className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
                         </div>
+                      ))}
+                    </div>
+
+                    {/* Pagination Controls */}
+                    {standsTotalPages >= 1 && paginatedStands.length > 0 && (
+                      <div className="flex items-center justify-center gap-6 mt-12 select-none">
+                        {/* Prev Button */}
+                        <button
+                          onClick={() => setStandsPage(p => Math.max(1, p - 1))}
+                          disabled={standsPage === 1}
+                          className={`px-5 py-3 rounded-xs border font-urw font-bold text-[1.4rem] tracking-wider uppercase transition-all duration-300 ${
+                            standsPage === 1
+                              ? 'border-white/5 text-zinc-600 cursor-not-allowed bg-transparent'
+                              : 'border-white/10 hover:border-brand-gold hover:bg-brand-gold/10 text-white cursor-pointer active:scale-95'
+                          }`}
+                        >
+                          Previous
+                        </button>
+
+                        {/* Page Numbers */}
+                        <div className="flex items-center gap-2">
+                          {getPageNumbers().map((pNum, idx) => {
+                            if (pNum === '...') {
+                              return (
+                                <span key={`ell-${idx}`} className="w-10 h-10 flex items-center justify-center font-urw font-bold text-[1.4rem] text-zinc-600">
+                                  ...
+                                </span>
+                              )
+                            }
+                            return (
+                              <button
+                                key={pNum}
+                                onClick={() => setStandsPage(Number(pNum))}
+                                className={`w-10 h-10 rounded-xs font-urw font-bold text-[1.4rem] flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                                  standsPage === pNum
+                                    ? 'bg-[#9E5330] text-white shadow-[0_4px_10px_rgba(158,83,48,0.3)]'
+                                    : 'border border-white/5 text-zinc-400 hover:border-brand-gold hover:text-white bg-white/[0.01]'
+                                }`}
+                              >
+                                {pNum}
+                              </button>
+                            )
+                          })}
+                        </div>
+
+                        {/* Next Button */}
+                        <button
+                          onClick={() => setStandsPage(p => Math.min(standsTotalPages, p + 1))}
+                          disabled={standsPage === standsTotalPages}
+                          className={`px-5 py-3 rounded-xs border font-urw font-bold text-[1.4rem] tracking-wider uppercase transition-all duration-300 ${
+                            standsPage === standsTotalPages
+                              ? 'border-white/5 text-zinc-600 cursor-not-allowed bg-transparent'
+                              : 'border-white/10 hover:border-brand-gold hover:bg-brand-gold/10 text-white cursor-pointer active:scale-95'
+                          }`}
+                        >
+                          Next
+                        </button>
                       </div>
-                    ))}
-                  </div>
+                    )}
+                  </>
                 )}
               </div>
             </motion.div>

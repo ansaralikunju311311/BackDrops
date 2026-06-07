@@ -295,9 +295,9 @@ const Contact: React.FC = () => {
                     </span>
                     <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
                       Backdrops Technical Services L.L.C<br />
-                      Warehouse no- 6, Gate no.13<br />
+                      Gate no.13, Warehouse no- 6<br />
                       Jebel Ali Industrial area 1<br />
-                      Dubai - U.A.E
+                      Dubai- U.A.E
                     </p>
                   </div>
                 </div>
@@ -312,11 +312,11 @@ const Contact: React.FC = () => {
                       E-mail:
                     </span>
                     <a 
-                      href="mailto:info@backdrops.ae" 
+                      href="mailto:info@bexdxb.com" 
                       className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
                       style={{ fontSize: '2.5rem' }}
                     >
-                      info@backdrops.ae
+                      info@bexdxb.com
                     </a>
                   </div>
                 </div>
@@ -345,64 +345,41 @@ const Contact: React.FC = () => {
             {/* India Column */}
             <div className="space-y-12">
               <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
-                India
+                India Address
               </h2>
 
-              <div className="flex flex-col gap-8">
-                {/* Address Row */}
-                <div className="flex gap-6 items-start group">
-                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-2">
-                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                      Address:
-                    </span>
-                    <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
-                      CREO Construction Experts<br />
-                      Arullil Arcade, Pazhuvil<br />
-                      Near Chazhur panchayath office<br />
-                      Thrissur Dt., Kerala - INDIA
-                    </p>
-                  </div>
+              <div className="flex flex-col sm:flex-row gap-16 sm:gap-24">
+                {/* Left Side: Address */}
+                <div className="space-y-4">
+                  <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                    CREO Construction Experts
+                  </span>
+                  <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
+                    Arullil Arcade<br />
+                    Thrissur Dt.<br />
+                    Kerala- INDIA
+                  </p>
                 </div>
 
-                {/* Email Row */}
-                <div className="flex gap-6 items-start group">
-                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-2">
-                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                      E-mail:
-                    </span>
-                    <a 
-                      href="mailto:info@backdrops.ae" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-                      style={{ fontSize: '2.5rem' }}
-                    >
-                      info@backdrops.ae
-                    </a>
-                  </div>
-                </div>
-
-                {/* Telephone Row */}
-                <div className="flex gap-6 items-start group">
-                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-2">
-                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                      Telephone:
-                    </span>
-                    <a 
-                      href="tel:+919605218618" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-                      style={{ fontSize: '2.5rem' }}
-                    >
-                      +91 9605 218618
-                    </a>
-                  </div>
+                {/* Right Side: Contact */}
+                <div className="space-y-4">
+                  <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                    Contact
+                  </span>
+                  <a 
+                    href="tel:00919188866924" 
+                    className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                    style={{ fontSize: '2.2rem' }}
+                  >
+                    0091 9188866924
+                  </a>
+                  <a 
+                    href="tel:00919605218618" 
+                    className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                    style={{ fontSize: '2.2rem' }}
+                  >
+                    0091 9605 218618
+                  </a>
                 </div>
               </div>
             </div>

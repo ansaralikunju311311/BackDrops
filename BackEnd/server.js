@@ -827,7 +827,7 @@ app.post('/api/stands', verifyToken, upload.array('images', 10), async (req, res
 // GET /api/stands - Retrieve stands with backend pagination, search, and filtering
 app.get('/api/stands', async (req, res) => {
   try {
-    const { page = 1, limit = 9, typeOfStand, category, year, search } = req.query;
+    const { page = 1, limit = 9, typeOfStand, typeOfEvent, category, year, search } = req.query;
 
     const authHeader = req.headers['authorization'];
     let isAdmin = false;
@@ -862,6 +862,11 @@ app.get('/api/stands', async (req, res) => {
     if (typeOfStand && typeOfStand !== 'ALL') {
       // Matches stand types case insensitively
       query.typeOfStands = { $in: [new RegExp(typeOfStand, 'i')] };
+    }
+
+    // 2b. Event Type Filter
+    if (typeOfEvent && typeOfEvent !== 'ALL') {
+      query.typeOfEvents = { $in: [new RegExp(typeOfEvent, 'i')] };
     }
 
     // 3. Category Filter

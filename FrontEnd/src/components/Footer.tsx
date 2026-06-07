@@ -166,84 +166,41 @@ const Footer: React.FC = () => {
          {/* Bottom Details Grid (Structured) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-brand-white/10 pt-16 mb-16">
           
-          {/* Column 1: Office Address info */}
-          <div className="space-y-6">
+          {/* Column 1 & 2: UAE Address & Contact */}
+          <div className="md:col-span-2 flex flex-col sm:flex-row gap-16 sm:gap-24">
+            {/* Address */}
             <div>
-              <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white block mb-2">
-                Backdrops Technical Services L.L.C
+              <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
+                UAE Address
               </span>
-              <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem', fontWeight: 400 }}>
-                Warehouse no- 6, Gate no.13<br />
+              <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+                Backdrops Technical Services L.L.C<br />
+                Gate no.13, Warehouse no- 6<br />
                 Jebel Ali Industrial area 1<br />
-                Dubai - U.A.E
+                Dubai- U.A.E
               </p>
+            </div>
+            
+            {/* Contact */}
+            <div>
+              <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
+                Contact
+              </span>
               <a
-                href="tel:+971552291691"
-                className="font-circe text-brand-gold hover:text-brand-white block mt-2 transition-colors duration-300"
-                style={{ fontSize: '2.0rem', fontWeight: 400 }}
+                href="tel:00971552291691"
+                className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+                style={{ fontSize: '1.6rem', fontWeight: 400 }}
               >
-                +971 55 229 1691
+                0097155 2291691
+              </a>
+              <a
+                href="mailto:info@bexdxb.com"
+                className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              >
+                info@bexdxb.com
               </a>
             </div>
-            <div className="pt-6 border-t border-brand-white/10">
-              <div className="flex items-center justify-between gap-4 mb-2">
-                <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white">
-                  CREO Construction Experts
-                </span>
-                <a
-                  href="https://www.instagram.com/creo_designs?igsh=Nno4YWgxdWx4M3Jw"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-text-muted hover:text-[#d4af37] transition-all duration-300 hover:scale-110 flex items-center justify-center rounded-full bg-brand-white/5 hover:bg-brand-white/10 flex-shrink-0"
-                  style={{ width: '5rem', height: '5rem' }}
-                  aria-label="Creo Designs Instagram"
-                >
-                  <svg className="fill-current" viewBox="0 0 24 24" style={{ width: '2.5rem', height: '2.5rem' }}>
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                  </svg>
-                </a>
-              </div>
-              <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem', fontWeight: 400 }}>
-                Arullil Arcade, Pazhuvil<br />
-                Near Chazhur panchayath office<br />
-                Thrissur Dt., Kerala - INDIA
-              </p>
-              <a
-                href="tel:+919605218618"
-                className="font-circe text-brand-gold hover:text-brand-white block mt-2 transition-colors duration-300"
-                style={{ fontSize: '2.0rem', fontWeight: 400 }}
-              >
-                +91 9605 218618
-              </a>
-            </div>
-          </div>
-
-          {/* Column 2: Contacts info */}
-          <div>
-            <span className="font-urw font-extrabold text-[2.2rem] md:text-[2.4rem] tracking-wider text-brand-white block mb-4">
-              Contacts
-            </span>
-            <a
-              href="tel:+971552291691"
-              className="font-circe text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.8rem', fontWeight: 400 }}
-            >
-              +971 55 229 1691
-            </a>
-            <a
-              href="tel:+919605218618"
-              className="font-circe text-brand-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.8rem', fontWeight: 400 }}
-            >
-              +91 9605 218618
-            </a>
-            <a
-              href="mailto:info@backdrops.ae"
-              className="font-circe text-brand-white hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '1.8rem', fontWeight: 400 }}
-            >
-              info@backdrops.ae
-            </a>
           </div>
 
           {/* Column 3: Legal Policy Links */}
@@ -263,7 +220,6 @@ const Footer: React.FC = () => {
               Terms & Conditions
             </Link>
           </div>
-
         </div>
 
         {/* Copy Line & Socials */}
