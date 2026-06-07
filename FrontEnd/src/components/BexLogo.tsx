@@ -1,5 +1,5 @@
 import React from 'react'
-import logoSvg from '../assets/file (1).svg'
+import logoImg from '../assets/logo.png'
 
 interface BexLogoProps {
   className?: string
@@ -18,7 +18,7 @@ export const BexLogo: React.FC<BexLogoProps> = ({ className = '', scale = 1 }) =
       }}
     >
       <img 
-        src={logoSvg} 
+        src={logoImg} 
         alt="BEX Logo" 
         className="h-16 w-auto object-contain transition-colors duration-300"
       />
