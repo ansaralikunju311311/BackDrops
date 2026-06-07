@@ -970,6 +970,223 @@ app.delete('/api/stands/:id', verifyToken, async (req, res) => {
   }
 });
 
+// PUT /api/stands/:id - Update an existing stand (protected by verifyToken, optional image upload)
+app.put('/api/stands/:id', verifyToken, upload.array('images', 10), async (req, res) => {
+  const localFiles = req.files || [];
+  const newlyUploadedImages = [];
+
+  try {
+    const stand = await Stand.findById(req.params.id);
+    if (!stand) {
+      return res.status(404).json({ success: false, error: 'Stand not found.' });
+    }
+
+    // Extract metadata
+    const { 
+      typeOfStands, 
+      typeOfEvents, 
+      year, 
+      categories, 
+      showName, 
+      showname,
+      standArea, 
+      location, 
+      client,
+      existingImages // JSON string or list of images to keep
+    } = req.body;
+
+    // Required field validation
+    const targetTypeOfStands = typeOfStands || req.body['Type of Stands'];
+    const targetTypeOfEvents = typeOfEvents || req.body['Type of Events'];
+    const targetYear = year || req.body['Year'];
+    const targetCategories = categories || req.body['Categories'];
+    const targetShowName = showName || showname || req.body['showName'] || req.body['showname'];
+    const targetStandArea = standArea || req.body['standArea'] || req.body['standArea (sqm)'];
+    const targetLocation = location || req.body['Location'];
+    const targetClient = client || req.body['Client'];
+
+    if (!targetTypeOfStands || !targetTypeOfEvents || !targetYear || !targetShowName || !targetStandArea || !targetLocation || !targetClient || !targetCategories) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Missing required fields. Please ensure Type of Stands, Type of Events, Year, Categories, showname, standArea, Location, and Client are provided.' 
+      });
+    }
+
+    // String length validations
+    if (targetShowName.trim().length < 3 || targetShowName.trim().length > 100) {
+      return res.status(400).json({ success: false, error: 'Show Name must be between 3 and 100 characters.' });
+    }
+    if (targetClient.trim().length < 2 || targetClient.trim().length > 100) {
+      return res.status(400).json({ success: false, error: 'Client Name must be between 2 and 100 characters.' });
+    }
+    if (targetLocation.trim().length < 3 || targetLocation.trim().length > 200) {
+      return res.status(400).json({ success: false, error: 'Location must be between 3 and 200 characters.' });
+    }
+
+    // Parse helper
+    const parseArray = (value) => {
+      if (!value) return [];
+      if (Array.isArray(value)) return value;
+      if (typeof value === 'string') {
+        try {
+          const parsed = JSON.parse(value);
+          if (Array.isArray(parsed)) return parsed;
+        } catch (e) {}
+        return value.split(',').map(s => s.trim()).filter(Boolean);
+      }
+      return [value];
+    };
+
+    const typeOfStandsArray = parseArray(targetTypeOfStands);
+    const typeOfEventsArray = parseArray(targetTypeOfEvents);
+    const categoriesArray = parseArray(targetCategories);
+
+    // Multi-select presence check
+    if (typeOfStandsArray.length === 0) {
+      return res.status(400).json({ success: false, error: 'At least one Stand Type must be selected.' });
+    }
+    if (typeOfEventsArray.length === 0) {
+      return res.status(400).json({ success: false, error: 'At least one Event Type must be selected.' });
+    }
+
+    // Predefined values validation
+    const ALLOWED_STAND_TYPES = [
+      'double decker stand', 'corner stand', 'peninsula stand', 'island stand',
+      'custom / built stand', 'Inline/ linear stand', 'Smart stands', 'outdoor stands'
+    ];
+    const ALLOWED_EVENT_TYPES = [
+      'trade shows and exhibition', 'conference', 'forum', 'product launches',
+      'Festivals & concerts', 'brand activation', 'sports events', 'corporate events', 'congress'
+    ];
+    const ALLOWED_CATEGORIES = [
+      'UAE projects', 'GCC projects', 'International projects'
+    ];
+
+    const hasInvalidStand = typeOfStandsArray.some(val => !ALLOWED_STAND_TYPES.includes(val));
+    if (hasInvalidStand) {
+      return res.status(400).json({ success: false, error: 'One or more selected Stand Types are invalid.' });
+    }
+    const hasInvalidEvent = typeOfEventsArray.some(val => !ALLOWED_EVENT_TYPES.includes(val));
+    if (hasInvalidEvent) {
+      return res.status(400).json({ success: false, error: 'One or more selected Event Types are invalid.' });
+    }
+    const hasInvalidCategory = categoriesArray.some(val => !ALLOWED_CATEGORIES.includes(val));
+    if (hasInvalidCategory || categoriesArray.length === 0) {
+      return res.status(400).json({ success: false, error: 'Please select a valid Category (UAE, GCC, or International Projects).' });
+    }
+
+    // Numeric parsing and range checks
+    const parsedYear = parseInt(targetYear, 10);
+    const currentYear = new Date().getFullYear();
+    if (isNaN(parsedYear) || parsedYear < 2000 || parsedYear > currentYear + 10) {
+      return res.status(400).json({ success: false, error: `Year must be between 2000 and ${currentYear + 10}.` });
+    }
+
+    const parsedArea = parseFloat(targetStandArea);
+    if (isNaN(parsedArea) || parsedArea <= 0 || parsedArea > 100000) {
+      return res.status(400).json({ success: false, error: 'Stand Area must be a positive number greater than 0 sqm.' });
+    }
+
+    // Parse existing images to keep
+    const parsedExistingImages = parseArray(existingImages);
+    const imagesToKeep = [];
+    const imagesToRemove = [];
+
+    if (stand.images && stand.images.length > 0) {
+      for (const img of stand.images) {
+        const keep = parsedExistingImages.some(item => {
+          if (typeof item === 'string') {
+            return item === img.url || item === img.publicId;
+          }
+          return item.url === img.url || item.publicId === img.publicId || item._id === img._id?.toString();
+        });
+
+        if (keep) {
+          imagesToKeep.push(img);
+        } else {
+          imagesToRemove.push(img);
+        }
+      }
+    }
+
+    // At least one image must remain
+    if (imagesToKeep.length === 0 && localFiles.length === 0) {
+      return res.status(400).json({ success: false, error: 'At least one image is required for the stand project.' });
+    }
+
+    // Delete removed images from Cloudinary
+    for (const img of imagesToRemove) {
+      try {
+        await cloudinary.uploader.destroy(img.publicId);
+        console.log(`Deleted image ${img.publicId} from Cloudinary on update.`);
+      } catch (delErr) {
+        console.error(`Failed to delete Cloudinary image ${img.publicId}:`, delErr);
+      }
+    }
+
+    // Upload newly added files to Cloudinary
+    for (const file of localFiles) {
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'backdrops/stands'
+      });
+      newlyUploadedImages.push({
+        url: result.secure_url,
+        publicId: result.public_id
+      });
+    }
+
+    // Update document fields
+    stand.typeOfStands = typeOfStandsArray;
+    stand.typeOfEvents = typeOfEventsArray;
+    stand.year = parsedYear;
+    stand.categories = categoriesArray;
+    stand.showName = targetShowName;
+    stand.standArea = parsedArea;
+    stand.location = targetLocation;
+    stand.client = targetClient;
+    stand.images = [...imagesToKeep, ...newlyUploadedImages];
+
+    await stand.save();
+
+    return res.json({
+      success: true,
+      message: 'Stand updated successfully!',
+      stand
+    });
+
+  } catch (error) {
+    console.error('Error updating stand:', error);
+
+    // Rollback newly uploaded images if something failed
+    if (newlyUploadedImages.length > 0) {
+      console.log('Rolling back new Cloudinary images due to update error...');
+      for (const image of newlyUploadedImages) {
+        try {
+          await cloudinary.uploader.destroy(image.publicId);
+        } catch (delErr) {
+          console.error(`Failed to delete orphaned Cloudinary image ${image.publicId}:`, delErr);
+        }
+      }
+    }
+
+    return res.status(500).json({ 
+      success: false, 
+      error: 'Failed to update stand. ' + error.message 
+    });
+  } finally {
+    // Always clean up local temporary upload files
+    for (const file of localFiles) {
+      if (fs.existsSync(file.path)) {
+        try {
+          fs.unlinkSync(file.path);
+        } catch (unlinkErr) {
+          console.error(`Failed to clean up local file ${file.path}:`, unlinkErr);
+        }
+      }
+    }
+  }
+});
+
 // PATCH /api/stands/:id/toggle-listed - Toggle a stand's listed/unlisted status (protected by verifyToken)
 app.patch('/api/stands/:id/toggle-listed', verifyToken, async (req, res) => {
   try {

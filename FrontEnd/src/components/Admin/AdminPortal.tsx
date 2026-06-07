@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   XCircle, LogOut, Lock, RefreshCw, ArrowRight, UploadCloud, 
   Trash2, Plus, CheckCircle, X, Eye, EyeOff, MapPin, Calendar,
-  SquareDot, Briefcase
+  SquareDot, Briefcase, Pencil
 } from 'lucide-react'
 
 // Stand Interface
@@ -88,6 +88,8 @@ const AdminPortal: React.FC = () => {
   const [togglingId, setTogglingId] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDetailStand, setSelectedDetailStand] = useState<Stand | null>(null)
+  const [editingStand, setEditingStand] = useState<Stand | null>(null)
+  const [existingImagesToKeep, setExistingImagesToKeep] = useState<StandImage[]>([])
   
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
@@ -207,6 +209,46 @@ const AdminPortal: React.FC = () => {
     localStorage.removeItem('backdrops_admin_token')
     setIsAuthenticated(false)
     setStands([])
+  }
+
+  const startEditingStand = (stand: Stand) => {
+    setEditingStand(stand)
+    setTypeOfStands(stand.typeOfStands || [])
+    setTypeOfEvents(stand.typeOfEvents || [])
+    setYear(stand.year ? stand.year.toString() : new Date().getFullYear().toString())
+    setCategories(stand.categories && stand.categories.length > 0 ? stand.categories[0] : '')
+    setShowName(stand.showName || '')
+    setStandArea(stand.standArea ? stand.standArea.toString() : '')
+    setLocation(stand.location || '')
+    setClient(stand.client || '')
+    
+    // Clear newly selected files
+    imagePreviews.forEach(url => URL.revokeObjectURL(url))
+    setSelectedFiles([])
+    setImagePreviews([])
+    
+    // Set existing images
+    setExistingImagesToKeep(stand.images || [])
+    
+    // Scroll smoothly to form
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const cancelEditing = () => {
+    setEditingStand(null)
+    setTypeOfStands([])
+    setTypeOfEvents([])
+    setYear(new Date().getFullYear().toString())
+    setCategories('')
+    setShowName('')
+    setStandArea('')
+    setLocation('')
+    setClient('')
+    
+    imagePreviews.forEach(url => URL.revokeObjectURL(url))
+    setSelectedFiles([])
+    setImagePreviews([])
+    setExistingImagesToKeep([])
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -374,7 +416,7 @@ const AdminPortal: React.FC = () => {
       return
     }
 
-    if (selectedFiles.length === 0) {
+    if (selectedFiles.length === 0 && (!editingStand || existingImagesToKeep.length === 0)) {
       setUploadError('Please select at least one image.')
       return
     }
@@ -404,9 +446,18 @@ const AdminPortal: React.FC = () => {
       formData.append('images', file)
     })
 
+    if (editingStand) {
+      formData.append('existingImages', JSON.stringify(existingImagesToKeep))
+    }
+
     try {
-      const res = await fetch(`${apiBaseUrl}/api/stands`, {
-        method: 'POST',
+      const url = editingStand 
+        ? `${apiBaseUrl}/api/stands/${editingStand._id}` 
+        : `${apiBaseUrl}/api/stands`
+      const method = editingStand ? 'PUT' : 'POST'
+
+      const res = await fetch(url, {
+        method: method,
         headers: {
           'Authorization': `Bearer ${token}`
         },
@@ -416,7 +467,7 @@ const AdminPortal: React.FC = () => {
       const data = await res.json()
 
       if (res.ok && data.success) {
-        setUploadSuccess('Stand uploaded and saved successfully!')
+        setUploadSuccess(editingStand ? 'Stand updated successfully!' : 'Stand uploaded and saved successfully!')
         
         // Reset form
         setTypeOfStands([])
@@ -432,15 +483,17 @@ const AdminPortal: React.FC = () => {
         imagePreviews.forEach(url => URL.revokeObjectURL(url))
         setSelectedFiles([])
         setImagePreviews([])
+        setExistingImagesToKeep([])
+        setEditingStand(null)
         
         // Refresh stand list
         fetchStands(token)
       } else {
-        setUploadError(data.error || 'Failed to upload stand data.')
+        setUploadError(data.error || 'Failed to save stand data.')
       }
     } catch (err) {
       console.error('Upload error:', err)
-      setUploadError('Failed to upload stand. Server connection failed.')
+      setUploadError(editingStand ? 'Failed to update stand. Server connection failed.' : 'Failed to upload stand. Server connection failed.')
     } finally {
       setIsUploading(false)
     }
@@ -600,8 +653,8 @@ const AdminPortal: React.FC = () => {
               {/* Main Content: Stand Upload Form */}
               <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative overflow-hidden shadow-2xl">
                 <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem] flex items-center gap-3">
-                  <Plus className="w-8 h-8" />
-                  Add New Stand Project
+                  {editingStand ? <Briefcase className="w-8 h-8" /> : <Plus className="w-8 h-8" />}
+                  {editingStand ? `Edit Stand Project: ${editingStand.showName}` : 'Add New Stand Project'}
                 </h2>
 
                 <form onSubmit={handleUploadSubmit} className="space-y-[3rem]">
@@ -817,6 +870,37 @@ const AdminPortal: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Existing Images to Keep (Only in editing mode) */}
+                  {editingStand && existingImagesToKeep.length > 0 && (
+                    <div className="space-y-4">
+                      <p 
+                        className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider block font-bold"
+                        style={{ fontSize: '1.6rem' }}
+                      >
+                        Current Images ({existingImagesToKeep.length}) <span className="text-rose-400 text-[1.2rem] lowercase font-normal">(click delete button to remove from project)</span>
+                      </p>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                        {existingImagesToKeep.map((img, idx) => (
+                          <div key={idx} className="relative aspect-video rounded-md overflow-hidden border border-white/10 group shadow-md">
+                            <img src={img.url} alt={`existing ${idx}`} className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setExistingImagesToKeep(prev => prev.filter((_, i) => i !== idx))
+                              }}
+                              className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 cursor-pointer"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                              <span className="font-mono text-[1rem] text-white">Keep</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Image Previews */}
                   {imagePreviews.length > 0 && (
                     <div className="space-y-4">
@@ -884,20 +968,31 @@ const AdminPortal: React.FC = () => {
                   </AnimatePresence>
 
                   {/* Form Submission Button */}
-                  <div className="flex justify-end pt-4 border-t border-white/5">
+                  <div className="flex justify-end items-center gap-4 pt-4 border-t border-white/5">
+                    {editingStand && (
+                      <button
+                        type="button"
+                        onClick={cancelEditing}
+                        className="py-[1.4rem] px-[3rem] bg-zinc-800 text-white font-euclid font-bold text-[1.5rem] tracking-wider uppercase rounded-xs hover:bg-zinc-700 transition-all duration-300 cursor-pointer"
+                        style={{ fontSize: '1.8rem' }}
+                      >
+                        Cancel Edit
+                      </button>
+                    )}
                     <button
                       type="submit"
                       disabled={isUploading}
                       className="py-[1.4rem] px-[4rem] bg-brand-gold text-white font-euclid font-bold text-[1.5rem] tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      style={{ fontSize: '1.8rem' }}
                     >
                       {isUploading ? (
                         <>
                           <RefreshCw className="w-5 h-5 animate-spin" />
-                          Uploading Stand Data...
+                          {editingStand ? 'Saving Changes...' : 'Uploading Stand Data...'}
                         </>
                       ) : (
                         <>
-                          Upload Stand
+                          {editingStand ? 'Save Changes' : 'Upload Stand'}
                           <ArrowRight className="w-5 h-5" />
                         </>
                       )}
@@ -1058,6 +1153,15 @@ const AdminPortal: React.FC = () => {
                                     List
                                   </>
                                 )}
+                              </button>
+
+                              {/* Edit Button */}
+                              <button
+                                onClick={() => startEditingStand(stand)}
+                                className="p-2.5 border border-white/10 hover:border-brand-gold hover:text-brand-gold text-zinc-400 rounded-sm transition-all duration-300 flex items-center justify-center cursor-pointer"
+                                title="Edit Stand"
+                              >
+                                <Pencil className="w-4 h-4" />
                               </button>
 
                               {/* Delete Button */}
