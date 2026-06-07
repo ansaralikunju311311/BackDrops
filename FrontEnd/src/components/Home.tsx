@@ -509,11 +509,16 @@ const Home: React.FC = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
-                  BackDrops offers exhibition related services all around the world. We have stand construction experience in more than 15 different countries, and this list of worldwide cooperation is expanding every year.
+                  BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
                 </p>
-                <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
-                  Our team has competence and experience to implement your project globally.
-                </p>
+                <div className="space-y-6">
+                  <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
+                    Combining global standards with local expertise, our team manages every stage of project delivery—from production and logistics to installation and on-site execution—ensuring consistency, quality, and reliability across borders.
+                  </p>
+                  <p className="font-circe font-semibold text-brand-gold leading-relaxed" style={{ fontSize: '1.8rem' }}>
+                    Wherever your vision goes, BEX is ready to build it.
+                  </p>
+                </div>
               </div>
             </div>
 
