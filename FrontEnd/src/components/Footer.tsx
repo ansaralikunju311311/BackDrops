@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import BexLogo from './BexLogo'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
+  const location = useLocation()
+  const isAboutPage = location.pathname === '/about-us'
   const [isDividerHovered, setIsDividerHovered] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -65,7 +67,7 @@ const Footer: React.FC = () => {
         
         {/* Collapsible About Content */}
         <AnimatePresence initial={false}>
-          {isExpanded && (
+          {isAboutPage && isExpanded && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
@@ -73,32 +75,86 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden border-t border-brand-white/10"
             >
-              <div className="flex flex-col text-left py-12 select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-10 max-w-[120rem] mx-auto">
+              <div className="flex flex-col text-left py-12 select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
                 {/* Intro block */}
-                <p>
-                  <strong className="text-white font-bold">BackDrops</strong> is a full-service event agency specializing in the creation and management of temporary construction projects. Since 2019, we have been providing a wide range of services for the production of exclusive exhibition stands, using innovative technologies and following trends in the exhibition industry. Our team has successful experience working not only with UAE projects, but also with foreign projects in more than 15 countries around the world. Thanks to the competencies of our specialists, we are improving every year, expanding our capabilities and expanding the list of countries in which we implement our projects.
-                </p>
-
-                {/* The main mission */}
-                <div className="space-y-4">
-                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide">
-                    The main mission
-                  </h3>
+                <div className="space-y-6">
                   <p>
-                    To help clients effectively and efficiently present their company and products at the event. Our company’s guiding principle is to ensure that every project we create meets your individual needs. Our team responsibly accompanies you at every stage of implementation, which allows you to comprehensively control this process.
+                    <strong className="text-white font-bold">BEX</strong> is an international experiential execution partner specializing in the delivery of exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions.
+                  </p>
+                  <p>
+                    We collaborate with agencies, brands, event organizers, designers, and creative teams to transform ambitious concepts into exceptional real-world experiences. From exhibition stands and experiential activations to commercial interiors and branded environments, we provide the expertise, infrastructure, and execution capabilities required to bring ideas to life—anywhere they need to happen.
+                  </p>
+                  <p>
+                    With a strong network of partners, skilled production teams, and proven project management systems, BEX delivers projects across the UAE, GCC, and international markets. Our role goes beyond construction and installation; we become an extension of our clients' teams, ensuring every detail is executed with precision, consistency, and excellence.
+                  </p>
+                  <p>
+                    Whether supporting a global agency, an international brand, or a local organizer, we are committed to delivering experiences that engage audiences, elevate brands, and exceed expectations.
                   </p>
                 </div>
 
-                {/* Why choose us? */}
+                {/* Our Mission */}
                 <div className="space-y-4">
-                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide">
-                    Why choose us?
+                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
+                    Our Mission
                   </h3>
-                  <p>
-                    We have many years of experience in creating and implementing projects for various types of events.
+                  <p className="font-semibold text-white">
+                    To be the most trusted execution partner for experiential projects worldwide.
                   </p>
                   <p>
-                    By choosing our company, you get high-quality construction, work with a professional team of our specialists, strict adherence to deadlines and the opportunity to successfully present your company at the event. We are also ready to help you achieve your business goals. Our team of highly qualified specialists is always happy to implement your ideas and create a stand that will reflect the main concept of your company. The key to a successful exhibition event is well-planned work and responsibility for the result, which you will receive by choosing BackDrops.
+                    We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
+                  </p>
+                </div>
+
+                {/* Why Choose BEX? */}
+                <div className="space-y-8">
+                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
+                    Why Choose BEX?
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Your Execution Partner, Anywhere</h4>
+                      <p>We provide reliable on-ground execution support for agencies and brands across the UAE, GCC, and international markets, ensuring concepts are delivered exactly as envisioned.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Built for Collaboration</h4>
+                      <p>We integrate seamlessly with creative agencies, event organizers, designers, and brand teams, acting as a trusted extension of your project team.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">End-to-End Delivery Capability</h4>
+                      <p>From technical development and production to logistics, installation, site management, and dismantling, we manage every stage of execution with complete accountability.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Global Standards, Local Expertise</h4>
+                      <p>Our international experience combined with deep regional knowledge allows us to navigate local requirements while maintaining world-class execution standards.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Precision in Every Detail</h4>
+                      <p>We understand that exceptional experiences are built on flawless execution. Every element is carefully planned, coordinated, and delivered to the highest quality standards.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Agile and Scalable Solutions</h4>
+                      <p>Whether it's a single activation, a major exhibition pavilion, a corporate interior project, or a multi-country rollout, our resources and expertise scale to meet project demands.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Proven Reliability</h4>
+                      <p>Our clients trust us because we consistently deliver on time, on budget, and to specification even under the most demanding project conditions.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-[2.2rem]">Focused on Experience</h4>
+                      <p>We don't simply build structures; we create environments that strengthen brands, engage audiences, and leave lasting impressions.</p>
+                    </div>
+                  </div>
+
+                  <p className="pt-6 border-t border-brand-white/10 italic text-[2rem] text-brand-gold font-medium">
+                    At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.
                   </p>
                 </div>
               </div>
@@ -107,22 +163,24 @@ const Footer: React.FC = () => {
         </AnimatePresence>
 
         {/* Main Divider Line with Center Button (LEARN MORE + / —) */}
-        <div className="relative flex items-center justify-center mb-24 mt-8">
-          <div className={`absolute left-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-right ${
-            isDividerHovered ? 'bg-gradient-to-r from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
-          }`} />
-          <div className={`absolute right-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-left ${
-            isDividerHovered ? 'bg-gradient-to-l from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
-          }`} />
-          <button
-            onMouseEnter={() => setIsDividerHovered(true)}
-            onMouseLeave={() => setIsDividerHovered(false)}
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="relative z-10 px-12 py-5 bg-brand-bg border border-brand-white/10 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 font-euclid font-bold text-[1.8rem] uppercase tracking-wider flex items-center gap-3 rounded-xs cursor-pointer hover:shadow-[0_0_25px_rgba(212,175,55,0.15)] group"
-          >
-            Learn More <span className="text-brand-gold font-light transition-transform duration-300">{isExpanded ? '—' : '+'}</span>
-          </button>
-        </div>
+        {isAboutPage && (
+          <div className="relative flex items-center justify-center mb-24 mt-8">
+            <div className={`absolute left-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-right ${
+              isDividerHovered ? 'bg-gradient-to-r from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
+            }`} />
+            <div className={`absolute right-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-left ${
+              isDividerHovered ? 'bg-gradient-to-l from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
+            }`} />
+            <button
+              onMouseEnter={() => setIsDividerHovered(true)}
+              onMouseLeave={() => setIsDividerHovered(false)}
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="relative z-10 px-12 py-5 bg-brand-bg border border-brand-white/10 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 font-euclid font-bold text-[1.8rem] uppercase tracking-wider flex items-center gap-3 rounded-xs cursor-pointer hover:shadow-[0_0_25px_rgba(212,175,55,0.15)] group"
+            >
+              Learn More <span className="text-brand-gold font-light transition-transform duration-300">{isExpanded ? '—' : '+'}</span>
+            </button>
+          </div>
+        )}
 
         {/* Row 2: Logo, Navigation, and Action Button (SEND REQUEST +) */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-24">
