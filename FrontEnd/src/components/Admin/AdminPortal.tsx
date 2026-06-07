@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   XCircle, LogOut, Lock, RefreshCw, ArrowRight, UploadCloud, 
-  Trash2, Plus, CheckCircle, X, Eye, EyeOff
+  Trash2, Plus, CheckCircle, X, Eye, EyeOff, MapPin, Calendar,
+  SquareDot, Briefcase
 } from 'lucide-react'
 
 // Stand Interface
@@ -86,6 +87,7 @@ const AdminPortal: React.FC = () => {
   const [deletingId, setDeletingId] = useState<string | null>(null)
   const [togglingId, setTogglingId] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedDetailStand, setSelectedDetailStand] = useState<Stand | null>(null)
   
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
@@ -1033,7 +1035,7 @@ const AdminPortal: React.FC = () => {
                             </div>
 
                             <button
-                              onClick={() => navigate(`/portfolio/detail?dbId=${stand._id}`)}
+                              onClick={() => setSelectedDetailStand(stand)}
                               className="text-brand-gold hover:text-white hover:bg-brand-gold border border-brand-gold/20 hover:border-brand-gold px-4 py-2.5 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 text-[1.3rem] font-bold uppercase tracking-wider cursor-pointer font-semibold"
                               title="View details"
                             >
@@ -1047,6 +1049,129 @@ const AdminPortal: React.FC = () => {
                   </div>
                 )}
               </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Dynamic Detail Modal */}
+        <AnimatePresence>
+          {selectedDetailStand && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedDetailStand(null)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-6 overflow-y-auto"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+                onClick={(e) => e.stopPropagation()}
+                className="glass-panel w-full max-w-[85rem] rounded-lg p-[3rem] md:p-[4rem] border border-white/10 shadow-2xl relative my-auto space-y-[2.5rem]"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedDetailStand(null)}
+                  className="absolute top-6 right-6 text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full transition-all duration-300 cursor-pointer z-10"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {/* Header */}
+                <div>
+                  <p className="font-circe text-[1.4rem] text-brand-gold uppercase tracking-widest font-semibold flex items-center gap-2">
+                    <Briefcase className="w-4 h-4" />
+                    {selectedDetailStand.client}
+                  </p>
+                  <h2 className="font-urw font-extrabold text-[2.8rem] md:text-[3.6rem] text-white uppercase tracking-wide mt-1 leading-tight pr-[4rem]">
+                    {selectedDetailStand.showName}
+                  </h2>
+                </div>
+
+                {/* Grid Info */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 py-6 border-y border-white/5 text-[1.5rem] font-circe">
+                  <div className="flex items-center gap-4 bg-white/[0.02] border border-white/5 p-4 rounded-sm">
+                    <Calendar className="w-8 h-8 text-brand-gold shrink-0" />
+                    <div>
+                      <span className="text-[1.1rem] uppercase tracking-wider text-brand-text-muted opacity-60 block">Year</span>
+                      <span className="text-white font-medium">{selectedDetailStand.year}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 bg-white/[0.02] border border-white/5 p-4 rounded-sm">
+                    <SquareDot className="w-8 h-8 text-brand-gold shrink-0" />
+                    <div>
+                      <span className="text-[1.1rem] uppercase tracking-wider text-brand-text-muted opacity-60 block">Stand Area</span>
+                      <span className="text-white font-medium">{selectedDetailStand.standArea} sqm</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 bg-white/[0.02] border border-white/5 p-4 rounded-sm">
+                    <MapPin className="w-8 h-8 text-brand-gold shrink-0" />
+                    <div className="overflow-hidden">
+                      <span className="text-[1.1rem] uppercase tracking-wider text-brand-text-muted opacity-60 block">Location</span>
+                      <span className="text-white font-medium truncate block" title={selectedDetailStand.location}>{selectedDetailStand.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Detailed Parameters */}
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-circe text-[1.3rem] text-brand-text-muted uppercase tracking-widest font-bold mb-2">Categories</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedDetailStand.categories?.map((cat, i) => (
+                        <span key={i} className="text-[1.3rem] font-circe bg-white/5 border border-white/10 text-white py-1 px-3 rounded-sm">
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-circe text-[1.3rem] text-brand-text-muted uppercase tracking-widest font-bold mb-2">Type of Stands</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedDetailStand.typeOfStands?.map((type, i) => (
+                        <span key={i} className="text-[1.3rem] font-circe bg-brand-gold/10 border border-brand-gold/25 text-brand-gold py-1 px-3 rounded-sm">
+                          {type}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-circe text-[1.3rem] text-brand-text-muted uppercase tracking-widest font-bold mb-2">Type of Events</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedDetailStand.typeOfEvents?.map((event, i) => (
+                        <span key={i} className="text-[1.3rem] font-circe bg-white/5 border border-white/10 text-zinc-300 py-1 px-3 rounded-sm">
+                          {event}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Images Gallery */}
+                <div className="space-y-3">
+                  <h4 className="font-circe text-[1.3rem] text-brand-gold uppercase tracking-widest font-bold">Uploaded Project Images</h4>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    {selectedDetailStand.images?.map((img, i) => (
+                      <div key={i} className="aspect-video rounded-md overflow-hidden border border-white/10 group relative shadow-md">
+                        <img
+                          src={img.url}
+                          alt={`${selectedDetailStand.showName} image ${i + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                          <span className="font-mono text-[1.1rem] text-white">Image {i + 1}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

@@ -54,39 +54,47 @@ const HomeView: React.FC = () => {
 
 const queryClient = new QueryClient()
 
+const AppContent: React.FC = () => {
+  const location = useLocation()
+  const isAdminPage = location.pathname.toLowerCase() === '/admin'
+
+  return (
+    <div className="relative min-h-screen bg-brand-bg font-sans antialiased text-brand-white overflow-hidden selection:bg-brand-gold selection:text-brand-dark">
+      {/* Global Navigation Header */}
+      {!isAdminPage && <Header />}
+
+      {/* Main Sections */}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about-us" element={<HomeView />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/detail" element={<ServiceDetail />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/detail" element={<PortfolioDetail />} />
+          <Route path="/contacts" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/detail" element={<ArticleDetail />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/admin" element={<AdminPortal />} />
+        </Routes>
+      </main>
+
+      {/* Global Footer with WhatsApp Widget */}
+      {!isAdminPage && <Footer />}
+    </div>
+  )
+}
+
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ScrollToTop />
-        <div className="relative min-h-screen bg-brand-bg font-sans antialiased text-brand-white overflow-hidden selection:bg-brand-gold selection:text-brand-dark">
-          {/* Global Navigation Header */}
-          <Header />
-
-          {/* Main Sections */}
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/about-us" element={<HomeView />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/detail" element={<ServiceDetail />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/portfolio/detail" element={<PortfolioDetail />} />
-              <Route path="/contacts" element={<Contact />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/articles" element={<Articles />} />
-              <Route path="/articles/detail" element={<ArticleDetail />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-conditions" element={<TermsConditions />} />
-              <Route path="/admin" element={<AdminPortal />} />
-            </Routes>
-          </main>
-
-
-          {/* Global Footer with WhatsApp Widget */}
-          <Footer />
-        </div>
+        <AppContent />
       </BrowserRouter>
     </QueryClientProvider>
   )

@@ -79,19 +79,24 @@ const PortfolioDetail: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [location])
 
-  const service = PORTFOLIO_SERVICES_DATA[serviceId]
-  const project = service.portfolio[projectId]
+  const params = new URLSearchParams(location.search)
+  const dbId = params.get('dbId')
+  const isDb = !!dbId
 
-  const isDb = !!dbStand
+  const service = PORTFOLIO_SERVICES_DATA[serviceId] || { title: '', portfolio: [] }
+  const project = service.portfolio && service.portfolio[projectId]
+    ? service.portfolio[projectId]
+    : { title: '', area: '', image: '', details: [] }
 
   // Resolve stand values (static vs database)
-  const currentTitle = isDb ? dbStand.showName : project.title
-  const currentArea = isDb ? `${dbStand.standArea} m²` : project.area
-  const currentImage = isDb && dbStand.images && dbStand.images.length > 0 ? dbStand.images[0].url : (isDb ? '' : project.image)
+  const currentTitle = isDb ? (dbStand?.showName || 'Loading...') : project.title
+  const currentArea = isDb ? (dbStand ? `${dbStand.standArea} m²` : 'Loading...') : project.area
+  const currentImage = isDb ? (dbStand?.images?.[0]?.url || '') : project.image
   const mainImageToShow = selectedImage || currentImage
   
   // Dynamic details generator for type of stand
   const getTypeOfStand = () => {
+    if (!project || !project.area) return []
     const areaVal = parseInt(project.area, 10)
     if (isNaN(areaVal) || areaVal < 30) {
       return [
@@ -114,7 +119,7 @@ const PortfolioDetail: React.FC = () => {
     }
   }
 
-  const currentTypeOfStands = isDb ? dbStand.typeOfStands : getTypeOfStand()
+  const currentTypeOfStands = isDb ? (dbStand?.typeOfStands || []) : getTypeOfStand()
 
   // Dynamic event type resolver
   const getTypeOfEvent = () => {
@@ -128,10 +133,11 @@ const PortfolioDetail: React.FC = () => {
     return ["Marketing Signage Campaign"]
   }
 
-  const currentTypeOfEvents = isDb ? dbStand.typeOfEvents : getTypeOfEvent()
+  const currentTypeOfEvents = isDb ? (dbStand?.typeOfEvents || []) : getTypeOfEvent()
 
   // Dynamic Exhibition Name
   const getExExhibition = () => {
+    if (!project || !project.title) return ''
     const exhibitions = [
       "Future Blockchain",
       "Arab Health Summit",
@@ -146,42 +152,47 @@ const PortfolioDetail: React.FC = () => {
     return exhibitions[hash % exhibitions.length]
   }
 
-  const currentExhibitionName = isDb ? dbStand.showName : getExExhibition()
+  const currentExhibitionName = isDb ? (dbStand?.showName || '') : getExExhibition()
 
   // Dynamic Event Year
   const getExYear = () => {
+    if (!project || !project.title) return ''
     const years = ["2022", "2023", "2024", "2025", "2026"]
     const hash = project.title.charCodeAt(0) + project.title.length
     return years[hash % years.length]
   }
 
-  const currentExYear = isDb ? dbStand.year.toString() : getExYear()
+  const currentExYear = isDb ? (dbStand?.year?.toString() || '') : getExYear()
 
   // Dynamic Event Location
   const getExLocation = () => {
     return "Dubai, UAE"
   }
 
-  const currentExLocation = isDb ? dbStand.location : getExLocation()
+  const currentExLocation = isDb ? (dbStand?.location || '') : getExLocation()
 
   // Get gallery thumbnails
   const getGalleryThumbnails = () => {
-    if (isDb && dbStand.images && dbStand.images.length > 1) {
-      // Show all uploaded images except the main one currently shown
-      const activeMain = selectedImage || dbStand.images[0].url
-      return dbStand.images
-        .map((img: any) => img.url)
-        .filter((url: string) => url !== activeMain)
-    } else if (isDb && dbStands.length > 1) {
-      // If only one uploaded, show other stand photos
-      const currentIdx = dbStands.findIndex(s => s._id === dbStand._id)
-      const leftIdx = (currentIdx + 1) % dbStands.length
-      const rightIdx = (currentIdx + 2) % dbStands.length
-      
-      const leftUrl = dbStands[leftIdx]?.images?.[0]?.url || ''
-      const rightUrl = dbStands[rightIdx]?.images?.[0]?.url || ''
-      return [leftUrl, rightUrl].filter(Boolean)
+    if (isDb && dbStand) {
+      if (dbStand.images && dbStand.images.length > 1) {
+        // Show all uploaded images except the main one currently shown
+        const activeMain = selectedImage || dbStand.images[0].url
+        return dbStand.images
+          .map((img: any) => img.url)
+          .filter((url: string) => url !== activeMain)
+      } else if (dbStands.length > 1) {
+        // If only one uploaded, show other stand photos
+        const currentIdx = dbStands.findIndex(s => s._id === dbStand._id)
+        const leftIdx = (currentIdx + 1) % dbStands.length
+        const rightIdx = (currentIdx + 2) % dbStands.length
+        
+        const leftUrl = dbStands[leftIdx]?.images?.[0]?.url || ''
+        const rightUrl = dbStands[rightIdx]?.images?.[0]?.url || ''
+        return [leftUrl, rightUrl].filter(Boolean)
+      }
+      return []
     } else {
+      if (!service.portfolio || service.portfolio.length === 0) return []
       const list = service.portfolio
       const leftIdx = (projectId + 1) % list.length
       const rightIdx = (projectId + 2) % list.length
@@ -191,7 +202,7 @@ const PortfolioDetail: React.FC = () => {
 
   const handleThumbnailClick = (thumbUrl: string) => {
     // If it's one of the current stand's images, switch main image
-    if (isDb && dbStand.images && dbStand.images.some((img: any) => img.url === thumbUrl)) {
+    if (isDb && dbStand?.images && dbStand.images.some((img: any) => img.url === thumbUrl)) {
       setSelectedImage(thumbUrl)
     } else {
       // Otherwise, it's a fallback project thumbnail, so navigate to it!
@@ -211,7 +222,7 @@ const PortfolioDetail: React.FC = () => {
 
   const handlePrev = () => {
     if (isDb && dbStands.length > 0) {
-      const idx = dbStands.findIndex(s => s._id === dbStand._id)
+      const idx = dbStands.findIndex(s => s._id === dbStand?._id)
       if (idx !== -1) {
         const total = dbStands.length
         const prevIdx = (idx - 1 + total) % total
@@ -226,7 +237,7 @@ const PortfolioDetail: React.FC = () => {
 
   const handleNext = () => {
     if (isDb && dbStands.length > 0) {
-      const idx = dbStands.findIndex(s => s._id === dbStand._id)
+      const idx = dbStands.findIndex(s => s._id === dbStand?._id)
       if (idx !== -1) {
         const total = dbStands.length
         const nextIdx = (idx + 1) % total
@@ -386,7 +397,7 @@ const PortfolioDetail: React.FC = () => {
                 </div>
 
                 {/* Client Spec */}
-                {isDb && dbStand.client && (
+                {isDb && dbStand?.client && (
                   <div className="flex items-center gap-5">
                     <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
                       <Briefcase className="w-6 h-6" />
