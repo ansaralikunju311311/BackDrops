@@ -16,11 +16,7 @@ const Mission: React.FC = () => {
             className="max-w-[48rem] text-center md:text-right order-3 md:order-1"
           >
             <p className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-brand-text-muted leading-relaxed">
-             The future we're Building
-             To become the go-to execution partner 
-             for leading agencies,knwon for 
-             delivering experiences that are not
-             "just built -- but remembered"
+             To become the go-to execution partner for leading agencies, known for delivering experiences that are not "just built -- but remembered"
             </p>
           </motion.div>
 
@@ -45,7 +41,7 @@ const Mission: React.FC = () => {
             className="flex flex-col text-center md:text-left order-1 md:order-3"
           >
             <h2 className="font-urw font-extrabold text-[4.2rem] md:text-[6rem] leading-[1.05] text-brand-white tracking-wide whitespace-nowrap md:whitespace-normal">
-              Our<span className="hidden md:inline"><br /></span> Main<span className="hidden md:inline"><br /></span> Mission
+              The Future<span className="hidden md:inline"><br /></span> We're<span className="hidden md:inline"><br /></span> Building
             </h2>
           </motion.div>
 

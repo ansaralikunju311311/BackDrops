@@ -101,9 +101,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="font-circe font-light text-2xl md:text-3xl lg:text-[2.8rem] text-brand-text-muted leading-relaxed max-w-[65rem] mb-20"
+            className="font-circe font-light text-2xl md:text-3xl lg:text-[2.8rem] text-brand-text-muted leading-relaxed max-w-[80rem] mb-20"
           >
-            full-service exhibition agency specializing in the creation and management of unique backdrop and stand projects
+            Backdrops Exhibitions- BEX is an exhibition solutions partner creating impactful, precision-built brand environments through seamless design, production, and execution.
           </motion.p>
 
           {/* Statistics Block (Typographic list matching screenshot) */}
@@ -117,30 +117,30 @@ const Hero: React.FC = () => {
               {/* Stat 1 */}
               <div className="flex flex-col">
                 <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
+                  <CountUp from={0} to={600} suffix="+" />
+                </span>
+                <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
+                  completed projects
+                </span>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="flex flex-col">
+                <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
                   <CountUp from={0} to={20} suffix="+" />
                 </span>
                 <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
                   years experience
                 </span>
               </div>
-              
-              {/* Stat 2 */}
+
+              {/* Stat 3 */}
               <div className="flex flex-col">
                 <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
                   <CountUp from={0} to={15} suffix="+" />
                 </span>
                 <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
                   countries
-                </span>
-              </div>
-              
-              {/* Stat 3 */}
-              <div className="flex flex-col">
-                <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={600} suffix="+" />
-                </span>
-                <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
-                  completed projects
                 </span>
               </div>
             </div>

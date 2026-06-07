@@ -555,7 +555,8 @@ const Home: React.FC = () => {
                 <div className="flex flex-col items-center w-full lg:w-[10.5rem] lg:min-w-[9rem] flex-shrink-0 relative">
                   <motion.div
                     whileHover={{ scale: 1.08 }}
-                    className="w-20 h-20 rounded-full border border-white/[0.08] bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.4rem] text-white/90 z-10 transition-all duration-300 hover:border-[#E51D1D] hover:text-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
+                    className="w-20 h-20 rounded-full border border-[#E51D1D]/30 bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.4rem] z-10 transition-all duration-300 hover:border-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
+                    style={{ color: '#E51D1D' }}
                   >
                     # {step.num}
                   </motion.div>
@@ -638,10 +639,7 @@ const Home: React.FC = () => {
               className="flex flex-col gap-10"
             >
               <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
-                Layout of any expo booth is the dominant factor of a display as a whole, a cornerstone of shaping positive company image, services provided and produce in the eye of a potential client.
-              </p>
-              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
-                Project designing and visualising using three dimensional modeling helps to work out all the aspects in detail, take into account peculiar features of corporate identity and a client's expectations, make all the necessary adjustments and at the same time do not exceed budget limitations.
+                The layout and installation of an expo booth form the backbone of a successful exhibition presence, shaping how visitors perceive and engage with a brand. A well-planned layout ensures clear visibility, seamless visitor flow, and strategic placement of key elements such as product displays, reception areas, and interactive zones, all aligned with the brand’s objectives. Through advanced planning and 3D visualization, every detail is refined to deliver a space that is both functional and visually impactful.
               </p>
             </motion.div>
 
@@ -654,13 +652,7 @@ const Home: React.FC = () => {
               className="flex flex-col gap-10"
             >
               <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
-                Due to our highly qualified staff and all the necessary state-of-the-art equipment the processes of manufacturing followed by installation of a display are fulfilled in the shortest possible time and are of superior quality.
-              </p>
-              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
-                We offer not only exclusive expo booths production of any complexity but also multimedia equipment, furniture, writing software, professional creation of audio-visual content.
-              </p>
-              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
-                Throughout the years we have been successfully implementing projects in the expo sector, delivering world-class exhibition spaces that captivate and command attention globally.
+                At BEX, we combine design precision with expert installation to bring exhibition stands to life with accuracy, efficiency, and quality. From concept development to on-site execution, our teams ensure every booth is built to exact specifications, integrating branding, lighting, and multimedia elements seamlessly. The result is a powerful, immersive exhibition environment that attracts attention, engages audiences, and delivers lasting brand impact.
               </p>
             </motion.div>
           </div>
