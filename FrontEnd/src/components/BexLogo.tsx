@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImg from '../assets/fixedlogo.png'
+import logoImg from '../assets/final.png'
 
 interface BexLogoProps {
   className?: string
@@ -8,19 +8,38 @@ interface BexLogoProps {
 
 export const BexLogo: React.FC<BexLogoProps> = ({ className = '', scale = 1 }) => {
   return (
-    <div 
-      className={`select-none transition-transform duration-500 ease-out ${className}`} 
-      style={{ 
-        transform: `scale(${scale})`, 
+    <div
+      className={`select-none transition-transform duration-500 ease-out ${className}`}
+      style={{
+        transform: `scale(${scale})`,
         transformOrigin: 'left center',
         display: 'inline-flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative',
       }}
     >
-      <img 
-        src={logoImg} 
-        alt="BEX Logo" 
+      {/* Base logo image */}
+      <img
+        src={logoImg}
+        alt="BEX Logo"
         className="h-24 md:h-36 lg:h-52 w-auto object-contain transition-all duration-300"
+        style={{ display: 'block' }}
+      />
+
+      {/* Black overlay clipped to only the "B" letter (left ~38% of image) */}
+      <img
+        src={logoImg}
+        alt=""
+        aria-hidden="true"
+        className="h-24 md:h-36 lg:h-52 w-auto object-contain transition-all duration-300"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          clipPath: 'inset(0 62% 0 0)',
+          filter: 'brightness(0)',
+          pointerEvents: 'none',
+        }}
       />
     </div>
   )

@@ -132,7 +132,7 @@ const Portfolio: React.FC = () => {
         </nav>
 
         {/* Page Title & Filters Row */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 border-b border-brand-white/10 pb-12">
+        <div className="flex flex-col items-start gap-12 border-b border-brand-white/10 pb-12">
           
           {/* Header titles */}
           <div className="flex flex-col items-start gap-3 text-left">
@@ -142,26 +142,26 @@ const Portfolio: React.FC = () => {
           </div>
 
           {/* Filters & Search Select Grid */}
-          <div className="flex flex-wrap items-center gap-10 sm:gap-14">
+          <div className="flex flex-wrap items-center gap-10 sm:gap-14 w-full">
             
 
             {/* Filter 1: Type of Stand */}
             <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[18rem]">
               <select
                 id="filter-stand-type"
-                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
+                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 py-1.5 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
                 value={selectedType}
                 onChange={(e) => handleTypeChange(e.target.value)}
               >
-                <option className="bg-[#121214] text-white" value="ALL">TYPE OF STAND</option>
-                <option className="bg-[#121214] text-white" value="double decker stand">Double Decker Stand</option>
-                <option className="bg-[#121214] text-white" value="corner stand">Corner Stand</option>
-                <option className="bg-[#121214] text-white" value="peninsula stand">Peninsula Stand</option>
-                <option className="bg-[#121214] text-white" value="island stand">Island Stand</option>
-                <option className="bg-[#121214] text-white" value="custom / built stand">Custom / Built Stand</option>
-                <option className="bg-[#121214] text-white" value="Inline/ linear stand">Inline / Linear Stand</option>
-                <option className="bg-[#121214] text-white" value="Smart stands">Smart Stands</option>
-                <option className="bg-[#121214] text-white" value="outdoor stands">Outdoor Stands</option>
+                <option value="ALL">TYPE OF STAND</option>
+                <option value="double decker stand">Double Decker Stand</option>
+                <option value="corner stand">Corner Stand</option>
+                <option value="peninsula stand">Peninsula Stand</option>
+                <option value="island stand">Island Stand</option>
+                <option value="custom / built stand">Custom / Built Stand</option>
+                <option value="Inline/ linear stand">Inline / Linear Stand</option>
+                <option value="Smart stands">Smart Stands</option>
+                <option value="outdoor stands">Outdoor Stands</option>
               </select>
               <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
             </div>
@@ -170,20 +170,20 @@ const Portfolio: React.FC = () => {
             <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[20rem]">
               <select
                 id="filter-event-type"
-                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
+                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 py-1.5 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
                 value={selectedEvent}
                 onChange={(e) => handleEventChange(e.target.value)}
               >
-                <option className="bg-[#121214] text-white" value="ALL">TYPE OF EVENT</option>
-                <option className="bg-[#121214] text-white" value="trade shows and exhibition">Trade Shows & Exhibitions</option>
-                <option className="bg-[#121214] text-white" value="conference">Conferences</option>
-                <option className="bg-[#121214] text-white" value="forum">Forums</option>
-                <option className="bg-[#121214] text-white" value="product launches">Product Launches</option>
-                <option className="bg-[#121214] text-white" value="Festivals & concerts">Festivals & Concerts</option>
-                <option className="bg-[#121214] text-white" value="brand activation">Brand Activations</option>
-                <option className="bg-[#121214] text-white" value="sports events">Sports Events</option>
-                <option className="bg-[#121214] text-white" value="corporate events">Corporate Events</option>
-                <option className="bg-[#121214] text-white" value="congress">Congresses</option>
+                <option value="ALL">TYPE OF EVENT</option>
+                <option value="trade shows and exhibition">Trade Shows & Exhibitions</option>
+                <option value="conference">Conferences</option>
+                <option value="forum">Forums</option>
+                <option value="product launches">Product Launches</option>
+                <option value="Festivals & concerts">Festivals & Concerts</option>
+                <option value="brand activation">Brand Activations</option>
+                <option value="sports events">Sports Events</option>
+                <option value="corporate events">Corporate Events</option>
+                <option value="congress">Congresses</option>
               </select>
               <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
             </div>
@@ -192,14 +192,14 @@ const Portfolio: React.FC = () => {
             <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[18rem]">
               <select
                 id="filter-category"
-                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
+                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 py-1.5 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
                 value={selectedCategory}
                 onChange={(e) => handleCategoryChange(e.target.value)}
               >
-                <option className="bg-[#121214] text-white" value="ALL">ALL CATEGORIES</option>
-                <option className="bg-[#121214] text-white" value="UAE projects">UAE Projects</option>
-                <option className="bg-[#121214] text-white" value="GCC projects">GCC Projects</option>
-                <option className="bg-[#121214] text-white" value="International projects">International Projects</option>
+                <option value="ALL">ALL CATEGORIES</option>
+                <option value="UAE projects">UAE Projects</option>
+                <option value="GCC projects">GCC Projects</option>
+                <option value="International projects">International Projects</option>
               </select>
               <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
             </div>
@@ -208,16 +208,16 @@ const Portfolio: React.FC = () => {
             <div className="relative border-b border-brand-white/20 pb-3.5 flex items-center min-w-[14rem]">
               <select
                 id="filter-year"
-                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
+                className="appearance-none bg-transparent font-urw font-bold text-[1.6rem] text-white pr-8 py-1.5 outline-none cursor-pointer uppercase tracking-widest border-none w-full"
                 value={selectedYear}
                 onChange={(e) => handleYearChange(e.target.value)}
               >
-                <option className="bg-[#121214] text-white" value="ALL">ALL YEARS</option>
-                <option className="bg-[#121214] text-white" value="2026">2026</option>
-                <option className="bg-[#121214] text-white" value="2025">2025</option>
-                <option className="bg-[#121214] text-white" value="2024">2024</option>
-                <option className="bg-[#121214] text-white" value="2023">2023</option>
-                <option className="bg-[#121214] text-white" value="2022_BELOW">2022 & below</option>
+                <option value="ALL">ALL YEARS</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022_BELOW">2022 & below</option>
               </select>
               <ChevronDown className="absolute right-0 w-5 h-5 text-brand-text-muted pointer-events-none" />
             </div>

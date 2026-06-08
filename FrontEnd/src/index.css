@@ -111,6 +111,7 @@
 :root {
   font-size: 0.520835vw;
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 @media (max-width: 768px) {
@@ -260,6 +261,12 @@ input, textarea, button, a {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* Force select option dropdowns to have a dark background and white text on Windows / Chrome */
+select option, option {
+  background-color: #121214 !important;
+  color: #ffffff !important;
 }
 
 
