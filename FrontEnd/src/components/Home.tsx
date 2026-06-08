@@ -524,7 +524,7 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.45 }}
-            className="font-circe font-bold text-brand-gold"
+            className="font-circe font-bold text-brand-gold text-center w-full mt-8"
             style={{ fontSize: 'clamp(1.7rem, 2vw, 2.2rem)' }}
           >
             Wherever your vision goes, BEX is ready to build it.
