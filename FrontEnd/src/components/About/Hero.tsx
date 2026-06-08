@@ -86,14 +86,14 @@ const Hero: React.FC = () => {
       <div className="relative z-10 max-w-[140rem] mx-auto w-full px-6 md:px-12 lg:px-24 flex items-center">
         <div className="max-w-[95rem] w-full">
           
-          {/* Main Title "BackDrops" (Liquid metallic gold gradient, matches screenshot) */}
+          {/* Main Title "BACKDROPS Exhibitions" (Liquid metallic gold gradient, matches screenshot) */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="font-urw font-extrabold text-[8.5rem] sm:text-[11rem] md:text-[13rem] lg:text-[14.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark leading-none mb-10"
+            className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[8.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark leading-none mb-10 whitespace-nowrap"
           >
-            BackDrops
+            BACKDROPS Exhibitions
           </motion.h1>
 
           {/* Subheading description (Fluid large text, matches screenshot) */}
@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="font-circe font-light text-2xl md:text-3xl lg:text-[2.8rem] text-brand-text-muted leading-relaxed max-w-[80rem] mb-20"
           >
-            Backdrops Exhibitions- BEX is an exhibition solutions partner creating impactful, precision-built brand environments through seamless design, production, and execution.
+            BEX is an exhibition solutions partner creating impactful, precision-built brand environments through seamless design, production, and execution.
           </motion.p>
 
           {/* Statistics Block (Typographic list matching screenshot) */}
