@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImg from '../assets/fixed.png'
+import logoImg from '../assets/f.png'
 
 interface BexLogoProps {
   className?: string
