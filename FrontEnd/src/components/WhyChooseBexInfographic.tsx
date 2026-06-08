@@ -4,201 +4,189 @@ import { Globe, Handshake, Settings, Network, CheckCircle2, Zap, Shield, Crown }
 
 const SAFFRON = '#F4A600'
 const CENTER_COLOR = '#C0392B'
+const DARK = '#0B0C10'
 
 const features = [
-  {
-    icon: <Globe className="w-8 h-8 text-[#F4A600]" />,
-    title: "Execution Partner",
-    description: "Reliable on-ground execution across UAE, GCC, and internationally."
-  },
-  {
-    icon: <Handshake className="w-8 h-8 text-[#F4A600]" />,
-    title: "Built for Collaboration",
-    description: "Integrating seamlessly with agencies and brand teams."
-  },
-  {
-    icon: <Settings className="w-8 h-8 text-[#F4A600]" />,
-    title: "End-to-End Capability",
-    description: "From technical production to logistics and site management."
-  },
-  {
-    icon: <Network className="w-8 h-8 text-[#F4A600]" />,
-    title: "Global Standards",
-    description: "Navigating local requirements with world-class standards."
-  },
-  {
-    icon: <CheckCircle2 className="w-8 h-8 text-[#F4A600]" />,
-    title: "Precision Details",
-    description: "Flawless execution delivered to the highest quality."
-  },
-  {
-    icon: <Zap className="w-8 h-8 text-[#F4A600]" />,
-    title: "Agile and Scalable",
-    description: "Resources that scale to meet any project demand."
-  },
-  {
-    icon: <Shield className="w-8 h-8 text-[#F4A600]" />,
-    title: "Proven Reliability",
-    description: "Consistently delivering on time and on budget."
-  },
-  {
-    icon: <Crown className="w-8 h-8 text-[#F4A600]" />,
-    title: "Experience Focus",
-    description: "Creating environments that leave lasting impressions."
-  }
+  { icon: Globe,        title: "Execution Partner",      description: "Reliable on-ground execution across UAE, GCC, and internationally." },
+  { icon: Handshake,    title: "Built for Collaboration", description: "Integrating seamlessly with agencies and brand teams." },
+  { icon: Settings,     title: "End-to-End Capability",  description: "From technical production to logistics and site management." },
+  { icon: Network,      title: "Global Standards",       description: "Navigating local requirements with world-class standards." },
+  { icon: CheckCircle2, title: "Precision Details",      description: "Flawless execution delivered to the highest quality." },
+  { icon: Zap,          title: "Agile and Scalable",     description: "Resources that scale to meet any project demand." },
+  { icon: Shield,       title: "Proven Reliability",     description: "Consistently delivering on time and on budget." },
+  { icon: Crown,        title: "Experience Focus",       description: "Creating environments that leave lasting impressions." }
 ]
 
-const RADIUS = 330
-const CIRCLE_R = 112
+// All layout values are % of the square container
+const ORBIT  = 33   // orbit radius  (% from centre)
+const OUTER  = 11   // outer circle half-width (%)
+const CENTER = 15   // centre circle half-width (%)
 
 const WhyChooseBexInfographic: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
-
-  // Rotate wheel so the hovered circle comes to the top (−90° offset = 12 o'clock)
   const wheelRotation = -90 - activeIndex * 45
 
   return (
-    <div className="py-16 bg-transparent relative overflow-hidden flex flex-col items-center justify-center min-h-[900px]">
+    <div className="py-12 bg-transparent w-full">
 
-      {/* Wrapper — scale for responsiveness */}
-      <div
-        className="relative mx-auto scale-[0.52] sm:scale-[0.65] md:scale-[0.80] lg:scale-100"
-        style={{ width: 1000, height: 1000 }}
-      >
-
-        {/* ── CENTER CIRCLE (does NOT rotate) ── */}
+      {/* ─────────── DESKTOP / TABLET wheel ─────────── */}
+      <div className="hidden sm:flex justify-center items-center">
         <div
-          className="absolute z-20 rounded-full flex items-center justify-center"
-          style={{
-            width: 300,
-            height: 300,
-            left: 350,
-            top: 350,
-            backgroundColor: CENTER_COLOR,
-            boxShadow: '0 15px 40px rgba(192,57,43,0.6)'
-          }}
+          className="relative"
+          style={{ width: 'min(88vw, 860px)', aspectRatio: '1 / 1' }}
         >
+
+
+          {/* ── Centre circle (static, never rotates) ── */}
           <div
-            className="rounded-full flex flex-col items-center justify-center text-center border-2 border-[#C0392B]/40"
+            className="absolute rounded-full"
             style={{
-              width: 282,
-              height: 282,
-              backgroundColor: '#0B0C10',
-              boxShadow: 'inset 0 4px 15px rgba(0,0,0,0.5)'
+              width: `${CENTER * 2}%`, height: `${CENTER * 2}%`,
+              left: `${50 - CENTER}%`, top: `${50 - CENTER}%`,
+              backgroundColor: CENTER_COLOR,
+              boxShadow: '0 0 4vw rgba(192,57,43,0.55)',
+              zIndex: 20
             }}
           >
-            <h3 className="font-urw font-extrabold text-[3.2rem] text-white uppercase leading-tight px-4 tracking-wide">
-              Why Choose<br />BEX
-            </h3>
-            <p
-              className="font-circe font-bold text-[1.6rem] mt-2 tracking-[0.2em] uppercase"
-              style={{ color: SAFFRON }}
+            <div
+              className="absolute rounded-full flex flex-col items-center justify-center text-center"
+              style={{
+                inset: '3%',
+                backgroundColor: DARK,
+                border: '2px solid rgba(192,57,43,0.4)'
+              }}
             >
-              8 Core Values
-            </p>
+              <h3
+                className="font-urw font-extrabold uppercase text-white leading-tight px-2"
+                style={{ fontSize: 'clamp(12px, 3.2vw, 30px)' }}
+              >
+                Why Choose<br />BEX
+              </h3>
+              <p
+                className="font-circe font-bold uppercase tracking-widest mt-1"
+                style={{ fontSize: 'clamp(7px, 1.4vw, 13px)', color: SAFFRON }}
+              >
+                8 Core Values
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* ── ROTATING WHEEL ── */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{ rotate: wheelRotation }}
-          transition={{ type: 'spring', stiffness: 18, damping: 22 }}
-          style={{ transformOrigin: '500px 500px' }}
-        >
-          {features.map((feature, idx) => {
-            const angleDeg = idx * 45      // fixed angle on the wheel
-            const angleRad = (angleDeg * Math.PI) / 180
-            const cx = 500 + RADIUS * Math.cos(angleRad)
-            const cy = 500 + RADIUS * Math.sin(angleRad)
-            const isActive = idx === activeIndex
+          {/* ── Rotating wheel ── */}
+          <motion.div
+            className="absolute inset-0"
+            animate={{ rotate: wheelRotation }}
+            transition={{ type: 'spring', stiffness: 18, damping: 22 }}
+            style={{ transformOrigin: '50% 50%' }}
+          >
+            {features.map((feature, idx) => {
+              const angleDeg = idx * 45
+              const angleRad = (angleDeg * Math.PI) / 180
+              const cx = 50 + ORBIT * Math.cos(angleRad)   // % from left
+              const cy = 50 + ORBIT * Math.sin(angleRad)   // % from top
+              const isActive   = idx === activeIndex
+              const counterRot = -wheelRotation             // keeps content upright
 
-            // Counter-rotate to keep content upright
-            const counterRotate = -wheelRotation
+              const Icon = feature.icon
 
-            return (
-              <g key={idx}>
-                {/* Connecting line — only visible for the active (top) circle */}
-                <div
-                  key={`line-${idx}`}
-                  className="absolute"
-                  style={{
-                    width: RADIUS - CIRCLE_R - 150,
-                    height: 5,
-                    backgroundColor: SAFFRON,
-                    top: 500,
-                    left: 500 + CIRCLE_R + 150,
-                    transformOrigin: '0 50%',
-                    transform: `rotate(${angleDeg}deg)`,
-                    borderRadius: 3,
-                    zIndex: 1,
-                    opacity: isActive ? 1 : 0,
-                    boxShadow: isActive ? '0 0 10px rgba(244,166,0,0.7)' : 'none',
-                    transition: 'opacity 0.5s ease'
-                  }}
-                />
+              return (
+                <div key={idx}>
 
-                {/* Outer feature circle */}
-                <motion.div
-                  onMouseEnter={() => setActiveIndex(idx)}
-                  animate={{
-                    rotate: counterRotate,
-                    scale: isActive ? 1.08 : 1
-                  }}
-                  transition={{ type: 'spring', stiffness: 18, damping: 22 }}
-                  className="absolute rounded-full cursor-pointer flex items-center justify-center"
-                  style={{
-                    width: CIRCLE_R * 2,
-                    height: CIRCLE_R * 2,
-                    left: cx - CIRCLE_R,
-                    top: cy - CIRCLE_R,
-                    backgroundColor: SAFFRON,
-                    zIndex: 10,
-                    boxShadow: isActive
-                      ? '0 0 32px rgba(244,166,0,0.65), 0 10px 28px rgba(244,166,0,0.3)'
-                      : '0 10px 22px rgba(244,166,0,0.18)',
-                    transformOrigin: 'center center'
-                  }}
-                >
-                  {/* Inner dark circle — content stays upright */}
-                  <div
-                    className="rounded-full flex flex-col items-center justify-center text-center border border-[#F4A600]/25"
+
+                  {/* Outer feature circle */}
+                  <motion.div
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    animate={{ rotate: counterRot, scale: isActive ? 1.1 : 1 }}
+                    transition={{ type: 'spring', stiffness: 18, damping: 22 }}
+                    className="absolute rounded-full cursor-pointer flex items-center justify-center"
                     style={{
-                      width: CIRCLE_R * 2 - 14,
-                      height: CIRCLE_R * 2 - 14,
-                      backgroundColor: '#0B0C10',
-                      padding: '1.2rem'
+                      width:  `${OUTER * 2}%`,
+                      height: `${OUTER * 2}%`,
+                      left:   `${cx - OUTER}%`,
+                      top:    `${cy - OUTER}%`,
+                      backgroundColor: SAFFRON,
+                      zIndex: 10,
+                      boxShadow: isActive
+                        ? `0 0 3vw rgba(244,166,0,0.65), 0 1vw 2vw rgba(244,166,0,0.3)`
+                        : `0 0.5vw 1.5vw rgba(244,166,0,0.2)`,
+                      transformOrigin: 'center center'
                     }}
                   >
-                    <motion.div
-                      className="mb-2"
-                      animate={{ scale: isActive ? 1.3 : 1 }}
-                      transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                    {/* Inner dark circle */}
+                    <div
+                      className="absolute rounded-full flex flex-col items-center justify-center text-center overflow-hidden"
+                      style={{
+                        inset: '3%',
+                        backgroundColor: DARK,
+                        border: '1px solid rgba(244,166,0,0.25)',
+                        padding: '6%'
+                      }}
                     >
-                      {feature.icon}
-                    </motion.div>
-                    <motion.h4
-                      className="font-urw font-bold uppercase text-white leading-tight mb-1.5"
-                      animate={{ fontSize: isActive ? '1.6rem' : '1.35rem' }}
-                      transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-                    >
-                      {feature.title}
-                    </motion.h4>
-                    <motion.p
-                      className="font-circe font-light text-[#aaa] leading-snug"
-                      animate={{ fontSize: isActive ? '1.35rem' : '1.15rem' }}
-                      transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-                    >
-                      {feature.description}
-                    </motion.p>
-                  </div>
-                </motion.div>
-              </g>
-            )
-          })}
-        </motion.div>
+                      <motion.div
+                        animate={{ scale: isActive ? 1.3 : 1 }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                        style={{ marginBottom: '6%', flexShrink: 0 }}
+                      >
+                        <Icon
+                          style={{ width: 'clamp(14px, 2.2vw, 28px)', height: 'clamp(14px, 2.2vw, 28px)', color: SAFFRON }}
+                        />
+                      </motion.div>
 
+                      <motion.h4
+                        className="font-urw font-bold uppercase text-white leading-tight"
+                        animate={{ fontSize: isActive ? 'clamp(10px, 1.9vw, 17px)' : 'clamp(9px, 1.55vw, 14px)' }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                        style={{ marginBottom: '4%' }}
+                      >
+                        {feature.title}
+                      </motion.h4>
+
+                      <motion.p
+                        className="font-circe font-light text-[#aaa] leading-snug"
+                        animate={{ fontSize: isActive ? 'clamp(8px, 1.5vw, 13px)' : 'clamp(7px, 1.2vw, 11px)' }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                      >
+                        {feature.description}
+                      </motion.p>
+                    </div>
+                  </motion.div>
+                </div>
+              )
+            })}
+          </motion.div>
+        </div>
       </div>
+
+      {/* ─────────── MOBILE grid ─────────── */}
+      <div className="sm:hidden grid grid-cols-2 gap-3 px-4">
+        {features.map((feature, idx) => {
+          const isActive = activeIndex === idx
+          const Icon = feature.icon
+          return (
+            <motion.div
+              key={idx}
+              onTouchStart={() => setActiveIndex(idx)}
+              onClick={() => setActiveIndex(idx)}
+              animate={{ scale: isActive ? 1.03 : 1 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+              className="rounded-2xl p-4 flex flex-col items-center text-center cursor-pointer"
+              style={{
+                backgroundColor: DARK,
+                border: `2px solid ${isActive ? SAFFRON : 'rgba(244,166,0,0.2)'}`,
+                boxShadow: isActive ? `0 0 20px rgba(244,166,0,0.3)` : 'none'
+              }}
+            >
+              <Icon style={{ width: 28, height: 28, color: SAFFRON, marginBottom: 8 }} />
+              <h4 className="font-urw font-bold text-[1.3rem] uppercase text-white leading-tight mb-1">
+                {feature.title}
+              </h4>
+              <p className="font-circe font-light text-[1.1rem] text-[#aaa] leading-snug">
+                {feature.description}
+              </p>
+            </motion.div>
+          )
+        })}
+      </div>
+
     </div>
   )
 }
