@@ -1,6 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import founderImg from '../../assets/founder.png'
+import ac1Img from '../../assets/ac1.png'
+import ac2Img from '../../assets/ac2.png'
 
 const ExecutiveProfile: React.FC = () => {
   return (
@@ -87,6 +89,40 @@ const ExecutiveProfile: React.FC = () => {
           </motion.div>
 
         </div>
+
+        {/* Industry Recognition Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-24 pt-16 border-t border-brand-gold/10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        >
+          <div className="space-y-6">
+            <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase block mb-2">
+              Industry Recognition
+            </span>
+            <h3 className="font-urw font-extrabold text-[3rem] md:text-[4rem] text-white leading-tight uppercase tracking-wide">
+              Gulfood Innovation Awards 2018
+            </h3>
+            <p className="font-circe font-light text-[1.6rem] md:text-[1.8rem] text-brand-text-muted leading-relaxed">
+              As Project Manager, Nebeel Aboobacker led the successful delivery and execution of the exhibition stand that earned the <strong className="text-white font-normal">Best Trade Stand (41–100 sqm)</strong> accolade at the Gulfood Innovation Awards 2018. This achievement highlights his ability to deliver exceptional exhibition environments that combine creativity, precision, and flawless execution.
+            </p>
+            <p className="font-circe font-light text-[1.6rem] md:text-[1.8rem] text-brand-text-muted leading-relaxed">
+              The award stands as a testament to his dedication to excellence and his proven capability to manage high-profile projects that create lasting brand impact.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6">
+            <div className="relative group overflow-hidden rounded-sm border border-brand-gold/20 shadow-2xl flex-1">
+              <img src={ac1Img} alt="Gulfood Award 1" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-brand-gold/0 group-hover:bg-brand-gold/10 transition-colors duration-500 pointer-events-none" />
+            </div>
+            <div className="relative group overflow-hidden rounded-sm border border-brand-gold/20 shadow-2xl flex-1">
+              <img src={ac2Img} alt="Gulfood Award 2" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-brand-gold/0 group-hover:bg-brand-gold/10 transition-colors duration-500 pointer-events-none" />
+            </div>
+          </div>
+        </motion.div>
       </div>
 
     </section>
