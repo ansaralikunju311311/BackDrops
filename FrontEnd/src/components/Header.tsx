@@ -40,15 +40,14 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-[#000000] ${
         isScrolled
-          ? 'bg-[#050608]/85 backdrop-blur-md py-5 border-b border-brand-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
-          : 'bg-transparent py-8'
+          ? 'py-3 border-b border-brand-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
+          : 'py-5'
       }`}
     >
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
         
-        {/* Left: Brand Logo */}
         <Link to="/" className="flex items-center group py-1">
           <BexLogo scale={isScrolled ? 0.85 : 0.95} />
         </Link>

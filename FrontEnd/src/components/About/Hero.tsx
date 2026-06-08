@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="about-us"
-      className="relative h-screen min-h-[750px] flex items-center bg-brand-bg overflow-hidden pt-24"
+      className="relative h-screen min-h-[750px] flex items-center bg-brand-bg overflow-hidden pt-4"
     >
       {/* Background Subtle Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(212,164,55,0.06),rgba(20,23,33,0))] pointer-events-none" />

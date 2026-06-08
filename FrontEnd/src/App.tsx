@@ -64,7 +64,7 @@ const AppContent: React.FC = () => {
       {!isAdminPage && <Header />}
 
       {/* Main Sections */}
-      <main>
+      <main className={!isAdminPage ? "pt-[85px]" : ""}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

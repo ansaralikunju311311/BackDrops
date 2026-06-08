@@ -41,7 +41,7 @@ const ArticleDetail: React.FC = () => {
       <div className="absolute left-[66%] top-0 bottom-0 w-[1px] bg-white/[0.04] z-10 pointer-events-none hidden md:block" />
 
       {/* Split-Screen Hero Banner */}
-      <section className="relative pt-36 lg:pt-0 lg:h-[75vh] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-2 bg-brand-dark border-b border-white/5">
+      <section className="relative pt-16 lg:pt-0 lg:h-[75vh] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-2 bg-brand-dark border-b border-white/5">
         {/* Left Side: Article Image */}
         <div className="relative h-[35rem] lg:h-full w-full overflow-hidden bg-brand-dark-accent">
           <img

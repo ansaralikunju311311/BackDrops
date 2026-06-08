@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImg from '../assets/final.png'
+import logoImg from '../assets/fixed.png'
 
 interface BexLogoProps {
   className?: string
@@ -18,28 +18,11 @@ export const BexLogo: React.FC<BexLogoProps> = ({ className = '', scale = 1 }) =
         position: 'relative',
       }}
     >
-      {/* Base logo image */}
       <img
         src={logoImg}
         alt="BEX Logo"
         className="h-24 md:h-36 lg:h-52 w-auto object-contain transition-all duration-300"
         style={{ display: 'block' }}
-      />
-
-      {/* Black overlay clipped to only the "B" letter (left ~38% of image) */}
-      <img
-        src={logoImg}
-        alt=""
-        aria-hidden="true"
-        className="h-24 md:h-36 lg:h-52 w-auto object-contain transition-all duration-300"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          clipPath: 'inset(0 62% 0 0)',
-          filter: 'brightness(0)',
-          pointerEvents: 'none',
-        }}
       />
     </div>
   )

@@ -194,7 +194,7 @@ const FAQ: React.FC = () => {
   }
 
   return (
-    <section id="faq" className="min-h-screen pt-44 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden">
+    <section id="faq" className="min-h-screen pt-16 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden">
       
       {/* Visual Design Element: Diagonal Shards / Light Beams matching screenshot */}
       <div className="absolute inset-0 pointer-events-none z-0">

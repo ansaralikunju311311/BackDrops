@@ -9,7 +9,7 @@ const PrivacyPolicy: React.FC = () => {
   }, [])
 
   return (
-    <section className="min-h-screen pt-44 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden text-left">
+    <section className="min-h-screen pt-16 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden text-left">
       {/* Background shards and design lines */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 right-[15%] w-[40rem] h-[150%] bg-gradient-to-b from-white/[0.02] to-transparent skew-x-[-22deg] origin-top blur-[2px]" />

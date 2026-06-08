@@ -20,7 +20,7 @@ const Articles: React.FC = () => {
   }, [currentPage])
 
   return (
-    <div className="bg-brand-bg text-brand-white min-h-screen relative overflow-hidden select-none pt-48 pb-32">
+    <div className="bg-brand-bg text-brand-white min-h-screen relative overflow-hidden select-none pt-16 pb-32">
       {/* Decorative vertical grid lines (Architectural layout) */}
       <div className="absolute left-[33%] top-0 bottom-0 w-[1px] bg-white/[0.04] z-10 pointer-events-none hidden md:block" />
       <div className="absolute left-[66%] top-0 bottom-0 w-[1px] bg-white/[0.04] z-10 pointer-events-none hidden md:block" />
