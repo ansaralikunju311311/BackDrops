@@ -225,7 +225,7 @@ const Services: React.FC = () => {
               BEX —
             </span>
             <span className="font-circe font-light text-[1.4rem] tracking-[0.2em] text-brand-text-muted block mt-1 uppercase">
-              Full Service Agency
+              Premium Execution Partner
             </span>
           </div>
         </div>
