@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import BexLogo from './BexLogo'
+import WhyChooseBexInfographic from './WhyChooseBexInfographic'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -111,47 +112,7 @@ const Footer: React.FC = () => {
                     Why Choose BEX?
                   </h3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Your Execution Partner, Anywhere</h4>
-                      <p>We provide reliable on-ground execution support for agencies and brands across the UAE, GCC, and international markets, ensuring concepts are delivered exactly as envisioned.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Built for Collaboration</h4>
-                      <p>We integrate seamlessly with creative agencies, event organizers, designers, and brand teams, acting as a trusted extension of your project team.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">End-to-End Delivery Capability</h4>
-                      <p>From technical development and production to logistics, installation, site management, and dismantling, we manage every stage of execution with complete accountability.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Global Standards, Local Expertise</h4>
-                      <p>Our international experience combined with deep regional knowledge allows us to navigate local requirements while maintaining world-class execution standards.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Precision in Every Detail</h4>
-                      <p>We understand that exceptional experiences are built on flawless execution. Every element is carefully planned, coordinated, and delivered to the highest quality standards.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Agile and Scalable Solutions</h4>
-                      <p>Whether it's a single activation, a major exhibition pavilion, a corporate interior project, or a multi-country rollout, our resources and expertise scale to meet project demands.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Proven Reliability</h4>
-                      <p>Our clients trust us because we consistently deliver on time, on budget, and to specification even under the most demanding project conditions.</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-[2.2rem]">Focused on Experience</h4>
-                      <p>We don't simply build structures; we create environments that strengthen brands, engage audiences, and leave lasting impressions.</p>
-                    </div>
-                  </div>
+                  <WhyChooseBexInfographic />
 
                   <p className="pt-6 border-t border-brand-white/10 italic text-[2rem] text-brand-gold font-medium">
                     At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.
