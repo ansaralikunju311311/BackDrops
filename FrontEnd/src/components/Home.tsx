@@ -457,72 +457,79 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION 1.7: Worldwide Projects Section */}
-      <section className="py-36 bg-[#101012] relative z-10 border-t border-brand-white/5 overflow-hidden">
-        {/* World Map SVG background */}
-        <div 
-          className="absolute inset-0 opacity-15 pointer-events-none mix-blend-luminosity bg-center bg-no-repeat bg-cover z-0"
-          style={{ backgroundImage: `url('/assets/construction-img.svg')` }}
+      <section className="py-36 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
+        {/* Subtle dark texture overlay */}
+        <div className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            backgroundImage: `radial-gradient(ellipse 80% 60% at 60% 50%, rgba(229,29,29,0.04) 0%, transparent 70%)`,
+          }}
         />
 
-        {/* Faint WORLDWIDE label behind */}
-        <div className="absolute right-6 top-[15%] text-[10rem] sm:text-[14rem] md:text-[18rem] lg:text-[22rem] font-urw font-black text-brand-white/[0.012] tracking-[0.1em] select-none pointer-events-none uppercase">
+        {/* Faint WORLDWIDE ghost text behind */}
+        <div className="absolute left-0 bottom-[-2%] text-[12rem] sm:text-[16rem] md:text-[20rem] lg:text-[26rem] font-urw font-black text-brand-white/[0.018] tracking-[0.05em] select-none pointer-events-none uppercase leading-none">
           WORLDWIDE
         </div>
 
-        <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_2.5fr] gap-20 items-center">
-            
-            {/* Left Column: Stat Cards */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-              {/* Card 1: 600+ Projects */}
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="w-64 h-64 sm:w-72 sm:h-72 rounded-2xl border border-white/[0.08] bg-gradient-to-tr from-[#2d0808] via-[#15161b] to-[#121215] flex flex-col items-center justify-center p-6 shadow-[0_15px_35px_rgba(0,0,0,0.3)] hover:border-[#E51D1D]/30 hover:shadow-[0_15px_30px_rgba(229,29,29,0.15)] transition-all duration-300"
-              >
-                <span className="font-urw font-black text-[5rem] sm:text-[6rem] text-white leading-none mb-4">
-                  600+
-                </span>
-                <span className="font-circe font-light tracking-[0.25em] text-[1.4rem] uppercase text-white/70">
-                  projects
-                </span>
-              </motion.div>
+        <div className="max-w-[140rem] mx-auto px-6 md:px-16 lg:px-28 relative z-10">
 
-              {/* Card 2: 15+ Countries */}
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="w-64 h-64 sm:w-72 sm:h-72 rounded-2xl border border-white/[0.08] bg-gradient-to-tr from-[#2d0808] via-[#15161b] to-[#121215] flex flex-col items-center justify-center p-6 shadow-[0_15px_35px_rgba(0,0,0,0.3)] hover:border-[#E51D1D]/30 hover:shadow-[0_15px_30px_rgba(229,29,29,0.15)] transition-all duration-300"
-              >
-                <span className="font-urw font-black text-[5rem] sm:text-[6rem] text-white leading-none mb-4">
-                  15+
-                </span>
-                <span className="font-circe font-light tracking-[0.25em] text-[1.4rem] uppercase text-white/70">
-                  countries
-                </span>
-              </motion.div>
-            </div>
+          {/* Large Bold Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="font-urw font-black text-white uppercase leading-[0.92] tracking-tight mb-16"
+            style={{ fontSize: 'clamp(5rem, 9vw, 11rem)' }}
+          >
+            WORLDWIDE<br />PROJECTS
+          </motion.h2>
 
-            {/* Right Column: Title and Content */}
-            <div className="flex flex-col">
-              <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-tight mb-10">
-                Worldwide projects
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
-                  BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
-                </p>
-                <div className="space-y-6">
-                  <p className="font-circe font-light text-brand-text-muted leading-relaxed" style={{ fontSize: '1.8rem' }}>
-                    Combining global standards with local expertise, our team manages every stage of project delivery—from production and logistics to installation and on-site execution—ensuring consistency, quality, and reliability across borders.
-                  </p>
-                  <p className="font-circe font-semibold text-brand-gold leading-relaxed" style={{ fontSize: '1.8rem' }}>
-                    Wherever your vision goes, BEX is ready to build it.
-                  </p>
-                </div>
-              </div>
-            </div>
+          {/* Divider */}
+          <motion.div
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full h-[1px] bg-white/10 mb-16"
+          />
 
+          {/* Body Text Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-14">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="font-circe font-light text-white/60 leading-[1.75]"
+              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
+            >
+              BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="font-circe font-light text-white/60 leading-[1.75]"
+              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
+            >
+              Combining global standards with local expertise, our team manages every stage of project delivery—from production and logistics to installation and on-site execution—ensuring consistency, quality, and reliability across borders.
+            </motion.p>
           </div>
+
+          {/* Orange Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="font-circe font-bold text-brand-gold"
+            style={{ fontSize: 'clamp(1.7rem, 2vw, 2.2rem)' }}
+          >
+            Wherever your vision goes, BEX is ready to build it.
+          </motion.p>
+
         </div>
       </section>
 
