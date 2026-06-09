@@ -317,7 +317,84 @@ const Home: React.FC = () => {
 
       </section>
 
-      {/* SECTION 1.5: Video Cases Slider Section */}
+      {/* SECTION 1.5: Worldwide Projects Section */}
+      <section className="py-36 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
+        {/* Subtle dark texture overlay */}
+        <div className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            backgroundImage: `radial-gradient(ellipse 80% 60% at 60% 50%, rgba(229,29,29,0.04) 0%, transparent 70%)`,
+          }}
+        />
+
+        {/* Faint WORLDWIDE ghost text behind */}
+        <div className="absolute left-0 bottom-[-2%] text-[12rem] sm:text-[16rem] md:text-[20rem] lg:text-[26rem] font-urw font-black text-brand-white/[0.018] tracking-[0.05em] select-none pointer-events-none uppercase leading-none">
+          WORLDWIDE
+        </div>
+
+        <div className="max-w-[140rem] mx-auto px-6 md:px-16 lg:px-28 relative z-10">
+
+          {/* Large Bold Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="font-urw font-black text-white uppercase leading-[0.92] tracking-tight mb-16"
+            style={{ fontSize: 'clamp(5rem, 9vw, 11rem)' }}
+          >
+            WORLDWIDE PROJECTS
+          </motion.h2>
+
+          {/* Divider */}
+          <motion.div
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full h-[1px] bg-white/10 mb-16"
+          />
+
+          {/* Body Text Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-14">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="font-circe font-light text-white/60 leading-[1.75]"
+              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
+            >
+              BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="font-circe font-light text-white/60 leading-[1.75]"
+              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
+            >
+              Combining global standards with local expertise, our team manages every stage of project delivery—from production and logistics to installation and on-site execution—ensuring consistency, quality, and reliability across borders.
+            </motion.p>
+          </div>
+
+          {/* Orange Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="font-circe font-bold text-brand-gold text-center w-full mt-8"
+            style={{ fontSize: 'clamp(1.7rem, 2vw, 2.2rem)' }}
+          >
+            Wherever your vision goes, BEX is ready to build it.
+          </motion.p>
+
+        </div>
+      </section>
+
+      {/* SECTION 1.6: Video Cases Slider Section */}
       <section className="py-36 bg-[#101012] relative z-10 border-t border-brand-white/5 overflow-hidden">
         {/* Faint Architectural Background lines */}
         <div className="absolute left-[33%] top-0 bottom-0 w-[1px] bg-white/[0.04] pointer-events-none hidden md:block" />
@@ -678,82 +755,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 1.7: Worldwide Projects Section */}
-      <section className="py-36 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
-        {/* Subtle dark texture overlay */}
-        <div className="absolute inset-0 pointer-events-none z-0"
-          style={{
-            backgroundImage: `radial-gradient(ellipse 80% 60% at 60% 50%, rgba(229,29,29,0.04) 0%, transparent 70%)`,
-          }}
-        />
-
-        {/* Faint WORLDWIDE ghost text behind */}
-        <div className="absolute left-0 bottom-[-2%] text-[12rem] sm:text-[16rem] md:text-[20rem] lg:text-[26rem] font-urw font-black text-brand-white/[0.018] tracking-[0.05em] select-none pointer-events-none uppercase leading-none">
-          WORLDWIDE
-        </div>
-
-        <div className="max-w-[140rem] mx-auto px-6 md:px-16 lg:px-28 relative z-10">
-
-          {/* Large Bold Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="font-urw font-black text-white uppercase leading-[0.92] tracking-tight mb-16"
-            style={{ fontSize: 'clamp(5rem, 9vw, 11rem)' }}
-          >
-            WORLDWIDE<br />PROJECTS
-          </motion.h2>
-
-          {/* Divider */}
-          <motion.div
-            initial={{ scaleX: 0, originX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full h-[1px] bg-white/10 mb-16"
-          />
-
-          {/* Body Text Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-14">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="font-circe font-light text-white/60 leading-[1.75]"
-              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
-            >
-              BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.35 }}
-              className="font-circe font-light text-white/60 leading-[1.75]"
-              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
-            >
-              Combining global standards with local expertise, our team manages every stage of project delivery—from production and logistics to installation and on-site execution—ensuring consistency, quality, and reliability across borders.
-            </motion.p>
-          </div>
-
-          {/* Orange Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="font-circe font-bold text-brand-gold text-center w-full mt-8"
-            style={{ fontSize: 'clamp(1.7rem, 2vw, 2.2rem)' }}
-          >
-            Wherever your vision goes, BEX is ready to build it.
-          </motion.p>
-
-        </div>
-      </section>
 
       {/* SECTION 1.8: Vision to Life Timeline Section */}
       <section className="py-36 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
