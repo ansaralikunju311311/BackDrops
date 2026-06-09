@@ -168,50 +168,54 @@ const Footer: React.FC = () => {
          {/* Bottom Details Grid (Structured) */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 border-t border-brand-white/10 pt-16 mb-16">
           
-          {/* UAE Address */}
-          <div>
-            <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
-              UAE Address
-            </span>
-            <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
-              Backdrops Technical Services L.L.C<br />
-              Gate no.13, Warehouse no- 6<br />
-              Jebel Ali Industrial area 1<br />
-              Dubai- U.A.E
-            </p>
-          </div>
+          {/* Column 1–3: UAE Address, India Address & Contact */}
+          <div className="md:col-span-3 flex flex-col sm:flex-row gap-16 sm:gap-24">
+            {/* UAE Address */}
+            <div>
+              <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
+                UAE Address
+              </span>
+              <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+                Backdrops Technical Services L.L.C<br />
+                Gate no.13, Warehouse no- 6<br />
+                Jebel Ali Industrial area 1<br />
+                Dubai- U.A.E
+              </p>
+            </div>
 
-          {/* India Address */}
-          <div>
-            <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
-              India Address
-            </span>
-            <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
-              CREO Construction Experts<br />
-              Kannur, Kerala<br />
-              India - 670 001
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
-              Contact
-            </span>
-            <a
-              href="tel:00971552291691"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
-            >
-              0097155 2291691
-            </a>
-            <a
-              href="mailto:info@bexdxb.com"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
-            >
-              info@bexdxb.com
-            </a>
+            {/* India Address */}
+            <div>
+              <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
+                India Address
+              </span>
+              <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+                CREO Construction Experts<br />
+                Arullil Arcade<br />
+                Thrissur Dt.<br />
+                Kerala- INDIA
+              </p>
+            </div>
+            
+            {/* Contact */}
+            <div>
+              <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
+                Contact
+              </span>
+              <a
+                href="tel:00971552291691"
+                className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+                style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              >
+                0097155 2291691
+              </a>
+              <a
+                href="mailto:info@bexdxb.com"
+                className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              >
+                info@bexdxb.com
+              </a>
+            </div>
           </div>
 
           {/* Column 4: Legal Policy Links */}
