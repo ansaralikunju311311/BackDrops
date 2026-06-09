@@ -35,26 +35,12 @@ const letterVariants = {
 }
 
 const clientLogos = [
-  { name: 'Dubai Investments', src: '/assets/client/Dubai Investments.webp' },
-  { name: 'F5 Networks', src: '/assets/client/F5_logo.webp' },
-  { name: 'Hisense', src: '/assets/client/Logo-Hisense-500x281.webp' },
-  { name: 'SAP', src: '/assets/client/SAP-Logo-500x281.webp' },
-  { name: 'Dell', src: '/assets/client/dell-logo-blue-background-m5g3hq4wj7t162jt-2.webp' },
-  { name: 'Dubai Health Authority', src: '/assets/client/dubai-health-authority-logo-png_seeklogo-372291.webp' },
-  { name: 'Elm', src: '/assets/client/elm-logo-png_seeklogo-398917.webp' },
-  { name: 'Enchanteur', src: '/assets/client/enchanteur-logo-png_seeklogo-383633.webp' },
-  { name: 'Grundfos', src: '/assets/client/grundfos-logo.webp' },
-  { name: 'Panasonic', src: '/assets/client/panasonic-logo-png-transparent-300x169.webp' },
-  { name: 'Sergas', src: '/assets/client/sergas.webp' },
-  { name: 'Wilhelmsen Ships Service', src: '/assets/client/wilhemsen_ships_service-1.webp' },
-  { name: 'Sri Lanka Tourism', src: '/assets/client/862-8621430_wonder-of-asia-sri-lanka-tourism-logo-2015.webp' },
-  { name: 'Commscope', src: '/assets/client/co3940c6c6-commscope-logo-commscope-logos.webp' },
-  { name: 'Client 1443542210', src: '/assets/client/1443542210-738.webp' },
-  { name: 'Client 1466226', src: '/assets/client/1466226_logo_1573456585_n.webp' },
-  { name: 'Client 777a817a', src: '/assets/client/777a817a1178a9d0064.webp' },
-  { name: 'Client c0dc49f', src: '/assets/client/c0dc49f0d93ab16d9713a0b5caf0058a.webp' },
-  { name: 'Client screenshot', src: '/assets/client/screen-shot-2013-09-05-at-12-11-47.webp' },
-  { name: 'Client untitled', src: '/assets/client/untitled-1_132.webp' },
+
+  { name: 'Client C1', src: '/assets/client/c1.jpeg' },
+  { name: 'Client C2', src: '/assets/client/c2.jpeg' },
+  { name: 'Client C3', src: '/assets/client/c3.jpeg' },
+  { name: 'Client C4', src: '/assets/client/c4.jpeg' },
+  { name: 'Client C5', src: '/assets/client/c5.jpeg' },
 ]
 
 const videos = [
