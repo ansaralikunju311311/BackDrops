@@ -18,7 +18,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.25,
       delayChildren: 0.3,
     },
   },
@@ -305,31 +305,15 @@ const Home: React.FC = () => {
             className="font-urw font-extrabold text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[19rem] text-white uppercase leading-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.6)] flex flex-wrap justify-center gap-x-[3vw]"
           >
             {["WE", "BUILD", "EXPERIENCES"].map((word, wordIndex) => (
-              <span key={wordIndex} className="inline-block whitespace-nowrap">
+              <motion.span 
+                key={wordIndex} 
+                variants={letterVariants}
+                className="inline-block whitespace-nowrap"
+              >
                 {Array.from(word).map((char, charIndex) => {
-                  const globalIndex = wordIndex * 4 + charIndex
                   return (
                     <motion.span
                       key={charIndex}
-                      variants={letterVariants}
-                      animate={{
-                        y: [0, -12, 0],
-                        rotate: [0, wordIndex === 0 ? -1.5 : 1.5, 0],
-                      }}
-                      transition={{
-                        y: {
-                          duration: 3.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: globalIndex * 0.15,
-                        },
-                        rotate: {
-                          duration: 4.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: globalIndex * 0.15,
-                        }
-                      }}
                       whileHover={{
                         y: -20,
                         scale: 1.1,
@@ -343,7 +327,7 @@ const Home: React.FC = () => {
                     </motion.span>
                   )
                 })}
-              </span>
+              </motion.span>
             ))}
           </motion.h1>
         </div>
