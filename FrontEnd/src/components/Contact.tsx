@@ -539,7 +539,7 @@ const Contact: React.FC = () => {
                     className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
                     style={{ fontSize: '2.2rem' }}
                   >
-                    0091 9188866924
+                    0091 9188 866924
                   </a>
                   <a 
                     href="tel:00919605218618" 
