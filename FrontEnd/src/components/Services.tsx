@@ -427,32 +427,6 @@ const Services: React.FC = () => {
 
       </div>
 
-      {/* 3. Floating Sticky Contact Sidebar (matching Home page Hero) */}
-      <div className="fixed right-0 top-[30%] z-50 bg-white py-20 px-6 flex flex-col gap-16 items-center shadow-[-5px_0_30px_rgba(0,0,0,0.18)] rounded-l-3xl border-y border-l border-gray-100 hidden md:flex w-28">
-        {/* Telephone */}
-        <a href="tel:+971552291691" className="relative group flex items-center justify-center">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
-            <Phone className="w-10 h-10" />
-          </div>
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
-        </a>
-
-        {/* Instagram */}
-        <a href="https://www.instagram.com/_backdrops.ae?igsh=dGlwbWpqazFybXd3" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
-            <InstagramIcon className="w-10 h-10" />
-          </div>
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
-        </a>
-
-        {/* WhatsApp */}
-        <a href="https://wa.me/971552291691" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
-            <WhatsAppIcon className="w-10 h-10" />
-          </div>
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
-        </a>
-      </div>
     </section>
   )
 }

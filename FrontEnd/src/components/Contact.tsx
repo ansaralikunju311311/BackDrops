@@ -809,7 +809,8 @@ const Contact: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowBrief(true)}
-                  className="px-12 py-5 border border-brand-white/15 text-brand-white hover:border-brand-gold hover:text-brand-gold font-euclid font-bold text-[1.6rem] tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer"
+                  className="px-12 py-5 border border-brand-white/15 text-brand-white hover:border-brand-gold hover:text-brand-gold font-euclid font-bold text-[1.7rem] tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer"
+                  style={{ fontSize: '1.7rem' }}
                 >
                   Fill out the brief{' '}
                   <ArrowUpRight className="w-5 h-5" />
@@ -1642,8 +1643,8 @@ const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={briefSubmitting}
-                    className="px-16 py-5 font-euclid font-bold text-[2rem] tracking-widest uppercase rounded-sm text-white transition-all duration-300 hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 shadow-[0_15px_35px_rgba(158,83,48,0.3)]"
-                    style={{ backgroundColor: briefSubmitting ? 'rgb(130,65,35)' : 'rgb(158,83,48)' }}
+                    className="px-16 py-5 font-euclid font-bold text-[1.9rem] tracking-widest uppercase rounded-sm text-white transition-all duration-300 hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 shadow-[0_15px_35px_rgba(158,83,48,0.3)]"
+                    style={{ fontSize: '1.9rem', backgroundColor: briefSubmitting ? 'rgb(130,65,35)' : 'rgb(158,83,48)' }}
                   >
                     {briefSubmitting ? (
                       <>Submitting… <span className="inline-block animate-spin">↻</span></>
