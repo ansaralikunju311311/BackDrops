@@ -9,8 +9,6 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
   const location = useLocation()
   const isAboutPage = location.pathname === '/about-us'
-  const [isDividerHovered, setIsDividerHovered] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
 
   const socials = [
     {
@@ -49,68 +47,40 @@ const Footer: React.FC = () => {
 
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
         
-        {/* Collapsible About Content */}
-        <AnimatePresence initial={false}>
-          {isAboutPage && isExpanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden border-t border-brand-white/10"
-            >
-              <div className="flex flex-col text-left py-12 select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
-
-                {/* Our Mission */}
-                <div className="space-y-4">
-                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
-                    Our Mission
-                  </h3>
-                  <p className="font-semibold text-white">
-                    To be the most trusted execution partner for experiential projects worldwide.
-                  </p>
-                  <p>
-                    We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
-                  </p>
-                </div>
-
-                {/* Why Choose BEX? */}
-                <div className="space-y-8">
-                  <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
-                    Why Choose BEX?
-                  </h3>
-                  
-                  <WhyChooseBexInfographic />
-
-                  <blockquote className="pt-8 border-t border-brand-white/10 border-l-4 border-l-brand-gold pl-8 mt-4">
-                    <p className="italic text-brand-gold font-medium leading-relaxed" style={{ fontSize: '2.6rem' }}>
-                      &#8220;At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.&#8221;
-                    </p>
-                  </blockquote>
-
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Main Divider Line with Center Button (LEARN MORE + / —) */}
+        {/* About Content — always visible on About page */}
         {isAboutPage && (
-          <div className="relative flex items-center justify-center mb-24 mt-8">
-            <div className={`absolute left-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-right ${
-              isDividerHovered ? 'bg-gradient-to-r from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
-            }`} />
-            <div className={`absolute right-0 w-[calc(50%-12rem)] h-[1px] transition-all duration-500 origin-left ${
-              isDividerHovered ? 'bg-gradient-to-l from-transparent to-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'bg-brand-white/10'
-            }`} />
-            <button
-              onMouseEnter={() => setIsDividerHovered(true)}
-              onMouseLeave={() => setIsDividerHovered(false)}
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="relative z-10 px-12 py-5 bg-brand-bg border border-brand-white/10 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 font-euclid font-bold text-[1.8rem] uppercase tracking-wider flex items-center gap-3 rounded-xs cursor-pointer hover:shadow-[0_0_25px_rgba(212,175,55,0.15)] group"
-            >
-              Learn More <span className="text-brand-gold font-light transition-transform duration-300">{isExpanded ? '—' : '+'}</span>
-            </button>
+          <div className="border-t border-brand-white/10 py-12">
+            <div className="flex flex-col text-left select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
+
+              {/* Our Mission */}
+              <div className="space-y-4">
+                <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
+                  Our Mission
+                </h3>
+                <p className="font-semibold text-white">
+                  To be the most trusted execution partner for experiential projects worldwide.
+                </p>
+                <p>
+                  We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
+                </p>
+              </div>
+
+              {/* Why Choose BEX? */}
+              <div className="space-y-8">
+                <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
+                  Why Choose BEX?
+                </h3>
+
+                <WhyChooseBexInfographic />
+
+                <blockquote className="pt-8 border-t border-brand-white/10 border-l-4 border-l-brand-gold pl-8 mt-4">
+                  <p className="italic text-brand-gold font-medium leading-relaxed" style={{ fontSize: '2.6rem' }}>
+                    &#8220;At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.&#8221;
+                  </p>
+                </blockquote>
+              </div>
+
+            </div>
           </div>
         )}
 
