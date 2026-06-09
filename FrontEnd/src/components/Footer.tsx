@@ -221,7 +221,7 @@ const Footer: React.FC = () => {
                 className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
                 style={{ fontSize: '1.6rem', fontWeight: 400 }}
               >
-                0097155 2291691
+                00971 55 2291691
               </a>
               <a
                 href="mailto:info@bexdxb.com"
