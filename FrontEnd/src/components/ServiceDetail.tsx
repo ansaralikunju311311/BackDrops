@@ -14,8 +14,9 @@ import serv7 from '../assets/service/serv7.jpeg'
 import serv8 from '../assets/service/serv8.jpeg'
 import serv9 from '../assets/service/serv9.jpeg'
 import serv10 from '../assets/service/serv10.jpeg'
+import serv11 from '../assets/service/serv11.jpeg'
 
-export const serviceImages = [serv1, serv2, serv3, serv4, serv5, serv6, serv7, serv8, serv9, serv10]
+export const serviceImages = [serv1, serv2, serv3, serv4, serv5, serv6, serv7, serv8, serv9, serv10, serv11]
 
 // Direct SVG Icons matching the brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
@@ -173,6 +174,17 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." },
       { idx: 3, title: "On-site Installation & Project Management", image: "/assets/journey.png", snippet: "Coordinating transport, permits, assembly, and dismantling." }
     ]
+  },
+  {
+    title: "Turnkey Architectural Projects",
+    image: serv11,
+    p1: "Through our sister company in India, CREO Construction Experts, BEX extends its capabilities beyond experiential environments to deliver complete turnkey architectural and construction solutions.",
+    p2: "From concept development and design coordination to construction, fit-out, and final handover, we provide seamless project delivery tailored to modern business and commercial requirements.",
+    p3: "Inspired by industry best practices in design-build and turnkey construction, our approach emphasizes quality, efficiency, innovation, and accountability throughout every stage of the project lifecycle.",
+    related: [
+      { idx: 6, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end interior fit-outs for offices, showrooms and luxury residences." },
+      { idx: 3, title: "On-site Installation & Project Management", image: "/assets/journey.png", snippet: "Full project management, permits, assembly, and handover." }
+    ]
   }
 ]
 
@@ -280,6 +292,8 @@ const ServiceDetail: React.FC = () => {
             stand.client?.toLowerCase().includes(kw)
           )
         )
+      case 10: // Turnkey Architectural Projects
+        return dbStands
       default:
         return dbStands
     }

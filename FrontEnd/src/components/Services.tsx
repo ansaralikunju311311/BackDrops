@@ -13,6 +13,7 @@ import serv7 from '../assets/service/serv7.jpeg'
 import serv8 from '../assets/service/serv8.jpeg'
 import serv9 from '../assets/service/serv9.jpeg'
 import serv10 from '../assets/service/serv10.jpeg'
+import serv11 from '../assets/service/serv11.jpeg'
 
 // Direct SVG Icons for matching brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
@@ -83,6 +84,11 @@ const SERVICES_DATA: ServiceData[] = [
     title: "Storage Facilities",
     description: "Safe and secure warehouse storage facilities for exhibition materials and custom stands. We manage post-event dismantling, inventory tracking, protective wrapping, and storage for your next expo.",
     image: serv10
+  },
+  {
+    title: "Turnkey Architectural Projects",
+    description: "Through our sister company in India, CREO Construction Experts, BEX extends its capabilities to deliver complete turnkey architectural and construction solutions — from concept development and design coordination to construction, fit-out, and final handover.",
+    image: serv11
   }
 ]
 
