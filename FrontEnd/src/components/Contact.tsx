@@ -263,7 +263,7 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="mb-16 md:mb-24"
         >
-          <h1 className="font-urw font-black text-[5rem] md:text-[8rem] lg:text-[10rem] tracking-tight uppercase leading-[0.9] mb-8">
+          <h1 className="font-urw font-black text-[4rem] md:text-[5.5rem] lg:text-[7rem] tracking-tight uppercase leading-[0.9] mb-8">
             Contact Us
           </h1>
         </motion.div>
@@ -397,9 +397,6 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 space-y-12"
           >
-            <h3 className="font-urw font-extrabold text-[3.5rem] md:text-[4.5rem] tracking-wider uppercase">
-              Contact us
-            </h3>
 
             <form onSubmit={handleSubmit} className="space-y-14" noValidate>
               {/* Full Name */}

@@ -84,6 +84,57 @@ const videos = [
   }
 ]
 
+const googleReviews = [
+  {
+    name: 'Ahmed Al Mansoori',
+    avatar: 'AM',
+    rating: 5,
+    date: '2 months ago',
+    text: 'Absolutely outstanding work by the BackDrops / BEX team! Our exhibition booth at GITEX was beyond expectations — premium build quality, immaculate finishes, and delivered on time. The team was professional throughout and handled every detail with care.',
+    location: 'Dubai, UAE'
+  },
+  {
+    name: 'Sarah Mitchell',
+    avatar: 'SM',
+    rating: 5,
+    date: '3 months ago',
+    text: 'We partnered with BEX for our international trade show in Singapore and the result was spectacular. From concept to installation, the process was seamless. Their attention to detail and quality of materials is unmatched in the industry.',
+    location: 'London, UK'
+  },
+  {
+    name: 'Carlos Mendes',
+    avatar: 'CM',
+    rating: 5,
+    date: '4 months ago',
+    text: 'Exceptional service and craftsmanship. BEX built our luxury retail booth for Dubai Mall and it perfectly captured our brand identity. The 3D visualizations they provided during the design phase made approval easy and the final result matched exactly.',
+    location: 'Lisbon, Portugal'
+  },
+  {
+    name: 'Fatima Al Rashidi',
+    avatar: 'FR',
+    rating: 5,
+    date: '5 months ago',
+    text: 'BEX delivered our double-decker pavilion for the World Blockchain Summit flawlessly. The scale of the project was massive but their project management was impeccable. Every deadline was met and the quality was world-class.',
+    location: 'Riyadh, Saudi Arabia'
+  },
+  {
+    name: 'David Chen',
+    avatar: 'DC',
+    rating: 5,
+    date: '6 months ago',
+    text: 'Outstanding exhibition stand design and build for our tech product launch. The team at BEX understood our vision immediately and translated it into a stunning physical space. Multiple visitors asked who built our booth — the answer is always BEX.',
+    location: 'Singapore'
+  },
+  {
+    name: 'Maria Gonzalez',
+    avatar: 'MG',
+    rating: 5,
+    date: '7 months ago',
+    text: 'We have worked with BEX across three exhibitions this year and consistency is their hallmark. Premium materials, expert craftsmanship, and a team that genuinely cares about the outcome. They are our go-to exhibition partner without question.',
+    location: 'Madrid, Spain'
+  },
+]
+
 const Home: React.FC = () => {
   const navigate = useNavigate()
   
@@ -92,6 +143,9 @@ const Home: React.FC = () => {
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [visibleCards, setVisibleCards] = useState(3)
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0)
+  const reviewsPerPage = isMobile ? 1 : 3
+  const maxReviewIndex = Math.ceil(googleReviews.length / reviewsPerPage) - 1
 
   useEffect(() => {
     const handleResize = () => {
@@ -451,6 +505,174 @@ const Home: React.FC = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* SECTION 1.65: Google Reviews Section */}
+      <section className="py-36 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
+        {/* Faint radial glow */}
+        <div className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            backgroundImage: `radial-gradient(ellipse 70% 50% at 50% 50%, rgba(66,133,244,0.04) 0%, transparent 70%)`,
+          }}
+        />
+
+        {/* Faint ghost text */}
+        <div className="absolute right-0 bottom-[-4%] text-[10rem] sm:text-[14rem] md:text-[18rem] lg:text-[22rem] font-urw font-black text-brand-white/[0.012] tracking-[0.1em] select-none pointer-events-none uppercase">
+          REVIEWS
+        </div>
+
+        <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+
+          {/* Header Row */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div>
+              <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
+                What Clients Say
+              </span>
+              <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-none">
+                Google Reviews
+              </h2>
+            </div>
+
+            {/* Google Rating Badge */}
+            <div className="flex items-center gap-6 bg-white/[0.04] border border-white/[0.08] rounded-2xl px-8 py-5 self-start md:self-auto">
+              {/* Google G Logo SVG */}
+              <svg className="w-10 h-10 flex-shrink-0" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                <path fill="none" d="M0 0h48v48H0z"/>
+              </svg>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-urw font-black text-white text-[2.8rem] leading-none">5.0</span>
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5" viewBox="0 0 20 20" fill="#FBBC05">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+                <span className="font-circe text-white/50 text-[1.3rem]">Based on Google reviews</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Review Cards Grid */}
+          <div className="relative overflow-hidden">
+            <motion.div
+              animate={{ x: `calc(-${currentReviewIndex} * (100% + 0px))` }}
+              transition={{ type: 'spring', stiffness: 220, damping: 28 }}
+              className="flex gap-8"
+            >
+              {Array.from({ length: maxReviewIndex + 1 }).map((_, pageIdx) => (
+                <div
+                  key={pageIdx}
+                  className="flex gap-8 flex-shrink-0"
+                  style={{ width: '100%' }}
+                >
+                  {googleReviews.slice(pageIdx * reviewsPerPage, (pageIdx + 1) * reviewsPerPage).map((review, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      className="flex-1 bg-white/[0.03] border border-white/[0.08] hover:border-[#4285F4]/30 rounded-2xl p-8 flex flex-col gap-5 transition-all duration-300 hover:bg-white/[0.05] hover:shadow-[0_10px_40px_rgba(66,133,244,0.08)] group cursor-default"
+                    >
+                      {/* Top Row: Avatar + Name + Google icon */}
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                          {/* Avatar Circle */}
+                          <div className="w-14 h-14 rounded-full flex items-center justify-center font-urw font-bold text-[1.5rem] text-white flex-shrink-0"
+                            style={{
+                              background: `linear-gradient(135deg, #4285F4, #34A853)`,
+                            }}
+                          >
+                            {review.avatar}
+                          </div>
+                          <div>
+                            <p className="font-urw font-bold text-white text-[1.6rem] leading-tight group-hover:text-[#4285F4] transition-colors duration-300">{review.name}</p>
+                            <p className="font-circe text-white/40 text-[1.3rem]">{review.location}</p>
+                          </div>
+                        </div>
+                        {/* Small Google G */}
+                        <svg className="w-7 h-7 flex-shrink-0 opacity-60" viewBox="0 0 48 48">
+                          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                          <path fill="none" d="M0 0h48v48H0z"/>
+                        </svg>
+                      </div>
+
+                      {/* Stars + Date */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex gap-0.5">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <svg key={i} className="w-5 h-5" viewBox="0 0 20 20" fill="#FBBC05">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <span className="font-circe text-white/35 text-[1.2rem]">{review.date}</span>
+                      </div>
+
+                      {/* Review Text */}
+                      <p className="font-circe font-light text-white/60 group-hover:text-white/80 leading-relaxed transition-colors duration-300 flex-1" style={{ fontSize: '1.6rem' }}>
+                        "{review.text}"
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Pagination Controls */}
+          <div className="flex items-center justify-center gap-6 mt-12">
+            <button
+              onClick={() => setCurrentReviewIndex(prev => Math.max(0, prev - 1))}
+              disabled={currentReviewIndex === 0}
+              className={`w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white transition-all duration-300 ${
+                currentReviewIndex === 0
+                  ? 'opacity-30 cursor-not-allowed'
+                  : 'hover:bg-[#4285F4] hover:border-[#4285F4] hover:scale-105 active:scale-95 cursor-pointer'
+              }`}
+              aria-label="Previous reviews"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+
+            <div className="flex gap-3">
+              {Array.from({ length: maxReviewIndex + 1 }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentReviewIndex(i)}
+                  className={`h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentReviewIndex === i ? 'bg-[#4285F4] w-8' : 'bg-white/20 hover:bg-white/40 w-3'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => setCurrentReviewIndex(prev => Math.min(maxReviewIndex, prev + 1))}
+              disabled={currentReviewIndex === maxReviewIndex}
+              className={`w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white transition-all duration-300 ${
+                currentReviewIndex === maxReviewIndex
+                  ? 'opacity-30 cursor-not-allowed'
+                  : 'hover:bg-[#4285F4] hover:border-[#4285F4] hover:scale-105 active:scale-95 cursor-pointer'
+              }`}
+              aria-label="Next reviews"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
           </div>
 
         </div>

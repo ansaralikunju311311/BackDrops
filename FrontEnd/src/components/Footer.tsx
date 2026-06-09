@@ -45,17 +45,20 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-brand-bg text-brand-white pt-16 pb-12 relative overflow-hidden" id="footer">
       
-      {/* WhatsApp Floating Widget with Pulsing Green Rings */}
+      {/* WhatsApp Floating Widget with Pulsing Brand Red Rings */}
       <div className="fixed bottom-8 right-8 z-50 flex items-center justify-center">
         {/* Pulsing rings at different delay intervals */}
-        <div className="absolute w-20 h-20 rounded-full bg-[#25D366] animate-pulse-ring pointer-events-none" style={{ animationDelay: '0s' }} />
-        <div className="absolute w-24 h-24 rounded-full bg-[#25D366] animate-pulse-ring pointer-events-none" style={{ animationDelay: '0.8s' }} />
+        <div className="absolute w-20 h-20 rounded-full animate-pulse-ring pointer-events-none" style={{ animationDelay: '0s', backgroundColor: 'rgb(158, 83, 48)' }} />
+        <div className="absolute w-24 h-24 rounded-full animate-pulse-ring pointer-events-none" style={{ animationDelay: '0.8s', backgroundColor: 'rgb(158, 83, 48)' }} />
         
         <a
           href="https://wa.me/971552291691"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20ba5a] flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group cursor-pointer"
+          className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group cursor-pointer"
+          style={{ backgroundColor: 'rgb(158, 83, 48)' }}
+          onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = 'rgb(130, 65, 35)'}
+          onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = 'rgb(158, 83, 48)'}
           aria-label="Contact on WhatsApp"
         >
           <svg className="w-9 h-9 text-brand-white fill-current" viewBox="0 0 24 24">
