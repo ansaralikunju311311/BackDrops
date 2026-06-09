@@ -614,6 +614,164 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// 1b. Endpoint: Fill Out Brief Form Submission
+app.post('/api/brief', upload.array('attachments', 10), async (req, res) => {
+  const {
+    bFullName, bCompany, bEmail, bPhone, bCountry,
+    bProjectType, bProjectName, bEventVenue, bProjectLocation,
+    bStandSize, bDescription, bScope, bEventDate, bBudget
+  } = req.body;
+
+  // Basic server-side validation
+  const errors = [];
+  if (!bFullName || bFullName.trim().length < 2) errors.push('Full name is required (min 2 chars).');
+  if (!bCompany || bCompany.trim().length < 2) errors.push('Company name is required.');
+  if (!bEmail || !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(bEmail.trim())) errors.push('Valid email address is required.');
+  if (!bPhone || bPhone.trim().length < 7) errors.push('Valid phone number is required.');
+  if (!bCountry || bCountry.trim().length < 2) errors.push('Country / Location is required.');
+  if (!bProjectType) errors.push('At least one project type must be selected.');
+  if (!bProjectLocation || bProjectLocation.trim().length < 3) errors.push('Project location is required.');
+  if (!bDescription || bDescription.trim().length < 20) errors.push('Description must be at least 20 characters.');
+  if (!bEventDate) errors.push('Event / deadline date is required.');
+
+  if (errors.length > 0) {
+    return res.status(400).json({ success: false, errors });
+  }
+
+  const receiverEmail = process.env.RECEIVER_EMAIL || 'ansarpanoor311@gmail.com';
+
+  // Parse arrays sent from frontend (may come as JSON string or comma-separated)
+  const parseList = (val) => {
+    if (!val) return [];
+    if (Array.isArray(val)) return val;
+    try { return JSON.parse(val); } catch { return val.split(',').map(s => s.trim()).filter(Boolean); }
+  };
+  const projectTypes = parseList(bProjectType);
+  const scopeList   = parseList(bScope);
+
+  // Prepare attachments for nodemailer
+  const attachments = (req.files || []).map(file => ({
+    filename: file.originalname,
+    path: file.path
+  }));
+
+  const rowStyle = 'padding:12px 0;border-bottom:1px solid #f0f2f5;font-size:15px;vertical-align:top;';
+  const labelStyle = 'width:32%;font-weight:700;color:#9E5330;text-transform:uppercase;font-size:12px;letter-spacing:0.5px;';
+  const valueStyle = 'color:#2D3748;font-size:15px;';
+
+  const row = (label, value) => value ? `
+    <tr>
+      <td style="${rowStyle}${labelStyle}">${label}</td>
+      <td style="${rowStyle}${valueStyle}">${value}</td>
+    </tr>` : '';
+
+  const mailOptions = {
+    from: process.env.SMTP_USER || '"BEX Brief Form" <no-reply@bexdxb.com>',
+    to: receiverEmail,
+    subject: `📋 New Project Brief from ${bFullName} — ${projectTypes.join(', ')}`,
+    attachments,
+    html: `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>New Project Brief</title>
+</head>
+<body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#f6f8fa;color:#333;margin:0;padding:0;">
+  <div style="width:100%;background:#f6f8fa;padding:40px 20px;box-sizing:border-box;">
+    <div style="max-width:650px;margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid #e1e8ed;">
+
+      <!-- Header -->
+      <div style="background:#0B0C10;padding:36px 40px;text-align:center;border-bottom:4px solid #9E5330;">
+        <h1 style="color:#fff;font-size:28px;font-weight:900;letter-spacing:3px;margin:0;text-transform:uppercase;">BEX</h1>
+        <p style="color:#9E5330;font-size:13px;margin:8px 0 0;letter-spacing:2px;text-transform:uppercase;">New Project Brief Submission</p>
+      </div>
+
+      <!-- Body -->
+      <div style="padding:40px;">
+        <p style="font-size:16px;color:#555;margin:0 0 28px;line-height:1.6;">A new project brief has been submitted through the website. Full details are below.</p>
+
+        <!-- Section 1: Contact -->
+        <div style="background:#FAF6F4;border-left:4px solid #9E5330;padding:14px 20px;margin-bottom:6px;border-radius:4px;">
+          <p style="margin:0;font-size:12px;font-weight:800;color:#9E5330;text-transform:uppercase;letter-spacing:1px;">1 — Contact Information</p>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
+          ${row('Full Name', `<strong>${bFullName}</strong>`)}
+          ${row('Company / Agency', bCompany)}
+          ${row('Email', `<a href="mailto:${bEmail}" style="color:#9E5330;text-decoration:none;">${bEmail}</a>`)}
+          ${row('Phone', bPhone)}
+          ${row('Country / Location', bCountry)}
+        </table>
+
+        <!-- Section 2: Project Info -->
+        <div style="background:#FAF6F4;border-left:4px solid #9E5330;padding:14px 20px;margin-bottom:6px;border-radius:4px;">
+          <p style="margin:0;font-size:12px;font-weight:800;color:#9E5330;text-transform:uppercase;letter-spacing:1px;">2 — Project Information</p>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
+          ${row('Project Type(s)', projectTypes.join(' &bull; '))}
+          ${row('Project Name', bProjectName)}
+          ${row('Event / Venue', bEventVenue)}
+          ${row('Project Location', bProjectLocation)}
+          ${row('Stand Size', bStandSize)}
+        </table>
+
+        <!-- Section 3: Requirements -->
+        <div style="background:#FAF6F4;border-left:4px solid #9E5330;padding:14px 20px;margin-bottom:6px;border-radius:4px;">
+          <p style="margin:0;font-size:12px;font-weight:800;color:#9E5330;text-transform:uppercase;letter-spacing:1px;">3 — Project Requirements</p>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
+          ${row('Scope of Services', scopeList.length ? scopeList.join(' &bull; ') : 'Not specified')}
+        </table>
+        <div style="background:#FAF6F4;border-left:4px solid #9E5330;padding:20px 24px;border-radius:4px;margin-bottom:28px;">
+          <p style="margin:0 0 8px;font-size:12px;font-weight:800;color:#9E5330;text-transform:uppercase;letter-spacing:0.5px;">Project Description</p>
+          <p style="margin:0;font-size:15px;line-height:1.7;color:#2D3748;">${(bDescription || '').replace(/\n/g, '<br>')}</p>
+        </div>
+
+        <!-- Section 4: Timeline & Budget -->
+        <div style="background:#FAF6F4;border-left:4px solid #9E5330;padding:14px 20px;margin-bottom:6px;border-radius:4px;">
+          <p style="margin:0;font-size:12px;font-weight:800;color:#9E5330;text-transform:uppercase;letter-spacing:1px;">4 — Timeline &amp; Budget</p>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:28px;">
+          ${row('Event / Deadline Date', bEventDate ? new Date(bEventDate).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) : '')}
+          ${row('Estimated Budget', bBudget || 'Not specified')}
+        </table>
+
+        <!-- Attachments notice -->
+        ${attachments.length > 0 ? `
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:14px 20px;margin-bottom:28px;">
+          <p style="margin:0;font-size:14px;color:#166534;font-weight:600;">📎 ${attachments.length} attachment(s) included with this email.</p>
+        </div>` : ''}
+      </div>
+
+      <!-- Footer -->
+      <div style="background:#f8fafc;padding:24px 40px;text-align:center;border-top:1px solid #e1e8ed;font-size:12px;color:#718096;line-height:1.6;">
+        <p style="margin:0;">This brief was automatically submitted via the project brief form on your website.</p>
+        <p style="margin:6px 0 0;">&copy; ${new Date().getFullYear()} <a href="https://www.bexdxb.com" style="color:#9E5330;text-decoration:none;">Backdrops Technical Services L.L.C</a>. All rights reserved.</p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>`
+  };
+
+  try {
+    if (!transporter) throw new Error('Mailer not initialized.');
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`Brief email sent: ${info.messageId}`);
+    const previewUrl = nodemailer.getTestMessageUrl(info);
+    if (previewUrl) console.log(`Brief preview: ${previewUrl}`);
+
+    // Clean up uploaded temp files
+    (req.files || []).forEach(f => { try { fs.unlinkSync(f.path); } catch {} });
+
+    return res.json({ success: true, message: 'Brief submitted and email sent successfully!' });
+  } catch (error) {
+    console.error('Brief email error:', error);
+    return res.status(500).json({ success: false, error: 'Failed to send brief email.' });
+  }
+});
+
 // 2. Endpoint: File Upload (Multer)
 app.post('/api/upload', upload.array('files', 10), (req, res) => {
   try {

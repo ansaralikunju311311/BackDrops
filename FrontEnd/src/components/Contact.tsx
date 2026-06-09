@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MapPin, Phone, Mail, ArrowUpRight, MessageSquare, Check, AlertCircle, X, ExternalLink } from 'lucide-react'
+import { MapPin, Phone, Mail, ArrowUpRight, Check, AlertCircle, X, Upload, ChevronDown, MessageSquare, ExternalLink } from 'lucide-react'
 interface ValidationErrors {
   fullName?: string;
   companyName?: string;
@@ -8,6 +8,22 @@ interface ValidationErrors {
   phoneNumber?: string;
   message?: string;
 }
+
+interface BriefErrors {
+  bFullName?: string;
+  bCompany?: string;
+  bEmail?: string;
+  bPhone?: string;
+  bCountry?: string;
+  bProjectType?: string;
+  bProjectLocation?: string;
+  bDescription?: string;
+  bEventDate?: string;
+}
+const PROJECT_TYPES = ['Exhibition Stand','Event & Activation','Interior Fit-Out','Branding & Signage','Custom Fabrication','Furniture Rental','Storage Solutions','Other']
+const SCOPE_OPTIONS = ['Design','Production','Installation & Dismantling','Project Management','Logistics','Storage','Turnkey Solution']
+const BUDGET_OPTIONS = ['Below AED 25,000','AED 25,000 – 50,000','AED 50,000 – 100,000','AED 100,000+']
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -32,11 +48,163 @@ const Contact: React.FC = () => {
     }
   }, [])
 
+  // Brief Modal State
+  const [showBrief, setShowBrief] = useState(false)
+  const [briefSubmitting, setBriefSubmitting] = useState(false)
+  const [briefStatus, setBriefStatus] = useState<'success'|'error'|null>(null)
+  const [briefErrors, setBriefErrors] = useState<BriefErrors>({})
+  const [briefActiveInput, setBriefActiveInput] = useState<string|null>(null)
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [briefData, setBriefData] = useState({
+    bFullName: '', bCompany: '', bEmail: '', bPhone: '', bCountry: '',
+    bProjectType: [] as string[], bProjectName: '', bEventVenue: '', bProjectLocation: '',
+    bStandSize: '', bDescription: '', bScope: [] as string[],
+    bEventDate: '', bBudget: ''
+  })
+
+  const validateBrief = (data: typeof briefData): BriefErrors => {
+    const e: BriefErrors = {}
+
+    // Full Name — letters & spaces only, 2–60 chars
+    if (!data.bFullName.trim())
+      e.bFullName = 'Full name is required.'
+    else if (data.bFullName.trim().length < 2 || data.bFullName.trim().length > 60)
+      e.bFullName = 'Full name must be between 2 and 60 characters.'
+    else if (!/^[a-zA-Z\s'-]+$/.test(data.bFullName.trim()))
+      e.bFullName = 'Full name may only contain letters, spaces, hyphens, or apostrophes.'
+
+    // Company — at least 2 chars, max 100
+    if (!data.bCompany.trim())
+      e.bCompany = 'Company / Agency name is required.'
+    else if (data.bCompany.trim().length < 2)
+      e.bCompany = 'Company name must be at least 2 characters.'
+    else if (data.bCompany.trim().length > 100)
+      e.bCompany = 'Company name cannot exceed 100 characters.'
+
+    // Email — strict RFC-style check
+    if (!data.bEmail.trim())
+      e.bEmail = 'Email address is required.'
+    else if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(data.bEmail.trim()))
+      e.bEmail = 'Please enter a valid email address (e.g. name@domain.com).'
+
+    // Phone — E.164 / international formats, 7–15 digits
+    if (!data.bPhone.trim())
+      e.bPhone = 'Phone number is required.'
+    else if (!/^\+?[0-9]{1}[0-9\s\-().]{5,18}[0-9]$/.test(data.bPhone.trim()))
+      e.bPhone = 'Enter a valid phone number with country code (e.g. +971 55 229 1691).'
+
+    // Country / Location
+    if (!data.bCountry.trim())
+      e.bCountry = 'Country / Location is required.'
+    else if (data.bCountry.trim().length < 2)
+      e.bCountry = 'Please enter a valid country or city name.'
+
+    // Project Type — at least one selection
+    if (!data.bProjectType.length)
+      e.bProjectType = 'Please select at least one project type.'
+
+    // Project Location
+    if (!data.bProjectLocation.trim())
+      e.bProjectLocation = 'Project location is required.'
+    else if (data.bProjectLocation.trim().length < 3)
+      e.bProjectLocation = 'Please provide a more specific project location.'
+
+    // Description — at least 20 chars, max 2000
+    if (!data.bDescription.trim())
+      e.bDescription = 'A project description is required.'
+    else if (data.bDescription.trim().length < 20)
+      e.bDescription = 'Description must be at least 20 characters. Please give us more detail.'
+    else if (data.bDescription.trim().length > 2000)
+      e.bDescription = 'Description cannot exceed 2000 characters.'
+
+    // Event Date — must be today or a future date
+    if (!data.bEventDate)
+      e.bEventDate = 'Project deadline / event date is required.'
+    else {
+      const chosen = new Date(data.bEventDate)
+      const today = new Date(); today.setHours(0, 0, 0, 0)
+      if (chosen < today)
+        e.bEventDate = 'Event date must be today or a future date.'
+    }
+
+    return e
+  }
+
+  const handleBriefChange = (field: string, value: string) => {
+    setBriefData(prev => ({ ...prev, [field]: value }))
+    setBriefErrors(prev => ({ ...prev, [field]: '' }))
+  }
+
+  const toggleProjectType = (option: string) => {
+    setBriefData(prev => ({
+      ...prev,
+      bProjectType: prev.bProjectType.includes(option)
+        ? prev.bProjectType.filter(s => s !== option)
+        : [...prev.bProjectType, option]
+    }))
+    setBriefErrors(prev => ({ ...prev, bProjectType: '' }))
+  }
+
+  const toggleScope = (option: string) => {
+    setBriefData(prev => ({
+      ...prev,
+      bScope: prev.bScope.includes(option)
+        ? prev.bScope.filter(s => s !== option)
+        : [...prev.bScope, option]
+    }))
+  }
+
+  const handleBriefSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const errs = validateBrief(briefData)
+    if (Object.keys(errs).length > 0) {
+      setBriefErrors(errs)
+      setBriefStatus('error')
+      setTimeout(() => setBriefStatus(null), 5000)
+      return
+    }
+    setBriefSubmitting(true)
+    try {
+      const apiBaseUrl = import.meta.env.VITE_API_URL
+      const fd = new FormData()
+      // Append all text fields
+      Object.entries(briefData).forEach(([key, val]) => {
+        if (Array.isArray(val)) {
+          fd.append(key, JSON.stringify(val))
+        } else {
+          fd.append(key, val as string)
+        }
+      })
+      // Append uploaded files
+      uploadedFiles.forEach(file => fd.append('attachments', file))
+
+      const res = await fetch(`${apiBaseUrl}/api/brief`, {
+        method: 'POST',
+        body: fd   // no Content-Type header — browser sets multipart boundary automatically
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setBriefStatus('success')
+        setBriefData({ bFullName:'',bCompany:'',bEmail:'',bPhone:'',bCountry:'',bProjectType:[],bProjectName:'',bEventVenue:'',bProjectLocation:'',bStandSize:'',bDescription:'',bScope:[],bEventDate:'',bBudget:'' })
+        setUploadedFiles([])
+        setBriefErrors({})
+        setTimeout(() => { setBriefStatus(null); setShowBrief(false) }, 3500)
+      } else {
+        setBriefStatus('error')
+      }
+    } catch {
+      setBriefStatus('error')
+    } finally {
+      setBriefSubmitting(false)
+    }
+  }
+
   // Interactive states for right-side visual component
   const [rotateX, setRotateX] = useState(0)
   const [rotateY, setRotateY] = useState(0)
   const [showQuickHelp, setShowQuickHelp] = useState(false)
-  const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null)
+  const [hoveredHotspot, setHoveredHotspot] = useState<string|null>(null)
   const [mapView, setMapView] = useState<'roadmap' | 'satellite'>('roadmap')
 
   const hotspots = [
@@ -638,13 +806,14 @@ const Contact: React.FC = () => {
                 </button>
 
                 {/* Fill out the brief Button */}
-                <a
-                  href="#brief"
+                <button
+                  type="button"
+                  onClick={() => setShowBrief(true)}
                   className="px-12 py-5 border border-brand-white/15 text-brand-white hover:border-brand-gold hover:text-brand-gold font-euclid font-bold text-[1.6rem] tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer"
                 >
                   Fill out the brief{' '}
                   <ArrowUpRight className="w-5 h-5" />
-                </a>
+                </button>
               </div>
             </form>
           </motion.div>
@@ -1074,6 +1243,362 @@ const Contact: React.FC = () => {
         </div>
       </div>
     </section>
+
+      {/* ═══════════════════════════════════════════════════
+          FILL OUT BRIEF MODAL
+      ═══════════════════════════════════════════════════ */}
+      <AnimatePresence>
+        {showBrief && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8"
+            style={{ backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(12px)' }}
+            onClick={() => setShowBrief(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 24 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 260 }}
+              className="relative w-full max-w-[90rem] max-h-[92vh] overflow-y-auto rounded-2xl border border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
+              style={{ background: 'linear-gradient(145deg, #17171a 0%, #121214 60%, #0f0f11 100%)' }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="sticky top-0 z-10 flex items-start justify-between px-8 md:px-12 pt-8 pb-6 border-b border-white/8"
+                style={{ background: 'linear-gradient(145deg, #17171a, #121214)' }}>
+                <div>
+                  <span className="font-circe font-light text-[1.6rem] tracking-[0.3em] text-brand-gold uppercase block mb-2">BEX Project Submission</span>
+                  <h2 className="font-urw font-black text-white text-[4rem] md:text-[5rem] uppercase tracking-wider leading-none">Fill Out Brief</h2>
+                  <p className="font-circe text-white/50 text-[1.8rem] mt-3 max-w-[60rem]">Tell us about your project and our team will get back to you with the best solution tailored to your requirements.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowBrief(false)}
+                  className="w-12 h-12 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 cursor-pointer shrink-0 mt-1"
+                  aria-label="Close brief form"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Form Body */}
+              <form onSubmit={handleBriefSubmit} noValidate className="px-8 md:px-12 py-10 space-y-14">
+
+                {/* ── SECTION: Contact Information ── */}
+                <div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-[1.6rem] font-urw font-bold text-brand-bg shrink-0" style={{ backgroundColor: 'rgb(158,83,48)' }}>1</div>
+                    <h3 className="font-urw font-bold text-white text-[2.4rem] uppercase tracking-wider">Contact Information</h3>
+                    <div className="flex-1 h-[1px] bg-white/8" />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    {/* Full Name */}
+                    {[
+                      { field: 'bFullName', label: 'Full Name', type: 'text', err: briefErrors.bFullName },
+                      { field: 'bCompany', label: 'Company / Agency Name', type: 'text', err: briefErrors.bCompany },
+                      { field: 'bEmail', label: 'Email Address', type: 'email', err: briefErrors.bEmail },
+                      { field: 'bPhone', label: 'Phone Number', type: 'tel', err: briefErrors.bPhone },
+                    ].map(({ field, label, type, err }) => (
+                      <div key={field} className={`relative border-b pt-8 pb-3 transition-colors duration-300 ${err ? 'border-red-500/50' : briefActiveInput === field ? 'border-brand-gold' : 'border-white/12'}`}>
+                        <label className={`absolute left-0 font-circe pointer-events-none transition-all duration-250 ${briefActiveInput === field || briefData[field as keyof typeof briefData] ? 'top-0 text-[1.6rem] text-brand-gold' : 'top-6 text-[2rem] text-white/40'}`}>
+                          {label} <span className="text-brand-gold">*</span>
+                        </label>
+                        <input
+                          type={type}
+                          value={briefData[field as keyof typeof briefData] as string}
+                          onChange={e => handleBriefChange(field, e.target.value)}
+                          onFocus={() => setBriefActiveInput(field)}
+                          onBlur={() => setBriefActiveInput(null)}
+                          className="w-full bg-transparent border-none text-white focus:outline-none pt-1"
+                          style={{ fontSize: '2.2rem' }}
+                        />
+                        {err && <p className="text-red-400 text-[1.5rem] mt-1.5 flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" />{err}</p>}
+                      </div>
+                    ))}
+
+                    {/* Country / Location - full width */}
+                    <div className={`md:col-span-2 relative border-b pt-8 pb-3 transition-colors duration-300 ${briefErrors.bCountry ? 'border-red-500/50' : briefActiveInput === 'bCountry' ? 'border-brand-gold' : 'border-white/12'}`}>
+                      <label className={`absolute left-0 font-circe pointer-events-none transition-all duration-250 ${briefActiveInput === 'bCountry' || briefData.bCountry ? 'top-0 text-[1.6rem] text-brand-gold' : 'top-6 text-[2rem] text-white/40'}`}>
+                        Country / Location <span className="text-brand-gold">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={briefData.bCountry}
+                        onChange={e => handleBriefChange('bCountry', e.target.value)}
+                        onFocus={() => setBriefActiveInput('bCountry')}
+                        onBlur={() => setBriefActiveInput(null)}
+                        className="w-full bg-transparent border-none text-white focus:outline-none pt-1"
+                        style={{ fontSize: '2.2rem' }}
+                      />
+                      {briefErrors.bCountry && <p className="text-red-400 text-[1.5rem] mt-1.5 flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" />{briefErrors.bCountry}</p>}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── SECTION: Project Information ── */}
+                <div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-[1.6rem] font-urw font-bold text-brand-bg shrink-0" style={{ backgroundColor: 'rgb(158,83,48)' }}>2</div>
+                    <h3 className="font-urw font-bold text-white text-[2.4rem] uppercase tracking-wider">Project Information</h3>
+                    <div className="flex-1 h-[1px] bg-white/8" />
+                  </div>
+
+                  {/* Project Type — multi-select checkboxes */}
+                  <div className="mb-10">
+                    <p className="font-circe text-[1.7rem] text-brand-gold uppercase tracking-wider mb-4">Project Type <span className="text-brand-gold">*</span></p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {PROJECT_TYPES.map(type => {
+                        const selected = briefData.bProjectType.includes(type)
+                        return (
+                          <button
+                            key={type}
+                            type="button"
+                            onClick={() => toggleProjectType(type)}
+                            className={`flex items-center gap-3 px-4 py-3 rounded-lg border text-[1.6rem] font-circe text-left transition-all duration-200 cursor-pointer ${
+                              selected ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'
+                            }`}
+                          >
+                            <span className={`w-5 h-5 rounded flex items-center justify-center border shrink-0 transition-all duration-200 ${
+                              selected ? 'border-brand-gold bg-brand-gold' : 'border-white/25 bg-transparent'
+                            }`}>
+                              {selected && (
+                                <svg viewBox="0 0 12 10" className="w-3 h-3" fill="none">
+                                  <path d="M1 5l3 3 7-7" stroke="#121214" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              )}
+                            </span>
+                            {type}
+                          </button>
+                        )
+                      })}
+                    </div>
+                    {briefErrors.bProjectType && <p className="text-red-400 text-[1.5rem] mt-2 flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" />{briefErrors.bProjectType}</p>}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    {[
+                      { field: 'bProjectName', label: 'Project Name', required: false },
+                      { field: 'bEventVenue', label: 'Event / Venue Name', required: false },
+                      { field: 'bProjectLocation', label: 'Project Location', required: true, err: briefErrors.bProjectLocation },
+                      { field: 'bStandSize', label: 'Exhibition Stand Size (if applicable)', required: false },
+                    ].map(({ field, label, required, err }) => (
+                      <div key={field} className={`relative border-b pt-8 pb-3 transition-colors duration-300 ${err ? 'border-red-500/50' : briefActiveInput === field ? 'border-brand-gold' : 'border-white/12'}`}>
+                        <label className={`absolute left-0 font-circe pointer-events-none transition-all duration-250 ${briefActiveInput === field || briefData[field as keyof typeof briefData] ? 'top-0 text-[1.6rem] text-brand-gold' : 'top-6 text-[2rem] text-white/40'}`}>
+                          {label} {required && <span className="text-brand-gold">*</span>}
+                        </label>
+                        <input
+                          type="text"
+                          value={briefData[field as keyof typeof briefData] as string}
+                          onChange={e => handleBriefChange(field, e.target.value)}
+                          onFocus={() => setBriefActiveInput(field)}
+                          onBlur={() => setBriefActiveInput(null)}
+                          className="w-full bg-transparent border-none text-white focus:outline-none pt-1"
+                          style={{ fontSize: '2.2rem' }}
+                        />
+                        {err && <p className="text-red-400 text-[1.5rem] mt-1.5 flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" />{err}</p>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── SECTION: Project Requirements ── */}
+                <div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-[1.3rem] font-urw font-bold text-brand-bg shrink-0" style={{ backgroundColor: 'rgb(158,83,48)' }}>3</div>
+                    <h3 className="font-urw font-bold text-white text-[2.4rem] uppercase tracking-wider">Project Requirements</h3>
+                    <div className="flex-1 h-[1px] bg-white/8" />
+                  </div>
+
+                  {/* Description */}
+                  <div className={`relative border-b pt-8 pb-3 mb-10 transition-colors duration-300 ${briefErrors.bDescription ? 'border-red-500/50' : briefActiveInput === 'bDescription' ? 'border-brand-gold' : 'border-white/12'}`}>
+                    <label className={`absolute left-0 font-circe pointer-events-none transition-all duration-250 ${briefActiveInput === 'bDescription' || briefData.bDescription ? 'top-0 text-[1.6rem] text-brand-gold' : 'top-6 text-[2rem] text-white/40'}`}>
+                      Brief Description of Your Project <span className="text-brand-gold">*</span>
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={briefData.bDescription}
+                      onChange={e => handleBriefChange('bDescription', e.target.value)}
+                      onFocus={() => setBriefActiveInput('bDescription')}
+                      onBlur={() => setBriefActiveInput(null)}
+                      className="w-full bg-transparent border-none text-white focus:outline-none pt-1 resize-none"
+                      style={{ fontSize: '2.2rem' }}
+                    />
+                    <div className="flex items-center justify-between mt-1">
+                      {briefErrors.bDescription ? <p className="text-red-400 text-[1.5rem] flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" />{briefErrors.bDescription}</p> : <span />}
+                      <span className="text-white/25 text-[1.4rem]">{briefData.bDescription.length} / 2000 chars</span>
+                    </div>
+                  </div>
+
+                  {/* Scope of Services — multi-select checkboxes */}
+                  <div>
+                    <p className="font-circe text-[1.7rem] text-brand-gold uppercase tracking-wider mb-4">Scope of Services Required</p>
+                    <div className="flex flex-wrap gap-3">
+                      {SCOPE_OPTIONS.map(opt => {
+                        const selected = briefData.bScope.includes(opt)
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => toggleScope(opt)}
+                            className={`flex items-center gap-3 px-5 py-3 rounded-lg border text-[1.6rem] font-circe transition-all duration-200 cursor-pointer ${
+                              selected ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'
+                            }`}
+                          >
+                            <span className={`w-5 h-5 rounded flex items-center justify-center border shrink-0 transition-all duration-200 ${
+                              selected ? 'border-brand-gold bg-brand-gold' : 'border-white/25 bg-transparent'
+                            }`}>
+                              {selected && (
+                                <svg viewBox="0 0 12 10" className="w-3 h-3" fill="none">
+                                  <path d="M1 5l3 3 7-7" stroke="#121214" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              )}
+                            </span>
+                            {opt}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── SECTION: Timeline & Budget ── */}
+                <div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-[1.3rem] font-urw font-bold text-brand-bg shrink-0" style={{ backgroundColor: 'rgb(158,83,48)' }}>4</div>
+                    <h3 className="font-urw font-bold text-white text-[2rem] uppercase tracking-wider">Timeline & Budget</h3>
+                    <div className="flex-1 h-[1px] bg-white/8" />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    {/* Event Date */}
+                    <div className={`relative border-b pt-8 pb-3 transition-colors duration-300 ${briefErrors.bEventDate ? 'border-red-500/50' : briefActiveInput === 'bEventDate' ? 'border-brand-gold' : 'border-white/12'}`}>
+                      <label className="absolute left-0 top-0 font-circe text-[1.3rem] text-brand-gold pointer-events-none">
+                        Project Deadline / Event Date <span className="text-brand-gold">*</span>
+                      </label>
+                      <input
+                        type="date"
+                        value={briefData.bEventDate}
+                        onChange={e => handleBriefChange('bEventDate', e.target.value)}
+                        onFocus={() => setBriefActiveInput('bEventDate')}
+                        onBlur={() => setBriefActiveInput(null)}
+                        className="w-full bg-transparent border-none text-white focus:outline-none pt-4"
+                        style={{ colorScheme: 'dark', fontSize: '2rem' }}
+                      />
+                      {briefErrors.bEventDate && <p className="text-red-400 text-[1.5rem] mt-1 flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" />{briefErrors.bEventDate}</p>}
+                    </div>
+
+                    {/* Budget */}
+                    <div>
+                      <p className="font-circe text-[1.4rem] text-brand-gold uppercase tracking-wider mb-4">Estimated Budget Range</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {BUDGET_OPTIONS.map(opt => (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => handleBriefChange('bBudget', opt)}
+                            className={`px-4 py-3 rounded-lg border text-[1.5rem] font-circe text-left transition-all duration-200 cursor-pointer ${briefData.bBudget === opt ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'}`}
+                          >
+                            {briefData.bBudget === opt && <span className="text-brand-gold mr-1">✓</span>}{opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── SECTION: Attachments ── */}
+                <div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-[1.3rem] font-urw font-bold text-brand-bg shrink-0" style={{ backgroundColor: 'rgb(158,83,48)' }}>5</div>
+                    <h3 className="font-urw font-bold text-white text-[2rem] uppercase tracking-wider">Attachments</h3>
+                    <div className="flex-1 h-[1px] bg-white/8" />
+                  </div>
+
+                  <div
+                    onClick={() => fileInputRef.current?.click()}
+                    className="border-2 border-dashed border-white/15 hover:border-brand-gold/50 rounded-xl p-10 text-center cursor-pointer transition-all duration-300 group hover:bg-brand-gold/[0.03]"
+                  >
+                    <Upload className="w-10 h-10 text-white/25 group-hover:text-brand-gold mx-auto mb-4 transition-colors duration-300" />
+                    <p className="font-circe text-white/50 group-hover:text-white/70 text-[1.6rem] transition-colors duration-300">
+                      Upload Brief, Drawings, References, or Brand Guidelines
+                    </p>
+                    <p className="font-circe text-white/25 text-[1.3rem] mt-2">Click to browse or drag & drop — PDF, DOC, JPG, PNG accepted</p>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      multiple
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.ai,.eps"
+                      className="hidden"
+                      onChange={e => {
+                        if (e.target.files) setUploadedFiles(Array.from(e.target.files))
+                      }}
+                    />
+                  </div>
+
+                  {uploadedFiles.length > 0 && (
+                    <div className="mt-4 space-y-2">
+                      {uploadedFiles.map((f, i) => (
+                        <div key={i} className="flex items-center justify-between bg-white/[0.04] border border-white/8 rounded-lg px-5 py-3">
+                          <span className="font-circe text-white/70 text-[1.4rem] truncate">{f.name}</span>
+                          <button
+                            type="button"
+                            onClick={() => setUploadedFiles(prev => prev.filter((_, idx) => idx !== i))}
+                            className="text-white/30 hover:text-red-400 ml-4 shrink-0 cursor-pointer transition-colors"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Status Messages */}
+                <AnimatePresence>
+                  {briefStatus === 'success' && (
+                    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                      className="p-5 bg-emerald-500/10 border border-emerald-500/30 rounded-xl flex items-center gap-3 text-emerald-400">
+                      <Check className="w-6 h-6 shrink-0" />
+                      <span className="font-circe text-[1.7rem]">Your brief has been submitted! Our team will reach out shortly.</span>
+                    </motion.div>
+                  )}
+                  {briefStatus === 'error' && (
+                    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                      className="p-5 bg-rose-500/10 border border-rose-500/30 rounded-xl flex items-center gap-3 text-rose-400">
+                      <AlertCircle className="w-6 h-6 shrink-0" />
+                      <span className="font-circe text-[1.7rem]">Please fill in all required fields marked with *</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Submit Row */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-white/8">
+                  <p className="font-circe text-white/30 text-[1.6rem]">Fields marked <span className="text-brand-gold">*</span> are required</p>
+                  <button
+                    type="submit"
+                    disabled={briefSubmitting}
+                    className="px-16 py-5 font-euclid font-bold text-[2rem] tracking-widest uppercase rounded-sm text-white transition-all duration-300 hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 shadow-[0_15px_35px_rgba(158,83,48,0.3)]"
+                    style={{ backgroundColor: briefSubmitting ? 'rgb(130,65,35)' : 'rgb(158,83,48)' }}
+                  >
+                    {briefSubmitting ? (
+                      <>Submitting… <span className="inline-block animate-spin">↻</span></>
+                    ) : (
+                      <>Request Consultation <ArrowUpRight className="w-5 h-5" /></>
+                    )}
+                  </button>
+                </div>
+
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </>
   )
 }
