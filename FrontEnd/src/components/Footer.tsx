@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <footer className="bg-brand-bg text-brand-white pt-16 pb-12 relative overflow-hidden" id="footer">
+    <footer className="text-brand-white pt-16 pb-12 relative overflow-hidden" id="footer" style={{ backgroundColor: '#000000' }}>
       
 
 
