@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="about-us"
-      className="relative h-screen min-h-[750px] flex items-center bg-brand-bg overflow-hidden pt-4"
+      className="relative min-h-screen flex items-center bg-brand-bg overflow-hidden pt-4"
     >
       {/* Background Subtle Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(212,164,55,0.06),rgba(20,23,33,0))] pointer-events-none" />
@@ -133,6 +133,17 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* Description paragraph below stats */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+            className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[85rem] mt-12"
+            style={{ fontSize: '2.2rem' }}
+          >
+            <span className="font-urw font-extrabold text-brand-gold" style={{ fontSize: '2.8rem' }}>BEX</span> is an international experiential execution partner delivering exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions. We collaborate with agencies, brands, and organizers to transform ambitious ideas into exceptional real-world experiences through expert execution, robust infrastructure, and seamless project delivery. Across the UAE, GCC, and international markets, we act as an extension of our clients' teams—bringing creativity, precision, and reliability together to deliver environments that engage audiences, elevate brands, and create lasting impact.
+          </motion.p>
 
         </div>
       </div>

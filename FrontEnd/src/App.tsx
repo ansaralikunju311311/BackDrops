@@ -6,7 +6,6 @@ import Hero from './components/About/Hero'
 import StaggeredFeatures from './components/About/StaggeredFeatures'
 import Mission from './components/About/Mission'
 import ExecutiveProfile from './components/About/ExecutiveProfile'
-import Certificates from './components/About/Certificates'
 import Contact from './components/Contact'
 import Services from './components/Services'
 import ServiceDetail from './components/ServiceDetail'
@@ -45,9 +44,6 @@ const HomeView: React.FC = () => {
 
       {/* Section 2.8 - Executive Profile Section */}
       <ExecutiveProfile />
-
-      {/* Section 3 - Certificates Grid (Compliance, License) */}
-      <Certificates />
     </>
   )
 }

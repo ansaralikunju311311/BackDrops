@@ -109,12 +109,12 @@ const WhyChooseBexInfographic: React.FC = () => {
                 border: '2px solid rgba(192,57,43,0.4)'
               }}
             >
-              <h3
+              {/* <h3
                 className="font-urw font-extrabold uppercase text-white leading-tight px-1"
                 style={{ fontSize: 'clamp(11px, 2.8vw, 26px)' }}
               >
                 Why Choose<br />BEX
-              </h3>
+              </h3> */}
               <p
                 className="font-circe font-bold uppercase tracking-widest mt-1"
                 style={{ fontSize: 'clamp(8px, 1.4vw, 13px)', color: WHITE, opacity: 0.6 }}

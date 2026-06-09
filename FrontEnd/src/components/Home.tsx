@@ -255,10 +255,10 @@ const Home: React.FC = () => {
             animate="visible"
             className="font-urw font-extrabold text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[19rem] text-white uppercase leading-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.6)] flex flex-wrap justify-center gap-x-[3vw]"
           >
-            {["WE", "CREATE"].map((word, wordIndex) => (
+            {["WE", "BUILD", "EXPERIENCES"].map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block whitespace-nowrap">
                 {Array.from(word).map((char, charIndex) => {
-                  const globalIndex = wordIndex * 3 + charIndex
+                  const globalIndex = wordIndex * 4 + charIndex
                   return (
                     <motion.span
                       key={charIndex}

@@ -60,21 +60,6 @@ const Footer: React.FC = () => {
               className="overflow-hidden border-t border-brand-white/10"
             >
               <div className="flex flex-col text-left py-12 select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
-                {/* Intro block */}
-                <div className="space-y-6">
-                  <p>
-                    <strong className="text-white font-bold">BEX</strong> is an international experiential execution partner specializing in the delivery of exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions.
-                  </p>
-                  <p>
-                    We collaborate with agencies, brands, event organizers, designers, and creative teams to transform ambitious concepts into exceptional real-world experiences. From exhibition stands and experiential activations to commercial interiors and branded environments, we provide the expertise, infrastructure, and execution capabilities required to bring ideas to life—anywhere they need to happen.
-                  </p>
-                  <p>
-                    With a strong network of partners, skilled production teams, and proven project management systems, BEX delivers projects across the UAE, GCC, and international markets. Our role goes beyond construction and installation; we become an extension of our clients' teams, ensuring every detail is executed with precision, consistency, and excellence.
-                  </p>
-                  <p>
-                    Whether supporting a global agency, an international brand, or a local organizer, we are committed to delivering experiences that engage audiences, elevate brands, and exceed expectations.
-                  </p>
-                </div>
 
                 {/* Our Mission */}
                 <div className="space-y-4">
