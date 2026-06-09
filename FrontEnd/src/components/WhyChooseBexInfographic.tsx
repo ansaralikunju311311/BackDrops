@@ -117,9 +117,9 @@ const WhyChooseBexInfographic: React.FC = () => {
               </h3>
               <p
                 className="font-circe font-bold uppercase tracking-widest mt-1"
-                style={{ fontSize: 'clamp(6px, 1.2vw, 11px)', color: WHITE, opacity: 0.6 }}
+                style={{ fontSize: 'clamp(8px, 1.4vw, 13px)', color: WHITE, opacity: 0.6 }}
               >
-                8 Core Values
+                BEX Core Values
               </p>
             </div>
           </div>
