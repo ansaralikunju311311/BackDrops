@@ -3,6 +3,15 @@ import { useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react'
 
+// import gal1 from '../assets/service/serv1.jpeg'
+// import gal2 from '../assets/service/serv2.jpeg'
+// import gal3 from '../assets/service/serv3.jpeg'
+// import gal4 from '../assets/service/serv5.png'
+// import gal5 from '../assets/service/serv6.jpeg'
+// import gal6 from '../assets/service/serv7.png'
+// import gal7 from '../assets/service/serv8.jpeg'
+// import gal8 from '../assets/service/serv9.jpeg'
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -338,14 +347,13 @@ const Home: React.FC = () => {
           </motion.h1>
         </div>
 
-        {/* Floating Red Tab Button (Right Edge matching crop) */}
+        {/* Connect With Us — Bottom Tab */}
         <button
           onClick={() => navigate('/contacts')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.3rem] sm:text-[1.5rem] tracking-widest uppercase py-7 px-8 sm:px-9 rounded-l-sm hover:pl-11 transition-all duration-500 ease-out cursor-pointer shadow-[0_10px_30px_rgba(229,29,29,0.35)] flex items-center justify-center whitespace-nowrap"
-          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-          aria-label="Open contact request form"
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 bg-brand-gold hover:bg-white text-white hover:text-brand-dark font-urw font-bold text-[1.4rem] sm:text-[1.6rem] tracking-[0.25em] uppercase px-12 py-4 rounded-sm hover:scale-105 transition-all duration-400 ease-out cursor-pointer shadow-[0_8px_28px_rgba(196,121,86,0.5)] flex items-center gap-3 whitespace-nowrap"
+          aria-label="Connect with us - contact form"
         >
-          Send Request +
+          Connect With Us <span className="font-light text-[1.8rem]">→</span>
         </button>
 
         {/* Animated Scroll Down indicator */}
@@ -357,7 +365,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION 1.5: Worldwide Projects Section */}
-      <section className="py-36 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
+      <section className="py-24 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
         {/* Subtle dark texture overlay */}
         <div className="absolute inset-0 pointer-events-none z-0"
           style={{
@@ -370,6 +378,7 @@ const Home: React.FC = () => {
           WORLDWIDE
         </div>
 
+
         <div className="max-w-[140rem] mx-auto px-6 md:px-16 lg:px-28 relative z-10">
 
           {/* Large Bold Heading */}
@@ -378,7 +387,7 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="font-urw font-black text-white uppercase leading-[0.92] tracking-tight mb-16"
+            className="font-urw font-black text-white uppercase leading-[0.92] tracking-tight mb-10"
             style={{ fontSize: 'clamp(5rem, 9vw, 11rem)' }}
           >
             WORLDWIDE PROJECTS
@@ -393,29 +402,33 @@ const Home: React.FC = () => {
             className="w-full h-[1px] bg-white/10 mb-16"
           />
 
-          {/* Body Text Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-14">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+          {/* Two Key Points */}
+          <div className="flex flex-col gap-10 mb-14">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="font-circe font-light text-white/60 leading-[1.75]"
-              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
+              className="flex items-start gap-7"
             >
-              BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
-            </motion.p>
+              <span className="w-4 h-4 rounded-full bg-brand-gold flex-shrink-0 mt-3" />
+              <p className="font-circe font-semibold text-white/95 leading-relaxed" style={{ fontSize: 'clamp(2rem, 2.4vw, 2.8rem)' }}>
+                BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
+              </p>
+            </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="font-circe font-light text-white/60 leading-[1.75]"
-              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2rem)' }}
+              className="flex items-start gap-7"
             >
-              Combining global standards with local expertise, our team manages every stage of project delivery—from production and logistics to installation and on-site execution—ensuring consistency, quality, and reliability across borders.
-            </motion.p>
+              <span className="w-4 h-4 rounded-full bg-brand-gold flex-shrink-0 mt-3" />
+              <p className="font-circe font-semibold text-white/95 leading-relaxed" style={{ fontSize: 'clamp(2rem, 2.4vw, 2.8rem)' }}>
+                Combining global standards with local expertise, our team manages every stage of project delivery — from production and logistics to installation and on-site execution — ensuring consistency, quality, and reliability across borders.
+              </p>
+            </motion.div>
           </div>
 
           {/* Orange Tagline */}
@@ -455,7 +468,7 @@ const Home: React.FC = () => {
               <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-tight mb-8">
                 Video cases
               </h2>
-              <p className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[32rem] mb-12" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/80 leading-relaxed max-w-[32rem] mb-12" style={{ fontSize: '1.8rem' }}>
                 Creative solutions for exhibition projects
               </p>
 
@@ -569,6 +582,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* SECTION: Project Gallery */}
+    
+
       {/* SECTION 1.6: Our Clients Slider Section */}
       <section className="py-28 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
@@ -645,10 +661,10 @@ const Home: React.FC = () => {
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <div>
-              <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
+              <span className="font-circe font-bold text-[2rem] tracking-[0.2em] text-brand-gold uppercase mb-4 block">
                 What Clients Say
               </span>
-              <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-none">
+              <h2 className="font-urw font-extrabold text-[2.8rem] sm:text-[3.5rem] lg:text-[4.2rem] text-white uppercase tracking-wider leading-none">
                 Google Reviews
               </h2>
             </div>
@@ -740,7 +756,7 @@ const Home: React.FC = () => {
                       </div>
 
                       {/* Review Text */}
-                      <p className="font-circe font-light text-white/60 group-hover:text-white/80 leading-relaxed transition-colors duration-300 flex-1" style={{ fontSize: '1.6rem' }}>
+                      <p className="font-circe font-normal text-white/80 group-hover:text-white leading-relaxed transition-colors duration-300 flex-1" style={{ fontSize: '1.6rem' }}>
                         "{review.text}"
                       </p>
                     </motion.div>
@@ -799,12 +815,12 @@ const Home: React.FC = () => {
       <section className="py-36 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           
-          <h2 className="font-urw font-extrabold text-[3.2rem] sm:text-[4rem] lg:text-[4.8rem] text-white text-center leading-tight mb-28 uppercase tracking-wider max-w-[95rem] mx-auto">
+          <h2 className="font-urw font-extrabold text-[2.4rem] sm:text-[3rem] lg:text-[3.6rem] text-white text-center leading-tight mb-16 uppercase tracking-wider max-w-[95rem] mx-auto">
             Bring your vision to life – start your project today!
           </h2>
 
           {/* Timeline Nodes */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-1 relative max-w-[140rem] mx-auto overflow-x-auto lg:overflow-x-visible scrollbar-hide pb-6 lg:pb-0 px-4">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-start justify-between gap-8 lg:gap-0 relative max-w-[140rem] mx-auto overflow-x-auto scrollbar-hide pb-6 lg:pb-0 px-0">
             {[
               { num: '01', title: 'Client Briefing & Requirement Gathering' },
               { num: '02', title: 'Concept Development & Strategy' },
@@ -821,7 +837,7 @@ const Home: React.FC = () => {
             ].map((step, idx, arr) => (
               <React.Fragment key={step.num}>
                 {/* Step Node */}
-                <div className="flex flex-col items-center w-full lg:w-[10.5rem] lg:min-w-[9rem] flex-shrink-0 relative">
+                <div className="flex flex-col items-center w-full lg:w-auto lg:flex-1 lg:min-w-[6rem] flex-shrink-0 relative px-1">
                   <motion.div
                     whileHover={{ scale: 1.08 }}
                     className="w-20 h-20 rounded-full border border-[#E51D1D]/30 bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.4rem] z-10 transition-all duration-300 hover:border-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
@@ -829,7 +845,7 @@ const Home: React.FC = () => {
                   >
                     # {step.num}
                   </motion.div>
-                  <p className="font-circe font-light text-brand-text-muted mt-5 text-center leading-relaxed" style={{ fontSize: '1.5rem' }}>
+                  <p className="font-circe font-semibold text-white/90 mt-5 text-center leading-snug" style={{ fontSize: '1.8rem' }}>
                     {step.title}
                   </p>
                 </div>
@@ -907,7 +923,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col gap-10"
             >
-              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
                 The layout and installation of an expo booth form the backbone of a successful exhibition presence, shaping how visitors perceive and engage with a brand. A well-planned layout ensures clear visibility, seamless visitor flow, and strategic placement of key elements such as product displays, reception areas, and interactive zones, all aligned with the brand’s objectives. Through advanced planning and 3D visualization, every detail is refined to deliver a space that is both functional and visually impactful.
               </p>
             </motion.div>
@@ -920,7 +936,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col gap-10"
             >
-              <p className="font-circe font-light text-brand-text-muted hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '2.3rem' }}>
                 At BEX, we combine design precision with expert installation to bring exhibition stands to life with accuracy, efficiency, and quality. From concept development to on-site execution, our teams ensure every booth is built to exact specifications, integrating branding, lighting, and multimedia elements seamlessly. The result is a powerful, immersive exhibition environment that attracts attention, engages audiences, and delivers lasting brand impact.
               </p>
             </motion.div>
@@ -935,7 +951,7 @@ const Home: React.FC = () => {
           <div className="max-w-[90rem] mx-auto flex flex-col items-center">
             
             {/* Tagline */}
-            <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-6 block animate-pulse">
+            <span className="font-circe font-bold text-[2.2rem] tracking-[0.18em] text-brand-gold uppercase mb-8 block">
               Create Your Vision
             </span>
             {/* Heading Statement */}
@@ -945,14 +961,14 @@ const Home: React.FC = () => {
             </h2>
 
             {/* Description */}
-            <p className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[70rem] mb-16" style={{ fontSize: '2.0rem' }}>
+             <p className="font-circe font-normal text-white/85 leading-relaxed max-w-[70rem] mb-16" style={{ fontSize: '2.0rem' }}>
               Backed by our state-of-the-art production facility, skilled fabrication teams, and experiential engineering expertise, we deliver exceptional exhibition stands, branded environments, and immersive experiences with precision and confidence.
             </p>
 
             {/* Inquire Button */}
             <Link
               to="/contacts"
-              className="bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.7rem] tracking-widest uppercase px-16 py-6.5 rounded-sm shadow-[0_15px_30px_rgba(229,29,29,0.3)] hover:scale-105 transition-all duration-300 flex items-center gap-3.5"
+              className="bg-brand-gold hover:bg-white text-white hover:text-brand-dark font-urw font-bold text-[1.7rem] tracking-widest uppercase px-16 py-6.5 rounded-sm shadow-[0_15px_30px_rgba(196,121,86,0.4)] hover:scale-105 transition-all duration-300 flex items-center gap-3.5"
             >
               Inquire Now <span className="font-light text-2xl animate-bounce-right">+</span>
             </Link>
