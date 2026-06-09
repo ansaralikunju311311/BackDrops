@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import BexLogo from './BexLogo'
 import WhyChooseBexInfographic from './WhyChooseBexInfographic'
