@@ -188,13 +188,28 @@ const Footer: React.FC = () => {
               <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
                 India Address
               </span>
-              <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+              <p className="font-circe text-brand-text-muted leading-relaxed mb-4" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
                 CREO Construction Experts<br />
                 Arullil Arcade<br />
                 Thrissur Dt.<br />
                 Kerala- INDIA
               </p>
+              <a
+                href="tel:00919188866924"
+                className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+                style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              >
+                0091 9188 866924
+              </a>
+              <a
+                href="tel:00919605218618"
+                className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              >
+                0091 9605 218618
+              </a>
             </div>
+
             
             {/* Contact */}
             <div>
