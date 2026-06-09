@@ -901,7 +901,8 @@ const Home: React.FC = () => {
             </span>
             {/* Heading Statement */}
             <h2 className="font-urw font-extrabold text-[4.2rem] sm:text-[5.5rem] lg:text-[6.5rem] text-white uppercase tracking-wider leading-tight mb-12">
-              Experiences Built to Engage. Engineered to Perform.
+              <span className="whitespace-nowrap">Experiences Built to Engage.</span><br />
+              Engineered to Perform.
             </h2>
 
             {/* Description */}
