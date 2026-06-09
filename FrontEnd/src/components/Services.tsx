@@ -14,6 +14,7 @@ import serv9 from '../assets/service/serv9.jpeg'
 import serv10 from '../assets/service/serv10.jpeg'
 import serv11 from '../assets/service/serv11.jpeg'
 import serv12 from '../assets/service/serv12.png'
+import serv13 from '../assets/service/serv13.png'
 
 // Direct SVG Icons for matching brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
@@ -89,6 +90,11 @@ const SERVICES_DATA: ServiceData[] = [
     title: "Shell Scheme Upgradation",
     description: "Transform standard exhibition shell schemes into impactful branded environments that attract attention and enhance visitor engagement. BEX upgrades basic exhibition spaces with custom graphics, premium finishes, integrated lighting, display solutions, product showcases, digital elements, and functional layouts tailored to your brand objectives.",
     image: serv12
+  },
+  {
+    title: "Corporate Branding Materials",
+    description: "Elevate your brand beyond the event floor with premium merchandise, executive gifting solutions, and high-quality printed materials designed to create lasting impressions and strengthen brand affinity.",
+    image: serv13
   }
 ]
 

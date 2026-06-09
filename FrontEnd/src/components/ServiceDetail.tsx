@@ -15,8 +15,9 @@ import serv9 from '../assets/service/serv9.jpeg'
 import serv10 from '../assets/service/serv10.jpeg'
 import serv11 from '../assets/service/serv11.jpeg'
 import serv12 from '../assets/service/serv12.png'
+import serv13 from '../assets/service/serv13.png'
 
-export const serviceImages = [serv1, serv2, serv3, serv5, serv6, serv7, serv8, serv9, serv10, serv11, serv12]
+export const serviceImages = [serv1, serv2, serv3, serv5, serv6, serv7, serv8, serv9, serv10, serv11, serv12, serv13]
 
 // Direct SVG Icons matching the brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
@@ -184,6 +185,17 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     related: [
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Full exhibition stand fabrication and branded environment creation." },
       { idx: 6, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Custom graphics, large-format prints, and signage solutions." }
+    ]
+  },
+  {
+    title: "Corporate Branding Materials",
+    image: serv13,
+    p1: "Elevate your brand beyond the event floor with premium merchandise, executive gifting solutions, and high-quality printed materials designed to create lasting impressions and strengthen brand affinity. From bespoke corporate gifts and promotional products to luxury packaging, marketing collateral, and branded assets, we deliver carefully curated solutions that reflect the quality, values, and professionalism of your brand.",
+    p2: "At BEX, we manage the entire journey — from concept development and product sourcing to customization, production, quality assurance, and fulfillment. Leveraging trusted supplier networks, premium materials, and meticulous attention to detail, we ensure every item embodies excellence and consistency.",
+    p3: "Whether supporting exhibitions, corporate events, product launches, client engagement initiatives, or internal brand programs, our merchandise and print solutions are crafted to enhance visibility, reinforce messaging, and create memorable brand experiences long after the interaction ends.",
+    related: [
+      { idx: 6, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Large-format prints, dimensional logos, and custom branding elements." },
+      { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Complete exhibition stand design, fabrication, and installation." }
     ]
   }
 ]
