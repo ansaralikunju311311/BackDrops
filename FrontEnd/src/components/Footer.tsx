@@ -82,9 +82,12 @@ const Footer: React.FC = () => {
                   
                   <WhyChooseBexInfographic />
 
-                  <p className="pt-6 border-t border-brand-white/10 italic text-[2rem] text-brand-gold font-medium">
-                    At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.
-                  </p>
+                  <blockquote className="pt-8 border-t border-brand-white/10 border-l-4 border-l-brand-gold pl-8 mt-4">
+                    <p className="italic text-brand-gold font-medium leading-relaxed" style={{ fontSize: '2.6rem' }}>
+                      &#8220;At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.&#8221;
+                    </p>
+                  </blockquote>
+
                 </div>
               </div>
             </motion.div>

@@ -901,12 +901,12 @@ const Home: React.FC = () => {
             </span>
             {/* Heading Statement */}
             <h2 className="font-urw font-extrabold text-[4.2rem] sm:text-[5.5rem] lg:text-[6.5rem] text-white uppercase tracking-wider leading-tight mb-12">
-              CREATING PROJECTS THAT COMMAND ATTENTION
+              Experiences Built to Engage. Engineered to Perform.
             </h2>
 
             {/* Description */}
             <p className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[70rem] mb-16" style={{ fontSize: '2.0rem' }}>
-              Our Dubai joinery workshop and experiential tech engineering teams stand ready to bring your brand pavilion, bespoke boutique window, or event stage setup to absolute life.
+              Backed by our state-of-the-art production facility, skilled fabrication teams, and experiential engineering expertise, we deliver exceptional exhibition stands, branded environments, and immersive experiences with precision and confidence.
             </p>
 
             {/* Inquire Button */}
