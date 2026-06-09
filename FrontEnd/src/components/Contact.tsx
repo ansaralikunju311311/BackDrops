@@ -1359,9 +1359,10 @@ const Contact: React.FC = () => {
                             key={type}
                             type="button"
                             onClick={() => toggleProjectType(type)}
-                            className={`flex items-center gap-3 px-4 py-3 rounded-lg border text-[1.6rem] font-circe text-left transition-all duration-200 cursor-pointer ${
+                            className={`flex items-center gap-3 px-4 py-3 rounded-lg border font-circe text-left transition-all duration-200 cursor-pointer ${
                               selected ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'
                             }`}
+                            style={{ fontSize: '1.7rem' }}
                           >
                             <span className={`w-5 h-5 rounded flex items-center justify-center border shrink-0 transition-all duration-200 ${
                               selected ? 'border-brand-gold bg-brand-gold' : 'border-white/25 bg-transparent'
@@ -1445,9 +1446,10 @@ const Contact: React.FC = () => {
                             key={opt}
                             type="button"
                             onClick={() => toggleScope(opt)}
-                            className={`flex items-center gap-3 px-5 py-3 rounded-lg border text-[1.6rem] font-circe transition-all duration-200 cursor-pointer ${
+                            className={`flex items-center gap-3 px-5 py-3 rounded-lg border font-circe transition-all duration-200 cursor-pointer ${
                               selected ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'
                             }`}
+                            style={{ fontSize: '1.7rem' }}
                           >
                             <span className={`w-5 h-5 rounded flex items-center justify-center border shrink-0 transition-all duration-200 ${
                               selected ? 'border-brand-gold bg-brand-gold' : 'border-white/25 bg-transparent'
@@ -1501,7 +1503,8 @@ const Contact: React.FC = () => {
                             key={opt}
                             type="button"
                             onClick={() => handleBriefChange('bBudget', opt)}
-                            className={`px-4 py-3 rounded-lg border text-[1.5rem] font-circe text-left transition-all duration-200 cursor-pointer ${briefData.bBudget === opt ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'}`}
+                            className={`px-4 py-3 rounded-lg border font-circe text-left transition-all duration-200 cursor-pointer ${briefData.bBudget === opt ? 'border-brand-gold bg-brand-gold/10 text-white' : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'}`}
+                            style={{ fontSize: '1.7rem' }}
                           >
                             {briefData.bBudget === opt && <span className="text-brand-gold mr-1">✓</span>}{opt}
                           </button>
@@ -1541,19 +1544,76 @@ const Contact: React.FC = () => {
                   </div>
 
                   {uploadedFiles.length > 0 && (
-                    <div className="mt-4 space-y-2">
-                      {uploadedFiles.map((f, i) => (
-                        <div key={i} className="flex items-center justify-between bg-white/[0.04] border border-white/8 rounded-lg px-5 py-3">
-                          <span className="font-circe text-white/70 text-[1.4rem] truncate">{f.name}</span>
-                          <button
-                            type="button"
-                            onClick={() => setUploadedFiles(prev => prev.filter((_, idx) => idx !== i))}
-                            className="text-white/30 hover:text-red-400 ml-4 shrink-0 cursor-pointer transition-colors"
+                    <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                      {uploadedFiles.map((f, i) => {
+                        const isImage = f.type.startsWith('image/')
+                        const previewUrl = isImage ? URL.createObjectURL(f) : null
+                        const ext = f.name.split('.').pop()?.toUpperCase() ?? 'FILE'
+                        const sizeKb = (f.size / 1024).toFixed(1)
+                        const extColor: Record<string, string> = {
+                          PDF: '#ef4444', DOC: '#3b82f6', DOCX: '#3b82f6',
+                          AI: '#f97316', EPS: '#a855f7', PNG: '#10b981', JPG: '#10b981', JPEG: '#10b981'
+                        }
+                        const badgeColor = extColor[ext] ?? '#6b7280'
+                        return (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.2 }}
+                            className="relative group rounded-xl border border-white/10 overflow-hidden bg-white/[0.04]"
                           >
-                            <X className="w-4 h-4" />
-                          </button>
-                        </div>
-                      ))}
+                            {/* Preview / Icon area */}
+                            <div className="w-full aspect-square flex items-center justify-center overflow-hidden bg-white/[0.03]">
+                              {isImage && previewUrl ? (
+                                <img
+                                  src={previewUrl}
+                                  alt={f.name}
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                  onLoad={() => URL.revokeObjectURL(previewUrl)}
+                                />
+                              ) : (
+                                <div className="flex flex-col items-center gap-2">
+                                  <span
+                                    className="px-3 py-1 rounded font-euclid font-bold text-white tracking-wider"
+                                    style={{ backgroundColor: badgeColor, fontSize: '1.3rem' }}
+                                  >
+                                    {ext}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* File info */}
+                            <div className="px-3 py-2 border-t border-white/8">
+                              <p className="font-circe text-white/70 truncate" style={{ fontSize: '1.3rem' }}>{f.name}</p>
+                              <p className="font-circe text-white/30" style={{ fontSize: '1.1rem' }}>{sizeKb} KB</p>
+                            </div>
+
+                            {/* Remove button */}
+                            <button
+                              type="button"
+                              onClick={() => setUploadedFiles(prev => prev.filter((_, idx) => idx !== i))}
+                              className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/60 border border-white/15 flex items-center justify-center text-white/50 hover:text-red-400 hover:border-red-400/50 hover:bg-black/80 transition-all duration-200 cursor-pointer opacity-0 group-hover:opacity-100"
+                              aria-label="Remove file"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </motion.div>
+                        )
+                      })}
+
+                      {/* Add more files tile */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        onClick={() => fileInputRef.current?.click()}
+                        className="rounded-xl border-2 border-dashed border-white/15 hover:border-brand-gold/50 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:bg-brand-gold/[0.03] aspect-square"
+                      >
+                        <Upload className="w-7 h-7 text-white/25" />
+                        <span className="font-circe text-white/30" style={{ fontSize: '1.3rem' }}>Add more</span>
+                      </motion.div>
                     </div>
                   )}
                 </div>
