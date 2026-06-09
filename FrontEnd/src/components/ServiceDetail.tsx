@@ -32,6 +32,12 @@ const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   </svg>
 )
 
+const FacebookIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+)
+
 interface RelatedCard {
   idx: number
   title: string
@@ -437,6 +443,40 @@ const ServiceDetail: React.FC = () => {
               <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-brand-text-muted">
                 {service.p3}
               </p>
+              
+              {/* Special Social Links for Turnkey Architectural Projects (id = 9) */}
+              {activeIdx === 9 && (
+                <div className="mt-6 border-t border-brand-white/10 pt-6">
+                  <span className="font-urw font-bold text-[2.2rem] text-brand-white uppercase tracking-wider block mb-6">
+                    Connect With Us
+                  </span>
+                  <div className="flex gap-6">
+                    <a 
+                      href="https://www.instagram.com/creo_designs?igsh=MTdneWcwbjA2ZGMzbg==" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-brand-text-muted hover:text-brand-gold transition-colors duration-300 group"
+                    >
+                      <div className="w-14 h-14 rounded-full border border-brand-white/10 group-hover:border-brand-gold/60 flex items-center justify-center bg-brand-white/5 transition-all duration-300">
+                        <InstagramIcon className="w-6 h-6" />
+                      </div>
+                      <span className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase">Instagram</span>
+                    </a>
+                    
+                    <a 
+                      href="https://www.facebook.com/share/15sF5vchXnp/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-brand-text-muted hover:text-brand-gold transition-colors duration-300 group"
+                    >
+                      <div className="w-14 h-14 rounded-full border border-brand-white/10 group-hover:border-brand-gold/60 flex items-center justify-center bg-brand-white/5 transition-all duration-300">
+                        <FacebookIcon className="w-6 h-6" />
+                      </div>
+                      <span className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase">Facebook</span>
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right Column: Other Related Services Card Sidebar */}

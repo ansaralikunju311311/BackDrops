@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ArrowUpRight } from 'lucide-react'
 import BexLogo from './BexLogo'
 import WhyChooseBexInfographic from './WhyChooseBexInfographic'
 
@@ -114,7 +115,7 @@ const Footer: React.FC = () => {
           <div>
             <Link
               to="/contacts"
-              className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase px-12 py-5 bg-brand-gold text-brand-dark hover:bg-brand-white hover:text-brand-dark transition-all duration-300 rounded-sm flex items-center gap-3 shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)] group"
+              className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase px-12 py-5 bg-brand-gold text-brand-light hover:bg-brand-white hover:text-brand-dark transition-all duration-300 rounded-sm flex items-center gap-3 shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)] group"
             >
               Send Request <span className="font-light text-xl group-hover:translate-x-1 transition-transform duration-300">+</span>
             </Link>
@@ -137,6 +138,34 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
+          {/* Contact UAE */}
+          <div>
+            <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
+              Contact UAE
+            </span>
+            <a
+              href="tel:00971552291691"
+              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+            >
+              +971 55 2291691
+            </a>
+            <a
+              href="tel:+971507613437"
+              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+            >
+              +971 50 7613437
+            </a>
+            <a
+              href="mailto:info@bexdxb.com"
+              className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+            >
+              info@bexdxb.com
+            </a>
+          </div>
+
           {/* India Address */}
           <div>
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
@@ -148,27 +177,15 @@ const Footer: React.FC = () => {
               Thrissur Dt.<br />
               Kerala- INDIA
             </p>
-          </div>
-
-          {/* Contact UAE */}
-          <div>
-            <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
-              Contact UAE
-            </span>
-            <a
-              href="tel:00971552291691"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+            <Link 
+              to="/services/detail?id=9"
+              className="mt-6 flex items-center gap-3 text-brand-gold hover:text-white transition-colors duration-300 group/link inline-flex"
             >
-              00971 55 2291691
-            </a>
-            <a
-              href="mailto:info@bexdxb.com"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
-            >
-              info@bexdxb.com
-            </a>
+              <span className="font-euclid font-bold uppercase tracking-wider text-[1.3rem]">Explore CREO</span>
+              <div className="w-8 h-8 rounded-full bg-[#E51D1D] flex items-center justify-center group-hover/link:bg-[#c81717] transition-colors duration-300">
+                <ArrowUpRight className="w-4 h-4 text-white group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
+              </div>
+            </Link>
           </div>
 
           {/* Contact India */}
@@ -177,18 +194,18 @@ const Footer: React.FC = () => {
               Contact India
             </span>
             <a
-              href="tel:00919188866924"
+              href="tel:+919188866924"
               className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
-              0091 9188 866924
+              +91 9188 866924
             </a>
             <a
-              href="tel:00919605218618"
+              href="tel:+919605218618"
               className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
-              0091 9605 218618
+              +91 9605 218618
             </a>
           </div>
 

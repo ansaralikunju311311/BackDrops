@@ -205,7 +205,7 @@ const Services: React.FC = () => {
   }
 
   return (
-    <section className="relative min-h-screen pt-16 pb-32 bg-brand-bg overflow-hidden flex flex-col justify-start">
+    <section className="relative min-h-screen pt-40 pb-32 bg-brand-bg overflow-hidden flex flex-col justify-start">
       {/* 1. Geometric overlapping prism/diagonal panels in background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         {/* Ambient background grid and glow */}

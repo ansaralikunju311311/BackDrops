@@ -49,14 +49,14 @@ const ExecutiveProfile: React.FC = () => {
           >
             {/* Title / Header */}
             <div>
-              <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase block mb-2">
+              <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-2">
                 Executive Profile
               </span>
-              <h2 className="font-urw font-extrabold text-[4.5rem] md:text-[5.5rem] text-white leading-tight uppercase tracking-wide">
+              <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] text-white leading-tight uppercase tracking-wide">
                 Nebeel Aboobacker
               </h2>
-              <span className="font-circe font-light text-[1.8rem] md:text-[2.2rem] text-brand-gold tracking-wide mt-1 block">
-                Founder & Chief Executive Officer
+              <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold mt-1 block">
+                Founder & CEO
               </span>
             </div>
 

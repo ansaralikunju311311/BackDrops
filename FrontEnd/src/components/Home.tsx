@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react'
+import suImage from '../assets/su.png'
 
 // import gal1 from '../assets/service/serv1.jpeg'
 // import gal2 from '../assets/service/serv2.jpeg'
@@ -819,8 +820,8 @@ const Home: React.FC = () => {
             Bring your vision to life – start your project today!
           </h2>
 
-          {/* Timeline Nodes */}
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-start justify-between gap-8 lg:gap-0 relative max-w-[140rem] mx-auto overflow-x-auto scrollbar-hide pb-6 lg:pb-0 px-0">
+          {/* Timeline Nodes Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-16 relative max-w-[130rem] mx-auto px-4">
             {[
               { num: '01', title: 'Client Briefing & Requirement Gathering' },
               { num: '02', title: 'Concept Development & Strategy' },
@@ -834,10 +835,8 @@ const Home: React.FC = () => {
               { num: '10', title: 'Event On-Site Support' },
               { num: '11', title: 'Dismantling & Post-Event Closure' },
               { num: '12', title: 'Post-Event Review & Reporting' }
-            ].map((step, idx, arr) => (
-              <React.Fragment key={step.num}>
-                {/* Step Node */}
-                <div className="flex flex-col items-center w-full lg:w-auto lg:flex-1 lg:min-w-[6rem] flex-shrink-0 relative px-1">
+            ].map((step) => (
+                <div key={step.num} className="flex flex-col items-center w-full relative px-2">
                   <motion.div
                     whileHover={{ scale: 1.08 }}
                     className="w-20 h-20 rounded-full border border-[#E51D1D]/30 bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.4rem] z-10 transition-all duration-300 hover:border-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
@@ -849,19 +848,6 @@ const Home: React.FC = () => {
                     {step.title}
                   </p>
                 </div>
-
-                {/* Connecting dots (Desktop) / Line (Mobile) */}
-                {idx < arr.length - 1 && (
-                  <React.Fragment>
-                    {/* Desktop Dots */}
-                    <div className="hidden lg:flex items-center text-white/10 text-xl font-bold tracking-[0.1em] h-20 flex-shrink-0 z-0">
-                      ..
-                    </div>
-                    {/* Mobile Line */}
-                    <div className="lg:hidden w-[1px] h-10 border-l border-dashed border-white/20 my-4" />
-                  </React.Fragment>
-                )}
-              </React.Fragment>
             ))}
           </div>
 
@@ -938,6 +924,59 @@ const Home: React.FC = () => {
             >
               <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '2.3rem' }}>
                 At BEX, we combine design precision with expert installation to bring exhibition stands to life with accuracy, efficiency, and quality. From concept development to on-site execution, our teams ensure every booth is built to exact specifications, integrating branding, lighting, and multimedia elements seamlessly. The result is a powerful, immersive exhibition environment that attracts attention, engages audiences, and delivers lasting brand impact.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 1.95: Sustainability Section */}
+      <section className="py-36 bg-[#0d0d0f] relative z-10 border-t border-brand-white/5 overflow-hidden">
+        <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column: Image */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-brand-dark-accent/10 shadow-[0_20px_50px_rgba(0,0,0,0.4)] group cursor-pointer"
+              style={{
+                transition: 'transform 0.1s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+              }}
+            >
+              <div className="card-glow absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-20" />
+              <img 
+                src={suImage} 
+                alt="Sustainability"
+                className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] z-10"
+              />
+            </motion.div>
+
+            {/* Right Column: Text */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col gap-6"
+            >
+              <h2 className="font-urw font-extrabold text-[3.2rem] sm:text-[4rem] lg:text-[4.5rem] text-white uppercase tracking-wider leading-tight mb-4">
+                SUSTAINABILITY AS A STANDARD, NOT AN AFTERTHOUGHT
+              </h2>
+              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+                At BEX, sustainability is not a separate initiative, it is integrated into the way we design, manufacture, manage, and deliver projects. We believe that exceptional brand experiences should create lasting impact for audiences, not unnecessary impact on the environment.
+              </p>
+              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+                What differentiates BEX is our commitment to responsible execution. Through intelligent material selection, reusable exhibition systems, modular construction techniques, efficient production planning, optimized logistics, and asset lifecycle management, we help clients reduce waste, maximize resource utilization, and improve long-term project value.
+              </p>
+              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+                Our in-house infrastructure and manufacturing capabilities enable greater control over materials, production processes, and quality standards, allowing us to deliver sustainable solutions without compromising creativity, functionality, or visual impact. By extending the life of exhibition assets, minimizing material wastage, and adopting efficient operational practices, we support brands and agencies seeking more responsible ways to engage their audiences.
+              </p>
+              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+                The result is a smarter approach to experiential delivery—one that balances innovation, performance, cost efficiency, and environmental responsibility. For BEX, sustainability is more than a commitment; it is a competitive advantage that helps our clients build for today while preparing for tomorrow.
               </p>
             </motion.div>
           </div>

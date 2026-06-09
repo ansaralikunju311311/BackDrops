@@ -505,6 +505,13 @@ const Contact: React.FC = () => {
                     >
                       +971 55 229 1691
                     </a>
+                    <a 
+                      href="tel:+971507613437" 
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
+                    >
+                      +971 50 761 3437
+                    </a>
                   </div>
                 </div>
               </div>
@@ -512,42 +519,62 @@ const Contact: React.FC = () => {
 
             {/* India Column */}
             <div className="space-y-12">
-              <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
-                India Address
-              </h2>
+              <div className="flex items-center justify-between">
+                <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
+                  INDIA
+                </h2>
+                <button 
+                  type="button"
+                  onClick={() => window.location.href = '/services/detail?id=9'}
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#E51D1D] hover:bg-[#c81717] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_10px_20px_rgba(229,29,29,0.3)] hover:scale-110 group/arrow"
+                  title="View Turnkey Architectural Projects"
+                >
+                  <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 text-white transition-transform duration-300 group-hover/arrow:translate-x-1 group-hover/arrow:-translate-y-1" />
+                </button>
+              </div>
 
-              <div className="flex flex-col sm:flex-row gap-16 sm:gap-24">
-                {/* Left Side: Address */}
-                <div className="space-y-4">
-                  <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                    CREO Construction Experts
-                  </span>
-                  <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
-                    Arullil Arcade<br />
-                    Thrissur Dt.<br />
-                    Kerala- INDIA
-                  </p>
+              <div className="flex flex-col gap-8">
+                {/* Address Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      Address:
+                    </span>
+                    <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
+                      CREO Construction Experts<br />
+                      Arullil Arcade, Thrissur Dt.<br />
+                      Kerala- INDIA
+                    </p>
+                  </div>
                 </div>
 
-                {/* Right Side: Contact */}
-                <div className="space-y-4">
-                  <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
-                    Contact
-                  </span>
-                  <a 
-                    href="tel:00919188866924" 
-                    className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-                    style={{ fontSize: '2.2rem' }}
-                  >
-                    0091 9188 866924
-                  </a>
-                  <a 
-                    href="tel:00919605218618" 
-                    className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
-                    style={{ fontSize: '2.2rem' }}
-                  >
-                    0091 9605 218618
-                  </a>
+                {/* Telephone Row */}
+                <div className="flex gap-6 items-start group">
+                  <div className="w-12 h-12 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-gold group-hover:border-brand-gold/50 group-hover:bg-brand-white/2 transition-all duration-300 shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
+                      Telephone:
+                    </span>
+                    <a 
+                      href="tel:+919188866924" 
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
+                    >
+                      +91 9188 866924
+                    </a>
+                    <a 
+                      href="tel:+919605218618" 
+                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      style={{ fontSize: '2.5rem' }}
+                    >
+                      +91 9605 218618
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -799,21 +826,22 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-14 py-5 bg-brand-gold text-brand-white font-euclid font-bold text-[1.6rem] tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group"
+                  className="px-14 py-5 bg-brand-gold text-brand-white font-euclid font-bold  tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group"
+                   style={{fontSize:'1.7rem'}}
                 >
                   {isSubmitting ? 'Sending...' : 'Send'}{' '}
-                  <span className="text-[2rem] font-light transition-transform duration-300 group-hover:translate-x-1">+</span>
+                  <span className="text-[2rem] font-bold transition-transform duration-300 group-hover:translate-x-1">+</span>
                 </button>
 
                 {/* Fill out the brief Button */}
                 <button
                   type="button"
                   onClick={() => setShowBrief(true)}
-                  className="px-12 py-5 border border-brand-white/15 text-brand-white hover:border-brand-gold hover:text-brand-gold font-euclid font-bold text-[1.7rem] tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer"
+                  className=" bg-brand-gold px-12 py-5 border border-brand-white/15 text-brand-white hover:border-brand-gold hover:text-brand-gold font-euclid font-bold text-[1.7rem] tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer"
                   style={{ fontSize: '1.7rem' }}
                 >
                   Fill out the brief{' '}
-                  <ArrowUpRight className="w-5 h-5" />
+                  <ArrowUpRight className="w-7 h-7" />
                 </button>
               </div>
             </form>
@@ -867,10 +895,15 @@ const Contact: React.FC = () => {
                 <div className="w-[45%] h-[45%] bg-brand-gold shadow-[0_0_8px_rgba(212,163,89,0.5)]" />
               </div>
 
-              {/* Bottom-Right Stepped Box (Nested Solid Accent Square) */}
-              <div className="absolute bottom-[2%] right-[2%] w-[8%] h-[8%] bg-brand-bg/95 border border-brand-white/10 flex items-center justify-center pointer-events-none z-20">
-                <div className="w-[45%] h-[45%] bg-brand-gold shadow-[0_0_8px_rgba(212,163,89,0.5)]" />
-              </div>
+              {/* Bottom-Right Chat Button (Replaces Stepped Box) */}
+              <button 
+                type="button"
+                onClick={() => setShowQuickHelp(prev => !prev)}
+                className="absolute -bottom-6 -right-6 md:bottom-[2%] md:-right-[8%] w-20 h-20 md:w-28 md:h-28 bg-[#9E5330] rounded-2xl flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-40 hover:scale-110 hover:bg-[#b05d36] transition-all duration-300 cursor-pointer border-4 border-[#16171d] group"
+                aria-label="Open Quick Connect"
+              >
+                <MessageSquare className="w-10 h-10 md:w-14 md:h-14 text-white transition-colors duration-300" />
+              </button>
 
               {/* Bottom-Left Stepped Box (Nested Larger Solid Accent Square) */}
               <div className="absolute bottom-[2%] left-[2%] w-[8%] h-[8%] bg-brand-bg/95 border border-brand-white/10 flex items-center justify-center pointer-events-none z-20">
@@ -938,42 +971,7 @@ const Contact: React.FC = () => {
                 </div>
               ))}
 
-              {/* Floating Social Bar (Right edge vertical align) */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-brand-white py-6 px-3 flex flex-col gap-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 transition-all duration-300 hover:scale-105 border border-black/5">
-                <a 
-                  href="https://www.youtube.com/@BackdropsDXB" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-brand-dark hover:text-brand-gold transition-colors duration-300"
-                  aria-label="YouTube"
-                >
-                  <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
-                <a 
-                  href="https://www.instagram.com/_backdrops.ae?igsh=dGlwbWpqazFybXd3" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-brand-dark hover:text-brand-gold transition-colors duration-300"
-                  aria-label="Instagram"
-                >
-                  <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                  </svg>
-                </a>
-                <a 
-                  href="https://wa.me/971552291691" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-brand-dark hover:text-brand-gold transition-colors duration-300"
-                  aria-label="Chat on WhatsApp"
-                >
-                  <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.739-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.906-6.99C16.255 1.876 13.779 1.042 11.14 1.04 5.707 1.04 1.282 5.461 1.277 10.899c-.001 1.816.486 3.594 1.417 5.158l-.979 3.57 3.655-.959c1.506.82 3.1 1.249 4.677 1.25zM17.5 13.9c-.3-.15-1.785-.88-2.087-.99-.3-.105-.52-.15-.74.15-.22.3-.85.99-1.04 1.2-.19.21-.38.24-.68.09-.3-.15-1.265-.465-2.41-1.485-.89-.79-1.49-1.77-1.665-2.07-.175-.3-.02-.46.13-.61.135-.135.3-.35.45-.52.15-.17.2-.28.3-.47.1-.19.05-.36-.02-.51-.07-.15-.74-1.785-1.015-2.445-.27-.65-.545-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73s1.18 3.17 1.34 3.39c.17.22 2.32 3.54 5.62 4.97.785.34 1.395.54 1.87.69.79.25 1.51.21 2.08.13.635-.09 1.785-.73 2.035-1.43.25-.7.25-1.3.175-1.43-.075-.1-.275-.15-.575-.3z"/>
-                  </svg>
-                </a>
-              </div>
+
 
               {/* Quick Connect Glassmorphic Overlay */}
               <AnimatePresence>
@@ -1111,24 +1109,7 @@ const Contact: React.FC = () => {
                 )}
               </AnimatePresence>
 
-              {/* Circular Action Toggle Button (Bottom-Right corner overlay) */}
-              <motion.button 
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setShowQuickHelp(prev => !prev)
-                }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="absolute -bottom-7 -right-7 w-16 h-16 bg-brand-gold hover:bg-brand-gold-light text-brand-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-40 group border-2 border-brand-bg"
-                aria-label={showQuickHelp ? "Close panel" : "Quick Connect options"}
-              >
-                {showQuickHelp ? (
-                  <X className="w-7 h-7" />
-                ) : (
-                  <MessageSquare className="w-7 h-7 transition-transform duration-300 group-hover:rotate-15" />
-                )}
-              </motion.button>
+
             </motion.div>
           </motion.div>
 

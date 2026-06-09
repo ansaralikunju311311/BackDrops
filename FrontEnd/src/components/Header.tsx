@@ -36,7 +36,8 @@ const Header: React.FC = () => {
     "Furniture Rentals",
     "Storage Facilities",
     "Turnkey Architectural Projects",
-    "Shell Scheme Upgradation"
+    "Shell Scheme Upgradation",
+    "Corporate Branding Materials"
   ]
 
   return (
