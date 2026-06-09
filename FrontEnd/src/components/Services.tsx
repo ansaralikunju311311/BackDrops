@@ -5,15 +5,15 @@ import { ChevronLeft, ChevronRight, Phone } from 'lucide-react'
 
 import serv1 from '../assets/service/serv1.jpeg'
 import serv2 from '../assets/service/serv2.jpeg'
-import serv3 from '../assets/service/serv3.jpeg'
-import serv4 from '../assets/service/serv4.jpeg'
-import serv5 from '../assets/service/serv5.jpeg'
+import serv3 from '../assets/service/serv3.png'
+import serv5 from '../assets/service/serv5.png'
 import serv6 from '../assets/service/serv6.jpeg'
-import serv7 from '../assets/service/serv7.jpeg'
+import serv7 from '../assets/service/serv7.png'
 import serv8 from '../assets/service/serv8.jpeg'
 import serv9 from '../assets/service/serv9.jpeg'
 import serv10 from '../assets/service/serv10.jpeg'
 import serv11 from '../assets/service/serv11.jpeg'
+import serv12 from '../assets/service/serv12.png'
 
 // Direct SVG Icons for matching brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
@@ -42,18 +42,13 @@ const SERVICES_DATA: ServiceData[] = [
   },
   {
     title: "Custom Fabrication & Joinery",
-    description: "Our specialized in-house joinery workshop manufactures bespoke wooden structures, display counters, and interior styling elements. We combine traditional craftsmanship with modern technology to deliver premium finishes.",
+    description: "Tailor-made joinery and custom-built solutions manufactured with precision and attention to detail. We transform creative concepts into functional, high-quality environments that elevate every space.",
     image: serv2
   },
   {
     title: "Event & Activation Builds",
     description: "We build immersive environments for product launches, brand activations, and corporate events. Our interactive installations engage visitors and create memorable, photogenic touchpoints for your audience.",
     image: serv3
-  },
-  {
-    title: "On-site Installation & Project Management",
-    description: "Our experienced project managers oversee all logistics, certifications, and local authority permits. We handle transportation and round-the-clock assembly, ensuring a stress-free launch for your event.",
-    image: serv4
   },
   {
     title: "Mall & Retail Installations",
@@ -89,6 +84,11 @@ const SERVICES_DATA: ServiceData[] = [
     title: "Turnkey Architectural Projects",
     description: "Through our sister company in India, CREO Construction Experts, BEX extends its capabilities to deliver complete turnkey architectural and construction solutions — from concept development and design coordination to construction, fit-out, and final handover.",
     image: serv11
+  },
+  {
+    title: "Shell Scheme Upgradation",
+    description: "Transform standard exhibition shell schemes into impactful branded environments that attract attention and enhance visitor engagement. BEX upgrades basic exhibition spaces with custom graphics, premium finishes, integrated lighting, display solutions, product showcases, digital elements, and functional layouts tailored to your brand objectives.",
+    image: serv12
   }
 ]
 
@@ -284,7 +284,11 @@ const Services: React.FC = () => {
                     exit="exit"
                     src={SERVICES_DATA[activeIdx].image}
                     alt={SERVICES_DATA[activeIdx].title}
-                    className="w-full h-full object-cover select-none group-hover/img:scale-105 transition-transform duration-700"
+                    className={`w-full h-full select-none transition-transform duration-700 ${
+                      activeIdx === 9
+                        ? 'object-contain group-hover/img:scale-100'
+                        : 'object-cover group-hover/img:scale-105'
+                    }`}
                   />
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
@@ -402,7 +406,11 @@ const Services: React.FC = () => {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700 select-none"
+                    className={`w-full h-full filter brightness-75 group-hover:brightness-100 transition-all duration-700 select-none ${
+                      idx === 9
+                        ? 'object-contain group-hover:scale-100'
+                        : 'object-cover group-hover:scale-110'
+                    }`}
                   />
                   {idx === activeIdx && (
                     <div className="absolute inset-0 border-2 border-brand-gold pointer-events-none" />

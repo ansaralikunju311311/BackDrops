@@ -6,17 +6,17 @@ import { useQuery } from '@tanstack/react-query'
 
 import serv1 from '../assets/service/serv1.jpeg'
 import serv2 from '../assets/service/serv2.jpeg'
-import serv3 from '../assets/service/serv3.jpeg'
-import serv4 from '../assets/service/serv4.jpeg'
-import serv5 from '../assets/service/serv5.jpeg'
+import serv3 from '../assets/service/serv3.png'
+import serv5 from '../assets/service/serv5.png'
 import serv6 from '../assets/service/serv6.jpeg'
-import serv7 from '../assets/service/serv7.jpeg'
+import serv7 from '../assets/service/serv7.png'
 import serv8 from '../assets/service/serv8.jpeg'
 import serv9 from '../assets/service/serv9.jpeg'
 import serv10 from '../assets/service/serv10.jpeg'
 import serv11 from '../assets/service/serv11.jpeg'
+import serv12 from '../assets/service/serv12.png'
 
-export const serviceImages = [serv1, serv2, serv3, serv4, serv5, serv6, serv7, serv8, serv9, serv10, serv11]
+export const serviceImages = [serv1, serv2, serv3, serv5, serv6, serv7, serv8, serv9, serv10, serv11, serv12]
 
 // Direct SVG Icons matching the brand styles
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
@@ -68,9 +68,9 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   {
     title: "Exhibition Stand Production",
     image: serv1,
-    p1: "For most companies, participation in the exhibition is a great way to demonstrate their products or services to interested visitors, find buyers or partners, and declare themselves.",
-    p2: "When participating in exhibitions abroad, customers prefer to entrust all organizational issues related to the exhibition to us. We operate fully equipped joinery and electrical facilities to execute custom stand construction of any complexity.",
-    p3: "We help with the selection and rental of exhibition space with the subsequent exclusive construction of exhibition stands according to the agreed design, matching all corporate guidelines.",
+    p1: "Exhibitions provide powerful opportunities for brands to showcase their products and services, engage decision-makers, strengthen industry relationships, and create meaningful business growth. At BEX, we ensure that every exhibition presence is strategically designed and flawlessly executed to maximize visibility, engagement, and return on investment.",
+    p2: "As a trusted execution partner, we manage the entire exhibition journey — from venue coordination and space acquisition support to the design, fabrication, installation, and dismantling of custom exhibition environments.",
+    p3: "Supported by our advanced manufacturing facility, skilled production teams, and comprehensive in-house capabilities, we deliver bespoke exhibition stands of any scale or complexity. Every stand is meticulously crafted to reflect your brand identity, align with corporate guidelines, and create a distinctive presence that captures attention and drives results.",
     related: [
       { idx: 1, title: "Custom Fabrication & Joinery", image: "/assets/workspace_meeting.png", snippet: "Order custom fabrication and wooden structures for your unique promotional needs." },
       { idx: 2, title: "Event & Activation Builds", image: "/assets/hero-bg.png", snippet: "Fabricating stages, photo zones, and brand activation booths for events." }
@@ -79,11 +79,11 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
   {
     title: "Custom Fabrication & Joinery",
     image: serv2,
-    p1: "Our custom joinery division manufactures premium bespoke wooden structures, display furniture, counter desks, and wall paneling that module stands cannot replicate.",
-    p2: "Using advanced machinery alongside meticulous craftsmanship, we build details that enrich spatial aesthetics and reflect absolute class. We select top-tier raw materials to guarantee premium visual and structural outcomes.",
-    p3: "From design drawings to final gloss coat, our carpentry workshops ensure a seamless and robust finish built to survive high-footfall event venues.",
+    p1: "Our custom fabrication and joinery division specializes in the creation of bespoke architectural elements, premium display furniture, reception counters, feature walls, and branded environments tailored to the unique requirements of each project. Designed and manufactured to exact specifications, our solutions deliver a level of craftsmanship, flexibility, and visual sophistication that standard modular systems cannot achieve.",
+    p2: "Operating from a modern production facility equipped with advanced manufacturing technology, we combine precision engineering with expert craftsmanship to produce exceptional results. From material selection and technical detailing to fabrication and final finishing, every component is meticulously crafted to achieve superior quality, durability, and aesthetic excellence.",
+    p3: "Whether for exhibitions, interiors, retail environments, or experiential spaces, our bespoke joinery solutions are built to perform, impress, and endure.",
     related: [
-      { idx: 6, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end turnkey interior fit-outs for offices and luxury residences." },
+      { idx: 5, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end turnkey interior fit-outs for offices and luxury residences." },
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." }
     ]
   },
@@ -94,19 +94,8 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p2: "We construct durable structures that align with structural certifications and safety norms, designed specifically for rapid assembly and dismantling on site.",
     p3: "Our team handles full structural engineering, audio-visual layouts, dynamic lighting, and graphic wraps to provide an immersive brand experience.",
     related: [
-      { idx: 5, title: "Experiential Booth Engineering", image: "/assets/hero-bg.png", snippet: "Integrating digital tech, LED screens, and sensors with physical structures." },
-      { idx: 7, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "In-house printing, dimensional logos, and lit signs." }
-    ]
-  },
-  {
-    title: "On-site Installation & Project Management",
-    image: serv4,
-    p1: "Ensuring exhibition stands and events are delivered on time requires strict project scheduling, safety calculations, and round-the-clock shift management.",
-    p2: "Our managers handle all authority submissions, hall permits, structural drawings, electricity request layouts, and safety compliance certificates.",
-    p3: "We coordinate transport, safe unloading, structural hoisting, clean up, and visual styling to deliver a complete turnkey handover for stress-free launches.",
-    related: [
-      { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Custom stand fabrication and graphics application." },
-      { idx: 4, title: "Mall & Retail Installations", image: "/assets/showroom_retail_design.png", snippet: "Window displays and promotional kiosks in shopping centers." }
+      { idx: 4, title: "Experiential Booth Engineering", image: "/assets/hero-bg.png", snippet: "Integrating digital tech, LED screens, and sensors with physical structures." },
+      { idx: 6, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "In-house printing, dimensional logos, and lit signs." }
     ]
   },
   {
@@ -116,8 +105,8 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p2: "We construct stands strictly using non-combustible materials, fire-rated electrical wiring, and stable structures that comply with premium shopping mall rules.",
     p3: "Our designs target immediate customer attraction, maximizing product placement utility and integrating structural premium aesthetic highlights.",
     related: [
-      { idx: 6, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end interior commercial and residential fit-outs." },
-      { idx: 7, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Illuminated signs and graphic prints." }
+      { idx: 5, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end interior commercial and residential fit-outs." },
+      { idx: 6, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Illuminated signs and graphic prints." }
     ]
   },
   {
@@ -128,7 +117,7 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p3: "We coordinate with software designers to deliver immersive customer journeys, including sensory corridors, touch screens, and VR experiences.",
     related: [
       { idx: 2, title: "Event & Activation Builds", image: "/assets/hero-bg.png", snippet: "Stages and immersive installations for launches." },
-      { idx: 7, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Large scale backlighting and branding sign designs." }
+      { idx: 6, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Large scale backlighting and branding sign designs." }
     ]
   },
   {
@@ -139,7 +128,7 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p3: "We balance layout ergonomics with high-end finishes, creating workspaces that increase efficiency and private residences that project luxury and comfort.",
     related: [
       { idx: 1, title: "Custom Fabrication & Joinery", image: "/assets/workspace_meeting.png", snippet: "Bespoke woodwork and custom panel designs." },
-      { idx: 4, title: "Mall & Retail Installations", image: "/assets/showroom_retail_design.png", snippet: "Malls window structures and promotional kiosk fabrication." }
+      { idx: 3, title: "Mall & Retail Installations", image: "/assets/showroom_retail_design.png", snippet: "Malls window structures and promotional kiosk fabrication." }
     ]
   },
   {
@@ -149,7 +138,7 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p2: "We manufacture backlit fabric frames, dimensional 3D acrylic letters, stainless steel signage, and custom lightboxes with strict color calibration and quality controls.",
     p3: "Our vinyl and graphic wrap installers guarantee bubble-free, seamless finishes on complex structures, and hidden electrical wire setups.",
     related: [
-      { idx: 5, title: "Experiential Booth Engineering", image: "/assets/hero-bg.png", snippet: "Booths incorporating smart LED displays and digital backdrops." },
+      { idx: 4, title: "Experiential Booth Engineering", image: "/assets/hero-bg.png", snippet: "Booths incorporating smart LED displays and digital backdrops." },
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Turnkey exhibition stand building and graphics panels installation." }
     ]
   },
@@ -172,7 +161,7 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p3: "We offer end-to-end multi-event asset management, helping you store, transport, refurbish, and reinstall your stands for subsequent trade shows, saving cost and reducing waste.",
     related: [
       { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Exhibition stand construction from design to build-up." },
-      { idx: 3, title: "On-site Installation & Project Management", image: "/assets/journey.png", snippet: "Coordinating transport, permits, assembly, and dismantling." }
+      { idx: 9, title: "Turnkey Architectural Projects", image: "/assets/journey.png", snippet: "Coordinating transport, permits, assembly, and dismantling." }
     ]
   },
   {
@@ -182,8 +171,19 @@ export const DETAIL_SERVICES_DATA: ServiceDetailData[] = [
     p2: "From concept development and design coordination to construction, fit-out, and final handover, we provide seamless project delivery tailored to modern business and commercial requirements.",
     p3: "Inspired by industry best practices in design-build and turnkey construction, our approach emphasizes quality, efficiency, innovation, and accountability throughout every stage of the project lifecycle.",
     related: [
-      { idx: 6, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end interior fit-outs for offices, showrooms and luxury residences." },
-      { idx: 3, title: "On-site Installation & Project Management", image: "/assets/journey.png", snippet: "Full project management, permits, assembly, and handover." }
+      { idx: 5, title: "Office and Villa Interiors", image: "/assets/showroom_retail_design.png", snippet: "High-end interior fit-outs for offices, showrooms and luxury residences." },
+      { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Full project management, permits, assembly, and handover." }
+    ]
+  },
+  {
+    title: "Shell Scheme Upgradation",
+    image: serv12,
+    p1: "Transform standard exhibition shell schemes into impactful branded environments that attract attention and enhance visitor engagement.",
+    p2: "BEX upgrades basic exhibition spaces with custom graphics, premium finishes, integrated lighting, display solutions, product showcases, digital elements, and functional layouts tailored to your brand objectives.",
+    p3: "Our team manages the complete process—from design enhancement and production to installation and dismantling—ensuring your shell scheme delivers a professional, distinctive, and high-quality presence on the show floor while maximizing both visual appeal and visitor experience.",
+    related: [
+      { idx: 0, title: "Exhibition Stand Production", image: "/assets/journey.png", snippet: "Full exhibition stand fabrication and branded environment creation." },
+      { idx: 6, title: "Graphics and Signage", image: "/assets/about-banner-bg.webp", snippet: "Custom graphics, large-format prints, and signage solutions." }
     ]
   }
 ]
@@ -267,16 +267,14 @@ const ServiceDetail: React.FC = () => {
             )
           )
         )
-      case 3: // On-site Installation & Project Management
-        return dbStands
-      case 4: // Mall & Retail Installations
+      case 3: // Mall & Retail Installations
         return dbStands.filter((stand: any) => 
           ['mall', 'retail', 'shop', 'boutique'].some((kw: string) => 
             stand.location?.toLowerCase().includes(kw) || 
             stand.showName?.toLowerCase().includes(kw)
           )
         )
-      case 5: // Experiential Booth Engineering
+      case 4: // Experiential Booth Engineering
         return dbStands.filter((stand: any) => 
           stand.typeOfStands?.some((t: string) => 
             ['smart', 'double decker'].some((kw: string) => 
@@ -284,7 +282,7 @@ const ServiceDetail: React.FC = () => {
             )
           )
         )
-      case 6: // Office and Villa Interiors
+      case 5: // Office and Villa Interiors
         return dbStands.filter((stand: any) => 
           ['office', 'villa', 'showroom', 'residential', 'interior', 'fitout', 'fit-out'].some((kw: string) => 
             stand.location?.toLowerCase().includes(kw) || 
@@ -292,7 +290,9 @@ const ServiceDetail: React.FC = () => {
             stand.client?.toLowerCase().includes(kw)
           )
         )
-      case 10: // Turnkey Architectural Projects
+      case 9: // Turnkey Architectural Projects
+        return dbStands
+      case 10: // Shell Scheme Upgradation
         return dbStands
       default:
         return dbStands
@@ -341,7 +341,11 @@ const ServiceDetail: React.FC = () => {
           <img
             src={service.image}
             alt={service.title}
-            className="w-full h-full object-cover select-none"
+            className={`w-full h-full select-none ${
+              activeIdx === 9
+                ? 'object-contain'
+                : 'object-cover'
+            }`}
           />
           {/* Overlapping Border Divider Gradient */}
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white/10 to-transparent pointer-events-none hidden lg:block" />
@@ -371,7 +375,7 @@ const ServiceDetail: React.FC = () => {
             Send Request <span className="font-light ml-2 text-[2rem] inline-block hover:translate-x-0.5 transition-transform">+</span>
           </button>
 
-          {/* Bottom Right Label: BEX */}
+          {/* Bottom Right Label: BEX + CREO badge for Turnkey */}
           <div className="absolute right-12 bottom-12 text-right hidden sm:block">
             <span className="font-urw font-bold text-[2rem] tracking-[0.25em] text-brand-dark block uppercase">
               BEX —
@@ -380,6 +384,28 @@ const ServiceDetail: React.FC = () => {
               Premium Execution Partner
             </span>
           </div>
+
+          {/* CREO Sister Company Badge — only for Turnkey Architectural Projects */}
+          {/* {activeIdx === 9 && (
+            <div className="mt-10 flex items-center gap-4 p-5 rounded-sm bg-white/5 border border-brand-gold/30 backdrop-blur-sm w-max">
+              {/* CREO Square icon mark */}
+              {/* <div className="w-12 h-12 border-2 border-brand-gold flex items-center justify-center shrink-0">
+                <span className="font-urw font-black text-[1.6rem] text-brand-gold leading-none">C</span>
+              </div>
+              <div className="text-left">
+                <span className="font-urw font-extrabold text-[1.9rem] tracking-[0.12em] text-brand-dark uppercase leading-none block">
+                  CREO
+                </span>
+                <span className="font-circe font-light text-[1.15rem] tracking-[0.18em] text-brand-text-muted uppercase block mt-0.5">
+                  Construction Experts
+                </span>
+              </div>
+              <div className="w-px h-10 bg-brand-gold/30 mx-2" />
+              <span className="font-circe font-light text-[1.15rem] text-brand-text-muted italic leading-snug max-w-[16rem]">
+                Sister company · India
+              </span>
+            </div>
+          )} */ }
         </div>
       </section>
 

@@ -29,14 +29,14 @@ const Header: React.FC = () => {
     "Exhibition Stand Production",
     "Custom Fabrication & Joinery",
     "Event & Activation Builds",
-    "On-site Installation & Project Management",
     "Mall & Retail Installations",
     "Experiential Booth Engineering",
     "Office and Villa Interiors",
     "Graphics and Signage",
     "Furniture Rentals",
     "Storage Facilities",
-    "Turnkey Architectural Projects"
+    "Turnkey Architectural Projects",
+    "Shell Scheme Upgradation"
   ]
 
   return (
