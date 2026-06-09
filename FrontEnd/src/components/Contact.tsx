@@ -674,7 +674,7 @@ const Contact: React.FC = () => {
                 damping: 20,
                 mass: 0.5
               }}
-              className="relative w-full max-w-200 aspect-square z-10 select-none group"
+              className="relative w-full max-w-200 z-10 select-none group"
             >
               
               {/* Backing Outline decorative Box 1 (Offset Top-Left) */}
@@ -709,19 +709,13 @@ const Contact: React.FC = () => {
 
               {/* Main Image */}
               <div 
-                className="w-full h-full overflow-hidden border border-brand-white/5 shadow-2xl relative"
-                style={{
-                  clipPath: 'polygon(12% 0%, 88% 0%, 88% 12%, 100% 12%, 100% 88%, 88% 88%, 88% 100%, 12% 100%, 12% 88%, 0% 88%, 0% 12%, 12% 12%)'
-                }}
+                className="w-full overflow-hidden border border-brand-white/5 shadow-2xl relative rounded-2xl"
               >
                 <img 
-                  src="/assets/workspace_meeting.png" 
-                  alt="Workspace Meeting" 
-                  className="w-full h-full object-cover grayscale-20 group-hover:grayscale-0 transition-all duration-700 hover:scale-[1.03]"
+                  src="/assets/cnt.jpeg" 
+                  alt="Contact BEX" 
+                  className="w-full h-auto object-contain block transition-all duration-700 hover:scale-[1.02]"
                 />
-                
-                {/* Gradient overlay inside image bottom */}
-                <div className="absolute inset-0 bg-linear-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Pulsing Hotspots (Only visible when overlay is NOT open) */}
