@@ -351,10 +351,10 @@ const Home: React.FC = () => {
         {/* Connect With Us — Bottom Tab */}
         <button
           onClick={() => navigate('/contacts')}
-          className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 bg-brand-gold hover:bg-white text-white hover:text-brand-dark font-urw font-bold text-[1.4rem] sm:text-[1.6rem] tracking-[0.25em] uppercase px-12 py-4 rounded-sm hover:scale-105 transition-all duration-400 ease-out cursor-pointer shadow-[0_8px_28px_rgba(196,121,86,0.5)] flex items-center gap-3 whitespace-nowrap"
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 bg-brand-gold hover:bg-white text-white hover:text-brand-dark font-urw font-bold text-[2rem] sm:text-[2.4rem] tracking-[0.25em] uppercase px-16 py-5 rounded-sm hover:scale-105 transition-all duration-400 ease-out cursor-pointer shadow-[0_8px_28px_rgba(196,121,86,0.5)] flex items-center gap-4 whitespace-nowrap"
           aria-label="Connect with us - contact form"
         >
-          Connect With Us <span className="font-light text-[1.8rem]">→</span>
+          Connect With Us <span className="font-light" style={{fontSize:'2.8rem', lineHeight: '1'}}>→</span>
         </button>
 
         {/* Animated Scroll Down indicator */}

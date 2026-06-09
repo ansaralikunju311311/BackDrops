@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Globe, Handshake, Settings, Network, CheckCircle2, Zap, Shield, Crown } from 'lucide-react'
 
@@ -66,17 +66,27 @@ const WhyChooseBexInfographic: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [clickedIndex, setClickedIndex] = useState<number | null>(null)
 
+  // Auto-rotate the wheel every 4 seconds for continuous motion, unless interacting
+  useEffect(() => {
+    if (hoveredIndex !== null || clickedIndex !== null) return
+    const timer = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % features.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [hoveredIndex, clickedIndex, features.length])
+
   const wheelRotation = -90 - activeIndex * 45
 
   const handleMouseEnter = (idx: number) => {
     setHoveredIndex(idx)
-    setActiveIndex(idx)
+    // Removed setActiveIndex(idx) so the wheel doesn't rotate away from the cursor on hover
   }
   const handleMouseLeave = () => {
     setHoveredIndex(null)
   }
   const handleClick = (idx: number) => {
     setClickedIndex(prev => prev === idx ? null : idx)
+    setHoveredIndex(null) // Ensure hover is cleared when opening/closing modal
   }
 
   return (
@@ -102,24 +112,18 @@ const WhyChooseBexInfographic: React.FC = () => {
             }}
           >
             <div
-              className="absolute rounded-full flex flex-col items-center justify-center text-center"
+              className="absolute rounded-full flex flex-col items-center justify-center text-center p-4"
               style={{
                 inset: '3%',
                 backgroundColor: DARK,
                 border: '2px solid rgba(192,57,43,0.4)'
               }}
             >
-              {/* <h3
-                className="font-urw font-extrabold uppercase text-white leading-tight px-1"
-                style={{ fontSize: 'clamp(11px, 2.8vw, 26px)' }}
-              >
-                Why Choose<br />BEX
-              </h3> */}
               <p
-                className="font-circe font-bold uppercase tracking-widest mt-1"
-                style={{ fontSize: 'clamp(8px, 1.4vw, 13px)', color: WHITE, opacity: 0.6 }}
+                className="font-urw font-bold uppercase tracking-widest text-white mb-1"
+                style={{ fontSize: 'clamp(12px, 2vw, 20px)' }}
               >
-                BEX Core Values
+                BEX<br/>Core Values
               </p>
             </div>
           </div>
@@ -141,8 +145,8 @@ const WhyChooseBexInfographic: React.FC = () => {
               const counterRot = -wheelRotation
               const Icon       = feature.icon
 
-              // Scale: only zoom on hover or click
-              const scale = (isHovered || isClicked) ? 1.14 : 1
+              // Scale: slight zoom on hover or click, no massive pop-out
+              const scale = (isHovered || isClicked) ? 1.15 : 1
 
               return (
                 <motion.div
@@ -160,7 +164,7 @@ const WhyChooseBexInfographic: React.FC = () => {
                     left:            `${cx - OUTER}%`,
                     top:             `${cy - OUTER}%`,
                     backgroundColor: WHITE,
-                    zIndex:          10,
+                    zIndex:          isClicked ? 50 : isHovered ? 40 : 10,
                     boxShadow:       (isHovered || isClicked)
                       ? '0 0 2.5vw rgba(255,255,255,0.55), 0 0.8vw 2vw rgba(255,255,255,0.25)'
                       : '0 0.4vw 1.2vw rgba(255,255,255,0.12)',
@@ -202,29 +206,14 @@ const WhyChooseBexInfographic: React.FC = () => {
                           exit={{ opacity: 0, y: 4 }}
                           transition={EASE_SLOW}
                           className="font-urw font-bold uppercase text-white leading-tight"
-                          style={{ fontSize: 'clamp(8px, 1.45vw, 13px)', marginBottom: '3%' }}
+                          style={{ fontSize: 'clamp(9px, 1.6vw, 15px)', marginBottom: '3%' }}
                         >
                           {feature.title}
                         </motion.h4>
                       )}
                     </AnimatePresence>
 
-                    {/* Description — revealed only on click */}
-                    <AnimatePresence>
-                      {isClicked && (
-                        <motion.p
-                          key="desc"
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 4 }}
-                          transition={{ ...EASE_SLOW, delay: 0.1 }}
-                          className="font-circe font-light leading-snug"
-                          style={{ fontSize: 'clamp(6px, 1.1vw, 10px)', color: '#aaa' }}
-                        >
-                          {feature.description}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {/* Description is now displayed in the center circle for desktop */}
                   </div>
                 </motion.div>
               )
@@ -252,8 +241,8 @@ const WhyChooseBexInfographic: React.FC = () => {
                 transition: 'border-color 0.5s ease, box-shadow 0.5s ease'
               }}
             >
-              <Icon style={{ width: 26, height: 26, color: ICON_COLOR, marginBottom: 8 }} />
-              <h4 className="font-urw font-bold text-[1.2rem] uppercase text-white leading-tight mb-1">
+              <Icon style={{ width: 28, height: 28, color: ICON_COLOR, marginBottom: 10 }} />
+              <h4 className="font-urw font-bold text-[1.5rem] uppercase text-white leading-tight mb-2">
                 {feature.title}
               </h4>
               <AnimatePresence>
@@ -264,7 +253,7 @@ const WhyChooseBexInfographic: React.FC = () => {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.4, ease: 'easeOut' }}
-                    className="font-circe font-light text-[1rem] text-[#aaa] leading-snug"
+                    className="font-circe font-light text-[1.3rem] text-[#aaa] leading-snug"
                   >
                     {feature.description}
                   </motion.p>
@@ -274,6 +263,71 @@ const WhyChooseBexInfographic: React.FC = () => {
           )
         })}
       </div>
+
+      {/* ─────────── MODAL POPUP for details ─────────── */}
+      <AnimatePresence>
+        {clickedIndex !== null && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"
+              onClick={() => {
+                setClickedIndex(null)
+                setHoveredIndex(null)
+              }}
+            />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-2xl rounded-2xl p-8 sm:p-12 flex flex-col items-center text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
+              style={{
+                backgroundColor: DARK,
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 0 40px rgba(192, 57, 43, 0.2)'
+              }}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setClickedIndex(null)
+                  setHoveredIndex(null)
+                }}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                aria-label="Close details"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#1A1A1A] border border-white/5 flex items-center justify-center mb-8 shadow-inner">
+                {React.createElement(features[clickedIndex].icon, { 
+                  style: { width: '40px', height: '40px', color: ICON_COLOR } 
+                })}
+              </div>
+
+              <h3 className="font-urw font-extrabold uppercase text-white tracking-wider text-[2.5rem] sm:text-[3.5rem] leading-tight mb-6">
+                {features[clickedIndex].title}
+              </h3>
+
+              <div className="w-16 h-1 bg-brand-gold mx-auto mb-8 rounded-full opacity-50" />
+
+              <p className="font-circe font-light text-brand-text-muted text-[1.8rem] sm:text-[2.2rem] leading-relaxed max-w-3xl">
+                {features[clickedIndex].description}
+              </p>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   )
