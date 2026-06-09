@@ -60,25 +60,25 @@ const clientLogos = [
 const videos = [
   {
     id: 'aNXF6TICgmM',
-    title: 'Our projects at Blockchain Life 2023',
+    title: 'ADIS 2026',
     duration: '01:18',
     date: '2 years ago'
   },
   {
     id: 'duG8mTTTMaQ',
-    title: 'Exhibition booths at Blockchain-2023 by BackDrops',
+    title: 'Beauty World 2024',
     duration: '00:30',
     date: '1 year ago'
   },
   {
     id: 't3crG9hLY_s',
-    title: 'Premium Double-Decker Exhibition Pavilion',
+    title: 'Gaming Expo 2025',
     duration: '00:25',
     date: '1 year ago'
   },
   {
     id: '3uB5Ni0L35w',
-    title: 'Dubai Mall Luxury Retail Booth Build',
+    title: 'Beauty World 2024',
     duration: '00:15',
     date: '2 years ago'
   }
