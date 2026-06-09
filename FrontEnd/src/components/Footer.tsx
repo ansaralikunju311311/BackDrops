@@ -45,27 +45,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-brand-bg text-brand-white pt-16 pb-12 relative overflow-hidden" id="footer">
       
-      {/* WhatsApp Floating Widget with Pulsing Brand Red Rings */}
-      <div className="fixed bottom-8 right-8 z-50 flex items-center justify-center">
-        {/* Pulsing rings at different delay intervals */}
-        <div className="absolute w-20 h-20 rounded-full animate-pulse-ring pointer-events-none" style={{ animationDelay: '0s', backgroundColor: 'rgb(158, 83, 48)' }} />
-        <div className="absolute w-24 h-24 rounded-full animate-pulse-ring pointer-events-none" style={{ animationDelay: '0.8s', backgroundColor: 'rgb(158, 83, 48)' }} />
-        
-        <a
-          href="https://wa.me/971552291691"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group cursor-pointer"
-          style={{ backgroundColor: 'rgb(158, 83, 48)' }}
-          onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = 'rgb(130, 65, 35)'}
-          onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = 'rgb(158, 83, 48)'}
-          aria-label="Contact on WhatsApp"
-        >
-          <svg className="w-9 h-9 text-brand-white fill-current" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.739-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.906-6.99C16.255 1.876 13.779 1.042 11.14 1.04 5.707 1.04 1.282 5.461 1.277 10.899c-.001 1.816.486 3.594 1.417 5.158l-.979 3.57 3.655-.959c1.506.82 3.1 1.249 4.677 1.25zM17.5 13.9c-.3-.15-1.785-.88-2.087-.99-.3-.105-.52-.15-.74.15-.22.3-.85.99-1.04 1.2-.19.21-.38.24-.68.09-.3-.15-1.265-.465-2.41-1.485-.89-.79-1.49-1.77-1.665-2.07-.175-.3-.02-.46.13-.61.135-.135.3-.35.45-.52.15-.17.2-.28.3-.47.1-.19.05-.36-.02-.51-.07-.15-.74-1.785-1.015-2.445-.27-.65-.545-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73s1.18 3.17 1.34 3.39c.17.22 2.32 3.54 5.62 4.97.785.34 1.395.54 1.87.69.79.25 1.51.21 2.08.13.635-.09 1.785-.73 2.035-1.43.25-.7.25-1.3.175-1.43-.075-.1-.275-.15-.575-.3z"/>
-          </svg>
-        </a>
-      </div>
+
 
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
         

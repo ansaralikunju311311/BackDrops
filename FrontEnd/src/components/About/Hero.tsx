@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { motion, animate, AnimatePresence } from 'framer-motion'
-import { MessageSquare, Phone } from 'lucide-react'
+import React from 'react'
+import { motion, animate } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { Phone } from 'lucide-react'
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -44,19 +45,6 @@ const CountUp: React.FC<CounterProps> = ({ from, to, suffix = '' }) => {
 }
 
 const Hero: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <section
@@ -144,59 +132,37 @@ const Hero: React.FC = () => {
                 </span>
               </div>
             </div>
-
-            {/* Chat Floating Button */}
-            <div className="flex-shrink-0 self-end mb-2">
-              <button 
-                onClick={() => window.open('https://wa.me/971552291691', '_blank')}
-                className="w-16 h-16 rounded-full bg-[#9E5330] hover:bg-[#b35e38] flex items-center justify-center text-brand-white shadow-[0_10px_25px_rgba(158,83,48,0.3)] hover:scale-110 transition-all duration-300 cursor-pointer"
-                aria-label="Chat with us"
-              >
-                <WhatsAppIcon className="w-8 h-8" />
-              </button>
-            </div>
           </motion.div>
 
         </div>
       </div>
 
-      {/* Floating Sticky Sidebar (White background with vertical contacts) - vanishes when scrolled */}
-      <AnimatePresence>
-        {!isScrolled && (
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed right-0 top-[30%] z-50 bg-white py-20 px-6 flex flex-col gap-16 items-center shadow-[-5px_0_30px_rgba(0,0,0,0.18)] rounded-l-3xl border-y border-l border-gray-100 hidden md:flex w-28"
-          >
-            {/* Telephone */}
-            <a href="tel:+971552291691" className="relative group flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
-                <Phone className="w-10 h-10" />
-              </div>
-              {/* Dot indicator */}
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
-            </a>
+      {/* Floating Sticky Sidebar — always visible, full page */}
+      <div className="fixed right-0 top-[30%] z-50 bg-white py-20 px-6 flex-col gap-12 items-center shadow-[-5px_0_30px_rgba(0,0,0,0.18)] rounded-l-3xl border-y border-l border-gray-100 hidden md:flex w-28">
+        {/* Telephone */}
+        <a href="tel:+971552291691" className="relative group flex items-center justify-center">
+          <div className="w-24 h-24 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
+            <Phone className="w-12 h-12" />
+          </div>
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
+        </a>
 
-            {/* Instagram */}
-            <a href="https://www.instagram.com/_backdrops.ae?igsh=dGlwbWpqazFybXd3" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
-                <InstagramIcon className="w-10 h-10" />
-              </div>
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
-            </a>
+        {/* Instagram */}
+        <a href="https://www.instagram.com/_backdrops.ae?igsh=dGlwbWpqazFybXd3" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
+          <div className="w-24 h-24 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
+            <InstagramIcon className="w-12 h-12" />
+          </div>
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
+        </a>
 
-            {/* WhatsApp/Chat */}
-            <a href="https://wa.me/971552291691" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
-                <WhatsAppIcon className="w-10 h-10" />
-              </div>
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* WhatsApp */}
+        <a href="https://wa.me/971552291691" target="_blank" rel="noopener noreferrer" className="relative group flex items-center justify-center">
+          <div className="w-24 h-24 rounded-full flex items-center justify-center text-gray-500 hover:text-brand-gold hover:bg-gray-50 transition-all duration-300">
+            <WhatsAppIcon className="w-12 h-12" />
+          </div>
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#9E5330] rounded-full border-2 border-white" />
+        </a>
+      </div>
 
       {/* Background Vertical Text Overlay "ABOUT" */}
       <div className="absolute right-12 bottom-[10rem] text-[18rem] md:text-[22rem] lg:text-[26rem] font-urw font-black text-brand-white/[0.015] tracking-widest select-none rotate-90 origin-right translate-y-1/2 translate-x-[15rem] pointer-events-none hidden md:block">
