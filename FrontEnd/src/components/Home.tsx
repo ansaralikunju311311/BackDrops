@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react'
 import suImage from '../assets/su.png'
+import gulfoodVideo from '../assets/client/VID-20260609-WA0081.mp4'
 
 // import gal1 from '../assets/service/serv1.jpeg'
 // import gal2 from '../assets/service/serv2.jpeg'
@@ -525,11 +526,19 @@ const Home: React.FC = () => {
                     
                     {/* Thumbnail Wrapper */}
                     <div className="relative aspect-video rounded-xl overflow-hidden bg-brand-dark-accent border border-white/5 mb-6 z-10">
-                      <img 
-                        src={`https://img.youtube.com/vi/${vid.id}/hqdefault.jpg`} 
-                        alt={vid.title}
-                        className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
-                      />
+                      {vid.localSrc ? (
+                        <video 
+                          src={vid.localSrc}
+                          className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
+                          preload="metadata"
+                        />
+                      ) : (
+                        <img 
+                          src={`https://img.youtube.com/vi/${vid.id}/hqdefault.jpg`} 
+                          alt={vid.title}
+                          className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
+                        />
+                      )}
                       {/* YouTube-style Play Button Overlay */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-20 h-20 flex items-center justify-center transition-all duration-300 ease-out z-20 group-hover:scale-110">
@@ -597,7 +606,7 @@ const Home: React.FC = () => {
                 <motion.div
                   key={`logo-1-${index}`}
                   whileHover={{ scale: 1.05 }}
-                  className="w-[20rem] h-32 flex-shrink-0 flex items-center justify-center bg-brand-dark-accent/40 hover:bg-brand-dark-accent/65 rounded-xl border border-white/[0.08] hover:border-brand-gold/50 px-6 py-4 transition-all duration-300 group cursor-pointer hover:shadow-[0_10px_25px_rgba(158,83,48,0.2)]"
+                  className="w-[20rem] h-32 flex-shrink-0 flex items-center justify-center bg-[rgb(158,83,48)] rounded-xl border border-transparent hover:border-brand-gold/50 px-6 py-4 transition-all duration-300 group cursor-pointer hover:shadow-[0_10px_25px_rgba(158,83,48,0.4)]"
                 >
                   <img
                     src={logo.src}
@@ -612,7 +621,7 @@ const Home: React.FC = () => {
                 <motion.div
                   key={`logo-2-${index}`}
                   whileHover={{ scale: 1.05 }}
-                  className="w-[20rem] h-32 flex-shrink-0 flex items-center justify-center bg-brand-dark-accent/40 hover:bg-brand-dark-accent/65 rounded-xl border border-white/[0.08] hover:border-brand-gold/50 px-6 py-4 transition-all duration-300 group cursor-pointer hover:shadow-[0_10px_25px_rgba(158,83,48,0.2)]"
+                  className="w-[20rem] h-32 flex-shrink-0 flex items-center justify-center bg-[rgb(158,83,48)] rounded-xl border border-transparent hover:border-brand-gold/50 px-6 py-4 transition-all duration-300 group cursor-pointer hover:shadow-[0_10px_25px_rgba(158,83,48,0.4)]"
                 >
                   <img
                     src={logo.src}
@@ -676,6 +685,28 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 <span className="font-circe text-white/50 text-[1.3rem]">Based on Google reviews</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Featured Video Review */}
+          <div className="mb-20">
+            <div 
+              className="relative aspect-video max-w-5xl mx-auto rounded-3xl overflow-hidden bg-brand-dark-accent border border-white/10 group cursor-pointer shadow-2xl"
+              onClick={() => setSelectedVideoId('local_gulfood2026')}
+            >
+              <video 
+                src={gulfoodVideo}
+                className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
+                preload="metadata"
+              />
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-20 h-20 rounded-full bg-black/40 border-2 border-white/80 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out z-20 group-hover:scale-110 group-hover:bg-brand-gold group-hover:border-transparent shadow-xl">
+                  <Play className="w-8 h-8 text-white fill-white ml-1" />
+                </div>
+              </div>
+              <div className="absolute bottom-6 left-6 z-20">
+                <h3 className="font-urw font-bold text-white text-[2rem] drop-shadow-md">GULFOOD 2026 - Client Review</h3>
               </div>
             </div>
           </div>
@@ -1030,15 +1061,39 @@ const Home: React.FC = () => {
               className="relative w-full max-w-[100rem] aspect-video rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Responsive YouTube Embed */}
-              <iframe
-                src={`https://www.youtube.com/embed/${selectedVideoId}?autoplay=1&rel=0`}
-                title="YouTube Video Player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full h-full"
-              />
+              {(() => {
+                if (selectedVideoId === 'local_gulfood2026') {
+                  return (
+                    <video 
+                      src={gulfoodVideo}
+                      controls
+                      autoPlay
+                      className="w-full h-full outline-none"
+                    />
+                  );
+                }
+                const selectedVideo = videos.find(v => v.id === selectedVideoId);
+                if (selectedVideo?.localSrc) {
+                  return (
+                    <video 
+                      src={selectedVideo.localSrc}
+                      controls
+                      autoPlay
+                      className="w-full h-full outline-none"
+                    />
+                  );
+                }
+                return (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${selectedVideoId}?autoplay=1&rel=0`}
+                    title="YouTube Video Player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                );
+              })()}
             </motion.div>
           </motion.div>
         )}
