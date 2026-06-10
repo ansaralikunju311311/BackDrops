@@ -451,7 +451,7 @@ const Home: React.FC = () => {
               <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
                 Portfolio Clips
               </span>
-              <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-tight mb-8">
+              <h2 className="font-urw font-extrabold text-h1 text-white uppercase tracking-wider leading-tight mb-8">
                 Video cases
               </h2>
               <p className="font-circe font-normal text-white/80 leading-relaxed max-w-[32rem] mb-12" style={{ fontSize: '1.8rem' }}>
@@ -588,7 +588,7 @@ const Home: React.FC = () => {
               <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
                 Partnerships
               </span>
-              <h2 className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-none">
+              <h2 className="font-urw font-extrabold text-h1 text-white uppercase tracking-wider leading-none">
                 Our clients
               </h2>
             </div>
@@ -658,7 +658,7 @@ const Home: React.FC = () => {
               <span className="font-circe font-bold text-[2rem] tracking-[0.2em] text-brand-gold uppercase mb-4 block">
                 What Clients Say
               </span>
-              <h2 className="font-urw font-extrabold text-[2.8rem] sm:text-[3.5rem] lg:text-[4.2rem] text-white uppercase tracking-wider leading-none">
+              <h2 className="font-urw font-extrabold text-h2 text-white uppercase tracking-wider leading-none">
                 Google Reviews
               </h2>
             </div>
@@ -831,7 +831,7 @@ const Home: React.FC = () => {
       <section className="py-36 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           
-          <h2 className="font-urw font-extrabold text-[2.4rem] sm:text-[3rem] lg:text-[3.6rem] text-white text-center leading-tight mb-16 uppercase tracking-wider max-w-[95rem] mx-auto">
+          <h2 className="font-urw font-extrabold text-h2 text-white text-center leading-tight mb-16 uppercase tracking-wider max-w-[95rem] mx-auto">
             Bring your vision to life – start your project today!
           </h2>
 
@@ -886,7 +886,7 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-urw font-extrabold text-[4rem] sm:text-[5rem] lg:text-[6rem] text-white uppercase tracking-wider leading-tight mb-12"
+            className="font-urw font-extrabold text-h1 text-white uppercase tracking-wider leading-tight mb-12"
           >
             Installing exhibit booths
           </motion.h2>
@@ -978,7 +978,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col gap-6"
             >
-              <h2 className="font-urw font-extrabold text-[3.2rem] sm:text-[4rem] lg:text-[4.5rem] text-white uppercase tracking-wider leading-tight mb-4">
+              <h2 className="font-urw font-extrabold text-h2 text-white uppercase tracking-wider leading-tight mb-4">
                 SUSTAINABILITY AS A STANDARD, NOT AN AFTERTHOUGHT
               </h2>
               <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
@@ -1009,7 +1009,7 @@ const Home: React.FC = () => {
               Create Your Vision
             </span>
             {/* Heading Statement */}
-            <h2 className="font-urw font-extrabold text-[4.2rem] sm:text-[5.5rem] lg:text-[6.5rem] text-white uppercase tracking-wider leading-tight mb-12">
+            <h2 className="font-urw font-extrabold text-h1 text-white uppercase tracking-wider leading-tight mb-12">
               <span className="whitespace-nowrap">Experiences Built to Engage.</span><br />
               Engineered to Perform.
             </h2>

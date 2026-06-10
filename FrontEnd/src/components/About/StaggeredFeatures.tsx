@@ -93,7 +93,7 @@ const StaggeredFeatures: React.FC = () => {
         
         {/* Section Heading */}
         <div className="mb-24 relative">
-          <h2 className="font-urw font-extrabold text-[4.5rem] md:text-[5.5rem] text-brand-white uppercase tracking-wider leading-tight">
+          <h2 className="font-urw font-extrabold text-h1 text-brand-white uppercase tracking-wider leading-tight">
             Why agencies choose us
           </h2>
           <div className="w-24 h-[2px] bg-[#9E5330] mt-6" />

@@ -40,7 +40,7 @@ const Mission: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col text-center md:text-left order-1 md:order-3"
           >
-            <h2 className="font-urw font-extrabold text-[4.2rem] md:text-[6rem] leading-[1.05] text-brand-white tracking-wide whitespace-nowrap md:whitespace-normal">
+            <h2 className="font-urw font-extrabold text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap md:whitespace-normal">
               The Future<span className="hidden md:inline"><br /></span> We're<span className="hidden md:inline"><br /></span> Building
             </h2>
           </motion.div>

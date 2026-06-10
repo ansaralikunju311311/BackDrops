@@ -669,7 +669,7 @@ const AdminPortal: React.FC = () => {
                     <span className="opacity-40">/</span>
                     <span className="text-white font-normal">Management Console</span>
                   </nav>
-                  <h1 className="font-urw font-extrabold text-[4rem] sm:text-[5.5rem] text-white uppercase tracking-wider leading-none">
+                  <h1 className="font-urw font-extrabold text-h1 text-white uppercase tracking-wider leading-none">
                     Project Manager
                   </h1>
                 </div>

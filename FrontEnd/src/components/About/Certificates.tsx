@@ -87,7 +87,7 @@ const Certificates: React.FC = () => {
         
         {/* Title */}
         <div className="mb-24 relative">
-          <h2 className="font-urw font-extrabold text-[4.5rem] md:text-[5.5rem] text-brand-white uppercase tracking-wider">
+          <h2 className="font-urw font-extrabold text-h1 text-brand-white uppercase tracking-wider">
             Certificates
           </h2>
           <div className="w-24 h-[2px] bg-brand-gold mt-6" />

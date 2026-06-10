@@ -52,7 +52,7 @@ const ExecutiveProfile: React.FC = () => {
               <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-2">
                 Executive Profile
               </span>
-              <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] text-white leading-tight uppercase tracking-wide">
+              <h2 className="font-urw font-extrabold text-h2 text-white leading-tight uppercase tracking-wide">
                 Nebeel Aboobacker
               </h2>
               <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold mt-1 block">
@@ -102,7 +102,7 @@ const ExecutiveProfile: React.FC = () => {
             <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase block mb-2">
               Industry Recognition
             </span>
-            <h3 className="font-urw font-extrabold text-[3rem] md:text-[4rem] text-white leading-tight uppercase tracking-wide">
+            <h3 className="font-urw font-extrabold text-h2 text-white leading-tight uppercase tracking-wide">
               Gulfood Innovation Awards 2018
             </h3>
             <p className="font-circe font-light text-[1.6rem] md:text-[1.8rem] text-brand-text-muted leading-relaxed">

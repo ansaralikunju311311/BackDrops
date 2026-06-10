@@ -447,7 +447,7 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* UAE Column */}
             <div className="space-y-12">
-              <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
+              <h2 className="font-urw font-extrabold text-h2 tracking-wider uppercase">
                 UAE
               </h2>
 
@@ -520,7 +520,7 @@ const Contact: React.FC = () => {
             {/* India Column */}
             <div className="space-y-12">
               <div className="flex items-center justify-between">
-                <h2 className="font-urw font-extrabold text-[3rem] md:text-[4rem] tracking-wider uppercase">
+                <h2 className="font-urw font-extrabold text-h2 tracking-wider uppercase">
                   INDIA
                 </h2>
                 <button 
