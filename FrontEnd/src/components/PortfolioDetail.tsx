@@ -309,7 +309,7 @@ const PortfolioDetail: React.FC = () => {
                   <img
                     src={mainImageToShow}
                     alt={currentTitle}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-700 hover:scale-105 bg-[#121214]"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-brand-text-muted">
@@ -424,7 +424,7 @@ const PortfolioDetail: React.FC = () => {
                     <img
                       src={thumb}
                       alt={`Detail view ${idx + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-108 select-none"
+                      className="w-full h-full object-contain transition-transform duration-500 hover:scale-108 select-none bg-[#121214]"
                     />
                   )}
                 </div>

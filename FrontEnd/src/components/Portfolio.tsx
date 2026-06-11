@@ -241,7 +241,7 @@ const Portfolio: React.FC = () => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover filter brightness-[0.85] group-hover:brightness-95 group-hover:scale-105 transition-all duration-700 select-none"
+                      className="w-full h-full object-contain filter brightness-[0.85] group-hover:brightness-95 group-hover:scale-105 transition-all duration-700 select-none bg-[#121214]"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-brand-text-muted font-circe font-light text-[1.4rem]">
