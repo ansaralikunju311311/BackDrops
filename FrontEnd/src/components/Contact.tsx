@@ -832,22 +832,22 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-14 py-5 bg-brand-gold text-brand-white font-euclid font-bold  tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group"
-                   style={{fontSize:'1.7rem'}}
+                  className="px-14 py-5 bg-brand-gold text-brand-white font-euclid font-bold tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group"
+                  style={{fontSize:'2rem'}}
                 >
                   {isSubmitting ? 'Sending...' : 'Send'}{' '}
-                  <span className="text-[2rem] font-bold transition-transform duration-300 group-hover:translate-x-1">+</span>
+                  <span className="text-[2.2rem] font-bold transition-transform duration-300 group-hover:translate-x-1">+</span>
                 </button>
 
                 {/* Fill out the brief Button */}
                 <button
                   type="button"
                   onClick={() => setShowBrief(true)}
-                  className=" bg-brand-gold px-12 py-5 border border-brand-white/15 text-brand-white hover:border-brand-gold hover:text-brand-gold font-euclid font-bold text-[1.7rem] tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer"
-                  style={{ fontSize: '1.7rem' }}
+                  className="px-12 py-5 bg-brand-gold text-brand-white hover:bg-brand-gold-light font-euclid font-bold tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer shadow-[0_10px_20px_rgba(158,83,48,0.2)] group"
+                  style={{ fontSize: '2rem' }}
                 >
                   Fill out the brief{' '}
-                  <ArrowUpRight className="w-7 h-7" />
+                  <ArrowUpRight className="w-8 h-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                 </button>
               </div>
             </form>

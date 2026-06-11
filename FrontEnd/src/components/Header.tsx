@@ -182,9 +182,10 @@ const Header: React.FC = () => {
               >
                 <Link
                   to="/contacts"
-                  className="font-euclid font-bold text-[1.6rem] tracking-wider uppercase px-8 py-4 bg-brand-gold text-brand-white hover:bg-brand-white hover:text-brand-dark transition-all duration-300 rounded-xs flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.15)] group"
+                  className="font-euclid font-bold tracking-wider uppercase px-8 py-4 bg-brand-gold text-brand-white hover:bg-brand-gold-light transition-all duration-300 rounded-xs flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.15)] group"
+                  style={{fontSize:'2rem'}}
                 >
-                  Send Request <span className="font-light text-[1.8rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
+                  Send Request <span className="font-light text-[2.2rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
                 </Link>
               </motion.div>
             )}

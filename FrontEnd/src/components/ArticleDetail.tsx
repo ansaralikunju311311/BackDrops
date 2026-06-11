@@ -235,7 +235,8 @@ const ArticleDetail: React.FC = () => {
                 </p>
                 <button
                   onClick={() => navigate('/contacts')}
-                  className="bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.5rem] tracking-widest uppercase py-4 px-8 rounded-xs shadow-[0_10px_20px_rgba(229,29,29,0.25)] hover:scale-105 transition-all duration-300 w-full cursor-pointer"
+                  className="bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold tracking-widest uppercase py-5 px-8 rounded-xs shadow-[0_10px_20px_rgba(196,121,86,0.25)] hover:scale-[1.02] transition-all duration-300 w-full cursor-pointer"
+                  style={{fontSize:'2rem'}}
                 >
                   Send Inquiry +
                 </button>

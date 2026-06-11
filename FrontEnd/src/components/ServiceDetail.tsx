@@ -388,9 +388,10 @@ const ServiceDetail: React.FC = () => {
           {/* Call to Action Button */}
           <button
             onClick={handleSendRequest}
-            className="block bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.8rem] tracking-wider uppercase px-12 py-6 rounded-sm shadow-[0_15px_30px_rgba(229,29,29,0.35)] hover:scale-105 transition-all duration-300 cursor-pointer w-max"
+            className="block bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold tracking-wider uppercase px-12 py-6 rounded-sm shadow-[0_15px_30px_rgba(196,121,86,0.35)] hover:scale-[1.02] transition-all duration-300 cursor-pointer w-max group"
+            style={{fontSize:'2rem'}}
           >
-            Send Request <span className="font-light ml-2 text-[2rem] inline-block hover:translate-x-0.5 transition-transform">+</span>
+            Send Request <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
           </button>
 
           {/* Bottom Right Label: BEX + CREO badge for Turnkey */}
@@ -622,7 +623,7 @@ const ServiceDetail: React.FC = () => {
                         navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${project.originalIdx}`)
                       }
                     }}
-                    className="shrink-0 bg-[#E51D1D] hover:bg-[#c81717] text-white font-urw font-bold text-[1.3rem] tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(229,29,29,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
+                    className="shrink-0 bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold text-[1.6rem] tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(196,121,86,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
                     aria-label="View project details"
                   >
                     Details <ArrowUpRight className="w-4 h-4 text-white" />

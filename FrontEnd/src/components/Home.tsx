@@ -373,7 +373,7 @@ const Home: React.FC = () => {
         {/* Connect With Us — Bottom Tab */}
         <button
           onClick={() => navigate('/contacts')}
-          className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 bg-brand-gold hover:bg-white text-white hover:text-brand-dark font-urw font-bold text-[2rem] sm:text-[2.4rem] tracking-[0.25em] uppercase px-16 py-5 rounded-sm hover:scale-105 transition-all duration-400 ease-out cursor-pointer shadow-[0_8px_28px_rgba(196,121,86,0.5)] flex items-center gap-4 whitespace-nowrap"
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 z-30 bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold text-[2.2rem] sm:text-[2.4rem] tracking-[0.25em] uppercase px-16 py-5 rounded-sm hover:scale-[1.02] transition-all duration-400 ease-out cursor-pointer shadow-[0_10px_25px_rgba(196,121,86,0.5)] flex items-center gap-4 whitespace-nowrap group"
           aria-label="Connect with us - contact form"
         >
           Connect With Us <span className="font-light" style={{fontSize:'2.8rem', lineHeight: '1'}}>→</span>
@@ -410,8 +410,8 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="font-urw font-black text-white uppercase leading-[0.92] tracking-tight mb-10"
-            style={{ fontSize: 'clamp(5rem, 9vw, 11rem)' }}
+            className="font-urw font-black text-white text-center uppercase leading-[0.92] tracking-tight mb-10"
+            style={{ fontSize: 'clamp(4rem, 6vw, 8.5rem)' }}
           >
             WORLDWIDE PROJECTS
           </motion.h2>
@@ -435,7 +435,7 @@ const Home: React.FC = () => {
               className="flex items-start gap-7"
             >
               <span className="w-4 h-4 rounded-full bg-brand-gold flex-shrink-0 mt-3" />
-              <p className="font-circe font-semibold text-white/95 leading-relaxed" style={{ fontSize: 'clamp(2rem, 2.4vw, 2.8rem)' }}>
+              <p className="font-circe font-normal text-white/95 leading-relaxed tracking-wide" style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2.2rem)' }}>
                 BEX delivers exhibition, experiential, and interior projects across international markets, providing agencies and brands with a trusted execution partner wherever they need to activate their presence.
               </p>
             </motion.div>
@@ -448,7 +448,7 @@ const Home: React.FC = () => {
               className="flex items-start gap-7"
             >
               <span className="w-4 h-4 rounded-full bg-brand-gold flex-shrink-0 mt-3" />
-              <p className="font-circe font-semibold text-white/95 leading-relaxed" style={{ fontSize: 'clamp(2rem, 2.4vw, 2.8rem)' }}>
+              <p className="font-circe font-normal text-white/95 leading-relaxed tracking-wide" style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2.2rem)' }}>
                 Combining global standards with local expertise, our team manages every stage of project delivery — from production and logistics to installation and on-site execution — ensuring consistency, quality, and reliability across borders.
               </p>
             </motion.div>
