@@ -13,14 +13,33 @@ const ExecutiveProfile: React.FC = () => {
       <div className="absolute bottom-[10%] left-[-10%] w-[45rem] h-[45rem] rounded-full bg-brand-gold/[0.02] blur-[120px] pointer-events-none animate-float-orb" style={{ animationDelay: '-5s' }} />
 
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-16 lg:gap-x-24 gap-y-10 lg:gap-y-12 items-start">
           
-          {/* Left Column: Executive Photo */}
+          {/* Title / Header (Row 1, Right Column on Desktop) */}
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-start-6 lg:col-span-7 flex flex-col items-start text-left"
+          >
+            <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-2">
+              Executive Profile
+            </span>
+            <h2 className="font-urw font-extrabold text-h2 text-white leading-tight tracking-wide">
+              Nebeel Aboobacker
+            </h2>
+            <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold mt-1 block">
+              Founder & CEO
+            </span>
+          </motion.div>
+
+          {/* Left Column: Executive Photo (Row 2, Left Column on Desktop) */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 flex justify-center"
           >
             <div className="relative group w-full max-w-[42rem] aspect-[3/4] rounded-sm overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
@@ -39,27 +58,14 @@ const ExecutiveProfile: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Bio & Message */}
+          {/* Right Column: Bio & Message (Row 2, Right Column on Desktop) */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 flex flex-col items-start text-left space-y-10"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-start-6 lg:col-span-7 flex flex-col items-start text-left space-y-10"
           >
-            {/* Title / Header */}
-            <div>
-              <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-2">
-                Executive Profile
-              </span>
-              <h2 className="font-urw font-extrabold text-h2 text-white leading-tight tracking-wide">
-                Nebeel Aboobacker
-              </h2>
-              <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold mt-1 block">
-                Founder & CEO
-              </span>
-            </div>
-
             {/* Biography Description */}
             <div className="space-y-6 text-[1.8rem] md:text-[2.3rem] font-circe font-light text-brand-text-muted leading-relaxed">
               <p>
