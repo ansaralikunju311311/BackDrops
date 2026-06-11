@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react'
 import suImage from '../assets/su.png'
 import gulfoodVideo from '../assets/client/VID-20260609-WA0081.mp4'
+import PhotoGallery from './PhotoGallery'
 
 // import gal1 from '../assets/service/serv1.jpeg'
 // import gal2 from '../assets/service/serv2.jpeg'
@@ -577,7 +578,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION: Project Gallery */}
-    
+      <PhotoGallery />
 
       {/* SECTION 1.6: Our Clients Slider Section */}
       <section className="py-28 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
