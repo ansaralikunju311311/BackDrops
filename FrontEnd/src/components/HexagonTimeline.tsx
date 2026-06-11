@@ -122,7 +122,7 @@ const HexagonTimeline: React.FC = () => {
                     </div>
 
                     {/* Step Number Badge */}
-                    <div className={`absolute ${isTop ? 'top-[-25px]' : 'bottom-[-25px]'} left-1/2 -translate-x-1/2 text-white font-mono font-extrabold text-[1.8rem] z-20 drop-shadow-md`}>
+                    <div className={`absolute ${isTop ? 'top-[-25px]' : 'bottom-[-25px]'} left-1/2 -translate-x-1/2 bg-white text-[rgb(158,83,48)] font-mono font-extrabold text-[1.8rem] w-12 h-12 flex items-center justify-center rounded-full shadow-md z-20`}>
                       {item.num}
                     </div>
                   </motion.div>
@@ -169,7 +169,7 @@ const HexagonTimeline: React.FC = () => {
                       <Icon className="w-7 h-7 text-[rgb(158,83,48)]" />
                     </div>
                     {/* Step Number Badge */}
-                    <div className="absolute top-[-20px] left-1/2 -translate-x-1/2 text-white font-mono font-extrabold text-[1.4rem] z-20 drop-shadow-md">
+                    <div className="absolute top-[-20px] left-1/2 -translate-x-1/2 bg-white text-[rgb(158,83,48)] font-mono font-extrabold text-[1.4rem] w-9 h-9 flex items-center justify-center rounded-full shadow-md z-20">
                       {item.num}
                     </div>
                   </div>
@@ -214,8 +214,6 @@ const HexagonTimeline: React.FC = () => {
               className="relative w-full max-w-2xl rounded-2xl p-8 sm:p-12 flex flex-col items-center text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
               style={{
                 backgroundColor: '#0B0C10',
-                border: 'none',
-                boxShadow: '0 0 40px rgba(158, 83, 48, 0.2)'
               }}
             >
               {/* Close Button */}
