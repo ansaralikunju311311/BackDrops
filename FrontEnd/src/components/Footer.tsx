@@ -64,10 +64,10 @@ const Footer: React.FC = () => {
                 </p>
               </div>
 
-              {/* Why Choose BEX? */}
+              {/* BEX CORE VALUES */}
               <div className="space-y-8">
                 <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
-                  Why Choose BEX?
+                  BEX CORE VALUES
                 </h3>
 
                 <WhyChooseBexInfographic />

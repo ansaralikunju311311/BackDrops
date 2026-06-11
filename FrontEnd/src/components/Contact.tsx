@@ -519,18 +519,10 @@ const Contact: React.FC = () => {
 
             {/* India Column */}
             <div className="space-y-12">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-8">
                 <h2 className="font-urw font-extrabold text-h2 tracking-wider uppercase">
                   INDIA
                 </h2>
-                <button 
-                  type="button"
-                  onClick={() => window.location.href = '/services/detail?id=9'}
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#E51D1D] hover:bg-[#c81717] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-[0_10px_20px_rgba(229,29,29,0.3)] hover:scale-110 group/arrow"
-                  title="View Turnkey Architectural Projects"
-                >
-                  <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 text-white transition-transform duration-300 group-hover/arrow:translate-x-1 group-hover/arrow:-translate-y-1" />
-                </button>
               </div>
 
               <div className="flex flex-col gap-8">
@@ -576,6 +568,20 @@ const Contact: React.FC = () => {
                     </a>
                   </div>
                 </div>
+
+                {/* Explore CREO Link */}
+                <div className="pt-6">
+                  <button 
+                    onClick={() => window.location.href = '/services/detail?id=9'}
+                    className="flex items-center gap-3 text-brand-gold hover:text-white transition-colors duration-300 group/link inline-flex"
+                  >
+                    <span className="font-euclid font-bold uppercase tracking-wider text-[1.6rem]">Explore CREO</span>
+                    <div className="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center group-hover/link:bg-brand-gold-light transition-colors duration-300 shadow-[0_4px_10px_rgba(158,83,48,0.4)]">
+                      <ArrowUpRight className="w-5 h-5 text-white group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
+                    </div>
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
