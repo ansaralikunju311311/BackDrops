@@ -40,7 +40,7 @@ const ExecutiveProfile: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-5 flex justify-center lg:mt-3"
           >
             <div className="relative group w-full max-w-[42rem] aspect-[3/4] rounded-sm overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               {/* Photo */}
