@@ -996,19 +996,13 @@ const Home: React.FC = () => {
               className="flex flex-col gap-6"
             >
               <h2 className="font-urw font-extrabold text-h2 text-white uppercase tracking-wider leading-tight mb-4">
-                SUSTAINABILITY AS A STANDARD, NOT AN AFTERTHOUGHT
+                SUSTAINABILITY AS A STANDARD
               </h2>
               <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
-                At BEX, sustainability is not a separate initiative, it is integrated into the way we design, manufacture, manage, and deliver projects. We believe that exceptional brand experiences should create lasting impact for audiences, not unnecessary impact on the environment.
+                At BEX, sustainability is embedded into every stage of project delivery—from design and manufacturing to logistics and execution. Through intelligent material selection, reusable exhibition systems, modular construction, efficient production planning, and asset lifecycle management, we help clients reduce waste, maximize resources, and enhance long-term value.
               </p>
               <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
-                What differentiates BEX is our commitment to responsible execution. Through intelligent material selection, reusable exhibition systems, modular construction techniques, efficient production planning, optimized logistics, and asset lifecycle management, we help clients reduce waste, maximize resource utilization, and improve long-term project value.
-              </p>
-              <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
-                Our in-house infrastructure and manufacturing capabilities enable greater control over materials, production processes, and quality standards, allowing us to deliver sustainable solutions without compromising creativity, functionality, or visual impact. By extending the life of exhibition assets, minimizing material wastage, and adopting efficient operational practices, we support brands and agencies seeking more responsible ways to engage their audiences.
-              </p>
-              <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
-                The result is a smarter approach to experiential delivery—one that balances innovation, performance, cost efficiency, and environmental responsibility. For BEX, sustainability is more than a commitment; it is a competitive advantage that helps our clients build for today while preparing for tomorrow.
+                Supported by our in-house infrastructure and manufacturing capabilities, we deliver environmentally responsible solutions without compromising creativity, quality, or impact. The result is a smarter, more efficient approach to experiential execution, combining innovation, performance, cost efficiency, and sustainability to help brands build responsibly for the future.
               </p>
             </motion.div>
           </div>
