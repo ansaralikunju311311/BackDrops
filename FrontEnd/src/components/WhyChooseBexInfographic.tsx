@@ -9,44 +9,34 @@ const ICON_COLOR  = '#F4A600'
 
 const features = [
   {
-    icon: Globe,
-    title: 'Your Execution Partner, Anywhere',
-    description: 'We provide reliable on-ground execution support for agencies and brands across the UAE, GCC, and international markets, ensuring concepts are delivered exactly as envisioned.'
+    icon: CheckCircle2,
+    title: 'Precision',
+    description: 'Delivering excellence in every detail.'
   },
   {
     icon: Handshake,
-    title: 'Built for Collaboration',
-    description: 'We integrate seamlessly with creative agencies, event organizers, designers, and brand teams, acting as a trusted extension of your project team.'
-  },
-  {
-    icon: Settings,
-    title: 'End-to-End Delivery Capability',
-    description: 'From technical development and production to logistics, installation, site management, and dismantling, we manage every stage of execution with complete accountability.'
-  },
-  {
-    icon: Network,
-    title: 'Global Standards, Local Expertise',
-    description: 'Our international experience combined with deep regional knowledge allows us to navigate local requirements while maintaining world-class execution standards.'
-  },
-  {
-    icon: CheckCircle2,
-    title: 'Precision in Every Detail',
-    description: 'We understand that exceptional experiences are built on flawless execution. Every element is carefully planned, coordinated, and delivered to the highest quality standards.'
+    title: 'Partnership',
+    description: 'Growing through trust and collaboration.'
   },
   {
     icon: Zap,
-    title: 'Agile and Scalable Solutions',
-    description: "Whether it's a single activation, a major exhibition pavilion, a corporate interior project, or a multi-country rollout, our resources and expertise scale to meet project demands."
+    title: 'Innovation',
+    description: 'Transforming ideas into impactful experiences.'
   },
   {
     icon: Shield,
-    title: 'Proven Reliability',
-    description: 'Our clients trust us because we consistently deliver on time, on budget, and to specification even under the most demanding project conditions.'
+    title: 'Integrity',
+    description: 'Acting with accountability and transparency.'
   },
   {
-    icon: Crown,
-    title: 'Focused on Experience',
-    description: "We don't simply build structures; we create environments that strengthen brands, engage audiences, and leave lasting impressions."
+    icon: Settings,
+    title: 'Capability',
+    description: 'Executing with world-class resources and expertise.'
+  },
+  {
+    icon: Globe,
+    title: 'Sustainability',
+    description: 'Building smarter for a better future.'
   }
 ]
 
@@ -75,7 +65,7 @@ const WhyChooseBexInfographic: React.FC = () => {
     return () => clearInterval(timer)
   }, [hoveredIndex, clickedIndex, features.length])
 
-  const wheelRotation = -90 - activeIndex * 45
+  const wheelRotation = -90 - activeIndex * 60
 
   const handleMouseEnter = (idx: number) => {
     setHoveredIndex(idx)
@@ -136,7 +126,7 @@ const WhyChooseBexInfographic: React.FC = () => {
             style={{ transformOrigin: '50% 50%' }}
           >
             {features.map((feature, idx) => {
-              const angleDeg   = idx * 45
+              const angleDeg   = idx * 60
               const angleRad   = (angleDeg * Math.PI) / 180
               const cx         = 50 + ORBIT * Math.cos(angleRad)
               const cy         = 50 + ORBIT * Math.sin(angleRad)
