@@ -1062,7 +1062,7 @@ const Contact: React.FC = () => {
 
                       {/* E-mail */}
                       <a
-                        href="mailto:info@backdrops.ae"
+                        href="mailto:info@bexdxb.com"
                         className="flex items-center justify-between p-4 rounded-xs border border-brand-white/5 bg-brand-white/2 hover:bg-brand-white/5 hover:border-brand-gold/30 hover:scale-[1.02] transition-all duration-300 group"
                       >
                         <div className="flex items-center gap-4">
@@ -1074,7 +1074,7 @@ const Contact: React.FC = () => {
                               Email Info
                             </span>
                             <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
-                              info@backdrops.ae
+                              info@bexdxb.com
                             </span>
                           </div>
                         </div>
@@ -1094,7 +1094,7 @@ const Contact: React.FC = () => {
                           </div>
                           <div className="text-left">
                             <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
-                              Showroom Map
+                              Google Map
                             </span>
                             <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
                               Get directions to Jebel Ali Industrial area 1

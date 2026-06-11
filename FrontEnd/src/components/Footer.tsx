@@ -123,10 +123,10 @@ const Footer: React.FC = () => {
 
         </div>
          {/* Bottom Details Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-12 border-t border-brand-white/10 pt-16 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 border-t border-brand-white/10 pt-16 mb-16">
 
           {/* UAE Address */}
-          <div>
+          <div className="md:col-span-3">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               UAE Address
             </span>
@@ -139,9 +139,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact UAE */}
-          <div>
+          <div className="md:col-span-2">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
-              Contact UAE
+              Contact 
             </span>
             <a
               href="tel:00971552291691"
@@ -167,7 +167,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* India Address */}
-          <div>
+          <div className="md:col-span-3">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               India Address
             </span>
@@ -189,9 +189,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact India */}
-          <div>
+          <div className="md:col-span-2">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
-              Contact India
+              Contact 
             </span>
             <a
               href="tel:+919188866924"
@@ -210,7 +210,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Legal Policy Links */}
-          <div className="flex flex-col gap-2 md:items-end">
+          <div className="flex flex-col gap-2 md:col-span-2 md:items-end">
             <Link
               to="/privacy-policy"
               className="font-euclid font-normal text-brand-text-muted hover:text-brand-gold transition-colors duration-300"

@@ -6,6 +6,7 @@ import suImage from '../assets/su.jpeg'
 import gulfoodVideo from '../assets/client/VID-20260609-WA0081.mp4'
 import PhotoGallery from './PhotoGallery'
 import adipecVideo from '../assets/video cases/ADIPEC 2025.mp4'
+import gisecVideo from '../assets/video cases/GISEC 2025.mp4'
 
 
 // import gal1 from '../assets/service/serv1.jpeg'
@@ -117,6 +118,13 @@ const videos = [
     duration: '01:00',
     uploadDate: '2026-06-11',
     localSrc: adipecVideo
+  },
+  {
+    id: 'local_gisec_2025',
+    title: 'GISEC 2025',
+    duration: '01:00',
+    uploadDate: '2026-06-11',
+    localSrc: gisecVideo
   },
   {
     id: 'aNXF6TICgmM',
@@ -860,9 +868,12 @@ const Home: React.FC = () => {
       <section className="py-36 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           
-          <h2 className="font-urw font-extrabold text-h2 text-white text-center leading-tight mb-16 uppercase tracking-wider max-w-[95rem] mx-auto">
+          <h2 className="font-urw font-extrabold text-h2 text-white text-center leading-tight mb-4 uppercase tracking-wider max-w-[95rem] mx-auto">
             Bring your vision to life – start your project today!
           </h2>
+          <h3 className="font-euclid text-center text-brand-gold text-[2.5rem] md:text-[3rem] font-bold tracking-wider mb-20 uppercase">
+            The BEX method- From Vision to Reality
+          </h3>
 
           {/* Timeline Nodes Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-16 relative max-w-[130rem] mx-auto px-4">
@@ -883,12 +894,11 @@ const Home: React.FC = () => {
                 <div key={step.num} className="flex flex-col items-center w-full relative px-2">
                   <motion.div
                     whileHover={{ scale: 1.08 }}
-                    className="w-20 h-20 rounded-full border border-[#E51D1D]/30 bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.4rem] z-10 transition-all duration-300 hover:border-[#E51D1D] hover:shadow-[0_0_25px_rgba(229,29,29,0.35)] cursor-default"
-                    style={{ color: '#E51D1D' }}
+                    className="w-24 h-24 rounded-full border border-brand-gold/40 bg-[#16171d] flex items-center justify-center font-mono font-bold text-[1.8rem] z-10 transition-all duration-300 hover:border-brand-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] cursor-default text-brand-gold"
                   >
                     # {step.num}
                   </motion.div>
-                  <p className="font-circe font-semibold text-white/90 mt-5 text-center leading-snug" style={{ fontSize: '1.8rem' }}>
+                  <p className="font-circe font-semibold text-white/90 mt-6 text-center leading-snug" style={{ fontSize: '1.9rem' }}>
                     {step.title}
                   </p>
                 </div>
