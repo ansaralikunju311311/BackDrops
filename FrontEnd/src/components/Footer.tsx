@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import BexLogo from './BexLogo'
-import WhyChooseBexInfographic from './WhyChooseBexInfographic'
+import HexagonTimeline from './HexagonTimeline'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -65,19 +65,15 @@ const Footer: React.FC = () => {
               </div>
 
               {/* BEX CORE VALUES */}
-              <div className="space-y-8">
-                <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
-                  BEX CORE VALUES
-                </h3>
-
-                <WhyChooseBexInfographic />
-
-                <blockquote className="pt-8 border-t border-brand-white/10 border-l-4 border-l-brand-gold pl-8 mt-4">
-                  <p className="italic text-brand-gold font-medium leading-relaxed" style={{ fontSize: '2.6rem' }}>
-                    &#8220;At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.&#8221;
-                  </p>
-                </blockquote>
+              <div className="mt-16 -mx-6 md:-mx-12 lg:-mx-24">
+                <HexagonTimeline />
               </div>
+
+              <blockquote className="pt-16 border-t border-brand-white/10 border-l-4 border-l-brand-gold pl-8 mt-16">
+                <p className="italic text-brand-gold font-medium leading-relaxed" style={{ fontSize: '2.6rem' }}>
+                  &#8220;At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.&#8221;
+                </p>
+              </blockquote>
 
             </div>
           </div>
