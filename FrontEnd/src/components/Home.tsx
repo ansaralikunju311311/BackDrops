@@ -5,6 +5,8 @@ import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react'
 import suImage from '../assets/su.png'
 import gulfoodVideo from '../assets/client/VID-20260609-WA0081.mp4'
 import PhotoGallery from './PhotoGallery'
+import adipecVideo from '../assets/video cases/ADIPEC 2025.mp4'
+
 
 // import gal1 from '../assets/service/serv1.jpeg'
 // import gal2 from '../assets/service/serv2.jpeg'
@@ -110,6 +112,13 @@ const clientLogos = [
 
 const videos = [
   {
+    id: 'local_adipec_2025',
+    title: 'ADIPEC 2025',
+    duration: '01:00',
+    uploadDate: '2026-06-11',
+    localSrc: adipecVideo
+  },
+  {
     id: 'aNXF6TICgmM',
     title: 'ADIS 2026',
     duration: '01:18',
@@ -185,6 +194,25 @@ const googleReviews = [
     location: 'Madrid, Spain'
   },
 ]
+
+const getTimeAgo = (dateString: string) => {
+  const uploadDate = new Date(dateString)
+  const today = new Date()
+  const diffTime = Math.abs(today.getTime() - uploadDate.getTime())
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+  
+  if (diffDays === 0) return 'Today'
+  if (diffDays === 1) return '1 day ago'
+  if (diffDays < 30) return `${diffDays} days ago`
+  
+  const diffMonths = Math.floor(diffDays / 30)
+  if (diffMonths === 1) return '1 month ago'
+  if (diffMonths < 12) return `${diffMonths} months ago`
+  
+  const diffYears = Math.floor(diffDays / 365)
+  if (diffYears === 1) return '1 year ago'
+  return `${diffYears} years ago`
+}
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -565,7 +593,7 @@ const Home: React.FC = () => {
                       </div>
                       {/* Date (Indented to align with title text) */}
                       <span className="font-circe font-light text-[1.3rem] text-brand-text-muted ml-[5.2rem]">
-                        {vid.date}
+                        {vid.uploadDate ? getTimeAgo(vid.uploadDate) : vid.date}
                       </span>
                     </div>
                   </div>
