@@ -92,6 +92,16 @@ const AdminPortal: React.FC = () => {
   const [existingImagesToKeep, setExistingImagesToKeep] = useState<StandImage[]>([])
   const [standsPage, setStandsPage] = useState(1)
   
+  // Gallery Management States
+  const [activeTab, setActiveTab] = useState<'projects' | 'gallery'>('projects')
+  const [galleryPhotos, setGalleryPhotos] = useState<StandImage[]>([])
+  const [galleryLoading, setGalleryLoading] = useState(false)
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([])
+  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([])
+  const [isGalleryUploading, setIsGalleryUploading] = useState(false)
+  const [galleryError, setGalleryError] = useState<string | null>(null)
+  const [gallerySuccess, setGallerySuccess] = useState<string | null>(null)
+
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
   // Filter stands based on search query
@@ -171,6 +181,27 @@ const AdminPortal: React.FC = () => {
     }
   }
 
+  // Fetch gallery photos from DB
+  const fetchGalleryPhotos = async () => {
+    setGalleryLoading(true)
+    setGalleryError(null)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/gallery`)
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setGalleryPhotos(data.photos)
+      } else {
+        setGalleryError(data.error || 'Failed to fetch gallery photos.')
+      }
+    } catch (err) {
+      console.error('Fetch error:', err)
+      setGalleryError('Failed to load gallery photos. Server connection error.')
+    } finally {
+      setGalleryLoading(false)
+    }
+  }
+
   // Check auth status on mount
   useEffect(() => {
     const verifyToken = async () => {
@@ -190,6 +221,7 @@ const AdminPortal: React.FC = () => {
         if (res.ok && data.success) {
           setIsAuthenticated(true)
           fetchStands(token)
+          fetchGalleryPhotos()
         } else {
           localStorage.removeItem('backdrops_admin_token')
         }
@@ -378,6 +410,114 @@ const AdminPortal: React.FC = () => {
       alert('Failed to toggle status due to a network error.')
     } finally {
       setTogglingId(null)
+    }
+  }
+
+  // Gallery Functions
+  const handleGalleryFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files)
+      const imageFiles = filesArray.filter(file => file.type.startsWith('image/'))
+      
+      setGalleryFiles(prev => [...prev, ...imageFiles])
+      
+      const newPreviews = imageFiles.map(file => URL.createObjectURL(file))
+      setGalleryPreviews(prev => [...prev, ...newPreviews])
+    }
+  }
+
+  const handleRemoveGalleryFile = (index: number) => {
+    URL.revokeObjectURL(galleryPreviews[index])
+    setGalleryFiles(prev => prev.filter((_, i) => i !== index))
+    setGalleryPreviews(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const handleGalleryUpload = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    setGalleryError(null)
+    setGallerySuccess(null)
+
+    if (galleryFiles.length === 0) {
+      setGalleryError('Please select at least one image to upload.')
+      return
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp']
+    for (const file of galleryFiles) {
+      if (!allowedTypes.includes(file.type)) {
+        setGalleryError(`File "${file.name}" is not a supported format. Supported formats: JPG, JPEG, PNG, WEBP.`)
+        return
+      }
+    }
+
+    setIsGalleryUploading(true)
+
+    const formData = new FormData()
+    galleryFiles.forEach(file => {
+      formData.append('images', file)
+    })
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/gallery`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      })
+
+      const data = await res.json()
+
+      if (res.ok && data.success) {
+        setGallerySuccess('Gallery photos uploaded successfully!')
+        
+        galleryPreviews.forEach(url => URL.revokeObjectURL(url))
+        setGalleryFiles([])
+        setGalleryPreviews([])
+        
+        fetchGalleryPhotos()
+      } else {
+        setGalleryError(data.error || 'Failed to upload gallery photos.')
+      }
+    } catch (err) {
+      console.error('Gallery upload error:', err)
+      setGalleryError('Failed to upload photos. Server connection failed.')
+    } finally {
+      setIsGalleryUploading(false)
+    }
+  }
+
+  const handleDeleteGalleryPhoto = async (id: string) => {
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    if (!window.confirm('Are you sure you want to delete this photo from the gallery?')) {
+      return
+    }
+
+    setDeletingId(id)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/gallery/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setGalleryPhotos(prev => prev.filter(p => p._id !== id))
+      } else {
+        alert(data.error || 'Failed to delete photo.')
+      }
+    } catch (err) {
+      console.error('Delete error:', err)
+      alert('Failed to delete photo due to a network error.')
+    } finally {
+      setDeletingId(null)
     }
   }
 
@@ -683,6 +823,32 @@ const AdminPortal: React.FC = () => {
                 </button>
               </div>
 
+              {/* Tabs */}
+              <div className="flex gap-4 border-b border-white/10 pb-4">
+                <button
+                  onClick={() => setActiveTab('projects')}
+                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                    activeTab === 'projects' 
+                      ? 'bg-brand-gold text-white shadow-lg' 
+                      : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  Stand Projects
+                </button>
+                <button
+                  onClick={() => setActiveTab('gallery')}
+                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                    activeTab === 'gallery' 
+                      ? 'bg-brand-gold text-white shadow-lg' 
+                      : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  Photo Gallery
+                </button>
+              </div>
+
+              {activeTab === 'projects' && (
+                <>
               {/* Main Content: Stand Upload Form */}
               <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative overflow-hidden shadow-2xl">
                 <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem] flex items-center gap-3">
@@ -1286,6 +1452,154 @@ const AdminPortal: React.FC = () => {
                   </>
                 )}
               </div>
+              </>
+              )}
+
+              {/* ================= PHOTO GALLERY MANAGER ================= */}
+              {activeTab === 'gallery' && (
+                <div className="space-y-[4rem]">
+                  {/* Photo Gallery Upload Form */}
+                  <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative overflow-hidden shadow-2xl">
+                    <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem] flex items-center gap-3">
+                      <Plus className="w-8 h-8" />
+                      Add Photos to Gallery
+                    </h2>
+
+                    <form onSubmit={handleGalleryUpload} className="space-y-[3rem]">
+                      <div className="relative aspect-video rounded-md overflow-hidden border-2 border-dashed border-white/20 hover:border-brand-gold bg-brand-dark/20 hover:bg-brand-dark/40 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer min-h-[25rem] group">
+                        <input
+                          type="file"
+                          multiple
+                          accept="image/*"
+                          onChange={handleGalleryFileChange}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                        />
+                        <UploadCloud className="w-16 h-16 text-brand-text-muted group-hover:text-brand-gold transition-colors duration-300 mb-4" />
+                        <span className="font-urw font-bold text-[2rem] text-white">Click or Drag & Drop Images</span>
+                        <span className="font-circe text-[1.4rem] text-brand-text-muted mt-2">Supports JPG, PNG, WEBP</span>
+                      </div>
+
+                      {/* Image Previews */}
+                      {galleryPreviews.length > 0 && (
+                        <div className="space-y-4">
+                          <p className="font-circe text-[1.4rem] text-brand-text-muted uppercase tracking-wider">
+                            Selected Photos ({galleryPreviews.length})
+                          </p>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                            {galleryPreviews.map((previewUrl, idx) => (
+                              <div key={idx} className="relative aspect-square rounded-md overflow-hidden border border-white/10 group shadow-md">
+                                <img src={previewUrl} alt={`preview ${idx}`} className="w-full h-full object-cover" />
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemoveGalleryFile(idx)}
+                                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 cursor-pointer"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Status Alerts */}
+                      <AnimatePresence>
+                        {galleryError && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            className="p-[1.5rem] bg-rose-500/10 border border-rose-500/25 rounded-xs flex items-center gap-3 text-rose-400"
+                          >
+                            <XCircle className="w-6 h-6 shrink-0" />
+                            <span className="font-circe text-[1.5rem]">{galleryError}</span>
+                          </motion.div>
+                        )}
+
+                        {gallerySuccess && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            className="p-[1.5rem] bg-emerald-500/10 border border-emerald-500/25 rounded-xs flex items-center gap-3 text-emerald-400"
+                          >
+                            <CheckCircle className="w-6 h-6 shrink-0" />
+                            <span className="font-circe text-[1.5rem]">{gallerySuccess}</span>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <div className="flex justify-end pt-4 border-t border-white/5">
+                        <button
+                          type="submit"
+                          disabled={isGalleryUploading || galleryFiles.length === 0}
+                          className="py-[1.4rem] px-[4rem] bg-brand-gold text-white font-euclid font-bold text-[1.5rem] tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                          style={{ fontSize: '1.8rem' }}
+                        >
+                          {isGalleryUploading ? (
+                            <>
+                              <RefreshCw className="w-5 h-5 animate-spin" />
+                              Uploading Photos...
+                            </>
+                          ) : (
+                            <>
+                              Upload Photos
+                              <ArrowRight className="w-5 h-5" />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  {/* Existing Gallery Photos */}
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                      <h2 className="font-urw font-extrabold text-[2.4rem] text-white uppercase tracking-wider">
+                        Manage Photo Gallery
+                      </h2>
+                      <span className="bg-brand-gold/10 border border-brand-gold/20 text-brand-gold font-mono text-[1.4rem] py-1 px-3 rounded-full shrink-0">
+                        {galleryPhotos.length} Photos
+                      </span>
+                    </div>
+
+                    {galleryLoading ? (
+                      <div className="flex flex-col items-center justify-center py-[5rem] space-y-4">
+                        <RefreshCw className="w-[3rem] h-[3rem] text-brand-gold animate-spin" />
+                        <p className="font-circe text-brand-text-muted text-[1.6rem]">Loading gallery...</p>
+                      </div>
+                    ) : galleryPhotos.length === 0 ? (
+                      <div className="text-center py-[6rem] border border-dashed border-white/5 rounded-lg text-brand-text-muted font-circe text-[1.6rem] bg-brand-dark/10">
+                        No photos in the gallery yet. Upload some images above.
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        {galleryPhotos.map((photo) => (
+                          <div key={photo._id} className="group relative aspect-square bg-brand-dark rounded-md overflow-hidden border border-white/10 hover:border-brand-gold/50 transition-all duration-300">
+                            <img src={photo.url} alt="Gallery image" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 backdrop-blur-sm">
+                              <button
+                                onClick={() => handleDeleteGalleryPhoto(photo._id!)}
+                                disabled={deletingId === photo._id}
+                                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm font-circe text-[1.4rem] tracking-wider uppercase font-bold flex items-center gap-2 transition-colors duration-300 shadow-lg cursor-pointer"
+                              >
+                                {deletingId === photo._id ? (
+                                  <RefreshCw className="w-4 h-4 animate-spin" />
+                                ) : (
+                                  <>
+                                    <Trash2 className="w-4 h-4" />
+                                    Delete
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

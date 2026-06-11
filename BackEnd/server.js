@@ -200,6 +200,13 @@ const standSchema = new mongoose.Schema({
 
 const Stand = mongoose.model('Stand', standSchema);
 
+// Gallery Photo Schema & Model
+const galleryPhotoSchema = new mongoose.Schema({
+  url: { type: String, required: true },
+  publicId: { type: String, required: true }
+}, { collection: 'galleryPhotos', timestamps: true });
+
+const GalleryPhoto = mongoose.model('GalleryPhoto', galleryPhotoSchema);
 
 const corsOptions = {
   origin: '*',
@@ -1369,6 +1376,95 @@ app.patch('/api/stands/:id/toggle-listed', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Error toggling stand listed status:', error);
     return res.status(500).json({ success: false, error: 'Failed to update stand status.' });
+  }
+});
+
+// ================= GALLERY PHOTO ENDPOINTS =================
+
+// GET /api/gallery - Fetch all gallery photos
+app.get('/api/gallery', async (req, res) => {
+  try {
+    const photos = await GalleryPhoto.find().sort({ createdAt: -1 });
+    return res.json({ success: true, photos });
+  } catch (error) {
+    console.error('Error fetching gallery photos:', error);
+    return res.status(500).json({ success: false, error: 'Failed to fetch gallery photos.' });
+  }
+});
+
+// POST /api/gallery - Upload gallery photos (protected)
+app.post('/api/gallery', verifyToken, upload.array('images', 20), async (req, res) => {
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).json({ success: false, error: 'No images provided.' });
+  }
+
+  const uploadedImages = [];
+
+  try {
+    // Upload files to Cloudinary
+    for (const file of req.files) {
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'bex_gallery',
+        use_filename: true,
+        unique_filename: true
+      });
+      uploadedImages.push({
+        url: result.secure_url,
+        publicId: result.public_id
+      });
+    }
+
+    // Save to MongoDB
+    const photos = await GalleryPhoto.insertMany(uploadedImages);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Gallery photos uploaded successfully.',
+      photos
+    });
+  } catch (error) {
+    console.error('Error uploading gallery photos:', error);
+    // Rollback uploaded Cloudinary images if DB fails
+    for (const img of uploadedImages) {
+      try {
+        await cloudinary.uploader.destroy(img.publicId);
+      } catch (delErr) {
+        console.error(`Failed to delete orphaned Cloudinary image ${img.publicId}:`, delErr);
+      }
+    }
+    return res.status(500).json({ success: false, error: 'Failed to upload gallery photos.' });
+  } finally {
+    // Clean up local temp files
+    if (req.files) {
+      for (const file of req.files) {
+        try {
+          fs.unlinkSync(file.path);
+        } catch (err) {
+          console.error(`Failed to clean up local file ${file.path}:`, err);
+        }
+      }
+    }
+  }
+});
+
+// DELETE /api/gallery/:id - Delete a gallery photo (protected)
+app.delete('/api/gallery/:id', verifyToken, async (req, res) => {
+  try {
+    const photo = await GalleryPhoto.findById(req.params.id);
+    if (!photo) {
+      return res.status(404).json({ success: false, error: 'Photo not found.' });
+    }
+
+    // Delete from Cloudinary
+    await cloudinary.uploader.destroy(photo.publicId);
+
+    // Delete from MongoDB
+    await GalleryPhoto.findByIdAndDelete(req.params.id);
+
+    return res.json({ success: true, message: 'Photo deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting gallery photo:', error);
+    return res.status(500).json({ success: false, error: 'Failed to delete gallery photo.' });
   }
 });
 

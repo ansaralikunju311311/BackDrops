@@ -91,14 +91,11 @@ const HexagonTimeline: React.FC = () => {
                   {/* Dot on Axis */}
                   <div className={`absolute w-4 h-4 rounded-full bg-white border-4 border-[#000000] shadow-sm ${isTop ? 'bottom-[-88px]' : 'top-[-88px]'}`} />
 
-                  {/* Content Container (Title + Desc) */}
-                  <div className={`text-center relative z-30 ${isTop ? 'mb-10' : 'mt-10 order-last'}`}>
-                    <h3 className="font-urw font-bold text-[rgb(158,83,48)] uppercase tracking-widest mb-2" style={{ fontSize: '2.4rem' }}>
+                  {/* Content Container (Title) */}
+                  <div className={`text-center relative z-30 ${isTop ? 'mb-14' : 'mt-14 order-last'}`}>
+                    <h3 className="font-urw font-bold text-[rgb(158,83,48)] uppercase tracking-widest mb-2 drop-shadow-md" style={{ fontSize: '2.4rem' }}>
                       {item.title}
                     </h3>
-                    <p className="font-circe text-white/80 font-medium leading-snug px-4" style={{ fontSize: '2.0rem' }}>
-                      {item.desc}
-                    </p>
                   </div>
 
                   {/* Hexagon Wrapper */}
@@ -182,8 +179,8 @@ const HexagonTimeline: React.FC = () => {
                     <h3 className="font-urw font-bold text-[rgb(158,83,48)] uppercase tracking-widest mb-2" style={{ fontSize: '2.8rem' }}>
                       {item.title}
                     </h3>
-                    <p className="font-circe text-white/80 font-medium leading-relaxed" style={{ fontSize: '2.4rem' }}>
-                      {item.desc}
+                    <p className="font-circe text-white/40 text-[1.4rem] uppercase tracking-wider font-bold">
+                      Tap to view details
                     </p>
                   </div>
                 </div>
