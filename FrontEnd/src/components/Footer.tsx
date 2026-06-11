@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <footer className="text-brand-white pt-16 pb-12 relative overflow-hidden" id="footer" style={{ backgroundColor: '#000000' }}>
+    <footer className="text-brand-white pt-16 pb-12 relative overflow-hidden border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] z-20" id="footer" style={{ backgroundColor: '#000000' }}>
       
 
 
@@ -69,11 +69,6 @@ const Footer: React.FC = () => {
                 <HexagonTimeline />
               </div>
 
-              <blockquote className="pt-16 border-t border-brand-white/10 border-l-4 border-l-brand-gold pl-8 mt-16">
-                <p className="italic text-brand-gold font-medium leading-relaxed" style={{ fontSize: '2.6rem' }}>
-                  &#8220;At BEX, we believe great ideas deserve exceptional execution. That is why agencies and brands trust us as their partner in delivering memorable experiences across borders, cultures, and markets.&#8221;
-                </p>
-              </blockquote>
 
             </div>
           </div>
