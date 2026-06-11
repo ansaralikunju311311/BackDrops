@@ -63,16 +63,13 @@ const ExecutiveProfile: React.FC = () => {
             {/* Biography Description */}
             <div className="space-y-6 text-[1.8rem] md:text-[2.3rem] font-circe font-light text-brand-text-muted leading-relaxed">
               <p>
-                Nebeel Aboobacker is the Founder and CEO of BEX, a leading experiential solutions company specializing in exhibitions, interiors, branding, and turnkey project delivery across the UAE, GCC, and international markets.
+                <strong className="text-white font-normal">Nebeel Aboobacker</strong> is the Founder & CEO of <strong className="text-white font-normal">BEX</strong>, an international experiential solutions company delivering exhibitions, interiors, branding, and turnkey project solutions across the UAE, GCC, and global markets.
               </p>
               <p>
-                With over two decades of industry experience, he has successfully led the delivery of high-impact projects for multinational corporations, international agencies, government entities, and global brands. Recognized for his strategic leadership, client-focused approach, and commitment to excellence, Nebeel has built a reputation for transforming ideas into engaging environments and memorable brand experiences.
+                With over 20 years of industry experience, he has led the successful execution of projects for multinational corporations, government entities, international agencies, and leading global brands. Known for his strategic leadership, client-centric approach, and commitment to excellence, Nebeel transforms ambitious ideas into impactful brand experiences.
               </p>
               <p>
-                Under his leadership, BEX has become a trusted partner known for creativity, precision, reliability, and seamless execution. By integrating innovation, technology, and design-driven thinking, he continues to deliver solutions that create meaningful engagement and measurable value for clients.
-              </p>
-              <p>
-                Driven by a global vision, Nebeel is focused on expanding BEX's international presence and establishing the company as a preferred partner for brands and agencies worldwide. His mission is to create transformative experiences that inspire audiences, strengthen brands, and set new benchmarks for excellence across industries and markets.
+                Under his leadership, BEX has earned a reputation for creativity, precision, reliability, and seamless delivery. Driven by a global vision, he continues to expand BEX’s international footprint, positioning the company as a trusted execution partner for brands and agencies seeking exceptional experiences and measurable results worldwide.
               </p>
             </div>
 

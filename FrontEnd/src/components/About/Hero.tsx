@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 max-w-[140rem] mx-auto w-full px-6 md:px-12 lg:px-24 flex items-center">
         <div className="max-w-[95rem] w-full">
           
-          {/* Main Title "BACKDROPS Exhibitions" (Liquid metallic gold gradient, matches screenshot) */}
+          {/* Main Title "BACKDROPS Exhibitions" */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,66 +84,54 @@ const Hero: React.FC = () => {
             BACKDROPS Exhibitions
           </motion.h1>
 
-          {/* Subheading description (Fluid large text, matches screenshot) */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="font-circe font-light text-2xl md:text-3xl lg:text-[2.8rem] text-brand-text-muted leading-relaxed max-w-[80rem] mb-20"
-          >
-            BEX is an exhibition solutions partner creating impactful, precision-built brand environments through seamless design, production, and execution.
-          </motion.p>
-
-          {/* Statistics Block (Typographic list matching screenshot) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="flex flex-col sm:flex-row sm:items-center justify-between gap-12 max-w-[85rem] mt-16"
-          >
-            <div className="flex items-center gap-16 md:gap-24">
-              {/* Stat 1 */}
-              <div className="flex flex-col">
-                <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={600} suffix="+" />
-                </span>
-                <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
-                  completed projects
-                </span>
-              </div>
-
-              {/* Stat 2 */}
-              <div className="flex flex-col">
-                <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={20} suffix="+" />
-                </span>
-                <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
-                  years experience
-                </span>
-              </div>
-
-              {/* Stat 3 */}
-              <div className="flex flex-col">
-                <span className="font-urw font-bold text-[7.2rem] md:text-[8rem] text-brand-gold leading-none mb-3">
-                  <CountUp from={0} to={15} suffix="+" />
-                </span>
-                <span className="font-circe font-light text-[2rem] text-brand-text-muted leading-tight">
-                  countries
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Description paragraph below stats */}
+          {/* Description paragraph */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-            className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[85rem] mt-12"
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="font-circe font-light text-brand-text-muted leading-relaxed max-w-[85rem] mb-16"
             style={{ fontSize: '2.2rem' }}
           >
             <span className="font-urw font-extrabold text-brand-gold" style={{ fontSize: '2.8rem' }}>BEX</span> is an international experiential execution partner delivering exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions. We collaborate with agencies, brands, and organizers to transform ambitious ideas into exceptional real-world experiences through expert execution, robust infrastructure, and seamless project delivery. Across the UAE, GCC, and international markets, we act as an extension of our clients' teams—bringing creativity, precision, and reliability together to deliver environments that engage audiences, elevate brands, and create lasting impact.
           </motion.p>
+
+          {/* Statistics Block (Projected Tiles) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[95rem]"
+          >
+            {/* Stat 1 */}
+            <div className="flex flex-col justify-center items-center text-center py-12 px-8 bg-[#0d0d0f]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5),_inset_0_2px_10px_rgba(255,255,255,0.05)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(212,164,55,0.15)] transition-all duration-400">
+              <span className="font-urw font-bold text-[7rem] md:text-[8rem] text-brand-gold leading-none mb-4">
+                <CountUp from={0} to={600} suffix="+" />
+              </span>
+              <span className="font-circe font-light text-[1.8rem] text-white/80 leading-tight uppercase tracking-[0.1em]">
+                completed projects
+              </span>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="flex flex-col justify-center items-center text-center py-12 px-8 bg-[#0d0d0f]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5),_inset_0_2px_10px_rgba(255,255,255,0.05)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(212,164,55,0.15)] transition-all duration-400">
+              <span className="font-urw font-bold text-[7rem] md:text-[8rem] text-brand-gold leading-none mb-4">
+                <CountUp from={0} to={20} suffix="+" />
+              </span>
+              <span className="font-circe font-light text-[1.8rem] text-white/80 leading-tight uppercase tracking-[0.1em]">
+                years experience
+              </span>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="flex flex-col justify-center items-center text-center py-12 px-8 bg-[#0d0d0f]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5),_inset_0_2px_10px_rgba(255,255,255,0.05)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(212,164,55,0.15)] transition-all duration-400">
+              <span className="font-urw font-bold text-[7rem] md:text-[8rem] text-brand-gold leading-none mb-4">
+                <CountUp from={0} to={15} suffix="+" />
+              </span>
+              <span className="font-circe font-light text-[1.8rem] text-white/80 leading-tight uppercase tracking-[0.1em]">
+                countries
+              </span>
+            </div>
+          </motion.div>
 
         </div>
       </div>
