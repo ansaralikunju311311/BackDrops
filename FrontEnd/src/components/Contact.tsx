@@ -570,16 +570,20 @@ const Contact: React.FC = () => {
                 </div>
 
                 {/* Explore CREO Link */}
-                <div className="pt-6">
-                  <button 
-                    onClick={() => window.location.href = '/services/detail?id=9'}
-                    className="flex items-center gap-3 text-brand-gold hover:text-white transition-colors duration-300 group/link inline-flex"
-                  >
-                    <span className="font-euclid font-bold uppercase tracking-wider text-[1.6rem]">Explore CREO</span>
-                    <div className="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center group-hover/link:bg-brand-gold-light transition-colors duration-300 shadow-[0_4px_10px_rgba(158,83,48,0.4)]">
-                      <ArrowUpRight className="w-5 h-5 text-white group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
-                    </div>
-                  </button>
+                <div className="flex gap-6 items-start">
+                  {/* Empty placeholder to match icon width */}
+                  <div className="w-12 h-12 shrink-0"></div>
+                  <div className="pt-2">
+                    <button 
+                      onClick={() => window.location.href = '/services/detail?id=9'}
+                      className="flex items-center gap-3 text-brand-gold hover:text-white transition-colors duration-300 group/link inline-flex"
+                    >
+                      <span className="font-euclid font-bold uppercase tracking-wider text-[1.6rem]">Explore CREO</span>
+                      <div className="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center group-hover/link:bg-brand-gold-light transition-colors duration-300 shadow-[0_4px_10px_rgba(158,83,48,0.4)]">
+                        <ArrowUpRight className="w-5 h-5 text-white group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
+                      </div>
+                    </button>
+                  </div>
                 </div>
 
               </div>

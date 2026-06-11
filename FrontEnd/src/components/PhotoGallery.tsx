@@ -13,7 +13,7 @@ const PhotoGallery: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <div>
             <span className="font-circe font-bold text-[1.6rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block drop-shadow-md">
-              Memories & Moments
+              The BEX showcase
             </span>
             <h2 
               className="font-urw font-black text-white uppercase tracking-wider leading-none drop-shadow-xl"
