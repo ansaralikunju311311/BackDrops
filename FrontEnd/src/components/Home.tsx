@@ -486,7 +486,7 @@ const Home: React.FC = () => {
             
             {/* Left Column: Heading and Controls */}
             <div className="flex flex-col justify-center h-full">
-              <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
+              <span className="font-circe font-bold text-[1.6rem] md:text-[1.8rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
                 Portfolio Clips
               </span>
               <h2 className="font-urw font-extrabold text-h1 text-white uppercase tracking-wider leading-tight mb-8">
@@ -693,8 +693,9 @@ const Home: React.FC = () => {
           {/* Header Row */}
           <div className="flex flex-col mb-16 gap-8">
             <div className="w-full">
-              <h2 className="font-urw font-extrabold text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[5rem] text-white uppercase tracking-wider leading-tight mb-8 xl:whitespace-nowrap">
-                The BEX experience — When vision meets execution
+              <h2 className="font-urw font-extrabold text-white uppercase tracking-wider leading-tight mb-8 xl:whitespace-nowrap">
+                <span className="text-[3rem] md:text-[4rem] lg:text-[4.5rem]">The BEX experience</span>{' '}
+                <span className="text-[2.2rem] md:text-[2.8rem] lg:text-[3.2rem] opacity-80">— When vision meets execution</span>
               </h2>
               <div className="border-l-[3px] border-brand-gold pl-6 py-1">
                 <p className="font-circe font-light italic text-[2.2rem] md:text-[2.6rem] text-brand-gold leading-relaxed">
