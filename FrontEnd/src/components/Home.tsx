@@ -940,7 +940,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col gap-10"
             >
-              <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default text-[1.8rem] md:text-[2.3rem]">
                 The layout and installation of an expo booth form the backbone of a successful exhibition presence, shaping how visitors perceive and engage with a brand. A well-planned layout ensures clear visibility, seamless visitor flow, and strategic placement of key elements such as product displays, reception areas, and interactive zones, all aligned with the brand’s objectives. Through advanced planning and 3D visualization, every detail is refined to deliver a space that is both functional and visually impactful.
               </p>
             </motion.div>
@@ -953,7 +953,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col gap-10"
             >
-              <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default" style={{ fontSize: '2.3rem' }}>
+              <p className="font-circe font-normal text-white/85 hover:text-white leading-relaxed transition-colors duration-300 cursor-default text-[1.8rem] md:text-[2.3rem]">
                 At BEX, we combine design precision with expert installation to bring exhibition stands to life with accuracy, efficiency, and quality. From concept development to on-site execution, our teams ensure every booth is built to exact specifications, integrating branding, lighting, and multimedia elements seamlessly. The result is a powerful, immersive exhibition environment that attracts attention, engages audiences, and delivers lasting brand impact.
               </p>
             </motion.div>
@@ -997,16 +997,16 @@ const Home: React.FC = () => {
               <h2 className="font-urw font-extrabold text-h2 text-white uppercase tracking-wider leading-tight mb-4">
                 SUSTAINABILITY AS A STANDARD, NOT AN AFTERTHOUGHT
               </h2>
-              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
                 At BEX, sustainability is not a separate initiative, it is integrated into the way we design, manufacture, manage, and deliver projects. We believe that exceptional brand experiences should create lasting impact for audiences, not unnecessary impact on the environment.
               </p>
-              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
                 What differentiates BEX is our commitment to responsible execution. Through intelligent material selection, reusable exhibition systems, modular construction techniques, efficient production planning, optimized logistics, and asset lifecycle management, we help clients reduce waste, maximize resource utilization, and improve long-term project value.
               </p>
-              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
                 Our in-house infrastructure and manufacturing capabilities enable greater control over materials, production processes, and quality standards, allowing us to deliver sustainable solutions without compromising creativity, functionality, or visual impact. By extending the life of exhibition assets, minimizing material wastage, and adopting efficient operational practices, we support brands and agencies seeking more responsible ways to engage their audiences.
               </p>
-              <p className="font-circe font-normal text-white/85 leading-relaxed" style={{ fontSize: '1.8rem' }}>
+              <p className="font-circe font-normal text-white/85 leading-relaxed text-[1.8rem] md:text-[2.3rem]">
                 The result is a smarter approach to experiential delivery—one that balances innovation, performance, cost efficiency, and environmental responsibility. For BEX, sustainability is more than a commitment; it is a competitive advantage that helps our clients build for today while preparing for tomorrow.
               </p>
             </motion.div>

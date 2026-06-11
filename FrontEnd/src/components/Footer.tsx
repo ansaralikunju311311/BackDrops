@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
         {/* About Content — always visible on About page */}
         {isAboutPage && (
           <div className="border-t border-brand-white/10 py-12">
-            <div className="flex flex-col text-left select-text font-circe font-light text-[2rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
+            <div className="flex flex-col text-left select-text font-circe font-light text-[1.8rem] md:text-[2.3rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
 
               {/* Our Mission */}
               <div className="space-y-4">
