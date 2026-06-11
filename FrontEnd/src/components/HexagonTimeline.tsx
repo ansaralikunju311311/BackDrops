@@ -118,11 +118,11 @@ const HexagonTimeline: React.FC = () => {
                     
                     {/* Inner White Circle */}
                     <div className="relative z-10 w-[65px] h-[65px] bg-white rounded-full flex items-center justify-center shadow-inner group-hover:shadow-[0_0_20px_rgba(255,255,255,0.8)] transition-shadow duration-300">
-                      <Icon className="w-8 h-8 text-[rgb(158,83,48)] group-hover:scale-110 transition-transform duration-300" />
+                      <Icon className="w-10 h-10 text-[rgb(158,83,48)] group-hover:scale-110 transition-transform duration-300" />
                     </div>
 
                     {/* Step Number Badge */}
-                    <div className={`absolute ${isTop ? 'top-[-15px]' : 'bottom-[-15px]'} left-1/2 -translate-x-1/2 bg-white text-[rgb(158,83,48)] font-mono font-bold text-[1.2rem] px-3 py-1 rounded-full border border-[rgb(158,83,48)]/20 shadow-sm z-20`}>
+                    <div className={`absolute ${isTop ? 'top-[-25px]' : 'bottom-[-25px]'} left-1/2 -translate-x-1/2 text-white font-mono font-extrabold text-[1.8rem] z-20 drop-shadow-md`}>
                       {item.num}
                     </div>
                   </motion.div>
@@ -166,10 +166,10 @@ const HexagonTimeline: React.FC = () => {
                       />
                     </svg>
                     <div className="relative z-10 w-[45px] h-[45px] bg-white rounded-full flex items-center justify-center shadow-inner">
-                      <Icon className="w-5 h-5 text-[rgb(158,83,48)]" />
+                      <Icon className="w-7 h-7 text-[rgb(158,83,48)]" />
                     </div>
                     {/* Step Number Badge */}
-                    <div className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-white text-[rgb(158,83,48)] font-mono font-bold text-[1rem] px-2 py-0.5 rounded-full border border-[rgb(158,83,48)]/20 shadow-sm z-20">
+                    <div className="absolute top-[-20px] left-1/2 -translate-x-1/2 text-white font-mono font-extrabold text-[1.4rem] z-20 drop-shadow-md">
                       {item.num}
                     </div>
                   </div>
@@ -214,7 +214,7 @@ const HexagonTimeline: React.FC = () => {
               className="relative w-full max-w-2xl rounded-2xl p-8 sm:p-12 flex flex-col items-center text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
               style={{
                 backgroundColor: '#0B0C10',
-                border: '1px solid rgba(158, 83, 48, 0.3)',
+                border: 'none',
                 boxShadow: '0 0 40px rgba(158, 83, 48, 0.2)'
               }}
             >
