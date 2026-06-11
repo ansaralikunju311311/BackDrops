@@ -425,7 +425,7 @@ const ServiceDetail: React.FC = () => {
       </section>
 
       {/* SECTION 2: Content Column + Sidebar */}
-      <section className="py-32 bg-brand-bg relative z-10 border-t border-brand-white/5">
+      <section className="py-16 md:py-32 bg-brand-bg relative z-10 border-t border-brand-white/5">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
             
@@ -525,7 +525,7 @@ const ServiceDetail: React.FC = () => {
       </section>
 
       {/* SECTION 3: Portfolio Category Items Showcase */}
-      <section className="py-32 bg-brand-bg/50 border-t border-brand-white/5 relative z-10">
+      <section className="py-16 md:py-32 bg-brand-bg/50 border-t border-brand-white/5 relative z-10">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           
           {/* Scroll Header Controls */}

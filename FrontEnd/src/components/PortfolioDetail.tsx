@@ -273,7 +273,7 @@ const PortfolioDetail: React.FC = () => {
       </div>
 
       {/* Main Container */}
-      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 py-32 relative z-10">
+      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-32 relative z-10">
         
         {/* Breadcrumb Path */}
         <nav className="font-circe font-light text-[1.4rem] sm:text-[1.6rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-16 text-left">

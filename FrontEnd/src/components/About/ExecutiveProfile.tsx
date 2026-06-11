@@ -6,7 +6,7 @@ import ac2Img from '../../assets/ac2.png'
 
 const ExecutiveProfile: React.FC = () => {
   return (
-    <section className="py-32 bg-brand-bg relative overflow-hidden border-t border-brand-border/30">
+    <section className="py-16 md:py-32 bg-brand-bg relative overflow-hidden border-t border-brand-border/30">
       
       {/* Background Decorative Glows */}
       <div className="absolute top-[30%] right-[-10%] w-[50rem] h-[50rem] rounded-full bg-brand-gold/[0.03] blur-[130px] pointer-events-none animate-float-orb" />

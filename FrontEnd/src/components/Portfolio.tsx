@@ -122,7 +122,7 @@ const Portfolio: React.FC = () => {
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-brand-gold/5 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Main Container */}
-      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 py-32 relative z-10">
+      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-32 relative z-10">
         
         {/* Breadcrumb Path */}
         <nav className="font-circe font-light text-[1.4rem] sm:text-[1.6rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-16 text-left">
@@ -332,7 +332,7 @@ const Portfolio: React.FC = () => {
             )}
           </>
         ) : (
-          <div className="py-32 text-center">
+          <div className="py-16 md:py-32 text-center">
             <p className="font-circe font-light text-[2.2rem] text-brand-text-muted">
               No portfolio projects found matching your selected criteria.
             </p>
