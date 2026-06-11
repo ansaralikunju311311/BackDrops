@@ -691,8 +691,8 @@ const Home: React.FC = () => {
 
           {/* Header Row */}
           <div className="flex flex-col mb-16 gap-8">
-            <div className="max-w-[95rem]">
-              <h2 className="font-urw font-extrabold text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-white uppercase tracking-wider leading-tight mb-8">
+            <div className="w-full">
+              <h2 className="font-urw font-extrabold text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[5rem] text-white uppercase tracking-wider leading-tight mb-8 xl:whitespace-nowrap">
                 The BEX experience — When vision meets execution
               </h2>
               <div className="border-l-[3px] border-brand-gold pl-6 py-1">
