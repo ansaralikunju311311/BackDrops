@@ -325,7 +325,7 @@ const PortfolioDetail: React.FC = () => {
                 <h4 className="font-urw font-bold text-[1.8rem] text-brand-white/90 uppercase tracking-wide mb-3">Type of stand:</h4>
                 <ul className="flex flex-col gap-2">
                   {currentTypeOfStands.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-3 font-circe font-light text-[1.5rem] text-brand-text-muted">
+                    <li key={idx} className="flex items-center gap-3 font-circe font-medium text-[1.8rem] text-brand-text-muted">
                       <span className="w-2.5 h-2.5 bg-[#E51D1D] shrink-0" />
                       {item}
                     </li>
@@ -337,7 +337,7 @@ const PortfolioDetail: React.FC = () => {
                 <h4 className="font-urw font-bold text-[1.8rem] text-brand-white/90 uppercase tracking-wide mb-3">Type of event:</h4>
                 <ul className="flex flex-col gap-2">
                   {currentTypeOfEvents.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-3 font-circe font-light text-[1.5rem] text-brand-text-muted">
+                    <li key={idx} className="flex items-center gap-3 font-circe font-medium text-[1.8rem] text-brand-text-muted">
                       <span className="w-2.5 h-2.5 bg-[#E51D1D] shrink-0" />
                       {item}
                     </li>

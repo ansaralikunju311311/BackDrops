@@ -1026,7 +1026,7 @@ const Home: React.FC = () => {
             </h2>
 
             {/* Description */}
-             <p className="font-circe font-normal text-white/85 leading-relaxed max-w-[70rem] mb-16" style={{ fontSize: '2.0rem' }}>
+             <p className="font-circe font-normal text-white/85 leading-relaxed max-w-[70rem] mb-16 text-[1.8rem] md:text-[2.3rem]">
               Backed by our state-of-the-art production facility, skilled fabrication teams, and experiential engineering expertise, we deliver exceptional exhibition stands, branded environments, and immersive experiences with precision and confidence.
             </p>
 
