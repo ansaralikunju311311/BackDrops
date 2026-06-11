@@ -359,11 +359,7 @@ const ServiceDetail: React.FC = () => {
           <img
             src={service.image}
             alt={service.title}
-            className={`w-full h-full select-none ${
-              activeIdx === 9
-                ? 'object-contain'
-                : 'object-cover'
-            }`}
+            className="w-full h-full select-none object-contain"
           />
           {/* Overlapping Border Divider Gradient */}
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white/10 to-transparent pointer-events-none hidden lg:block" />

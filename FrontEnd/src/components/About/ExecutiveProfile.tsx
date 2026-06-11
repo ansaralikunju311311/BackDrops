@@ -52,7 +52,7 @@ const ExecutiveProfile: React.FC = () => {
               <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-2">
                 Executive Profile
               </span>
-              <h2 className="font-urw font-extrabold text-h2 text-white leading-tight uppercase tracking-wide">
+              <h2 className="font-urw font-extrabold text-h2 text-white leading-tight tracking-wide">
                 Nebeel Aboobacker
               </h2>
               <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold mt-1 block">
@@ -78,7 +78,7 @@ const ExecutiveProfile: React.FC = () => {
 
             {/* Founder's Message Quote Block */}
             <div className="w-full bg-brand-dark-accent/30 border-l-[3px] border-brand-gold p-8 rounded-r-xs space-y-4 shadow-inner">
-              <span className="font-urw font-bold text-[1.4rem] tracking-[0.2em] text-brand-gold uppercase block">
+              <span className="font-urw font-bold text-[1.8rem] tracking-wider text-brand-gold block">
                 Founder's Message
               </span>
               <p className="font-circe font-light text-[1.6rem] md:text-[1.8rem] text-white/90 italic leading-relaxed">
@@ -99,9 +99,11 @@ const ExecutiveProfile: React.FC = () => {
           className="mt-24 pt-16 border-t border-brand-gold/10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
           <div className="space-y-6">
-            <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase block mb-2">
-              Industry Recognition
-            </span>
+            
+
+             <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold mt-1 block">
+               Industry Recognition
+              </span>
             <h3 className="font-urw font-extrabold text-h2 text-white leading-tight uppercase tracking-wide">
               Gulfood Innovation Awards 2018
             </h3>

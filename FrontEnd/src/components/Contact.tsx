@@ -431,7 +431,7 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="mb-16 md:mb-24"
         >
-          <h1 className="font-urw font-black text-[4rem] md:text-[5.5rem] lg:text-[7rem] tracking-tight uppercase leading-[0.9] mb-8">
+          <h1 className="font-urw font-black text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] tracking-tight uppercase leading-[0.9] mb-8">
             Contact Us
           </h1>
         </motion.div>
