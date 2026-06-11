@@ -249,7 +249,7 @@ const TermsConditions: React.FC = () => {
                 Warehouse no- 6, Gate no.13<br />
                 Jebel Ali Industrial area 1<br />
                 Dubai - United Arab Emirates<br />
-                Email: <a href="mailto:info@backdrops.ae" className="text-brand-gold hover:underline">info@backdrops.ae</a><br />
+                Email: <a href="mailto:info@bexdxb.com" className="text-brand-gold hover:underline">info@bexdxb.com</a><br />
                 Phone: +971 55 229 1691
               </p>
             </div>
