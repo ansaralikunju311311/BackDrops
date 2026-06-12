@@ -590,7 +590,7 @@ const AdminPortal: React.FC = () => {
       const data = await res.json()
       if (res.ok && data.success) {
         setVideoSuccess('Video added successfully!')
-        setVideoCases(prev => [data.video, ...prev])
+        fetchVideoCases()
         setVideoTitle('')
         setVideoUrl('')
         setVideoDuration('')

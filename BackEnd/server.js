@@ -1499,7 +1499,7 @@ app.post('/api/videocases', verifyToken, async (req, res) => {
 
     // Extract YouTube ID from URL
     let youtubeId = '';
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
     const match = youtubeUrl.match(regExp);
     if (match && match[2].length === 11) {
       youtubeId = match[2];
