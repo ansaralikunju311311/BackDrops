@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
         {/* About Content — always visible on About page */}
         {isAboutPage && (
           <div className="border-t border-brand-white/10 py-12">
-            <div className="flex flex-col text-left select-text font-circe font-light text-[1.8rem] md:text-[2.3rem] text-brand-text-muted leading-relaxed space-y-12 max-w-[120rem] mx-auto">
+            <div className="flex flex-col text-left select-text font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white leading-relaxed space-y-12 max-w-[120rem] mx-auto">
 
               {/* Our Mission */}
               <div className="space-y-4">
@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               UAE Address
             </span>
-            <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+            <p className="font-circe text-white leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
               Backdrops Technical Services L.L.C<br />
               Gate no.13, Warehouse no- 6<br />
               Jebel Ali Industrial area 1<br />
@@ -143,21 +143,21 @@ const Footer: React.FC = () => {
             </span>
             <a
               href="tel:00971552291691"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+              className="font-circe text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
               +971 55 2291691
             </a>
             <a
               href="tel:+971507613437"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+              className="font-circe text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
               +971 50 7613437
             </a>
             <a
               href="mailto:info@bexdxb.com"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+              className="font-circe text-white hover:text-brand-gold block transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
               info@bexdxb.com
@@ -169,7 +169,7 @@ const Footer: React.FC = () => {
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               India Address
             </span>
-            <p className="font-circe text-brand-text-muted leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+            <p className="font-circe text-white leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
               CREO Construction Experts<br />
               Arullil Arcade<br />
               Thrissur Dt.<br />
@@ -193,14 +193,14 @@ const Footer: React.FC = () => {
             </span>
             <a
               href="tel:+919188866924"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block mb-2 transition-colors duration-300"
+              className="font-circe text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
               +91 9188 866924
             </a>
             <a
               href="tel:+919605218618"
-              className="font-circe text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+              className="font-circe text-white hover:text-brand-gold block transition-colors duration-300"
               style={{ fontSize: '1.6rem', fontWeight: 400 }}
             >
               +91 9605 218618
@@ -211,14 +211,14 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-2 md:col-span-2 md:items-end">
             <Link
               to="/privacy-policy"
-              className="font-euclid font-normal text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
+              className="font-euclid font-normal text-white hover:text-brand-gold transition-colors duration-300"
               style={{ fontSize: '1.8rem' }}
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-conditions"
-              className="font-euclid font-normal text-brand-text-muted hover:text-brand-gold transition-colors duration-300"
+              className="font-euclid font-normal text-white hover:text-brand-gold transition-colors duration-300"
               style={{ fontSize: '1.8rem' }}
             >
               Terms &amp; Conditions
@@ -230,7 +230,7 @@ const Footer: React.FC = () => {
 
 
         {/* Copy Line & Socials */}
-        <div className="flex flex-col sm:flex-row justify-between items-center text-brand-text-muted border-t border-brand-white/5 pt-12 gap-6" style={{ fontSize: '1.8rem', fontWeight: 400 }}>
+        <div className="flex flex-col sm:flex-row justify-between items-center text-white border-t border-brand-white/5 pt-12 gap-6" style={{ fontSize: '1.8rem', fontWeight: 400 }}>
           <p>&copy; {currentYear} BEX Backdrops. All rights reserved.</p>
           
           {/* Social Badges */}
