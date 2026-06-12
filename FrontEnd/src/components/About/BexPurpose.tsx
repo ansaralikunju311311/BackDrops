@@ -15,7 +15,7 @@ const BexPurpose: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col text-center md:text-right order-1 md:order-1 max-w-[48rem]"
           >
-            <h2 className="font-urw font-extrabold text-[4rem] md:text-[5rem] lg:text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap md:whitespace-normal">
+            <h2 className="font-urw font-semibold text-[4rem] md:text-[5rem] lg:text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap md:whitespace-normal">
               The BEX<span className="hidden md:inline"><br /></span> Purpose
             </h2>
           </motion.div>
