@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
           </Link>
 
           {/* Navigation in the center */}
-          <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4">
+          <nav className="flex flex-wrap lg:flex-nowrap justify-center gap-x-6 xl:gap-x-10 gap-y-4 whitespace-nowrap">
             {['Services', 'Portfolio', 'Articles', 'Contacts', 'FAQ'].map((link) => {
               const path = `/${link.toLowerCase()}`
 
@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
                   key={link}
                   to={path}
                   className="font-euclid text-white hover:text-brand-gold transition-colors duration-300 relative py-2 group"
-                  style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.05em' }}
+                  style={{ fontSize: '2.2rem', fontWeight: 400, letterSpacing: '0.05em' }}
                 >
                   {link}
                   <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -112,10 +112,10 @@ const Footer: React.FC = () => {
           <div>
             <Link
               to="/contacts"
-              className="font-euclid font-bold tracking-wider uppercase px-12 py-5 bg-brand-gold text-brand-white hover:bg-brand-gold-light transition-all duration-300 rounded-sm flex items-center gap-3 shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-[0_20px_40px_rgba(196,121,86,0.3)] group"
-              style={{ fontSize: '2rem' }}
+              className="font-euclid font-bold tracking-wider uppercase px-8 py-4 bg-brand-gold text-brand-white hover:bg-brand-gold-light transition-all duration-300 rounded-sm flex items-center gap-3 shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-[0_20px_40px_rgba(196,121,86,0.3)] group"
+              style={{ fontSize: '2.2rem' }}
             >
-              Send Request <span className="font-light text-[2.2rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
+              Send Request <span className="font-light text-[2.4rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
             </Link>
           </div>
 

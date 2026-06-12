@@ -294,7 +294,7 @@ const FAQ: React.FC = () => {
 
                     {/* Short Answer (fades in on hover) */}
                     <div className="h-0 opacity-0 overflow-hidden group-hover:h-auto group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-2 group-hover:translate-y-0">
-                      <p className="font-circe font-light text-[1.4rem] text-brand-text-muted leading-relaxed mb-4">
+                      <p className="font-circe font-light text-[1.4rem] text-white leading-relaxed mb-4">
                         {faq.shortAnswer}
                       </p>
 
@@ -375,7 +375,7 @@ const FAQ: React.FC = () => {
                 <div className="w-16 h-[2px] bg-brand-gold mb-8 animate-draw-line" />
 
                 {/* Detailed Answer Text */}
-                <p className="font-circe font-light text-[1.8rem] sm:text-[2rem] text-brand-text-muted leading-relaxed select-text">
+                <p className="font-circe font-light text-[1.8rem] sm:text-[2rem] text-white leading-relaxed select-text">
                   {selectedFAQ.fullAnswer}
                 </p>
               </div>

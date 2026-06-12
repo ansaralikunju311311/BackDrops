@@ -411,7 +411,7 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.45 }}
             className="font-circe font-bold text-brand-gold text-center w-full mt-8"
-            style={{ fontSize: 'clamp(1.7rem, 2vw, 2.2rem)' }}
+            style={{ fontSize: 'clamp(2.0rem, 2.5vw, 2.8rem)' }}
           >
             Wherever your vision goes, BEX is ready to build it.
           </motion.p>
