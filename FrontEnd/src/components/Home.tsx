@@ -111,7 +111,7 @@ const clientLogos = [
   // { name: 'Wilhelmsen Ships Service', src: '/assets/client/wilhemsen_ships_service-1.webp' },
 ]
 
-const videos = [
+const localVideos = [
   {
     id: 'local_adipec_2025',
     title: 'ADIPEC 2025',
@@ -125,30 +125,6 @@ const videos = [
     duration: '01:00',
     uploadDate: '2026-06-11',
     localSrc: gisecVideo
-  },
-  {
-    id: 'aNXF6TICgmM',
-    title: 'ADIS 2026',
-    duration: '01:18',
-    date: '2 years ago'
-  },
-  {
-    id: 'duG8mTTTMaQ',
-    title: 'Beauty World 2024',
-    duration: '00:30',
-    date: '1 year ago'
-  },
-  {
-    id: 't3crG9hLY_s',
-    title: 'Gaming Expo 2025',
-    duration: '00:25',
-    date: '1 year ago'
-  },
-  {
-    id: '3uB5Ni0L35w',
-    title: 'Beauty World 2024',
-    duration: '00:15',
-    date: '2 years ago'
   }
 ]
 
@@ -231,8 +207,34 @@ const Home: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [visibleCards, setVisibleCards] = useState(3)
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0)
+  const [dynamicVideos, setDynamicVideos] = useState<any[]>([])
+  
   const reviewsPerPage = isMobile ? 1 : 3
   const maxReviewIndex = Math.ceil(googleReviews.length / reviewsPerPage) - 1
+
+  const videos = [...localVideos, ...dynamicVideos]
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+        const res = await fetch(`${apiBaseUrl}/api/videocases`)
+        const data = await res.json()
+        if (res.ok && data.success) {
+          const formatted = data.videocases.map((v: any) => ({
+            id: v.youtubeId,
+            title: v.title,
+            duration: v.duration || '00:00',
+            date: new Date(v.createdAt).toLocaleDateString()
+          }))
+          setDynamicVideos(formatted)
+        }
+      } catch (err) {
+        console.error('Failed to fetch video cases', err)
+      }
+    }
+    fetchVideos()
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -600,10 +602,6 @@ const Home: React.FC = () => {
                           {vid.title}
                         </h3>
                       </div>
-                      {/* Date (Indented to align with title text) */}
-                      <span className="font-circe font-light text-[1.3rem] text-brand-text-muted ml-[5.2rem]">
-                        {vid.uploadDate ? getTimeAgo(vid.uploadDate) : vid.date}
-                      </span>
                     </div>
                   </div>
                 ))}

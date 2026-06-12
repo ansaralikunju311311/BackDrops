@@ -208,6 +208,16 @@ const galleryPhotoSchema = new mongoose.Schema({
 
 const GalleryPhoto = mongoose.model('GalleryPhoto', galleryPhotoSchema);
 
+// Video Case Schema & Model
+const videoCaseSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  youtubeUrl: { type: String, required: true },
+  youtubeId: { type: String, required: true },
+  duration: { type: String, default: '00:00' }
+}, { collection: 'videocases', timestamps: true });
+
+const VideoCase = mongoose.model('VideoCase', videoCaseSchema);
+
 const corsOptions = {
   origin: '*',
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
@@ -1465,6 +1475,57 @@ app.delete('/api/gallery/:id', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Error deleting gallery photo:', error);
     return res.status(500).json({ success: false, error: 'Failed to delete gallery photo.' });
+  }
+});
+
+// GET /api/videocases - Fetch all video cases
+app.get('/api/videocases', async (req, res) => {
+  try {
+    const videocases = await VideoCase.find().sort({ createdAt: -1 });
+    return res.json({ success: true, videocases });
+  } catch (error) {
+    console.error('Error fetching videocases:', error);
+    return res.status(500).json({ success: false, error: 'Failed to fetch video cases.' });
+  }
+});
+
+// POST /api/videocases - Add a new video case (protected)
+app.post('/api/videocases', verifyToken, async (req, res) => {
+  try {
+    const { title, youtubeUrl, duration } = req.body;
+    if (!title || !youtubeUrl) {
+      return res.status(400).json({ success: false, error: 'Title and YouTube URL are required.' });
+    }
+
+    // Extract YouTube ID from URL
+    let youtubeId = '';
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = youtubeUrl.match(regExp);
+    if (match && match[2].length === 11) {
+      youtubeId = match[2];
+    } else {
+      return res.status(400).json({ success: false, error: 'Invalid YouTube URL.' });
+    }
+
+    const newVideo = await VideoCase.create({ title, youtubeUrl, youtubeId, duration: duration || '00:00' });
+    return res.status(201).json({ success: true, message: 'Video added successfully.', video: newVideo });
+  } catch (error) {
+    console.error('Error adding video case:', error);
+    return res.status(500).json({ success: false, error: 'Failed to add video case.' });
+  }
+});
+
+// DELETE /api/videocases/:id - Delete a video case (protected)
+app.delete('/api/videocases/:id', verifyToken, async (req, res) => {
+  try {
+    const video = await VideoCase.findByIdAndDelete(req.params.id);
+    if (!video) {
+      return res.status(404).json({ success: false, error: 'Video not found.' });
+    }
+    return res.json({ success: true, message: 'Video deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting video case:', error);
+    return res.status(500).json({ success: false, error: 'Failed to delete video case.' });
   }
 });
 

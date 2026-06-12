@@ -29,6 +29,14 @@ interface Stand {
   createdAt: string;
 }
 
+interface VideoCase {
+  _id: string;
+  title: string;
+  youtubeUrl: string;
+  youtubeId: string;
+  createdAt: string;
+}
+
 // Multi-select options configuration
 const STAND_TYPES = [
   { value: 'double decker stand', label: 'Double Decker Stand' },
@@ -93,7 +101,7 @@ const AdminPortal: React.FC = () => {
   const [standsPage, setStandsPage] = useState(1)
   
   // Gallery Management States
-  const [activeTab, setActiveTab] = useState<'projects' | 'gallery'>('projects')
+  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases'>('projects')
   const [galleryPhotos, setGalleryPhotos] = useState<StandImage[]>([])
   const [galleryLoading, setGalleryLoading] = useState(false)
   const [galleryFiles, setGalleryFiles] = useState<File[]>([])
@@ -101,6 +109,16 @@ const AdminPortal: React.FC = () => {
   const [isGalleryUploading, setIsGalleryUploading] = useState(false)
   const [galleryError, setGalleryError] = useState<string | null>(null)
   const [gallerySuccess, setGallerySuccess] = useState<string | null>(null)
+
+  // Video Cases Management States
+  const [videoCases, setVideoCases] = useState<VideoCase[]>([])
+  const [videoLoading, setVideoLoading] = useState(false)
+  const [videoError, setVideoError] = useState<string | null>(null)
+  const [videoSuccess, setVideoSuccess] = useState<string | null>(null)
+  const [videoTitle, setVideoTitle] = useState('')
+  const [videoUrl, setVideoUrl] = useState('')
+  const [videoDuration, setVideoDuration] = useState('')
+  const [isVideoUploading, setIsVideoUploading] = useState(false)
 
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
@@ -202,6 +220,27 @@ const AdminPortal: React.FC = () => {
     }
   }
 
+  // Fetch Video Cases
+  const fetchVideoCases = async () => {
+    setVideoLoading(true)
+    setVideoError(null)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/videocases`)
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setVideoCases(data.videocases)
+      } else {
+        setVideoError(data.error || 'Failed to fetch video cases.')
+      }
+    } catch (err) {
+      console.error('Fetch error:', err)
+      setVideoError('Failed to load video cases. Server connection error.')
+    } finally {
+      setVideoLoading(false)
+    }
+  }
+
   // Check auth status on mount
   useEffect(() => {
     const verifyToken = async () => {
@@ -222,6 +261,7 @@ const AdminPortal: React.FC = () => {
           setIsAuthenticated(true)
           fetchStands(token)
           fetchGalleryPhotos()
+          fetchVideoCases()
         } else {
           localStorage.removeItem('backdrops_admin_token')
         }
@@ -516,6 +556,80 @@ const AdminPortal: React.FC = () => {
     } catch (err) {
       console.error('Delete error:', err)
       alert('Failed to delete photo due to a network error.')
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
+  // Video Cases Functions
+  const handleVideoSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    setVideoError(null)
+    setVideoSuccess(null)
+
+    if (!videoTitle.trim() || !videoUrl.trim()) {
+      setVideoError('Please provide both a title and a YouTube URL.')
+      return
+    }
+
+    setIsVideoUploading(true)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/videocases`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ title: videoTitle, youtubeUrl: videoUrl, duration: videoDuration })
+      })
+
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setVideoSuccess('Video added successfully!')
+        setVideoCases(prev => [data.video, ...prev])
+        setVideoTitle('')
+        setVideoUrl('')
+        setVideoDuration('')
+        setTimeout(() => setVideoSuccess(null), 3000)
+      } else {
+        setVideoError(data.error || 'Failed to add video case.')
+      }
+    } catch (err) {
+      console.error('Video upload error:', err)
+      setVideoError('Failed to add video due to a network error.')
+    } finally {
+      setIsVideoUploading(false)
+    }
+  }
+
+  const handleDeleteVideoCase = async (id: string) => {
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    if (!window.confirm('Are you sure you want to delete this video case?')) return
+
+    setDeletingId(id)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/videocases/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setVideoCases(prev => prev.filter(v => v._id !== id))
+      } else {
+        alert(data.error || 'Failed to delete video.')
+      }
+    } catch (err) {
+      console.error('Delete error:', err)
+      alert('Failed to delete video due to network error.')
     } finally {
       setDeletingId(null)
     }
@@ -844,6 +958,16 @@ const AdminPortal: React.FC = () => {
                   }`}
                 >
                   Photo Gallery
+                </button>
+                <button
+                  onClick={() => setActiveTab('videocases')}
+                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                    activeTab === 'videocases' 
+                      ? 'bg-brand-gold text-white shadow-lg' 
+                      : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  Video Cases
                 </button>
               </div>
 
@@ -1592,6 +1716,172 @@ const AdminPortal: React.FC = () => {
                                   </>
                                 )}
                               </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* ================= VIDEO CASES MANAGER ================= */}
+              {activeTab === 'videocases' && (
+                <div className="space-y-[4rem]">
+                  {/* Add Video Form */}
+                  <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative overflow-hidden shadow-2xl">
+                    <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem] flex items-center gap-3">
+                      <Plus className="w-8 h-8" />
+                      Add YouTube Video Case
+                    </h2>
+
+                    <form onSubmit={handleVideoSubmit} className="space-y-[3rem]">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-[2.5rem]">
+                        <div className="space-y-[1rem]">
+                          <label 
+                            className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                            style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                          >
+                            Video Heading / Title
+                          </label>
+                          <input
+                            type="text"
+                            value={videoTitle}
+                            onChange={(e) => setVideoTitle(e.target.value)}
+                            placeholder="e.g. ADIPEC 2025 Highlights"
+                            className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                            style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
+                          />
+                        </div>
+                        <div className="space-y-[1rem]">
+                          <label 
+                            className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                            style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                          >
+                            YouTube URL
+                          </label>
+                          <input
+                            type="text"
+                            value={videoUrl}
+                            onChange={(e) => setVideoUrl(e.target.value)}
+                            placeholder="e.g. https://www.youtube.com/watch?v=..."
+                            className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                            style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
+                          />
+                        </div>
+                        <div className="space-y-[1rem]">
+                          <label 
+                            className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                            style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                          >
+                            Duration
+                          </label>
+                          <input
+                            type="text"
+                            value={videoDuration}
+                            onChange={(e) => setVideoDuration(e.target.value)}
+                            placeholder="e.g. 02:45"
+                            className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                            style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Status Alerts */}
+                      <AnimatePresence>
+                        {videoError && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            className="p-[1.5rem] bg-rose-500/10 border border-rose-500/25 rounded-xs flex items-center gap-3 text-rose-400"
+                          >
+                            <XCircle className="w-6 h-6 shrink-0" />
+                            <span className="font-circe text-[1.5rem]">{videoError}</span>
+                          </motion.div>
+                        )}
+                        {videoSuccess && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            className="p-[1.5rem] bg-emerald-500/10 border border-emerald-500/25 rounded-xs flex items-center gap-3 text-emerald-400"
+                          >
+                            <CheckCircle className="w-6 h-6 shrink-0" />
+                            <span className="font-circe text-[1.5rem]">{videoSuccess}</span>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <div className="flex justify-end pt-4 border-t border-white/5">
+                        <button
+                          type="submit"
+                          disabled={isVideoUploading}
+                          className="py-[1.4rem] px-[4rem] bg-brand-gold text-white font-euclid font-bold text-[1.5rem] tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                          style={{ fontSize: '1.8rem' }}
+                        >
+                          {isVideoUploading ? (
+                            <>
+                              <RefreshCw className="w-5 h-5 animate-spin" />
+                              Saving...
+                            </>
+                          ) : (
+                            <>
+                              Add Video
+                              <ArrowRight className="w-5 h-5" />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  {/* Existing Video Cases */}
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                      <h2 className="font-urw font-extrabold text-[2.4rem] text-white uppercase tracking-wider">
+                        Manage Video Cases
+                      </h2>
+                      <span className="bg-brand-gold/10 border border-brand-gold/20 text-brand-gold font-mono text-[1.4rem] py-1 px-3 rounded-full shrink-0">
+                        {videoCases.length} Videos
+                      </span>
+                    </div>
+
+                    {videoLoading ? (
+                      <div className="flex flex-col items-center justify-center py-[5rem] space-y-4">
+                        <RefreshCw className="w-[3rem] h-[3rem] text-brand-gold animate-spin" />
+                        <p className="font-circe text-brand-text-muted text-[1.6rem]">Loading videos...</p>
+                      </div>
+                    ) : videoCases.length === 0 ? (
+                      <div className="text-center py-[6rem] border border-dashed border-white/5 rounded-lg text-brand-text-muted font-circe text-[1.6rem] bg-brand-dark/10">
+                        No dynamic videos added yet.
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {videoCases.map((video) => (
+                          <div key={video._id} className="group relative bg-brand-dark rounded-md overflow-hidden border border-white/10 hover:border-brand-gold/50 transition-all duration-300">
+                            <div className="aspect-video relative">
+                              <img src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`} alt={video.title} className="w-full h-full object-cover" />
+                              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 backdrop-blur-sm">
+                                <button
+                                  onClick={() => handleDeleteVideoCase(video._id)}
+                                  disabled={deletingId === video._id}
+                                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm font-circe text-[1.4rem] tracking-wider uppercase font-bold flex items-center gap-2 transition-colors duration-300 shadow-lg cursor-pointer"
+                                >
+                                  {deletingId === video._id ? (
+                                    <RefreshCw className="w-4 h-4 animate-spin" />
+                                  ) : (
+                                    <>
+                                      <Trash2 className="w-4 h-4" />
+                                      Delete
+                                    </>
+                                  )}
+                                </button>
+                              </div>
+                            </div>
+                            <div className="p-4 border-t border-white/5">
+                              <h3 className="text-white font-circe font-bold text-[1.6rem] truncate" title={video.title}>{video.title}</h3>
+                              <p className="text-brand-text-muted font-mono text-[1.2rem] mt-1 truncate">{video.youtubeUrl}</p>
                             </div>
                           </div>
                         ))}
