@@ -15,8 +15,8 @@ const BexPurpose: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col text-center md:text-right order-1 md:order-1 max-w-[48rem]"
           >
-            <h2 className="font-urw font-semibold text-[4rem] md:text-[5rem] lg:text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap md:whitespace-normal">
-              The BEX<span className="hidden md:inline"><br /></span> Purpose
+            <h2 className="font-urw font-normal text-[4rem] md:text-[5rem] lg:text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap">
+              BEX Purpose
             </h2>
           </motion.div>
 
@@ -40,8 +40,8 @@ const BexPurpose: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="max-w-[75rem] text-center md:text-left order-3 md:order-3"
           >
-            <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-relaxed italic">
-             "Empowering visionary brands through innovation, leadership, and world-class execution—<br className="hidden md:block"/>creating experiences that perform, inspire, and endure."
+            <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-snug italic max-w-[55rem] md:max-w-[60rem]">
+             "Empowering visionary brands through innovation, leadership, and world-class execution—creating experiences that perform, inspire, and endure."
             </p>
           </motion.div>
 
