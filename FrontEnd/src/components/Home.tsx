@@ -148,27 +148,114 @@ const getTimeAgo = (dateString: string) => {
   return `${diffYears} years ago`
 }
 
+const ReviewCard = ({ review, onReadMore }: { review: any, onReadMore: () => void }) => {
+  const maxLength = 100;
+  
+  const isLong = review.message.length > maxLength;
+
+  return (
+    <div className="glass-panel p-8 rounded-2xl border border-brand-gold/20 shadow-2xl w-[400px] flex-shrink-0 flex flex-col font-sans transition-all duration-300 bg-brand-dark-accent/40 backdrop-blur-sm">
+      {/* Header */}
+      <div className="flex items-center gap-5 mb-5">
+        {/* Avatar */}
+        <div className="relative">
+          <div className="w-20 h-20 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold font-bold text-3xl uppercase overflow-hidden shadow-sm">
+            {review.name.charAt(0)}
+          </div>
+        </div>
+        
+        <div className="flex flex-col">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-white text-[1.8rem] tracking-tight">{review.name}</span>
+            <svg className="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+          </div>
+          <span className="text-zinc-400 text-[1.4rem] mt-1">{getTimeAgo(review.date)}</span>
+        </div>
+      </div>
+
+      {/* Stars */}
+      <div className="flex gap-[2px] mb-4">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <svg key={i} className={`w-7 h-7 ${i < review.starRating ? 'text-[#fbbc04]' : 'text-zinc-600'} fill-current`} viewBox="0 0 24 24">
+             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+          </svg>
+        ))}
+      </div>
+
+      {/* Message */}
+      <div className="text-zinc-300 text-[1.8rem] leading-relaxed">
+        <span>{isLong ? `${review.message.substring(0, maxLength)}... ` : review.message} </span>
+        {isLong && (
+          <button 
+            onClick={onReadMore}
+            className="text-brand-gold hover:text-white font-medium cursor-pointer transition-colors"
+          >
+            Read more
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
 const Home: React.FC = () => {
   const navigate = useNavigate()
   
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
   const [currentClientPage, setCurrentClientPage] = useState(0)
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null)
+  const [selectedReviewIndex, setSelectedReviewIndex] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [visibleCards, setVisibleCards] = useState(3)
   const [dynamicVideos, setDynamicVideos] = useState<any[]>([])
+  const [reviews, setReviews] = useState<any[]>([])
+  
+  const scrollRef = React.useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
   
 
   const videos = [...localVideos, ...dynamicVideos]
 
+  // Auto-scroll logic for reviews
   useEffect(() => {
-    const fetchVideos = async () => {
+    if (!scrollRef.current || isHovered || reviews.length === 0) return;
+
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollLeft += 1;
+        if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth - scrollRef.current.clientWidth - 1) {
+          scrollRef.current.scrollLeft = 0;
+        }
+      }
+    }, 40);
+
+    return () => clearInterval(interval);
+  }, [isHovered, reviews]);
+
+  // Prevent body scrolling when review modal is open
+  useEffect(() => {
+    if (selectedReviewIndex !== null || selectedVideoId !== null) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [selectedReviewIndex, selectedVideoId])
+
+  useEffect(() => {
+    const fetchVideosAndReviews = async () => {
       try {
         const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-        const res = await fetch(`${apiBaseUrl}/api/videocases`)
-        const data = await res.json()
-        if (res.ok && data.success) {
-          const formatted = data.videocases.map((v: any) => ({
+        
+        // Fetch videos
+        const resV = await fetch(`${apiBaseUrl}/api/videocases`)
+        const dataV = await resV.json()
+        if (resV.ok && dataV.success) {
+          const formatted = dataV.videocases.map((v: any) => ({
             id: v.youtubeId,
             title: v.title,
             duration: v.duration || '00:00',
@@ -176,11 +263,18 @@ const Home: React.FC = () => {
           }))
           setDynamicVideos(formatted)
         }
+
+        // Fetch reviews
+        const resR = await fetch(`${apiBaseUrl}/api/reviews`)
+        const dataR = await resR.json()
+        if (resR.ok) {
+          setReviews(dataR)
+        }
       } catch (err) {
-        console.error('Failed to fetch video cases', err)
+        console.error('Failed to fetch data', err)
       }
     }
-    fetchVideos()
+    fetchVideosAndReviews()
   }, [])
 
   useEffect(() => {
@@ -671,12 +765,109 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Elfsight Google Reviews */}
-          <div className="relative overflow-hidden w-full flex justify-center mt-12 mb-20">
-            <div className="w-full max-w-[120rem] px-4">
-              <div className="elfsight-app-6d93ed80-acf9-4927-81d5-6a12cd9ae6fe" data-elfsight-app-lazy></div>
+          {/* Custom Reviews Section */}
+          {reviews.length > 0 && (
+            <div className="mb-20 relative w-full pt-10">
+              <div className="text-center mb-12">
+                <h2 className="text-[3rem] md:text-[4.5rem] font-urw font-bold text-white mb-4 drop-shadow-md tracking-wide">What Our Clients Say</h2>
+                <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full"></div>
+              </div>
+              {/* Horizontal Scroll Container */}
+              <div 
+                ref={scrollRef}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="flex overflow-x-auto gap-8 px-6 md:px-12 lg:px-24 pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              >
+                {reviews.map((review, index) => (
+                  <ReviewCard key={review._id} review={review} onReadMore={() => setSelectedReviewIndex(index)} />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Review Modal */}
+          <AnimatePresence>
+            {selectedReviewIndex !== null && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+                onClick={() => setSelectedReviewIndex(null)}
+              >
+                {/* Navigation Buttons */}
+                {selectedReviewIndex > 0 && (
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedReviewIndex(selectedReviewIndex - 1) }}
+                    className="absolute left-4 md:left-12 text-white/50 hover:text-white transition-colors"
+                  >
+                    <ChevronLeft className="w-16 h-16" />
+                  </button>
+                )}
+                
+                {selectedReviewIndex < reviews.length - 1 && (
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedReviewIndex(selectedReviewIndex + 1) }}
+                    className="absolute right-4 md:right-12 text-white/50 hover:text-white transition-colors"
+                  >
+                    <ChevronRight className="w-16 h-16" />
+                  </button>
+                )}
+
+                <motion.div
+                  key={selectedReviewIndex}
+                  initial={{ scale: 0.95, opacity: 0, x: 20 }}
+                  animate={{ scale: 1, opacity: 1, x: 0 }}
+                  exit={{ scale: 0.95, opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="glass-panel bg-brand-dark-accent/90 backdrop-blur-xl border border-brand-gold/20 rounded-2xl shadow-2xl p-8 md:p-12 max-w-7xl w-full flex flex-col gap-6 font-sans relative"
+                  style={{ maxHeight: '70vh' }}
+                >
+                  <button 
+                    onClick={() => setSelectedReviewIndex(null)}
+                    className="absolute top-4 right-4 md:top-6 md:right-6 text-zinc-400 hover:text-white transition-colors z-20 bg-black/40 rounded-full p-1"
+                  >
+                    <X className="w-8 h-8" />
+                  </button>
+                  
+                  {/* Top Header: Reviewer Info */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-gold/10 pb-6 flex-shrink-0 pr-12">
+                    <div className="flex items-center gap-5">
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold font-bold text-2xl md:text-3xl uppercase shadow-sm flex-shrink-0">
+                        {reviews[selectedReviewIndex].name.charAt(0)}
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="font-bold text-white text-[1.8rem] md:text-[2.2rem] tracking-tight">{reviews[selectedReviewIndex].name}</h3>
+                          <svg className="w-5 h-5 md:w-6 md:h-6 text-blue-500 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                          </svg>
+                        </div>
+                        <span className="text-zinc-400 text-[1.4rem]">{getTimeAgo(reviews[selectedReviewIndex].date)}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-[2px]">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <svg key={i} className={`w-7 h-7 md:w-8 md:h-8 ${i < reviews[selectedReviewIndex].starRating ? 'text-[#fbbc04]' : 'text-zinc-600'} fill-current`} viewBox="0 0 24 24">
+                           <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Scrollable Content */}
+                  <div className="overflow-y-auto pr-4 flex-grow [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-black/10 [&::-webkit-scrollbar-thumb]:bg-brand-gold/30 [&::-webkit-scrollbar-thumb]:rounded-full">
+                    <p className="text-zinc-300 text-[1.6rem] md:text-[1.8rem] leading-relaxed whitespace-pre-wrap">
+                      {reviews[selectedReviewIndex].message}
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
       </section>

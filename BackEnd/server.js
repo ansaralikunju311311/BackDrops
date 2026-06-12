@@ -218,6 +218,17 @@ const videoCaseSchema = new mongoose.Schema({
 
 const VideoCase = mongoose.model('VideoCase', videoCaseSchema);
 
+// Review Schema & Model
+const reviewSchema = new mongoose.Schema({
+  starRating: { type: Number, required: true },
+  name: { type: String, required: true },
+  company: { type: String, required: false },
+  message: { type: String, required: true },
+  date: { type: Date, default: Date.now }
+}, { collection: 'reviews', timestamps: true });
+
+const Review = mongoose.model('Review', reviewSchema);
+
 const corsOptions = {
   origin: '*',
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
@@ -1526,6 +1537,65 @@ app.delete('/api/videocases/:id', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Error deleting video case:', error);
     return res.status(500).json({ success: false, error: 'Failed to delete video case.' });
+  }
+});
+
+// ==========================================
+// REVIEWS ENDPOINTS
+// ==========================================
+
+// GET /api/reviews - Get all reviews
+app.get('/api/reviews', async (req, res) => {
+  try {
+    const reviews = await Review.find().sort({ date: -1, createdAt: -1 });
+    res.status(200).json(reviews);
+  } catch (err) {
+    console.error('Error fetching reviews:', err);
+    res.status(500).json({ success: false, error: 'Server error fetching reviews' });
+  }
+});
+
+// POST /api/reviews - Create a review (protected)
+app.post('/api/reviews', verifyToken, async (req, res) => {
+  try {
+    const { starRating, name, company, message, date } = req.body;
+    
+    if (!starRating || !name || !message || !date) {
+      return res.status(400).json({ success: false, error: 'Star rating, name, date, and message are required.' });
+    }
+
+    const ratingNum = Number(starRating);
+    if (isNaN(ratingNum) || ratingNum <= 0 || ratingNum > 5) {
+      return res.status(400).json({ success: false, error: 'Star rating must be a number between 0.1 and 5.' });
+    }
+
+    const newReview = new Review({
+      starRating: ratingNum,
+      name: name.trim(),
+      company: company ? company.trim() : '',
+      message: message.trim(),
+      date: new Date(date)
+    });
+
+    await newReview.save();
+    res.status(201).json({ success: true, message: 'Review created successfully.', review: newReview });
+  } catch (err) {
+    console.error('Error creating review:', err);
+    res.status(500).json({ success: false, error: 'Server error creating review' });
+  }
+});
+
+// DELETE /api/reviews/:id - Delete a review (protected)
+app.delete('/api/reviews/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const review = await Review.findByIdAndDelete(id);
+    if (!review) return res.status(404).json({ success: false, error: 'Review not found' });
+    
+    res.status(200).json({ success: true, message: 'Review deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting review:', err);
+    res.status(500).json({ success: false, error: 'Server error deleting review' });
   }
 });
 

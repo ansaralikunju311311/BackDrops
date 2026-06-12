@@ -37,6 +37,16 @@ interface VideoCase {
   createdAt: string;
 }
 
+interface Review {
+  _id: string;
+  starRating: number;
+  name: string;
+  company: string;
+  message: string;
+  date: string;
+  createdAt: string;
+}
+
 // Multi-select options configuration
 const STAND_TYPES = [
   { value: 'double decker stand', label: 'Double Decker Stand' },
@@ -101,7 +111,15 @@ const AdminPortal: React.FC = () => {
   const [standsPage, setStandsPage] = useState(1)
   
   // Gallery Management States
-  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases'>('projects')
+  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases' | 'reviews'>('projects')
+
+  // Reviews Management States
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [reviewsLoading, setReviewsLoading] = useState(false)
+  const [reviewForm, setReviewForm] = useState({ starRating: 5, name: '', company: '', message: '', date: '' })
+  const [isReviewSubmitting, setIsReviewSubmitting] = useState(false)
+  const [reviewSuccess, setReviewSuccess] = useState<string | null>(null)
+  const [reviewError, setReviewError] = useState<string | null>(null)
   const [galleryPhotos, setGalleryPhotos] = useState<StandImage[]>([])
   const [galleryLoading, setGalleryLoading] = useState(false)
   const [galleryFiles, setGalleryFiles] = useState<File[]>([])
@@ -241,6 +259,84 @@ const AdminPortal: React.FC = () => {
     }
   }
 
+  // Fetch Reviews
+  const fetchReviews = async () => {
+    setReviewsLoading(true)
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/reviews`)
+      const data = await res.json()
+      if (res.ok) {
+        setReviews(data)
+      }
+    } catch (err) {
+      console.error('Fetch error:', err)
+    } finally {
+      setReviewsLoading(false)
+    }
+  }
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setReviewSuccess(null)
+    setReviewError(null)
+
+    if (reviewForm.starRating < 0.1 || reviewForm.starRating > 5) {
+      setReviewError('Star rating must be between 0.1 and 5')
+      return
+    }
+    if (!reviewForm.name.trim() || !reviewForm.message.trim() || !reviewForm.date) {
+      setReviewError('Name, Date, and Message are absolutely required')
+      return
+    }
+
+    setIsReviewSubmitting(true)
+
+    const token = localStorage.getItem('backdrops_admin_token')
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/reviews`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(reviewForm)
+      })
+
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setReviewSuccess('Review created successfully!')
+        setReviewForm({ starRating: 5, name: '', company: '', message: '', date: '' })
+        fetchReviews()
+      } else {
+        setReviewError(data.error || 'Failed to create review')
+      }
+    } catch (err) {
+      console.error(err)
+      setReviewError('Server error creating review')
+    } finally {
+      setIsReviewSubmitting(false)
+    }
+  }
+
+  const handleReviewDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this review?')) return
+    setDeletingId(id)
+    const token = localStorage.getItem('backdrops_admin_token')
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/reviews/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      if (res.ok) {
+        fetchReviews()
+      }
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
   // Check auth status on mount
   useEffect(() => {
     const verifyToken = async () => {
@@ -262,6 +358,7 @@ const AdminPortal: React.FC = () => {
           fetchStands(token)
           fetchGalleryPhotos()
           fetchVideoCases()
+          fetchReviews()
         } else {
           localStorage.removeItem('backdrops_admin_token')
         }
@@ -970,6 +1067,16 @@ const AdminPortal: React.FC = () => {
                   }`}
                 >
                   Video Cases
+                </button>
+                <button
+                  onClick={() => setActiveTab('reviews')}
+                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                    activeTab === 'reviews' 
+                      ? 'bg-brand-gold text-white shadow-lg' 
+                      : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  Reviews
                 </button>
               </div>
 
@@ -1892,6 +1999,173 @@ const AdminPortal: React.FC = () => {
                   </div>
                 </div>
               )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          {activeTab === 'reviews' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="space-y-[4rem]"
+            >
+              {/* Reviews Manager */}
+              <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative overflow-hidden shadow-2xl">
+                <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem] flex items-center gap-3">
+                  <Plus className="w-8 h-8" />
+                  Add New Review
+                </h2>
+                <form onSubmit={handleReviewSubmit} className="space-y-[3rem]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[4rem] gap-y-[2.5rem]">
+                    <div className="space-y-[1.5rem]">
+                      <label style={{ fontSize: '2.2rem' }} className="font-circe text-[2.2rem] text-white/90 uppercase tracking-wider block font-semibold">Star Rating</label>
+                      <select
+                        required
+                        value={reviewForm.starRating}
+                        onChange={(e) => setReviewForm(prev => ({ ...prev, starRating: parseFloat(e.target.value) || 5 }))}
+                        style={{ fontSize: '2.6rem', height: '8rem' }}
+                        className="w-full h-[8rem] bg-white/5 border border-white/10 rounded-sm px-8 text-white text-[2.6rem] font-circe focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-all"
+                      >
+                        {Array.from({ length: 10 }, (_, i) => (i + 1) * 0.5).map(val => (
+                          <option key={val} value={val} style={{ fontSize: '2.6rem' }} className="bg-zinc-900 text-white text-[2.6rem]">
+                            {val.toFixed(1)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-[1.5rem]">
+                      <label style={{ fontSize: '2.2rem' }} className="font-circe text-[2.2rem] text-white/90 uppercase tracking-wider block font-semibold">Name</label>
+                      <input
+                        type="text"
+                        required
+                        value={reviewForm.name}
+                        onChange={(e) => setReviewForm(prev => ({ ...prev, name: e.target.value }))}
+                        style={{ fontSize: '2.6rem', height: '8rem' }}
+                        className="w-full h-[8rem] bg-white/5 border border-white/10 rounded-sm px-8 text-white text-[2.6rem] font-circe focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-all"
+                      />
+                    </div>
+                    <div className="space-y-[1.5rem]">
+                      <label style={{ fontSize: '2.2rem' }} className="font-circe text-[2.2rem] text-white/90 uppercase tracking-wider block font-semibold">Company / Place (Optional)</label>
+                      <input
+                        type="text"
+                        value={reviewForm.company}
+                        onChange={(e) => setReviewForm(prev => ({ ...prev, company: e.target.value }))}
+                        style={{ fontSize: '2.6rem', height: '8rem' }}
+                        className="w-full h-[8rem] bg-white/5 border border-white/10 rounded-sm px-8 text-white text-[2.6rem] font-circe focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-all"
+                      />
+                    </div>
+                    <div className="space-y-[1.5rem]">
+                      <label style={{ fontSize: '2.2rem' }} className="font-circe text-[2.2rem] text-white/90 uppercase tracking-wider block font-semibold">Date</label>
+                      <input
+                        type="date"
+                        required
+                        value={reviewForm.date}
+                        onChange={(e) => setReviewForm(prev => ({ ...prev, date: e.target.value }))}
+                        style={{ fontSize: '2.6rem', height: '8rem' }}
+                        className="w-full h-[8rem] bg-white/5 border border-white/10 rounded-sm px-8 text-white text-[2.6rem] font-circe focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-all [color-scheme:dark]"
+                      />
+                    </div>
+                    <div className="space-y-[1.5rem] md:col-span-2">
+                      <label style={{ fontSize: '2.2rem' }} className="font-circe text-[2.2rem] text-white/90 uppercase tracking-wider block font-semibold">Message</label>
+                      <textarea
+                        required
+                        rows={5}
+                        value={reviewForm.message}
+                        onChange={(e) => setReviewForm(prev => ({ ...prev, message: e.target.value }))}
+                        style={{ fontSize: '2.6rem', minHeight: '16rem' }}
+                        className="w-full bg-white/5 border border-white/10 rounded-sm px-8 py-8 text-white text-[2.6rem] font-circe focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-all resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  {reviewError && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/50 rounded-sm flex items-start gap-3">
+                      <XCircle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
+                      <p className="text-red-200 font-circe text-[1.5rem]">{reviewError}</p>
+                    </div>
+                  )}
+
+                  {reviewSuccess && (
+                    <div className="p-4 bg-green-500/10 border border-green-500/50 rounded-sm flex items-start gap-3">
+                      <CheckCircle className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
+                      <p className="text-green-200 font-circe text-[1.5rem]">{reviewSuccess}</p>
+                    </div>
+                  )}
+
+                  <div className="pt-[1rem]">
+                    <button
+                      type="submit"
+                      disabled={isReviewSubmitting}
+                      className="w-full md:w-auto bg-brand-gold hover:bg-brand-gold/80 text-white font-euclid font-bold tracking-widest text-[1.6rem] uppercase py-5 px-12 rounded-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group"
+                    >
+                      {isReviewSubmitting ? (
+                        <>
+                          <RefreshCw className="w-6 h-6 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          Submit Review
+                          <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Manage Existing Reviews */}
+              <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative shadow-2xl">
+                <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem]">
+                  Manage Reviews
+                </h2>
+                
+                {reviewsLoading ? (
+                  <div className="flex justify-center items-center py-20">
+                    <RefreshCw className="w-12 h-12 text-brand-gold animate-spin" />
+                  </div>
+                ) : reviews.length === 0 ? (
+                  <div className="text-center py-20 border border-dashed border-white/10 rounded-sm">
+                    <p className="text-brand-text-muted font-circe text-[1.8rem]">No reviews found.</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {reviews.map((review) => (
+                      <div key={review._id} className="bg-white/5 border border-white/10 rounded-sm p-6 relative group">
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <h3 className="text-white font-circe font-bold text-[1.8rem]">{review.name}</h3>
+                            <p className="text-brand-gold font-mono text-[1.2rem]">{review.company}</p>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            {Array.from({ length: review.starRating }).map((_, i) => (
+                              <svg key={i} className="w-5 h-5 text-brand-gold fill-current" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-zinc-300 font-circe text-[1.4rem] line-clamp-3 mb-4">{review.message}</p>
+                        <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5">
+                          <span className="text-brand-text-muted text-[1.2rem] font-mono">
+                            {new Date(review.date).toLocaleDateString()}
+                          </span>
+                          <button
+                            onClick={() => handleReviewDelete(review._id)}
+                            disabled={deletingId === review._id}
+                            className="text-red-400 hover:text-red-300 flex items-center gap-2 text-[1.3rem] transition-colors"
+                          >
+                            {deletingId === review._id ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
