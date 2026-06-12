@@ -195,10 +195,10 @@ const Header: React.FC = () => {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden w-12 h-12 flex items-center justify-center rounded-full bg-brand-white/5 border border-brand-white/10 text-brand-white hover:text-brand-gold transition-all duration-300"
+          className="lg:hidden w-16 h-16 flex items-center justify-center rounded-full bg-brand-white/5 border border-brand-white/10 text-brand-white hover:text-brand-gold transition-all duration-300"
           aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
       </div>
 
