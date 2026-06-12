@@ -688,7 +688,7 @@ const Home: React.FC = () => {
           <h2 className="font-urw font-extrabold text-h2 text-white text-center leading-tight mb-4 uppercase tracking-wider max-w-[95rem] mx-auto">
             Bring your vision to life – start your project today!
           </h2>
-          <h3 className="font-euclid text-center text-brand-gold text-[2.5rem] md:text-[3rem] font-bold tracking-wider mb-32 uppercase">
+          <h3 className="font-euclid text-center text-brand-gold text-[2.5rem] md:text-[3rem] font-bold tracking-wider mt-8 mb-32 uppercase">
             The BEX method- From Vision to Reality
           </h3>
 
