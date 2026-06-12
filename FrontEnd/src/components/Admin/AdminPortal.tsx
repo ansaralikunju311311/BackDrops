@@ -299,6 +299,8 @@ const AdminPortal: React.FC = () => {
         setEmail('')
         setPassword('')
         fetchStands(data.token)
+        fetchGalleryPhotos()
+        fetchVideoCases()
       } else {
         setLoginError(data.error || 'Invalid credentials.')
       }
