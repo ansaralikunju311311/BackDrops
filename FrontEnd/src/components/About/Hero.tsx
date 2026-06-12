@@ -89,9 +89,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-brand-text-muted leading-relaxed max-w-[85rem] mb-16"
+            className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white leading-relaxed max-w-[85rem] mb-16"
           >
-            <span className="font-urw font-extrabold text-brand-gold">BEX</span> is an international experiential execution partner delivering exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions. We collaborate with agencies, brands, and organizers to transform ambitious ideas into exceptional real-world experiences through expert execution, robust infrastructure, and seamless project delivery. Across the UAE, GCC, and international markets, we act as an extension of our clients' teams—bringing creativity, precision, and reliability together to deliver environments that engage audiences, elevate brands, and create lasting impact.
+            <span className="font-urw font-extrabold text-white">BEX</span> is an international experiential execution partner delivering exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions. We collaborate with agencies, brands, and organizers to transform ambitious ideas into exceptional real-world experiences through expert execution, robust infrastructure, and seamless project delivery. Across the UAE, GCC, and international markets, we act as an extension of our clients' teams—bringing creativity, precision, and reliability together to deliver environments that engage audiences, elevate brands, and create lasting impact.
           </motion.p>
 
           {/* Statistics Block (Projected Tiles) */}
@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
               <span className="font-urw font-bold text-[7rem] md:text-[8rem] text-brand-gold leading-none mb-4">
                 <CountUp from={0} to={600} suffix="+" />
               </span>
-              <span className="font-circe font-light text-[1.8rem] text-white/80 leading-tight uppercase tracking-[0.1em]">
+              <span className="font-circe font-light text-[1.8rem] text-white leading-tight uppercase tracking-[0.1em]">
                 completed projects
               </span>
             </div>
@@ -116,7 +116,7 @@ const Hero: React.FC = () => {
               <span className="font-urw font-bold text-[7rem] md:text-[8rem] text-brand-gold leading-none mb-4">
                 <CountUp from={0} to={20} suffix="+" />
               </span>
-              <span className="font-circe font-light text-[1.8rem] text-white/80 leading-tight uppercase tracking-[0.1em]">
+              <span className="font-circe font-light text-[1.8rem] text-white leading-tight uppercase tracking-[0.1em]">
                 years experience
               </span>
             </div>
@@ -126,7 +126,7 @@ const Hero: React.FC = () => {
               <span className="font-urw font-bold text-[7rem] md:text-[8rem] text-brand-gold leading-none mb-4">
                 <CountUp from={0} to={15} suffix="+" />
               </span>
-              <span className="font-circe font-light text-[1.8rem] text-white/80 leading-tight uppercase tracking-[0.1em]">
+              <span className="font-circe font-light text-[1.8rem] text-white leading-tight uppercase tracking-[0.1em]">
                 countries
               </span>
             </div>

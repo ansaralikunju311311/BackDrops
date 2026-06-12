@@ -15,7 +15,7 @@ const Mission: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="max-w-[48rem] text-center md:text-right order-3 md:order-1"
           >
-            <p className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-brand-text-muted leading-relaxed">
+            <p className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-white leading-relaxed">
              To become the go-to execution partner for leading agencies, known for delivering experiences that are not "just built -- but remembered"
             </p>
           </motion.div>

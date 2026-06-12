@@ -177,9 +177,7 @@ const StaggeredFeatures: React.FC = () => {
                       }`}>
                         {card.icon}
                       </div>
-                      <span className={`font-circe font-light text-[1.8rem] ${
-                        card.isGold ? 'text-white/60' : 'text-brand-text-muted'
-                      }`}>
+                      <span className={`font-circe font-light text-[1.8rem] text-white`}>
                         {card.num}
                       </span>
                     </div>
@@ -209,9 +207,7 @@ const StaggeredFeatures: React.FC = () => {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <p className={`font-circe font-light text-[1.6rem] leading-relaxed mt-2 ${
-                          card.isGold ? 'text-white/80' : 'text-brand-text-muted'
-                        }`}>
+                        <p className={`font-circe font-light text-[1.6rem] leading-relaxed mt-2 text-white`}>
                           {card.description}
                         </p>
                       </motion.div>
@@ -270,9 +266,7 @@ const StaggeredFeatures: React.FC = () => {
                     }`}>
                       {card.icon}
                     </div>
-                    <span className={`font-circe font-light text-[1.8rem] ${
-                      card.isGold ? 'text-white/60' : 'text-brand-text-muted'
-                    }`}>
+                    <span className={`font-circe font-light text-[1.8rem] text-white`}>
                       {card.num}
                     </span>
                   </div>
@@ -302,9 +296,7 @@ const StaggeredFeatures: React.FC = () => {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className={`font-circe font-light text-[1.6rem] leading-relaxed mt-2 ${
-                        card.isGold ? 'text-white/80' : 'text-brand-text-muted'
-                      }`}>
+                      <p className={`font-circe font-light text-[1.6rem] leading-relaxed mt-2 text-white`}>
                         {card.description}
                       </p>
                     </motion.div>

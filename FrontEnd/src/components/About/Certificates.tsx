@@ -47,7 +47,7 @@ const CertificateCard: React.FC<CertificateProps> = ({ cert, idx }) => {
       {/* Control Block on Right */}
       <div className="flex flex-col justify-between h-[30rem] lg:h-[34rem] py-2 shrink-0">
         {/* Number */}
-        <span className="font-circe font-light text-[2.2rem] text-brand-text-muted">
+        <span className="font-circe font-light text-[2.2rem] text-white">
           {cert.num}
         </span>
         

@@ -67,7 +67,7 @@ const ExecutiveProfile: React.FC = () => {
             className="lg:col-start-6 lg:col-span-7 flex flex-col items-start text-left space-y-10"
           >
             {/* Biography Description */}
-            <div className="space-y-6 text-[1.8rem] md:text-[2.3rem] font-circe font-light text-brand-text-muted leading-relaxed">
+            <div className="space-y-6 text-[1.8rem] md:text-[2.3rem] font-circe font-light text-white leading-relaxed">
               <p>
                 <strong className="text-white font-normal">Nebeel Aboobacker</strong> is the Founder & CEO of <strong className="text-white font-normal">BEX</strong>, an international experiential solutions company delivering exhibitions, interiors, branding, and turnkey project solutions across the UAE, GCC, and global markets.
               </p>
@@ -84,7 +84,7 @@ const ExecutiveProfile: React.FC = () => {
               <span className="font-urw font-bold text-[1.8rem] tracking-wider text-brand-gold block">
                 Founder's Message
               </span>
-              <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white/90 italic leading-relaxed">
+              <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white italic leading-relaxed">
                 "At BEX, we believe great experiences have the power to connect people, elevate brands, and create lasting impact. Our commitment is to deliver innovative solutions, exceptional quality, and meaningful value for our clients and partners worldwide. As we grow globally, we remain focused on pushing boundaries, embracing innovation, and creating experiences that inspire confidence, engagement, and success."
               </p>
             </div>
@@ -110,10 +110,10 @@ const ExecutiveProfile: React.FC = () => {
             <h3 className="font-urw font-extrabold text-h2 text-white leading-tight uppercase tracking-wide">
               Gulfood Innovation Awards 2018
             </h3>
-            <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-brand-text-muted leading-relaxed">
+            <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white leading-relaxed">
               As Project Manager, Nebeel Aboobacker led the successful delivery and execution of the exhibition stand that earned the <strong className="text-white font-normal">Best Trade Stand (41–100 sqm)</strong> accolade at the Gulfood Innovation Awards 2018. This achievement highlights his ability to deliver exceptional exhibition environments that combine creativity, precision, and flawless execution.
             </p>
-            <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-brand-text-muted leading-relaxed">
+            <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white leading-relaxed">
               The award stands as a testament to his dedication to excellence and his proven capability to manage high-profile projects that create lasting brand impact.
             </p>
           </div>

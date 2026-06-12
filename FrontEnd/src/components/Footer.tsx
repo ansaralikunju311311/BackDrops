@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                 <p className="font-semibold text-white">
                   To be the most trusted execution partner for experiential projects worldwide.
                 </p>
-                <p>
+                <p className="text-white">
                   We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
                 </p>
               </div>
