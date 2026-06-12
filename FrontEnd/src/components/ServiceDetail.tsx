@@ -368,12 +368,12 @@ const ServiceDetail: React.FC = () => {
         {/* Right Side: Breadcrumbs and Large Title (White Background) */}
         <div className="relative h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-16 text-left select-none">
           {/* Breadcrumbs */}
-          <nav className="font-circe font-light text-[1.5rem] text-brand-text-muted tracking-wide flex items-center gap-2.5 mb-8">
+          <nav className="font-circe font-medium text-[1.5rem] text-brand-dark tracking-wide flex items-center gap-2.5 mb-8">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
-            <span className="opacity-40">/</span>
+            <span className="opacity-80">/</span>
             <Link to="/services" className="hover:text-brand-gold transition-colors duration-300">Services</Link>
-            <span className="opacity-40">/</span>
-            <span className="text-brand-dark/80 font-normal">{service.title}</span>
+            <span className="opacity-80">/</span>
+            <span className="text-brand-dark font-semibold">{service.title}</span>
           </nav>
 
           {/* Service Title */}
@@ -395,7 +395,7 @@ const ServiceDetail: React.FC = () => {
             <span className="font-urw font-bold text-[2rem] tracking-[0.25em] text-brand-dark block uppercase">
               BEX —
             </span>
-            <span className="font-circe font-light text-[1.3rem] tracking-[0.2em] text-brand-text-muted block mt-1 uppercase">
+            <span className="font-circe font-light text-[1.3rem] tracking-[0.2em] text-white block mt-1 uppercase">
               Premium Execution Partner
             </span>
           </div>
