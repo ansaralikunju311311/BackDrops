@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
                 <Link
                   key={link}
                   to={path}
-                  className="font-euclid text-brand-white/70 hover:text-brand-gold transition-colors duration-300 relative py-2 group"
+                  className="font-euclid text-white hover:text-brand-gold transition-colors duration-300 relative py-2 group"
                   style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.05em' }}
                 >
                   {link}
