@@ -94,7 +94,7 @@ const Header: React.FC = () => {
                     <Link
                       to="/services"
                       className="font-euclid text-brand-white hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs flex items-center gap-1.5"
-                      style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.05em' }}
+                      style={{ fontSize: '2.2rem', fontWeight: 400, letterSpacing: '0.05em' }}
                     >
                       <span className="relative z-10">{item}</span>
                       <svg className={`w-4 h-4 transition-transform duration-300 z-10 ${isServicesHovered ? 'rotate-180 text-brand-gold' : 'text-brand-white/60'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,7 +149,7 @@ const Header: React.FC = () => {
                   key={item}
                   {...props}
                   className="font-euclid text-brand-white hover:text-brand-gold transition-colors duration-300 relative px-6 py-3 rounded-xs"
-                  style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.05em' }}
+                  style={{ fontSize: '2.2rem', fontWeight: 400, letterSpacing: '0.05em' }}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
