@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   XCircle, LogOut, Lock, RefreshCw, ArrowRight, UploadCloud, 
   Trash2, Plus, CheckCircle, X, Eye, EyeOff, MapPin, Calendar,
-  SquareDot, Briefcase, Pencil
+  SquareDot, Briefcase, Pencil, Play
 } from 'lucide-react'
 
 // Stand Interface
@@ -111,7 +111,7 @@ const AdminPortal: React.FC = () => {
   const [standsPage, setStandsPage] = useState(1)
   
   // Gallery Management States
-  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases' | 'reviews'>('projects')
+  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases' | 'reviews' | 'clientvideos'>('projects')
 
   // Reviews Management States
   const [reviews, setReviews] = useState<Review[]>([])
@@ -137,6 +137,14 @@ const AdminPortal: React.FC = () => {
   const [videoUrl, setVideoUrl] = useState('')
   const [videoDuration, setVideoDuration] = useState('')
   const [isVideoUploading, setIsVideoUploading] = useState(false)
+
+  // Client Videos Management States
+  const [clientVideos, setClientVideos] = useState<any[]>([])
+  const [clientVideoLoading, setClientVideoLoading] = useState(false)
+  const [clientVideoError, setClientVideoError] = useState<string | null>(null)
+  const [clientVideoSuccess, setClientVideoSuccess] = useState<string | null>(null)
+  const [clientVideoUrl, setClientVideoUrl] = useState('')
+  const [isClientVideoUploading, setIsClientVideoUploading] = useState(false)
 
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
@@ -358,6 +366,7 @@ const AdminPortal: React.FC = () => {
           fetchStands(token)
           fetchGalleryPhotos()
           fetchVideoCases()
+          fetchClientVideos(token)
           fetchReviews()
         } else {
           localStorage.removeItem('backdrops_admin_token')
@@ -398,6 +407,7 @@ const AdminPortal: React.FC = () => {
         fetchStands(data.token)
         fetchGalleryPhotos()
         fetchVideoCases()
+        fetchClientVideos(data.token)
       } else {
         setLoginError(data.error || 'Invalid credentials.')
       }
@@ -655,6 +665,105 @@ const AdminPortal: React.FC = () => {
     } catch (err) {
       console.error('Delete error:', err)
       alert('Failed to delete photo due to a network error.')
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
+  // Client Video Functions
+  const fetchClientVideos = async (customToken?: string) => {
+    const token = customToken || localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    setClientVideoLoading(true)
+    setClientVideoError(null)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/clientvideos`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setClientVideos(data.clientvideos)
+      } else {
+        setClientVideoError(data.error || 'Failed to fetch client videos')
+      }
+    } catch (err) {
+      console.error('Fetch client videos error:', err)
+      setClientVideoError('Failed to fetch client videos')
+    } finally {
+      setClientVideoLoading(false)
+    }
+  }
+
+  const handleClientVideoSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    setClientVideoError(null)
+    setClientVideoSuccess(null)
+
+    if (!clientVideoUrl.trim()) {
+      setClientVideoError('Please provide a YouTube URL.')
+      return
+    }
+
+    setIsClientVideoUploading(true)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/clientvideos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ youtubeUrl: clientVideoUrl })
+      })
+
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setClientVideoSuccess('Client video added successfully!')
+        fetchClientVideos()
+        setClientVideoUrl('')
+        setTimeout(() => setClientVideoSuccess(null), 3000)
+      } else {
+        setClientVideoError(data.error || 'Failed to add client video.')
+      }
+    } catch (err) {
+      console.error('Client video upload error:', err)
+      setClientVideoError('Failed to add client video due to a network error.')
+    } finally {
+      setIsClientVideoUploading(false)
+    }
+  }
+
+  const handleDeleteClientVideoCase = async (id: string) => {
+    const token = localStorage.getItem('backdrops_admin_token')
+    if (!token) return
+
+    if (!window.confirm('Are you sure you want to delete this client video?')) return
+
+    setDeletingId(id)
+
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/clientvideos/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setClientVideos(prev => prev.filter(v => v._id !== id))
+      } else {
+        alert(data.error || 'Failed to delete client video.')
+      }
+    } catch (err) {
+      console.error('Delete error:', err)
+      alert('Failed to delete client video due to network error.')
     } finally {
       setDeletingId(null)
     }
@@ -1077,6 +1186,16 @@ const AdminPortal: React.FC = () => {
                   }`}
                 >
                   Reviews
+                </button>
+                <button
+                  onClick={() => setActiveTab('clientvideos')}
+                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                    activeTab === 'clientvideos' 
+                      ? 'bg-brand-gold text-white shadow-lg' 
+                      : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
+                  }`}
+                >
+                  Client Videos
                 </button>
               </div>
 
@@ -2167,6 +2286,107 @@ const AdminPortal: React.FC = () => {
                 )}
               </div>
             </motion.div>
+          )}
+
+          {/* Client Videos Tab */}
+          {activeTab === 'clientvideos' && (
+            <div className="space-y-[4rem]">
+              {/* Add Client Video Form */}
+              <div className="glass-panel rounded-lg p-[3rem] md:p-[4rem] border border-white/5 relative overflow-hidden shadow-2xl">
+                <h2 className="font-urw font-extrabold text-[2.4rem] text-brand-gold uppercase tracking-wider mb-[3rem] flex items-center gap-3">
+                  <Plus className="w-8 h-8" />
+                  Add Client Video Case
+                </h2>
+
+                <form onSubmit={handleClientVideoSubmit} className="space-y-[3rem]">
+                  <div className="grid grid-cols-1 gap-[2.5rem]">
+                    <div className="space-y-[1rem]">
+                      <label 
+                        className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                        style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                      >
+                        YouTube URL
+                      </label>
+                      <input
+                        type="text"
+                        value={clientVideoUrl}
+                        onChange={(e) => setClientVideoUrl(e.target.value)}
+                        placeholder="e.g. https://www.youtube.com/watch?v=..."
+                        className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                        style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
+                      />
+                    </div>
+                  </div>
+
+                  {clientVideoError && (
+                    <div className="bg-red-500/20 border border-red-500 text-red-100 px-[2rem] py-[1.5rem] rounded-lg">
+                      <p style={{ fontSize: '1.6rem' }}>{clientVideoError}</p>
+                    </div>
+                  )}
+
+                  {clientVideoSuccess && (
+                    <div className="bg-green-500/20 border border-green-500 text-green-100 px-[2rem] py-[1.5rem] rounded-lg">
+                      <p style={{ fontSize: '1.6rem' }}>{clientVideoSuccess}</p>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isClientVideoUploading}
+                    className="w-full bg-brand-gold hover:bg-white text-brand-dark font-circe font-bold uppercase tracking-[0.2em] py-[2rem] rounded-lg transition-all duration-300 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ fontSize: '1.8rem', marginTop: '2rem' }}
+                  >
+                    {isClientVideoUploading ? 'Adding Video...' : 'Add Client Video'}
+                  </button>
+                </form>
+              </div>
+
+              {/* List of Client Videos */}
+              <h2 className="font-urw font-extrabold text-[2.4rem] text-white uppercase tracking-wider mb-[2rem] mt-[4rem]">
+                Existing Client Videos
+              </h2>
+
+              {clientVideoLoading ? (
+                <div className="flex justify-center py-[4rem]">
+                  <div className="w-[4rem] h-[4rem] border-4 border-brand-gold border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              ) : clientVideos.length === 0 ? (
+                <div className="glass-panel rounded-lg p-[4rem] text-center border border-white/5">
+                  <p className="text-white/60 font-circe text-[1.8rem]">No client videos added yet.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3rem]">
+                  {clientVideos.map((video) => (
+                    <div key={video._id} className="glass-panel rounded-xl overflow-hidden border border-white/10 group">
+                      <div className="aspect-video relative">
+                        <img 
+                          src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
+                          alt={video.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Play className="w-[4rem] h-[4rem] text-brand-gold fill-brand-gold" />
+                        </div>
+                      </div>
+                      <div className="p-[2rem]">
+                        <p className="text-white/50 text-[1.3rem] mb-[2rem] break-all">
+                          {video.youtubeUrl}
+                        </p>
+                        <button
+                          onClick={() => handleDeleteClientVideoCase(video._id)}
+                          disabled={deletingId === video._id}
+                          className="w-full flex items-center justify-center gap-2 py-[1rem] px-[2rem] bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg transition-all duration-300 disabled:opacity-50"
+                          style={{ fontSize: '1.4rem' }}
+                        >
+                          <Trash2 className="w-[1.6rem] h-[1.6rem]" />
+                          {deletingId === video._id ? 'Deleting...' : 'Delete Video'}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           )}
         </AnimatePresence>
 

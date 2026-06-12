@@ -215,8 +215,15 @@ const videoCaseSchema = new mongoose.Schema({
   youtubeId: { type: String, required: true },
   duration: { type: String, default: '00:00' }
 }, { collection: 'videocases', timestamps: true });
-
 const VideoCase = mongoose.model('VideoCase', videoCaseSchema);
+
+// Client Video Schema & Model
+const clientVideoSchema = new mongoose.Schema({
+  youtubeUrl: { type: String, required: true },
+  youtubeId: { type: String, required: true }
+}, { collection: 'clientvideos', timestamps: true });
+
+const ClientVideo = mongoose.model('ClientVideo', clientVideoSchema);
 
 // Review Schema & Model
 const reviewSchema = new mongoose.Schema({
@@ -1537,6 +1544,57 @@ app.delete('/api/videocases/:id', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Error deleting video case:', error);
     return res.status(500).json({ success: false, error: 'Failed to delete video case.' });
+  }
+});
+
+// GET /api/clientvideos - Fetch all client videos
+app.get('/api/clientvideos', async (req, res) => {
+  try {
+    const clientvideos = await ClientVideo.find().sort({ createdAt: -1 });
+    return res.json({ success: true, clientvideos });
+  } catch (error) {
+    console.error('Error fetching client videos:', error);
+    return res.status(500).json({ success: false, error: 'Failed to fetch client videos.' });
+  }
+});
+
+// POST /api/clientvideos - Add a new client video (protected)
+app.post('/api/clientvideos', verifyToken, async (req, res) => {
+  try {
+    const { youtubeUrl } = req.body;
+    if (!youtubeUrl) {
+      return res.status(400).json({ success: false, error: 'YouTube URL is required.' });
+    }
+
+    // Extract YouTube ID from URL
+    let youtubeId = '';
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+    const match = youtubeUrl.match(regExp);
+    if (match && match[2].length === 11) {
+      youtubeId = match[2];
+    } else {
+      return res.status(400).json({ success: false, error: 'Invalid YouTube URL.' });
+    }
+
+    const newVideo = await ClientVideo.create({ youtubeUrl, youtubeId });
+    return res.status(201).json({ success: true, message: 'Client video added successfully.', video: newVideo });
+  } catch (error) {
+    console.error('Error adding client video:', error);
+    return res.status(500).json({ success: false, error: 'Failed to add client video.' });
+  }
+});
+
+// DELETE /api/clientvideos/:id - Delete a client video (protected)
+app.delete('/api/clientvideos/:id', verifyToken, async (req, res) => {
+  try {
+    const video = await ClientVideo.findByIdAndDelete(req.params.id);
+    if (!video) {
+      return res.status(404).json({ success: false, error: 'Video not found.' });
+    }
+    return res.json({ success: true, message: 'Video deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting client video:', error);
+    return res.status(500).json({ success: false, error: 'Failed to delete client video.' });
   }
 });
 

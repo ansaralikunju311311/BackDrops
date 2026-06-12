@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react'
 import suImage from '../assets/su.jpeg'
-import gulfoodVideo from '../assets/client/VID-20260609-WA0081.mp4'
 import PhotoGallery from './PhotoGallery'
 import adipecVideo from '../assets/video cases/ADIPEC 2025.mp4'
 import gisecVideo from '../assets/video cases/GISEC 2025.mp4'
@@ -210,6 +209,7 @@ const Home: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [visibleCards, setVisibleCards] = useState(3)
   const [dynamicVideos, setDynamicVideos] = useState<any[]>([])
+  const [clientVideos, setClientVideos] = useState<any[]>([])
   const [reviews, setReviews] = useState<any[]>([])
   
   const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -269,6 +269,13 @@ const Home: React.FC = () => {
         const dataR = await resR.json()
         if (resR.ok) {
           setReviews(dataR)
+        }
+
+        // Fetch client videos
+        const resC = await fetch(`${apiBaseUrl}/api/clientvideos`)
+        const dataC = await resC.json()
+        if (resC.ok && dataC.success) {
+          setClientVideos(dataC.clientvideos)
         }
       } catch (err) {
         console.error('Failed to fetch data', err)
@@ -743,27 +750,31 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Featured Video Review */}
-          <div className="mb-20">
-            <div 
-              className="relative aspect-video max-w-5xl mx-auto rounded-3xl overflow-hidden bg-brand-dark-accent border border-white/10 group cursor-pointer shadow-2xl"
-              onClick={() => setSelectedVideoId('local_gulfood2026')}
-            >
-              <video 
-                src={gulfoodVideo}
-                className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
-                preload="metadata"
-              />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-20 h-20 rounded-full bg-black/40 border-2 border-white/80 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out z-20 group-hover:scale-110 group-hover:bg-brand-gold group-hover:border-transparent shadow-xl">
-                  <Play className="w-8 h-8 text-white fill-white ml-1" />
-                </div>
-              </div>
-              <div className="absolute bottom-6 left-6 z-20">
-                <h3 className="font-urw font-bold text-white text-[2rem] drop-shadow-md">GULFOOD 2026 - Client Review</h3>
+          {/* Client Video Reviews */}
+          {clientVideos.length > 0 && (
+            <div className="mb-20 w-full relative">
+              <div className="flex overflow-x-auto gap-8 px-6 md:px-12 lg:px-24 pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                {clientVideos.map((video) => (
+                  <div 
+                    key={video._id}
+                    className="relative aspect-video w-[85vw] md:w-[60vw] lg:w-[45vw] flex-shrink-0 rounded-3xl overflow-hidden bg-brand-dark-accent border border-white/10 group cursor-pointer shadow-2xl"
+                    onClick={() => setSelectedVideoId(video.youtubeId)}
+                  >
+                    <img 
+                      src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                      alt="Client Video"
+                      className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-black/40 border-2 border-white/80 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out z-20 group-hover:scale-110 group-hover:bg-brand-gold group-hover:border-transparent shadow-xl">
+                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
 
           {/* Custom Reviews Section */}
           {reviews.length > 0 && (
