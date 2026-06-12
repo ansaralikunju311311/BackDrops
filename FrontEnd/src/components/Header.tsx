@@ -130,7 +130,7 @@ const Header: React.FC = () => {
                               key={service}
                               to={`/services?id=${sIdx}`}
                               onClick={() => setIsServicesHovered(false)}
-                              className="font-euclid font-bold text-brand-white/70 hover:text-brand-gold transition-all duration-300 hover:translate-x-1 flex items-center gap-3 group/item"
+                              className="font-euclid font-bold text-white hover:text-brand-gold transition-all duration-300 hover:translate-x-1 flex items-center gap-3 group/item"
                               style={{ fontSize: '2.1rem' }}
                             >
                               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold scale-0 group-hover/item:scale-100 transition-transform duration-300 shrink-0" />
@@ -265,7 +265,7 @@ const Header: React.FC = () => {
                                     setIsMobileServicesOpen(false)
                                     setIsMobileMenuOpen(false)
                                   }}
-                                  className="font-euclid font-bold text-brand-white/70 hover:text-brand-gold transition-colors duration-300 py-1"
+                                  className="font-euclid font-bold text-white hover:text-brand-gold transition-colors duration-300 py-1"
                                   style={{ fontSize: '2.2rem' }}
                                 >
                                   {service}
