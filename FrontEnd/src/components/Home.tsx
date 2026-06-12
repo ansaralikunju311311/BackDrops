@@ -685,10 +685,10 @@ const Home: React.FC = () => {
       <section className="py-36 bg-[#121214] relative z-10 border-t border-brand-white/5 overflow-hidden">
         <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
           
-          <h2 className="font-urw font-extrabold text-h2 text-white text-center leading-tight mb-4 uppercase tracking-wider max-w-[95rem] mx-auto">
+          <h2 className="font-urw font-extrabold text-h2 text-white text-center leading-tight uppercase tracking-wider max-w-[95rem] mx-auto">
             Bring your vision to life – start your project today!
           </h2>
-          <h3 className="font-euclid text-center text-brand-gold text-[2.5rem] md:text-[3rem] font-bold tracking-wider mt-8 mb-32 uppercase">
+          <h3 className="font-euclid text-center text-brand-gold text-[2.5rem] md:text-[3rem] font-bold tracking-wider mt-32 mb-32 uppercase">
             The BEX method- From Vision to Reality
           </h3>
 
