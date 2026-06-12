@@ -461,7 +461,7 @@ const Contact: React.FC = () => {
                     <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
                       Address:
                     </span>
-                    <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
+                    <p className="font-circe font-light text-[2.2rem] text-white leading-relaxed">
                       Backdrops Technical Services L.L.C<br />
                       Gate no.13, Warehouse no- 6<br />
                       Jebel Ali Industrial area 1<br />
@@ -481,7 +481,7 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="mailto:info@bexdxb.com" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
                       style={{ fontSize: '2.5rem' }}
                     >
                       info@bexdxb.com
@@ -500,14 +500,14 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="tel:+971552291691" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
                       style={{ fontSize: '2.5rem' }}
                     >
                       +971 55 229 1691
                     </a>
                     <a 
                       href="tel:+971507613437" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
                       style={{ fontSize: '2.5rem' }}
                     >
                       +971 50 761 3437
@@ -535,7 +535,7 @@ const Contact: React.FC = () => {
                     <span className="font-euclid font-bold text-[1.8rem] text-brand-gold block tracking-wide uppercase">
                       Address:
                     </span>
-                    <p className="font-circe font-light text-[2.2rem] text-brand-text-muted leading-relaxed">
+                    <p className="font-circe font-light text-[2.2rem] text-white leading-relaxed">
                       CREO Construction Experts<br />
                       Arullil Arcade, Thrissur Dt.<br />
                       Kerala- INDIA
@@ -554,14 +554,14 @@ const Contact: React.FC = () => {
                     </span>
                     <a 
                       href="tel:+919188866924" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
                       style={{ fontSize: '2.5rem' }}
                     >
                       +91 9188 866924
                     </a>
                     <a 
                       href="tel:+919605218618" 
-                      className="font-circe font-light text-brand-text-muted hover:text-brand-gold block transition-colors duration-300"
+                      className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
                       style={{ fontSize: '2.5rem' }}
                     >
                       +91 9605 218618
@@ -614,7 +614,7 @@ const Contact: React.FC = () => {
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'fullName' || formData.fullName
                       ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
-                      : 'top-8 text-brand-text-muted/70'
+                      : 'top-8 text-white'
                   } ${errors.fullName ? 'text-red-400' : ''}`}
                 >
                   Full name <span className="text-brand-gold">*</span>
@@ -654,7 +654,7 @@ const Contact: React.FC = () => {
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'companyName' || formData.companyName
                       ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
-                      : 'top-8 text-brand-text-muted/70'
+                      : 'top-8 text-white'
                   } ${errors.companyName ? 'text-red-400' : ''}`}
                 >
                   Company name <span className="text-brand-gold">*</span>
@@ -694,7 +694,7 @@ const Contact: React.FC = () => {
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'email' || formData.email
                       ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
-                      : 'top-8 text-brand-text-muted/70'
+                      : 'top-8 text-white'
                   } ${errors.email ? 'text-red-400' : ''}`}
                 >
                   E-mail <span className="text-brand-gold">*</span>
@@ -734,7 +734,7 @@ const Contact: React.FC = () => {
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'phoneNumber' || formData.phoneNumber
                       ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
-                      : 'top-8 text-brand-text-muted/70'
+                      : 'top-8 text-white'
                   } ${errors.phoneNumber ? 'text-red-400' : ''}`}
                 >
                   Phone number <span className="text-brand-gold">*</span>
@@ -774,7 +774,7 @@ const Contact: React.FC = () => {
                   className={`absolute left-0 text-[2rem] font-circe transition-all duration-300 pointer-events-none ${
                     activeInput === 'message' || formData.message
                       ? 'top-0 text-[2.2rem] text-brand-gold font-medium'
-                      : 'top-8 text-brand-text-muted/70'
+                      : 'top-8 text-white'
                   } ${errors.message ? 'text-red-400' : ''}`}
                 >
                   Message <span className="text-brand-gold">*</span>
@@ -970,7 +970,7 @@ const Contact: React.FC = () => {
                         <span className="font-euclid font-bold text-[1.4rem] text-brand-gold block leading-tight mb-1">
                           {spot.title}
                         </span>
-                        <span className="font-circe font-light text-[1.2rem] text-brand-text-muted">
+                        <span className="font-circe font-light text-[1.2rem] text-white">
                           {spot.desc}
                         </span>
                         {/* Tiny bottom pointing arrow */}
@@ -999,7 +999,7 @@ const Contact: React.FC = () => {
                         <h4 className="font-urw font-extrabold text-[2.4rem] tracking-wider uppercase text-brand-gold">
                           Quick Connect
                         </h4>
-                        <p className="font-circe font-light text-[1.4rem] text-brand-text-muted/80">
+                        <p className="font-circe font-light text-[1.4rem] text-white/80">
                           Get in touch with our team instantly
                         </p>
                       </div>
@@ -1009,7 +1009,7 @@ const Contact: React.FC = () => {
                           e.stopPropagation()
                           setShowQuickHelp(false)
                         }}
-                        className="w-10 h-10 rounded-full border border-brand-white/10 flex items-center justify-center text-brand-text-muted hover:text-brand-gold hover:border-brand-gold/40 hover:bg-brand-white/5 transition-all duration-300 cursor-pointer"
+                        className="w-10 h-10 rounded-full border border-brand-white/10 flex items-center justify-center text-white hover:text-brand-gold hover:border-brand-gold/40 hover:bg-brand-white/5 transition-all duration-300 cursor-pointer"
                         aria-label="Close panel"
                       >
                         <X className="w-5 h-5" />
@@ -1035,12 +1035,12 @@ const Contact: React.FC = () => {
                             <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
                               WhatsApp Chat
                             </span>
-                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                            <span className="font-circe font-light text-[1.3rem] text-white">
                               Message direct for quick updates
                             </span>
                           </div>
                         </div>
-                        <ArrowUpRight className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                        <ArrowUpRight className="w-5 h-5 text-white group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                       </a>
 
                       {/* Phone Call */}
@@ -1056,12 +1056,12 @@ const Contact: React.FC = () => {
                             <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
                               Call Direct
                             </span>
-                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                            <span className="font-circe font-light text-[1.3rem] text-white">
                               +971 55 229 1691
                             </span>
                           </div>
                         </div>
-                        <ArrowUpRight className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                        <ArrowUpRight className="w-5 h-5 text-white group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                       </a>
 
                       {/* E-mail */}
@@ -1077,12 +1077,12 @@ const Contact: React.FC = () => {
                             <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
                               Email Info
                             </span>
-                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                            <span className="font-circe font-light text-[1.3rem] text-white">
                               info@bexdxb.com
                             </span>
                           </div>
                         </div>
-                        <ArrowUpRight className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                        <ArrowUpRight className="w-5 h-5 text-white group-hover:text-brand-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                       </a>
 
                       {/* Google Maps Location */}
@@ -1100,18 +1100,18 @@ const Contact: React.FC = () => {
                             <span className="font-euclid font-bold text-[1.6rem] text-brand-white block leading-tight">
                               Google Map
                             </span>
-                            <span className="font-circe font-light text-[1.3rem] text-brand-text-muted">
+                            <span className="font-circe font-light text-[1.3rem] text-white">
                               Get directions to Jebel Ali Industrial area 1
                             </span>
                           </div>
                         </div>
-                        <ExternalLink className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold group-hover:scale-105 transition-all duration-300" />
+                        <ExternalLink className="w-5 h-5 text-white group-hover:text-brand-gold group-hover:scale-105 transition-all duration-300" />
                       </a>
                     </div>
 
                     {/* Footer */}
                     <div className="text-center border-t border-brand-white/5 pt-4">
-                      <span className="font-circe font-light text-[1.2rem] text-brand-text-muted/60">
+                      <span className="font-circe font-light text-[1.2rem] text-white/60">
                         Typical response time: &lt; 15 minutes
                       </span>
                     </div>
@@ -1220,7 +1220,7 @@ const Contact: React.FC = () => {
           <span className="font-euclid font-bold text-[1.5rem] text-brand-gold uppercase tracking-wider block mb-2">
             Backdrops UAE Showroom & Exhibition
           </span>
-          <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed mb-6">
+          <p className="font-circe font-light text-[1.8rem] text-white leading-relaxed mb-6">
             Warehouse no- 6, Gate no.13<br />Jebel Ali Industrial area 1 - Dubai - United Arab Emirates
           </p>
           <a
