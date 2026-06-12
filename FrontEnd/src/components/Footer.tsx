@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import BexLogo from './BexLogo'
 import HexagonTimeline from './HexagonTimeline'
+import BexPurpose from './About/BexPurpose'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -67,6 +68,11 @@ const Footer: React.FC = () => {
               {/* BEX CORE VALUES */}
               <div className="mt-16 -mx-6 md:-mx-12 lg:-mx-24">
                 <HexagonTimeline />
+              </div>
+
+              {/* THE BEX PURPOSE */}
+              <div className="mt-4 mb-24 -mx-6 md:-mx-12 lg:-mx-24">
+                <BexPurpose />
               </div>
 
 
