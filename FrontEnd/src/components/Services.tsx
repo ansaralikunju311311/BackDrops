@@ -337,7 +337,7 @@ const Services: React.FC = () => {
                   <h2 className="font-urw font-extrabold text-[3.8rem] sm:text-[4.5rem] lg:text-[5.2rem] text-white leading-tight tracking-wide">
                     {SERVICES_DATA[activeIdx].title}
                   </h2>
-                  <p className="font-circe font-light text-[2rem] lg:text-[2.2rem] text-brand-text-muted leading-relaxed max-w-[62rem]">
+                  <p className="font-circe font-light text-[2rem] lg:text-[2.2rem] text-white leading-relaxed max-w-[62rem]">
                     {SERVICES_DATA[activeIdx].description}
                   </p>
                 </motion.div>

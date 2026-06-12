@@ -431,13 +431,13 @@ const ServiceDetail: React.FC = () => {
             
             {/* Left Column: Detailed Service Text */}
             <div className="lg:col-span-8 flex flex-col gap-10 text-left">
-              <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-brand-white/80">
+              <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-white">
                 {service.p1}
               </p>
-              <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-brand-text-muted">
+              <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-white">
                 {service.p2}
               </p>
-              <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-brand-text-muted">
+              <p className="font-circe font-light text-[2.1rem] sm:text-[2.3rem] leading-relaxed text-white">
                 {service.p3}
               </p>
               
