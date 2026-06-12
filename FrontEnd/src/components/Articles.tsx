@@ -35,7 +35,7 @@ const Articles: React.FC = () => {
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-20">
         {/* Page Title */}
         <div className="text-left mb-24">
-          <nav className="font-circe font-light text-[1.5rem] text-brand-text-muted tracking-wide flex items-center gap-2.5 mb-6">
+          <nav className="font-circe font-light text-[1.5rem] text-white tracking-wide flex items-center gap-2.5 mb-6">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
             <span className="opacity-40">/</span>
             <span className="text-white font-normal">Articles</span>
@@ -77,7 +77,7 @@ const Articles: React.FC = () => {
                 <div className="lg:col-span-7 flex flex-col justify-between h-full text-left relative z-10">
                   <div>
                     {/* Date and Author */}
-                    <div className="flex items-center gap-4 font-circe font-light text-[1.4rem] text-brand-text-muted mb-4 uppercase tracking-wider">
+                    <div className="flex items-center gap-4 font-circe font-light text-[1.4rem] text-white mb-4 uppercase tracking-wider">
                       <span>{article.date}</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
                       <span>{article.author}</span>
@@ -97,7 +97,7 @@ const Articles: React.FC = () => {
                     </p>
 
                     {/* Snippet / Excerpt */}
-                    <p className="font-circe font-light text-[1.6rem] sm:text-[1.8rem] text-brand-text-muted leading-relaxed mb-8 line-clamp-3">
+                    <p className="font-circe font-light text-[1.6rem] sm:text-[1.8rem] text-white leading-relaxed mb-8 line-clamp-3">
                       {article.excerpt}
                     </p>
                   </div>

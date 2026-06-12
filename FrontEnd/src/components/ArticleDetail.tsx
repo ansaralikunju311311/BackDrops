@@ -56,7 +56,7 @@ const ArticleDetail: React.FC = () => {
         {/* Right Side: Breadcrumbs and Title Info */}
         <div className="relative h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-16 text-left select-none">
           {/* Breadcrumbs */}
-          <nav className="font-circe font-light text-[1.5rem] text-brand-text-muted tracking-wide flex items-center gap-2.5 mb-8">
+          <nav className="font-circe font-light text-[1.5rem] text-white tracking-wide flex items-center gap-2.5 mb-8">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
             <span className="opacity-40">/</span>
             <Link to="/articles" className="hover:text-brand-gold transition-colors duration-300">Articles</Link>
@@ -65,7 +65,7 @@ const ArticleDetail: React.FC = () => {
           </nav>
 
           {/* Article Info Badges */}
-          <div className="flex flex-wrap items-center gap-6 font-circe font-light text-[1.4rem] text-brand-text-muted uppercase tracking-wider mb-6">
+          <div className="flex flex-wrap items-center gap-6 font-circe font-light text-[1.4rem] text-white uppercase tracking-wider mb-6">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-brand-gold" />
               <span>{article.date}</span>
@@ -100,7 +100,7 @@ const ArticleDetail: React.FC = () => {
                 switch (block.type) {
                   case 'paragraph':
                     return (
-                      <p key={idx} className="font-circe font-light text-[2rem] sm:text-[2.2rem] leading-relaxed text-brand-white/80 mb-8">
+                      <p key={idx} className="font-circe font-light text-[2rem] sm:text-[2.2rem] leading-relaxed text-white mb-8">
                         {block.text}
                       </p>
                     )
@@ -118,7 +118,7 @@ const ArticleDetail: React.FC = () => {
                             <h3 className="font-urw font-bold text-[2rem] sm:text-[2.2rem] text-brand-gold uppercase tracking-wider mb-2">
                               {item.title}
                             </h3>
-                            <p className="font-circe font-light text-[1.8rem] text-brand-text-muted leading-relaxed">
+                            <p className="font-circe font-light text-[1.8rem] text-white leading-relaxed">
                               {item.desc}
                             </p>
                           </div>
@@ -230,7 +230,7 @@ const ArticleDetail: React.FC = () => {
                 <h4 className="font-urw font-extrabold text-[2.6rem] text-white uppercase tracking-wider mb-6 leading-tight">
                   Ready to exhibit your brand?
                 </h4>
-                <p className="font-circe font-light text-[1.5rem] text-brand-text-muted leading-relaxed mb-8">
+                <p className="font-circe font-light text-[1.5rem] text-white leading-relaxed mb-8">
                   Get in touch with our expert designers and joinery workshop to create custom exhibition stands that command attention.
                 </p>
                 <button
