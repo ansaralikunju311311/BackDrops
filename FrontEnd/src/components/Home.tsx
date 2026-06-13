@@ -215,6 +215,9 @@ const Home: React.FC = () => {
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   
+  const clientVideoScrollRef = React.useRef<HTMLDivElement>(null)
+  const [isClientVideoHovered, setIsClientVideoHovered] = useState(false)
+  
 
   const videos = [...localVideos, ...dynamicVideos]
 
@@ -233,6 +236,22 @@ const Home: React.FC = () => {
 
     return () => clearInterval(interval);
   }, [isHovered, reviews]);
+
+  // Auto-scroll logic for client videos
+  useEffect(() => {
+    if (!clientVideoScrollRef.current || isClientVideoHovered || clientVideos.length === 0) return;
+
+    const interval = setInterval(() => {
+      if (clientVideoScrollRef.current) {
+        clientVideoScrollRef.current.scrollLeft += 1;
+        if (clientVideoScrollRef.current.scrollLeft >= clientVideoScrollRef.current.scrollWidth - clientVideoScrollRef.current.clientWidth - 1) {
+          clientVideoScrollRef.current.scrollLeft = 0;
+        }
+      }
+    }, 40);
+
+    return () => clearInterval(interval);
+  }, [isClientVideoHovered, clientVideos]);
 
   // Prevent body scrolling when review modal is open
   useEffect(() => {
@@ -753,7 +772,12 @@ const Home: React.FC = () => {
           {/* Client Video Reviews */}
           {clientVideos.length > 0 && (
             <div className="mb-20 w-full relative">
-              <div className="flex overflow-x-auto gap-8 px-6 md:px-12 lg:px-24 pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div 
+                ref={clientVideoScrollRef}
+                onMouseEnter={() => setIsClientVideoHovered(true)}
+                onMouseLeave={() => setIsClientVideoHovered(false)}
+                className="flex overflow-x-auto gap-8 px-6 md:px-12 lg:px-24 pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              >
                 {clientVideos.map((video) => (
                   <div 
                     key={video._id}
