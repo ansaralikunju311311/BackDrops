@@ -771,7 +771,33 @@ const Home: React.FC = () => {
 
           {/* Client Video Reviews */}
           {clientVideos.length > 0 && (
-            <div className="mb-20 w-full relative">
+            <div className="mb-20 w-full relative group/slider">
+              {/* Scroll Left Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (clientVideoScrollRef.current) {
+                    clientVideoScrollRef.current.scrollBy({ left: -600, behavior: 'smooth' });
+                  }
+                }}
+                className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold hover:scale-105 shadow-xl hidden md:flex"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
+
+              {/* Scroll Right Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (clientVideoScrollRef.current) {
+                    clientVideoScrollRef.current.scrollBy({ left: 600, behavior: 'smooth' });
+                  }
+                }}
+                className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold hover:scale-105 shadow-xl hidden md:flex"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
+
               <div 
                 ref={clientVideoScrollRef}
                 onMouseEnter={() => setIsClientVideoHovered(true)}
@@ -781,17 +807,24 @@ const Home: React.FC = () => {
                 {clientVideos.map((video) => (
                   <div 
                     key={video._id}
-                    className="relative h-[25rem] md:h-[35rem] lg:h-[480px] w-[75vw] md:w-[50vw] lg:w-[650px] flex-shrink-0 rounded-3xl overflow-hidden bg-brand-dark-accent border border-white/10 group cursor-pointer shadow-2xl mx-auto lg:mx-0"
+                    className="relative group cursor-pointer rounded-2xl overflow-hidden bg-brand-dark-accent border border-white/10 hover:border-brand-gold/30 shadow-2xl"
+                    style={{ 
+                      flex: '0 0 auto',
+                      width: `calc((100% - ${(visibleCards - 1) * 2}rem) / ${visibleCards})`,
+                      transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                    }}
                     onClick={() => setSelectedVideoId(video.youtubeId)}
                   >
-                    <img 
-                      src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
-                      alt="Client Video"
-                      className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-black/40 border-2 border-white/80 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out z-20 group-hover:scale-110 group-hover:bg-brand-gold group-hover:border-transparent shadow-xl">
-                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-1" />
+                    <div className="relative aspect-video w-full h-full">
+                      <img 
+                        src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                        alt="Client Video"
+                        className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-black/40 border-2 border-white/80 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out z-20 group-hover:scale-110 group-hover:bg-brand-gold group-hover:border-transparent shadow-xl">
+                          <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-1" />
+                        </div>
                       </div>
                     </div>
                   </div>
