@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { RefreshCw } from 'lucide-react'
 
-// Vite dynamic import for all local images in the phtogallery directory
-const modules = import.meta.glob('../assets/phtogallery/*.{jpeg,jpg,png,webp}', { eager: true, import: 'default' })
-const localPhotos = Object.values(modules) as string[]
 
 const PhotoGallery: React.FC = () => {
-  const [photos, setPhotos] = useState<string[]>(localPhotos)
+  const [photos, setPhotos] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
 
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
@@ -20,7 +17,7 @@ const PhotoGallery: React.FC = () => {
         if (res.ok && data.success) {
           // Extract URLs from the fetched photo objects and combine with local photos
           const fetchedPhotos = data.photos.map((p: any) => p.url)
-          setPhotos([...localPhotos, ...fetchedPhotos])
+          setPhotos(fetchedPhotos)
         }
       } catch (err) {
         console.error('Failed to fetch gallery photos:', err)
