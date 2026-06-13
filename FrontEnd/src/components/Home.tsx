@@ -6,6 +6,7 @@ import suImage from '../assets/su.jpeg'
 import PhotoGallery from './PhotoGallery'
 import adipecVideo from '../assets/video cases/ADIPEC 2025.mp4'
 import gisecVideo from '../assets/video cases/GISEC 2025.mp4'
+import localClientVideo from '../assets/clientvideo/client.mp4'
 
 
 // import gal1 from '../assets/service/serv1.jpeg'
@@ -770,7 +771,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* Client Video Reviews */}
-          {clientVideos.length > 0 && (
+          {(clientVideos.length > 0 || localClientVideo) && (
             <div className="mb-20 w-full relative group/slider">
               {/* Scroll Left Button */}
               <button
@@ -804,6 +805,31 @@ const Home: React.FC = () => {
                 onMouseLeave={() => setIsClientVideoHovered(false)}
                 className="flex overflow-x-auto gap-8 px-6 md:px-12 lg:px-24 pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
               >
+                {/* Local Client Video */}
+                <div 
+                  className="relative group cursor-pointer rounded-2xl overflow-hidden bg-brand-dark-accent border border-white/10 hover:border-brand-gold/30 shadow-2xl"
+                  style={{ 
+                    flex: '0 0 auto',
+                    width: `calc((100% - ${(visibleCards - 1) * 2}rem) / ${visibleCards})`,
+                    transition: 'border-color 0.3s ease-out, box-shadow 0.3s ease-out',
+                  }}
+                  onClick={() => setSelectedVideoId('local_client_video_2')}
+                >
+                  <div className="relative aspect-video w-full h-full">
+                    <video 
+                      src={localClientVideo}
+                      className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-90 group-hover:scale-102"
+                      preload="metadata"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-black/40 border-2 border-white/80 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out z-20 group-hover:scale-110 group-hover:bg-brand-gold group-hover:border-transparent shadow-xl">
+                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* API Client Videos */}
                 {clientVideos.map((video) => (
                   <div 
                     key={video._id}
@@ -1172,6 +1198,16 @@ const Home: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {(() => {
+                if (selectedVideoId === 'local_client_video_2') {
+                  return (
+                    <video 
+                      src={localClientVideo}
+                      controls
+                      autoPlay
+                      className="w-full h-full outline-none"
+                    />
+                  );
+                }
                 if (selectedVideoId === 'local_gulfood2026') {
                   return (
                     <video 
