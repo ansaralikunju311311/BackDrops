@@ -836,9 +836,9 @@ const Home: React.FC = () => {
           {/* Custom Reviews Section */}
           {reviews.length > 0 && (
             <div className="mb-20 relative w-full pt-10">
-              <div className="text-center mb-12">
-                <h2 className="text-[3rem] md:text-[4.5rem] font-urw font-bold text-white mb-4 drop-shadow-md tracking-wide">What Our Clients Say</h2>
-                <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full"></div>
+              <div className="text-left mb-12">
+                <h2 className="text-[2.2rem] md:text-[2.8rem] lg:text-[3.2rem] font-urw font-bold text-white mb-4 drop-shadow-md tracking-wide">The BEX Signature of Reliability — In Their Words</h2>
+                <div className="w-24 h-1 bg-brand-gold rounded-full"></div>
               </div>
               {/* Horizontal Scroll Container */}
               <div 

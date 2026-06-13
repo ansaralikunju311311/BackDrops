@@ -441,22 +441,28 @@ const PortfolioDetail: React.FC = () => {
           {/* Previous Button */}
           <button
             onClick={handlePrev}
-            className="flex items-center gap-3 font-urw font-bold text-[1.6rem] text-brand-text-muted hover:text-white uppercase tracking-wider transition-colors duration-300 cursor-pointer group/prev"
+            className="flex items-center gap-4 font-urw font-bold text-brand-text-muted hover:text-white uppercase tracking-wider transition-colors duration-300 cursor-pointer group/prev"
           >
-            <div className="w-12 h-12 rounded-full border border-brand-white/20 hover:border-brand-gold bg-brand-white/5 flex items-center justify-center transition-all duration-300 group-hover/prev:scale-105">
-              <ChevronLeft className="w-5 h-5" />
+            <div 
+              className="rounded-full border border-brand-white/20 hover:border-brand-gold bg-brand-white/5 flex items-center justify-center transition-all duration-300 group-hover/prev:scale-105"
+              style={{ width: '4rem', height: '4rem' }}
+            >
+              <ChevronLeft style={{ width: '2rem', height: '2rem' }} />
             </div>
-            <span>Previous project</span>
+            <span style={{ fontSize: '2.2rem' }}>Previous project</span>
           </button>
 
           {/* Next Button */}
           <button
             onClick={handleNext}
-            className="flex items-center gap-3 font-urw font-bold text-[1.6rem] text-brand-text-muted hover:text-white uppercase tracking-wider transition-colors duration-300 cursor-pointer group/next"
+            className="flex items-center gap-4 font-urw font-bold text-brand-text-muted hover:text-white uppercase tracking-wider transition-colors duration-300 cursor-pointer group/next"
           >
-            <span>Next project</span>
-            <div className="w-12 h-12 rounded-full border border-brand-white/20 hover:border-brand-gold bg-brand-white/5 flex items-center justify-center transition-all duration-300 group-hover/next:scale-105">
-              <ChevronRight className="w-5 h-5" />
+            <span style={{ fontSize: '2.2rem' }}>Next project</span>
+            <div 
+              className="rounded-full border border-brand-white/20 hover:border-brand-gold bg-brand-white/5 flex items-center justify-center transition-all duration-300 group-hover/next:scale-105"
+              style={{ width: '4rem', height: '4rem' }}
+            >
+              <ChevronRight style={{ width: '2rem', height: '2rem' }} />
             </div>
           </button>
 
