@@ -144,6 +144,7 @@ const AdminPortal: React.FC = () => {
   const [clientVideoError, setClientVideoError] = useState<string | null>(null)
   const [clientVideoSuccess, setClientVideoSuccess] = useState<string | null>(null)
   const [clientVideoUrl, setClientVideoUrl] = useState('')
+  const [clientVideoShowName, setClientVideoShowName] = useState('')
   const [isClientVideoUploading, setIsClientVideoUploading] = useState(false)
 
   const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
@@ -720,12 +721,13 @@ const AdminPortal: React.FC = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ youtubeUrl: clientVideoUrl })
+        body: JSON.stringify({ youtubeUrl: clientVideoUrl, showName: clientVideoShowName })
       })
 
       const data = await res.json()
       if (res.ok && data.success) {
         setClientVideoSuccess('Client video added successfully!')
+        setClientVideoShowName('')
         fetchClientVideos()
         setClientVideoUrl('')
         setTimeout(() => setClientVideoSuccess(null), 3000)
@@ -2312,6 +2314,22 @@ const AdminPortal: React.FC = () => {
                         value={clientVideoUrl}
                         onChange={(e) => setClientVideoUrl(e.target.value)}
                         placeholder="e.g. https://www.youtube.com/watch?v=..."
+                        className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
+                        style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
+                      />
+                    </div>
+                    <div className="space-y-[1rem]">
+                      <label 
+                        className="font-circe text-[1.8rem] text-white/90 uppercase tracking-wider block font-semibold"
+                        style={{ fontSize: '1.8rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}
+                      >
+                        Show Name (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={clientVideoShowName}
+                        onChange={(e) => setClientVideoShowName(e.target.value)}
+                        placeholder="e.g. GULFOOD 2026"
                         className="w-full bg-brand-dark/70 border border-white/20 rounded-xs px-[2rem] py-[1.8rem] text-[3rem] text-white focus:border-brand-gold focus:outline-none transition-colors duration-300 placeholder:text-white/35"
                         style={{ fontSize: '2.4rem', padding: '1.5rem 1.8rem', backgroundColor: 'rgba(5, 6, 8, 0.7)', border: '1px solid rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
                       />

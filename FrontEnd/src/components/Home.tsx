@@ -826,6 +826,12 @@ const Home: React.FC = () => {
                         <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-1" />
                       </div>
                     </div>
+                    {/* Show Name Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
+                      <h3 className="font-urw font-bold text-white text-[1.8rem] md:text-[2.2rem] uppercase tracking-wider drop-shadow-lg">
+                        GULFOOD 2026
+                      </h3>
+                    </div>
                   </div>
                 </div>
 
@@ -852,6 +858,14 @@ const Home: React.FC = () => {
                           <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white ml-1" />
                         </div>
                       </div>
+                      {/* Show Name Overlay */}
+                      {video.showName && (
+                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none">
+                          <h3 className="font-urw font-bold text-white text-[1.8rem] md:text-[2.2rem] uppercase tracking-wider drop-shadow-lg">
+                            {video.showName}
+                          </h3>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}

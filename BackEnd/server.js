@@ -220,7 +220,8 @@ const VideoCase = mongoose.model('VideoCase', videoCaseSchema);
 // Client Video Schema & Model
 const clientVideoSchema = new mongoose.Schema({
   youtubeUrl: { type: String, required: true },
-  youtubeId: { type: String, required: true }
+  youtubeId: { type: String, required: true },
+  showName: { type: String, required: false }
 }, { collection: 'clientvideos', timestamps: true });
 
 const ClientVideo = mongoose.model('ClientVideo', clientVideoSchema);
@@ -1561,7 +1562,7 @@ app.get('/api/clientvideos', async (req, res) => {
 // POST /api/clientvideos - Add a new client video (protected)
 app.post('/api/clientvideos', verifyToken, async (req, res) => {
   try {
-    const { youtubeUrl } = req.body;
+    const { youtubeUrl, showName } = req.body;
     if (!youtubeUrl) {
       return res.status(400).json({ success: false, error: 'YouTube URL is required.' });
     }
@@ -1576,7 +1577,7 @@ app.post('/api/clientvideos', verifyToken, async (req, res) => {
       return res.status(400).json({ success: false, error: 'Invalid YouTube URL.' });
     }
 
-    const newVideo = await ClientVideo.create({ youtubeUrl, youtubeId });
+    const newVideo = await ClientVideo.create({ youtubeUrl, youtubeId, showName });
     return res.status(201).json({ success: true, message: 'Client video added successfully.', video: newVideo });
   } catch (error) {
     console.error('Error adding client video:', error);
