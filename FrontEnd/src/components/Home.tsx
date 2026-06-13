@@ -757,7 +757,7 @@ const Home: React.FC = () => {
                 {clientVideos.map((video) => (
                   <div 
                     key={video._id}
-                    className="relative aspect-video w-[85vw] md:w-[60vw] lg:w-[45vw] flex-shrink-0 rounded-3xl overflow-hidden bg-brand-dark-accent border border-white/10 group cursor-pointer shadow-2xl"
+                    className="relative h-[25rem] md:h-[35rem] lg:h-[480px] w-[75vw] md:w-[50vw] lg:w-[650px] flex-shrink-0 rounded-3xl overflow-hidden bg-brand-dark-accent border border-white/10 group cursor-pointer shadow-2xl mx-auto lg:mx-0"
                     onClick={() => setSelectedVideoId(video.youtubeId)}
                   >
                     <img 
