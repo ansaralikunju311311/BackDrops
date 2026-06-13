@@ -299,6 +299,11 @@ const Services: React.FC = () => {
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 via-transparent to-transparent pointer-events-none" />
               </Link>
+              
+              {/* Illustrative purposes label */}
+              <div className="absolute -bottom-12 left-0 font-circe font-bold text-[1.5rem] text-white tracking-wide z-10">
+                *Concept Render – For Illustrative Purposes Only
+              </div>
             </div>
           </div>
 

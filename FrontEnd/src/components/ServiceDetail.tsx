@@ -363,6 +363,11 @@ const ServiceDetail: React.FC = () => {
           />
           {/* Overlapping Border Divider Gradient */}
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white/10 to-transparent pointer-events-none hidden lg:block" />
+          
+          {/* Illustrative purposes label */}
+          <div className="absolute bottom-6 left-6 font-circe font-bold text-[1.5rem] text-white tracking-wide z-10">
+            *Concept Render – For Illustrative Purposes Only
+          </div>
         </div>
 
         {/* Right Side: Breadcrumbs and Large Title (White Background) */}

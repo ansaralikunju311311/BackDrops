@@ -1069,6 +1069,11 @@ const Home: React.FC = () => {
             />
           </motion.div>
 
+          {/* Illustrative purposes label */}
+          <div className="font-circe font-bold text-[1.5rem] text-white tracking-wide mb-12 -mt-10 pl-4 relative z-10">
+            *Concept Render – For Illustrative Purposes Only
+          </div>
+
           {/* Descriptions Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left Column */}
