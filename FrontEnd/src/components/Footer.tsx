@@ -112,10 +112,10 @@ const Footer: React.FC = () => {
           <div>
             <Link
               to="/contacts"
-              className="font-euclid font-bold tracking-wider uppercase px-8 py-4 bg-brand-gold text-brand-white hover:bg-brand-gold-light transition-all duration-300 rounded-sm flex items-center gap-3 shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-[0_20px_40px_rgba(196,121,86,0.3)] group"
+              className="btn-primary group"
               style={{ fontSize: '2.2rem' }}
             >
-              Send Request <span className="font-light text-[2.4rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
+              Contact Us <span className="font-light text-[2.4rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
             </Link>
           </div>
 

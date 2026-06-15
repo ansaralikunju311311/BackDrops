@@ -1176,10 +1176,10 @@ const Home: React.FC = () => {
             {/* Inquire Button */}
             <Link
               to="/contacts"
-              className="font-euclid font-bold tracking-wider uppercase px-8 py-4 bg-brand-gold text-brand-white hover:bg-brand-gold-light transition-all duration-300 rounded-xs flex items-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.15)] group"
+              className="btn-primary group"
               style={{ fontSize: '2rem' }}
             >
-              Inquire Now <span className="font-light text-[2.2rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
+              Request Consultation <span className="font-light text-[2.2rem] group-hover:translate-x-1 transition-transform duration-300">+</span>
             </Link>
 
           </div>

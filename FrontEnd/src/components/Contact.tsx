@@ -836,7 +836,7 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-14 py-5 bg-brand-gold text-brand-white font-euclid font-bold tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group"
+                  className="btn-primary group disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{fontSize:'2rem'}}
                 >
                   {isSubmitting ? 'Sending...' : 'Send'}{' '}
@@ -847,8 +847,8 @@ const Contact: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowBrief(true)}
-                  className="px-12 py-5 bg-brand-gold text-brand-white hover:bg-brand-gold-light font-euclid font-bold tracking-wider uppercase rounded-xs transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer shadow-[0_10px_20px_rgba(158,83,48,0.2)] group"
-                  style={{ fontSize: '2rem' }}
+                  className="btn-primary group"
+                  style={{fontSize:'2rem', backgroundColor: 'transparent', border: '1px solid var(--color-brand-gold)'}}
                 >
                   Fill out the brief{' '}
                   <ArrowUpRight className="w-8 h-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />

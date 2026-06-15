@@ -389,10 +389,10 @@ const ServiceDetail: React.FC = () => {
           {/* Call to Action Button */}
           <button
             onClick={handleSendRequest}
-            className="block bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold tracking-wider uppercase px-12 py-6 rounded-sm shadow-[0_15px_30px_rgba(196,121,86,0.35)] hover:scale-[1.02] transition-all duration-300 cursor-pointer w-max group"
+            className="btn-primary group"
             style={{fontSize:'2rem'}}
           >
-            Send Request <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
+            Get a Quote <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
           </button>
 
           {/* Bottom Right Label: BEX + CREO badge for Turnkey */}
