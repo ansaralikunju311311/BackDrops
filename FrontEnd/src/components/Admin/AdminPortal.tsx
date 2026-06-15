@@ -111,7 +111,7 @@ const AdminPortal: React.FC = () => {
   const [standsPage, setStandsPage] = useState(1)
   
   // Gallery Management States
-  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases' | 'reviews' | 'clientvideos'>('projects')
+  const [activeTab, setActiveTab] = useState<'projects' | 'gallery' | 'videocases' | 'reviews' | 'client review videos'>('projects')
 
   // Reviews Management States
   const [reviews, setReviews] = useState<Review[]>([])
@@ -1197,7 +1197,7 @@ const AdminPortal: React.FC = () => {
                       : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
                   }`}
                 >
-                  Client Videos
+                  Client Review Videos
                 </button>
               </div>
 
@@ -2387,6 +2387,11 @@ const AdminPortal: React.FC = () => {
                         </div>
                       </div>
                       <div className="p-[2rem]">
+                        {video.showName && (
+                          <h3 className="text-white text-[1.6rem] font-bold font-circe mb-[0.5rem] uppercase tracking-wider">
+                            {video.showName}
+                          </h3>
+                        )}
                         <p className="text-white/50 text-[1.3rem] mb-[2rem] break-all">
                           {video.youtubeUrl}
                         </p>
