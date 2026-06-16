@@ -92,7 +92,7 @@ const StaggeredFeatures: React.FC = () => {
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24">
         
         {/* Section Heading */}
-        <div className="mb-24 relative">
+        <div className="mb-24 xl:mb-[14rem] relative z-0">
           <h2 className="font-urw font-extrabold text-h1 text-brand-white uppercase tracking-wider leading-tight">
             Why agencies choose us
           </h2>
@@ -125,7 +125,7 @@ const StaggeredFeatures: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className={`flex flex-col h-full relative ${isTop ? 'justify-start' : 'justify-end'}`}
+                  className={`flex flex-col h-full relative`}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
@@ -146,9 +146,10 @@ const StaggeredFeatures: React.FC = () => {
                   }`} />
 
                   {/* Card Element */}
-                  <motion.div
-                    variants={cardVariants(isTop)}
-                    whileHover={{ y: isTop ? -8 : 8 }}
+                  <div className={`absolute w-full z-20 flex flex-col ${isTop ? 'bottom-[28rem] justify-end' : 'top-[28rem] justify-start'}`}>
+                    <motion.div
+                      variants={cardVariants(isTop)}
+                      whileHover={{ y: isTop ? -8 : 8 }}
                     onClick={toggleExpand}
                     className={`w-full min-h-[24rem] h-auto p-8 flex flex-col justify-between rounded-sm cursor-pointer transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group relative ${
                       card.isGold
@@ -220,6 +221,7 @@ const StaggeredFeatures: React.FC = () => {
                       </span>
                     </div>
                   </motion.div>
+                  </div>
                 </div>
               )
             })}
