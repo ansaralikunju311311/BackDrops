@@ -19,12 +19,18 @@ import localClientVideo from '../assets/clientvideo/client.mp4'
 // import gal8 from '../assets/service/serv9.jpeg'
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { 
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.15,
+      staggerDirection: -1
+    }
+  },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.3,
+      delayChildren: 0.4,
     },
   },
 }
@@ -33,7 +39,11 @@ const wordVariants = {
   hidden: (i: number) => ({
     opacity: 0,
     x: i < 2 ? "-50vw" : "50vw", // "WE" and "BUILD" from left, "EXPERIENCES" from right
-    filter: "blur(15px)"
+    filter: "blur(15px)",
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut"
+    }
   }),
   visible: {
     opacity: 1,
@@ -41,9 +51,9 @@ const wordVariants = {
     filter: "blur(0px)",
     transition: {
       type: "spring",
-      damping: 18,
-      stiffness: 80,
-      mass: 1,
+      damping: 25,
+      stiffness: 40,
+      mass: 1.5,
     }
   }
 }
