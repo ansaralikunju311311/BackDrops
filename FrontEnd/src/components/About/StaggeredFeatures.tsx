@@ -185,8 +185,8 @@ const StaggeredFeatures: React.FC = () => {
 
                     {/* Bottom: Title & Expander */}
                     <div className="flex flex-col gap-4 mt-auto">
-                      <div className="flex items-center justify-between gap-4">
-                        <h3 className="font-circe font-light text-[2.2rem] xl:text-[2.4rem] leading-snug tracking-normal text-white">
+                      <div className="flex items-center justify-between gap-4 w-full">
+                        <h3 className="flex-1 min-w-0 font-circe font-light text-[2.2rem] xl:text-[2.4rem] leading-snug tracking-normal text-white break-words pr-2">
                           {card.title}
                         </h3>
                         <motion.span 
