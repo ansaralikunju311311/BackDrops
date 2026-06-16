@@ -23,28 +23,27 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25,
-      delayChildren: 0.3,
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 }
 
-const letterVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50,
-    scale: 0.85,
-    rotate: -5
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    rotate: 0,
+const wordVariants = {
+  hidden: (i: number) => ({
+    opacity: 0,
+    x: i < 2 ? "-50vw" : "50vw", // "WE" and "BUILD" from left, "EXPERIENCES" from right
+    filter: "blur(15px)"
+  }),
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
     transition: {
       type: "spring",
-      damping: 12,
-      stiffness: 100,
+      damping: 18,
+      stiffness: 80,
+      mass: 1,
     }
   }
 }
@@ -213,6 +212,21 @@ const Home: React.FC = () => {
   const [clientVideos, setClientVideos] = useState<any[]>([])
   const [reviews, setReviews] = useState<any[]>([])
   
+  const [showHeroText, setShowHeroText] = useState(false)
+  const heroVideoRef = React.useRef<HTMLVideoElement>(null)
+
+  const handleHeroVideoEnded = () => {
+    setShowHeroText(true)
+    setTimeout(() => {
+      setShowHeroText(false)
+      setTimeout(() => {
+        if (heroVideoRef.current) {
+          heroVideoRef.current.play()
+        }
+      }, 1000)
+    }, 3000)
+  }
+
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   
@@ -385,10 +399,11 @@ const Home: React.FC = () => {
         
         {/* Full-Screen Background Video */}
         <video
+          ref={heroVideoRef}
           autoPlay
-          loop
           muted
           playsInline
+          onEnded={handleHeroVideoEnded}
           className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
         >
           <source src="/assets/herov2.mp4" type="video/mp4" />
@@ -409,13 +424,15 @@ const Home: React.FC = () => {
           <motion.h1
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={showHeroText ? "visible" : "hidden"}
             className="font-urw font-extrabold text-[8rem] sm:text-[12rem] md:text-[15rem] lg:text-[19rem] text-white uppercase leading-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.6)] flex flex-wrap justify-center gap-x-[3vw]"
+            style={{ perspective: 1000 }}
           >
             {["WE", "BUILD", "EXPERIENCES"].map((word, wordIndex) => (
               <motion.span 
                 key={wordIndex} 
-                variants={letterVariants}
+                custom={wordIndex}
+                variants={wordVariants}
                 className="inline-block whitespace-nowrap"
               >
                 {Array.from(word).map((char, charIndex) => {
