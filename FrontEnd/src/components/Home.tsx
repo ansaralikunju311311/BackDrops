@@ -391,7 +391,7 @@ const Home: React.FC = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
         >
-          <source src="/assets/company_name_chnage_to_the_Bac.mp4" type="video/mp4" />
+          <source src="/assets/herov2.mp4" type="video/mp4" />
         </video>
 
         {/* Cinematic Dark Overlay */}
