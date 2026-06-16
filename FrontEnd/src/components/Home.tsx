@@ -212,18 +212,24 @@ const Home: React.FC = () => {
   const [clientVideos, setClientVideos] = useState<any[]>([])
   const [reviews, setReviews] = useState<any[]>([])
   
-  const [showHeroText, setShowHeroText] = useState(false)
+  const [showHeroText, setShowHeroText] = useState(true)
   const heroVideoRef = React.useRef<HTMLVideoElement>(null)
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHeroText(false)
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleHeroVideoEnded = () => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.currentTime = 0
+      heroVideoRef.current.play()
+    }
     setShowHeroText(true)
     setTimeout(() => {
       setShowHeroText(false)
-      setTimeout(() => {
-        if (heroVideoRef.current) {
-          heroVideoRef.current.play()
-        }
-      }, 1000)
     }, 3000)
   }
 
@@ -406,7 +412,7 @@ const Home: React.FC = () => {
           onEnded={handleHeroVideoEnded}
           className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
         >
-          <source src="/assets/herov2final.mp4" type="video/mp4" />
+          <source src="/assets/herolast.mp4" type="video/mp4" />
         </video>
 
         {/* Cinematic Dark Overlay */}
