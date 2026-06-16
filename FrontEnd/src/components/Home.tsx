@@ -406,7 +406,7 @@ const Home: React.FC = () => {
           onEnded={handleHeroVideoEnded}
           className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
         >
-          <source src="/assets/herov2.mp4" type="video/mp4" />
+          <source src="/assets/herov2final.mp4" type="video/mp4" />
         </video>
 
         {/* Cinematic Dark Overlay */}
