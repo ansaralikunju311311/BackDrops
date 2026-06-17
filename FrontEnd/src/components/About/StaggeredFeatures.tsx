@@ -85,7 +85,7 @@ const StaggeredFeatures: React.FC = () => {
   })
 
   return (
-    <section className="py-32 bg-brand-bg relative overflow-hidden border-t border-brand-border/30">
+    <section className="pt-32 pb-48 xl:pb-[18rem] bg-brand-bg relative overflow-hidden border-t border-brand-border/30">
       {/* Background Subtle Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(212,164,55,0.06),rgba(20,23,33,0))] pointer-events-none" />
 
