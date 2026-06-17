@@ -325,7 +325,7 @@ const PortfolioDetail: React.FC = () => {
                 <h4 className="font-urw font-bold text-[2.2rem] text-brand-white/90 uppercase tracking-wide mb-4">Type of stand:</h4>
                 <ul className="flex flex-col gap-3">
                   {currentTypeOfStands.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-4 font-circe font-medium text-[2.2rem] text-brand-text-muted">
+                    <li key={idx} className="flex items-center gap-4 font-circe font-medium text-[2.2rem] text-white capitalize">
                       <span className="w-3 h-3 bg-[#E51D1D] shrink-0" />
                       {item}
                     </li>
@@ -337,7 +337,7 @@ const PortfolioDetail: React.FC = () => {
                 <h4 className="font-urw font-bold text-[2.2rem] text-brand-white/90 uppercase tracking-wide mb-4">Type of event:</h4>
                 <ul className="flex flex-col gap-3">
                   {currentTypeOfEvents.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-4 font-circe font-medium text-[2.2rem] text-brand-text-muted">
+                    <li key={idx} className="flex items-center gap-4 font-circe font-medium text-[2.2rem] text-white capitalize">
                       <span className="w-3 h-3 bg-[#E51D1D] shrink-0" />
                       {item}
                     </li>
@@ -367,7 +367,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <Activity className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-brand-white/80">{currentExhibitionName}</span>
+                  <span className="font-circe font-light text-[2rem] text-white">{currentExhibitionName}</span>
                 </div>
 
                 {/* Location Spec */}
@@ -375,7 +375,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <MapPin className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-brand-white/80">{currentExLocation}</span>
+                  <span className="font-circe font-light text-[2rem] text-white">{currentExLocation}</span>
                 </div>
 
                 {/* Year Spec */}
@@ -383,7 +383,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <Calendar className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-brand-white/80">{currentExYear}</span>
+                  <span className="font-circe font-light text-[2rem] text-white">{currentExYear}</span>
                 </div>
 
                 {/* Area Spec */}
@@ -391,7 +391,7 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <Box className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-brand-white/80">
+                  <span className="font-circe font-light text-[2rem] text-white">
                     Built-up Area: <span className="font-urw font-bold text-[2.4rem] text-white ml-2">{currentArea}</span>
                   </span>
                 </div>
@@ -402,7 +402,7 @@ const PortfolioDetail: React.FC = () => {
                     <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                       <Briefcase className="w-8 h-8" />
                     </div>
-                    <span className="font-circe font-light text-[2rem] text-brand-white/80">
+                    <span className="font-circe font-light text-[2rem] text-white">
                       Client: <span className="text-white font-medium ml-2">{dbStand.client}</span>
                     </span>
                   </div>
