@@ -373,17 +373,6 @@ const ServiceDetail: React.FC = () => {
         
         {/* Left Side: Service Image */}
         <div className="relative h-[45rem] lg:h-full w-full overflow-hidden bg-brand-dark-accent">
-          {/* Prominent Floating Back Button */}
-          <button
-            onClick={() => navigate(-1)}
-            className="absolute top-8 left-8 sm:left-12 z-50 flex items-center gap-3 bg-black/50 hover:bg-brand-gold backdrop-blur-md text-white px-8 py-4 rounded-full font-euclid font-bold tracking-widest uppercase transition-all duration-300 group shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/20"
-            style={{ fontSize: '2.3rem' }}
-            aria-label="Go back"
-          >
-            <ChevronLeft className="w-8 h-8 group-hover:-translate-x-2 transition-transform duration-300" /> 
-            Back
-          </button>
-
           <img
             src={service.image}
             alt={service.title}
@@ -400,6 +389,18 @@ const ServiceDetail: React.FC = () => {
 
         {/* Right Side: Breadcrumbs and Large Title (White Background) */}
         <div className="relative h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-16 text-left select-none">
+          {/* Pill Back Button */}
+          <div className="mb-10">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-brand-gold/40 bg-brand-gold/[0.04] text-brand-gold hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider uppercase group shadow-sm hover:shadow-[0_0_15px_rgba(212,175,55,0.15)] cursor-pointer"
+              style={{ fontSize: '1.8rem' }}
+            >
+              <ChevronLeft className="group-hover:-translate-x-1 transition-transform" style={{ width: '2.4rem', height: '2.4rem' }} />
+              <span>Back to Services</span>
+            </Link>
+          </div>
+
           {/* Breadcrumbs */}
           <nav className="font-circe font-medium text-[1.8rem] sm:text-[2.2rem] text-brand-dark tracking-wide flex items-center gap-2.5 mb-8">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
@@ -420,7 +421,7 @@ const ServiceDetail: React.FC = () => {
             className="btn-primary group"
             style={{fontSize:'2rem'}}
           >
-            Get a Quote <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
+            Connect with us <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
           </button>
 
           {/* Bottom Right Label: BEX + CREO badge for Turnkey */}
