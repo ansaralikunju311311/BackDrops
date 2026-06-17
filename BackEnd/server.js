@@ -509,7 +509,7 @@ app.post('/api/contact', async (req, res) => {
       text-transform: uppercase;
     }
     .header p {
-      color: #A0A5B5;
+      color: #FFFFFF;
       font-size: 14px;
       margin: 8px 0 0 0;
       letter-spacing: 1px;
