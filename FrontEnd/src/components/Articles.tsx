@@ -78,7 +78,7 @@ const Articles: React.FC = () => {
                 <div className="lg:col-span-7 flex flex-col justify-between h-full text-left relative z-10">
                   <div>
                     {/* Date and Author */}
-                    <div className="flex items-center gap-4 font-circe font-light text-[1.4rem] text-white mb-4 uppercase tracking-wider">
+                    <div className="flex items-center gap-4 font-circe font-light text-[1.8rem] text-white mb-4 uppercase tracking-wider">
                       <span>{article.date}</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
                       <span>{article.author}</span>
@@ -112,10 +112,11 @@ const Articles: React.FC = () => {
                         e.stopPropagation();
                         navigate(`/articles/detail?id=${article.id}`);
                       }}
-                      className="bg-brand-dark-accent/60 hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider text-[1.4rem] uppercase py-4 px-8 border border-white/5 hover:border-brand-gold rounded-xs cursor-pointer shadow-[0_5px_15px_rgba(0,0,0,0.35)] flex items-center gap-3 group/btn hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
+                      className="bg-brand-dark-accent/60 hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider uppercase border border-white/5 hover:border-brand-gold rounded-xs cursor-pointer shadow-[0_5px_15px_rgba(0,0,0,0.35)] flex items-center gap-3 group/btn hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
+                      style={{ fontSize: '2.2rem', padding: '1.6rem 3.2rem' }}
                     >
                       Learn More
-                      <span className="text-brand-gold group-hover/btn:text-white transition-colors duration-300 font-light">+</span>
+                      <span className="text-brand-gold group-hover/btn:text-white transition-colors duration-300 font-light" style={{ fontSize: '2.4rem' }}>+</span>
                     </button>
                   </div>
                 </div>

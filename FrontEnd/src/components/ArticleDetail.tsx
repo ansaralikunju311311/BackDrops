@@ -77,7 +77,7 @@ const ArticleDetail: React.FC = () => {
           </nav>
 
           {/* Article Info Badges */}
-          <div className="flex flex-wrap items-center gap-6 font-circe font-light text-[1.4rem] text-white uppercase tracking-wider mb-6">
+          <div className="flex flex-wrap items-center gap-6 font-circe font-light text-[1.8rem] text-white uppercase tracking-wider mb-6">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-brand-gold" />
               <span>{article.date}</span>
@@ -171,8 +171,8 @@ const ArticleDetail: React.FC = () => {
                     return (
                       <div key={idx} className="flex flex-wrap gap-3 mt-12 border-t border-white/5 pt-8">
                         {block.items?.map((tag, tIdx) => (
-                          <span key={tIdx} className="font-mono text-[1.5rem] text-brand-gold hover:text-white transition-colors duration-200 cursor-pointer flex items-center gap-1 bg-brand-dark-accent/30 px-4 py-1.5 border border-white/5 rounded-xs">
-                            <Tag className="w-4 h-4" />
+                          <span key={tIdx} className="font-mono text-[1.8rem] text-brand-gold hover:text-white transition-colors duration-200 cursor-pointer flex items-center gap-2 bg-brand-dark-accent/30 px-5 py-2 border border-white/5 rounded-xs">
+                            <Tag className="w-5 h-5" />
                             #{tag}
                           </span>
                         ))}
@@ -187,9 +187,11 @@ const ArticleDetail: React.FC = () => {
               <div className="mt-16 pt-8 border-t border-white/5">
                 <Link
                   to="/articles"
-                  className="inline-flex items-center gap-3 font-euclid font-bold text-[1.6rem] tracking-wider uppercase text-brand-gold hover:text-white transition-colors duration-300"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-brand-gold/40 bg-brand-gold/[0.04] text-brand-gold hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider uppercase group shadow-sm hover:shadow-[0_0_15px_rgba(212,175,55,0.15)] cursor-pointer"
+                  style={{ fontSize: '1.8rem' }}
                 >
-                  <ChevronLeft className="w-5 h-5" /> Back to Articles
+                  <ChevronLeft className="group-hover:-translate-x-1 transition-transform" style={{ width: '2.4rem', height: '2.4rem' }} />
+                  <span>Back to Articles</span>
                 </Link>
               </div>
             </div>
@@ -199,8 +201,7 @@ const ArticleDetail: React.FC = () => {
               {/* Other Articles Category */}
               {otherArticles.length > 0 && (
                 <div className="border-t border-white/10 pt-6">
-                  <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase block mb-1">More news</span>
-                  <h3 className="font-urw font-bold text-[2.6rem] text-white uppercase tracking-wider mb-8">Other Articles</h3>
+                  <h3 className="font-urw font-bold text-[2.6rem] text-white uppercase tracking-wider mb-8">More Articles</h3>
                   
                   <div className="flex flex-col gap-8 w-full">
                     {otherArticles.map((oth) => (
@@ -238,19 +239,19 @@ const ArticleDetail: React.FC = () => {
               {/* Call To Action Box */}
               <div className="bg-gradient-to-br from-[#1d0a0a] via-brand-dark-accent/40 to-brand-bg border border-white/5 p-8 rounded-sm text-center relative overflow-hidden shadow-lg mt-4">
                 <div className="absolute right-0 top-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-2xl pointer-events-none" />
-                <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase block mb-4">Start Your Build</span>
+                <span className="font-circe font-bold text-[1.8rem] tracking-[0.3em] text-brand-gold uppercase block mb-4">Start Your Build</span>
                 <h4 className="font-urw font-extrabold text-[2.6rem] text-white uppercase tracking-wider mb-6 leading-tight">
-                  Ready to exhibit your brand?
+                  LOOKING FOR A TRUSTED EXECUTION PARTNER?
                 </h4>
-                <p className="font-circe font-light text-[1.5rem] text-white leading-relaxed mb-8">
-                  Get in touch with our expert designers and joinery workshop to create custom exhibition stands that command attention.
+                <p className="font-circe font-light text-[1.7rem] text-white leading-relaxed mb-8">
+                  Bring ambitious ideas to life through expert design support, engineering, fabrication, and seamless on-site execution.
                 </p>
                 <button
                   onClick={() => navigate('/contacts')}
                   className="bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold tracking-widest uppercase py-5 px-8 rounded-xs shadow-[0_10px_20px_rgba(196,121,86,0.25)] hover:scale-[1.02] transition-all duration-300 w-full cursor-pointer"
                   style={{fontSize:'2rem'}}
                 >
-                  Send Inquiry +
+                  DISCUSS YOUR PROJECT
                 </button>
               </div>
             </div>
