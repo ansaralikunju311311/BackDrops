@@ -92,7 +92,7 @@ const HexagonTimeline: React.FC = () => {
                   <div className={`absolute w-4 h-4 rounded-full bg-white border-4 border-[#000000] shadow-sm ${isTop ? 'bottom-[-88px]' : 'top-[-88px]'}`} />
 
                   {/* Content Container (Title) */}
-                  <div className={`text-center relative z-30 ${isTop ? 'mb-14' : 'mt-14 order-last'}`}>
+                  <div className={`text-center relative z-30 ${isTop ? 'mb-20' : 'mt-20 order-last'}`}>
                     <h3 className="font-urw font-bold text-[rgb(158,83,48)] uppercase tracking-widest mb-2 drop-shadow-md" style={{ fontSize: '2.4rem' }}>
                       {item.title}
                     </h3>
