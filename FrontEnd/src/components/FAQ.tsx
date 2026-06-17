@@ -194,7 +194,7 @@ const FAQ: React.FC = () => {
   }
 
   return (
-    <section id="faq" className="min-h-screen pt-16 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden">
+    <section id="faq" className="min-h-screen pt-32 lg:pt-48 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden">
       
       {/* Visual Design Element: Diagonal Shards / Light Beams matching screenshot */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -221,20 +221,40 @@ const FAQ: React.FC = () => {
             <h2 className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] lg:text-[6.5rem] text-white uppercase tracking-wider leading-none mb-4">
               FAQ
             </h2>
-            <p className="font-circe font-light text-[1.6rem] sm:text-[1.8rem] text-brand-text-muted">
+            <p className="font-circe font-light text-[2rem] sm:text-[2.4rem] text-brand-text-muted">
               Answering frequently asked questions
             </p>
           </div>
 
           {/* Premium Search Box */}
-          <div className="relative w-full lg:max-w-[40rem] bg-brand-dark-accent/20 border border-white/[0.08] px-6 py-4 rounded-xl flex items-center gap-4 focus-within:border-brand-gold/50 focus-within:shadow-[0_0_20px_rgba(158,83,48,0.15)] transition-all duration-300">
-            <Search className="w-6 h-6 text-brand-text-muted shrink-0" />
+          <div className="relative w-full lg:max-w-[48rem] bg-brand-dark-accent/20 border border-white/[0.08] px-6 py-6 rounded-xl flex items-center gap-4 focus-within:border-brand-gold/50 focus-within:shadow-[0_0_20px_rgba(158,83,48,0.15)] transition-all duration-300">
+            <Search className="w-8 h-8 text-brand-text-muted shrink-0" />
+            <style>{`
+              #faq-search-input {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                height: auto !important;
+              }
+              #faq-search-input::placeholder {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+              }
+              @media (min-width: 640px) {
+                #faq-search-input {
+                  font-size: 2.4rem !important;
+                }
+                #faq-search-input::placeholder {
+                  font-size: 2.4rem !important;
+                }
+              }
+            `}</style>
             <input
+              id="faq-search-input"
               type="text"
               placeholder="Search questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent border-none outline-none text-white font-circe text-[1.6rem] placeholder-brand-text-muted/60 w-full"
+              className="bg-transparent border-none outline-none text-white font-circe placeholder-brand-text-muted/60 w-full"
             />
             {searchQuery && (
               <button
@@ -242,7 +262,7 @@ const FAQ: React.FC = () => {
                 className="text-brand-text-muted hover:text-white transition-colors duration-200 cursor-pointer"
                 aria-label="Clear search"
               >
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
             )}
           </div>

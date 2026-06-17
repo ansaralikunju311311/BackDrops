@@ -273,10 +273,10 @@ const PortfolioDetail: React.FC = () => {
       </div>
 
       {/* Main Container */}
-      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-32 relative z-10">
+      <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 pt-32 lg:pt-48 pb-16 lg:pb-32 relative z-10">
         
         {/* Breadcrumb Path */}
-        <nav className="font-circe font-light text-[1.8rem] sm:text-[2rem] text-white tracking-wide flex items-center gap-3 mb-16 text-left">
+        <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-white tracking-wide flex items-center gap-3 mb-16 text-left">
           <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
           <span className="opacity-40">/</span>
           {isDb ? (
@@ -367,7 +367,9 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <Activity className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-white">{currentExhibitionName}</span>
+                  <span className="font-circe font-light text-[2rem] text-white">
+                    Event: <span className="text-white font-medium ml-2">{currentExhibitionName}</span>
+                  </span>
                 </div>
 
                 {/* Location Spec */}
@@ -375,7 +377,9 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <MapPin className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-white">{currentExLocation}</span>
+                  <span className="font-circe font-light text-[2rem] text-white">
+                    Venue: <span className="text-white font-medium ml-2">{currentExLocation}</span>
+                  </span>
                 </div>
 
                 {/* Year Spec */}
@@ -383,7 +387,9 @@ const PortfolioDetail: React.FC = () => {
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
                     <Calendar className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[2rem] text-white">{currentExYear}</span>
+                  <span className="font-circe font-light text-[2rem] text-white">
+                    Year: <span className="text-white font-medium ml-2">{currentExYear}</span>
+                  </span>
                 </div>
 
                 {/* Area Spec */}

@@ -396,7 +396,7 @@ const Contact: React.FC = () => {
     <>
       <section 
       id="contacts" 
-      className="relative min-h-screen bg-brand-bg text-brand-white py-16 md:py-32 overflow-hidden"
+      className="relative min-h-screen bg-brand-bg text-brand-white pt-32 lg:pt-48 pb-16 lg:pb-32 overflow-hidden"
     >
       {/* Background Premium Glassmorphic Polygonal Prism Shapes */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">

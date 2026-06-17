@@ -41,7 +41,7 @@ const ArticleDetail: React.FC = () => {
       <div className="absolute left-[66%] top-0 bottom-0 w-[1px] bg-white/[0.04] z-10 pointer-events-none hidden md:block" />
 
       {/* Split-Screen Hero Banner */}
-      <section className="relative pt-16 lg:pt-0 lg:h-[75vh] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-2 bg-brand-dark border-b border-white/5">
+      <section className="relative pt-32 lg:pt-24 lg:h-[75vh] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-2 bg-brand-dark border-b border-white/5">
         {/* Left Side: Article Image */}
         <div className="relative h-[35rem] lg:h-full w-full overflow-hidden bg-brand-dark-accent">
           <img
@@ -55,8 +55,20 @@ const ArticleDetail: React.FC = () => {
 
         {/* Right Side: Breadcrumbs and Title Info */}
         <div className="relative h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-16 text-left select-none">
+          {/* Pill Back Button */}
+          <div className="mb-10">
+            <Link
+              to="/articles"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-brand-gold/40 bg-brand-gold/[0.04] text-brand-gold hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider uppercase group shadow-sm hover:shadow-[0_0_15px_rgba(212,175,55,0.15)] cursor-pointer"
+              style={{ fontSize: '1.8rem' }}
+            >
+              <ChevronLeft className="group-hover:-translate-x-1 transition-transform" style={{ width: '2.4rem', height: '2.4rem' }} />
+              <span>Back to Articles</span>
+            </Link>
+          </div>
+
           {/* Breadcrumbs */}
-          <nav className="font-circe font-light text-[1.5rem] text-white tracking-wide flex items-center gap-2.5 mb-8">
+          <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-white tracking-wide flex items-center gap-2.5 mb-8">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
             <span className="opacity-40">/</span>
             <Link to="/articles" className="hover:text-brand-gold transition-colors duration-300">Articles</Link>
@@ -209,7 +221,7 @@ const ArticleDetail: React.FC = () => {
                         {/* Meta details */}
                         <div className="flex flex-col justify-between py-0.5">
                           <div>
-                            <h4 className="font-urw font-bold text-[1.5rem] text-white group-hover:text-brand-gold transition-colors duration-300 leading-snug line-clamp-2">
+                            <h4 className="font-urw font-bold text-[1.8rem] sm:text-[2rem] text-white group-hover:text-brand-gold transition-colors duration-300 leading-snug line-clamp-2">
                               {oth.title}
                             </h4>
                           </div>

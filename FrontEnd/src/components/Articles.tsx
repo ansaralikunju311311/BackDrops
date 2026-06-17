@@ -20,7 +20,7 @@ const Articles: React.FC = () => {
   }, [currentPage])
 
   return (
-    <div className="bg-brand-bg text-brand-white min-h-screen relative overflow-hidden select-none pt-16 pb-32">
+    <div className="bg-brand-bg text-brand-white min-h-screen relative overflow-hidden select-none pt-32 lg:pt-48 pb-32">
       {/* Decorative vertical grid lines (Architectural layout) */}
       <div className="absolute left-[33%] top-0 bottom-0 w-[1px] bg-white/[0.04] z-10 pointer-events-none hidden md:block" />
       <div className="absolute left-[66%] top-0 bottom-0 w-[1px] bg-white/[0.04] z-10 pointer-events-none hidden md:block" />
@@ -35,7 +35,7 @@ const Articles: React.FC = () => {
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-20">
         {/* Page Title */}
         <div className="text-left mb-24">
-          <nav className="font-circe font-light text-[1.5rem] text-white tracking-wide flex items-center gap-2.5 mb-6">
+          <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-white tracking-wide flex items-center gap-2.5 mb-6">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
             <span className="opacity-40">/</span>
             <span className="text-white font-normal">Articles</span>
@@ -57,7 +57,8 @@ const Articles: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="relative group grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center border-b border-white/5 pb-20 last:border-b-0 last:pb-0"
+                onClick={() => navigate(`/articles/detail?id=${article.id}`)}
+                className="relative group grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center border-b border-white/5 pb-20 last:border-b-0 last:pb-0 cursor-pointer"
               >
                 {/* Diagonal overlay highlights on hover (sleek geometric glow) */}
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-gold/[0.02] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl z-0" />
@@ -86,7 +87,9 @@ const Articles: React.FC = () => {
                     {/* Title */}
                     <Link
                       to={`/articles/detail?id=${article.id}`}
-                      className="inline-block font-urw font-extrabold text-[3.2rem] sm:text-[4rem] lg:text-[4.8rem] text-white uppercase leading-tight tracking-wider hover:text-brand-gold transition-colors duration-300 mb-6"
+                      className="inline-block font-urw font-extrabold text-white uppercase leading-tight tracking-wider hover:text-brand-gold transition-colors duration-300 mb-6"
+                      style={{ fontSize: 'clamp(1.8rem, 3.2vw, 3.2rem)', lineHeight: '1.2' }}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       {article.title}
                     </Link>
@@ -105,7 +108,10 @@ const Articles: React.FC = () => {
                   {/* Learn More Button */}
                   <div className="flex justify-end mt-4">
                     <button
-                      onClick={() => navigate(`/articles/detail?id=${article.id}`)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/articles/detail?id=${article.id}`);
+                      }}
                       className="bg-brand-dark-accent/60 hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider text-[1.4rem] uppercase py-4 px-8 border border-white/5 hover:border-brand-gold rounded-xs cursor-pointer shadow-[0_5px_15px_rgba(0,0,0,0.35)] flex items-center gap-3 group/btn hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
                     >
                       Learn More

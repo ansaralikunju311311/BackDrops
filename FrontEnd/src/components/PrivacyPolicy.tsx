@@ -9,7 +9,7 @@ const PrivacyPolicy: React.FC = () => {
   }, [])
 
   return (
-    <section className="min-h-screen pt-16 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden text-left">
+    <section className="min-h-screen pt-32 lg:pt-48 pb-36 bg-[#0B0C10] relative z-10 overflow-hidden text-left">
       {/* Background shards and design lines */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 right-[15%] w-[40rem] h-[150%] bg-gradient-to-b from-white/[0.02] to-transparent skew-x-[-22deg] origin-top blur-[2px]" />
@@ -30,7 +30,7 @@ const PrivacyPolicy: React.FC = () => {
         {/* Back Link */}
         <Link 
           to="/" 
-          className="inline-flex items-center gap-3 font-circe font-light text-[1.6rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300 mb-12 group"
+          className="inline-flex items-center gap-3 font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-brand-text-muted hover:text-brand-gold transition-colors duration-300 mb-12 group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           Back to Home Page

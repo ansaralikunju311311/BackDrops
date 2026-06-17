@@ -369,7 +369,7 @@ const ServiceDetail: React.FC = () => {
     <div className="bg-brand-bg text-brand-white min-h-screen">
       
       {/* SECTION 1: Split-Screen Hero Banner */}
-      <section className="relative lg:h-[80vh] lg:min-h-[620px] grid grid-cols-1 lg:grid-cols-2 bg-white">
+      <section className="relative pt-32 lg:pt-24 lg:h-[80vh] lg:min-h-[620px] grid grid-cols-1 lg:grid-cols-2 bg-white">
         
         {/* Left Side: Service Image */}
         <div className="relative h-[45rem] lg:h-full w-full overflow-hidden bg-brand-dark-accent">
@@ -401,7 +401,7 @@ const ServiceDetail: React.FC = () => {
         {/* Right Side: Breadcrumbs and Large Title (White Background) */}
         <div className="relative h-full flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-16 text-left select-none">
           {/* Breadcrumbs */}
-          <nav className="font-circe font-medium text-[1.5rem] text-brand-dark tracking-wide flex items-center gap-2.5 mb-8">
+          <nav className="font-circe font-medium text-[1.8rem] sm:text-[2.2rem] text-brand-dark tracking-wide flex items-center gap-2.5 mb-8">
             <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
             <span className="opacity-80">/</span>
             <Link to="/services" className="hover:text-brand-gold transition-colors duration-300">Services</Link>
