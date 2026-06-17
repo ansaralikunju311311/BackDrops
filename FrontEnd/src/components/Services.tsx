@@ -401,7 +401,7 @@ const Services: React.FC = () => {
               </Link>
               
               {/* Illustrative purposes label */}
-              <div className="absolute -bottom-14 left-0 font-circe font-bold text-[1.5rem] text-white tracking-wide z-10">
+              <div className="absolute -bottom-20 left-0 font-circe font-bold text-[1.5rem] text-white tracking-wide z-10">
                 *Concept Render – For Illustrative Purposes Only
               </div>
             </div>
@@ -469,7 +469,7 @@ const Services: React.FC = () => {
           {/* Scroll Header Controls */}
           <div className="flex justify-between items-end mb-10">
             <div className="flex flex-col gap-2">
-              <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase">Explore Categories</span>
+              <span className="font-circe font-bold text-[2.2rem] tracking-[0.25em] text-brand-gold uppercase">Explore</span>
               <h2 className="font-urw font-bold text-[3rem] sm:text-[3.8rem] text-white uppercase tracking-wider">Our Service Catalogue</h2>
             </div>
             

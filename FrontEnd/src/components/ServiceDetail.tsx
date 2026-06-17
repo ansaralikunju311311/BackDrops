@@ -418,18 +418,18 @@ const ServiceDetail: React.FC = () => {
           {/* Call to Action Button */}
           <button
             onClick={handleSendRequest}
-            className="btn-primary group"
+            className="btn-primary group mt-10"
             style={{fontSize:'2rem'}}
           >
-            Connect with us <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
+            Request quote <span className="font-light ml-2 text-[2.2rem] inline-block group-hover:translate-x-1 transition-transform">+</span>
           </button>
 
           {/* Bottom Right Label: BEX + CREO badge for Turnkey */}
           <div className="absolute right-12 bottom-12 text-right hidden sm:block">
-            <span className="font-urw font-bold text-[2rem] tracking-[0.25em] text-brand-dark block uppercase">
+            <span className="font-urw font-bold text-[2rem] tracking-[0.25em] text-black block uppercase">
               BEX —
             </span>
-            <span className="font-circe font-light text-[1.3rem] tracking-[0.2em] text-brand-dark block mt-1 uppercase">
+            <span className="font-circe font-light text-[1.3rem] tracking-[0.2em] text-black block mt-1 uppercase">
               Premium Execution Partner
             </span>
           </div>
@@ -514,8 +514,8 @@ const ServiceDetail: React.FC = () => {
             <div className="lg:col-span-4 flex flex-col items-start text-left w-full lg:sticky lg:top-36">
               {/* Heading */}
               <div className="w-full border-t border-brand-white/10 pt-6 mb-10">
-                <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase block mb-1">Explore categories</span>
-                <h3 className="font-urw font-bold text-[2.8rem] text-white uppercase tracking-wider">Related Services</h3>
+                <span className="font-circe font-bold text-[2.2rem] tracking-[0.25em] text-brand-gold uppercase block mb-1">Explore</span>
+                <h3 className="font-urw font-bold text-[2.8rem] text-white uppercase tracking-wider">Services Catalogue</h3>
               </div>
 
               {/* Related Cards List */}
@@ -564,8 +564,8 @@ const ServiceDetail: React.FC = () => {
           
           {/* Scroll Header Controls */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 select-none">
-            <div className="flex flex-col gap-2 text-left">
-              <span className="font-circe font-light text-[1.4rem] tracking-[0.25em] text-brand-gold uppercase">Showcase</span>
+            <div className="flex flex-col gap-2">
+              <span className="font-circe font-bold text-[2.2rem] tracking-[0.25em] text-brand-gold uppercase block mb-1">Showcase</span>
               <h2 className="font-urw font-bold text-[4.5rem] sm:text-[5.5rem] text-white uppercase tracking-wider leading-none">Portfolio</h2>
             </div>
             
@@ -644,20 +644,20 @@ const ServiceDetail: React.FC = () => {
                   </div>
 
                   {/* Details Navigation Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (project.isDb && project.dbId) {
-                        navigate(`/portfolio/detail?dbId=${project.dbId}`)
-                      } else {
-                        navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${project.originalIdx}`)
-                      }
-                    }}
-                    className="shrink-0 bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold text-[1.6rem] tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(196,121,86,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
-                    aria-label="View project details"
-                  >
-                    Details <ArrowUpRight className="w-4 h-4 text-white" />
-                  </button>
+                   <button
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       if (project.isDb && project.dbId) {
+                         navigate(`/portfolio/detail?dbId=${project.dbId}`)
+                       } else {
+                         navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${project.originalIdx}`)
+                       }
+                     }}
+                     className="shrink-0 bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold text-[1.8rem] tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(196,121,86,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
+                     aria-label="View project details"
+                   >
+                     Details <ArrowUpRight className="w-5 h-5 text-white" />
+                   </button>
                 </div>
               </div>
             ))}
