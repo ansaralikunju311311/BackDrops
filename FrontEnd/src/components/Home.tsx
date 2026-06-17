@@ -22,14 +22,13 @@ const containerVariants = {
   hidden: { 
     opacity: 0,
     transition: {
-      staggerChildren: 0.3,
-      staggerDirection: -1
+      staggerChildren: 0,
     }
   },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0,
       delayChildren: 0.4,
     },
   },
@@ -38,13 +37,12 @@ const containerVariants = {
 const wordVariants = {
   hidden: (i: number) => ({
     opacity: 0,
-    x: i < 2 ? "-50vw" : "50vw", // "WE" and "BUILD" from left, "EXPERIENCES" from right
+    x: i < 2 ? "-50vw" : "50vw", // "WE" and "BUILD" to left, "EXPERIENCES" to right
     filter: "blur(15px)",
     transition: {
-      type: "spring",
-      damping: 40,
-      stiffness: 30,
-      mass: 2,
+      x: { type: "spring", damping: 25, stiffness: 40, mass: 1.5 },
+      opacity: { type: "tween", ease: "easeInOut", duration: 1.2 },
+      filter: { type: "tween", ease: "easeInOut", duration: 1.2 }
     }
   }),
   visible: {
@@ -52,10 +50,9 @@ const wordVariants = {
     x: 0,
     filter: "blur(0px)",
     transition: {
-      type: "spring",
-      damping: 25,
-      stiffness: 40,
-      mass: 1.5,
+      x: { type: "spring", damping: 25, stiffness: 40, mass: 1.5 },
+      opacity: { type: "tween", ease: "easeInOut", duration: 1.2 },
+      filter: { type: "tween", ease: "easeInOut", duration: 1.2 }
     }
   }
 }
