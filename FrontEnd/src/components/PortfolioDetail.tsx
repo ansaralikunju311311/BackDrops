@@ -398,7 +398,7 @@ const PortfolioDetail: React.FC = () => {
                     <Box className="w-8 h-8" />
                   </div>
                   <span className="font-circe font-light text-[2rem] text-white">
-                    Built-up Area: <span className="font-urw font-bold text-[2.4rem] text-white ml-2">{currentArea}</span>
+                    Built-up Area: <span className="font-urw font-normal text-[2.4rem] text-white ml-2">{currentArea}</span>
                   </span>
                 </div>
 

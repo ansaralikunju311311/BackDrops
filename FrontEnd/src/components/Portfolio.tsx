@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ChevronDown, RefreshCw } from 'lucide-react'
+import { ChevronDown, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 
 const fetchStands = async ({ queryKey }: any) => {
@@ -282,20 +282,30 @@ const Portfolio: React.FC = () => {
                 <button
                   onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className={`px-6 py-3.5 rounded-sm border font-urw font-bold text-[1.4rem] tracking-wider uppercase transition-all duration-300 ${
+                  className={`flex items-center gap-4 font-urw font-bold uppercase tracking-wider transition-colors duration-300 group/prev ${
                     page === 1
-                      ? 'border-brand-white/10 text-brand-text-muted/40 cursor-not-allowed bg-transparent'
-                      : 'border-brand-white/20 hover:border-brand-gold hover:bg-brand-gold/10 text-white cursor-pointer active:scale-95'
+                      ? 'text-brand-text-muted/40 cursor-not-allowed'
+                      : 'text-brand-text-muted hover:text-white cursor-pointer'
                   }`}
                 >
-                  Previous
+                  <div 
+                    className={`rounded-full border flex items-center justify-center transition-all duration-300 ${
+                      page === 1
+                        ? 'border-brand-white/10 bg-transparent'
+                        : 'border-brand-white/20 hover:border-brand-gold bg-brand-white/5 group-hover/prev:scale-105'
+                    }`}
+                    style={{ width: '4rem', height: '4rem' }}
+                  >
+                    <ChevronLeft style={{ width: '2rem', height: '2rem' }} />
+                  </div>
+                  <span style={{ fontSize: '2.2rem' }}>Previous</span>
                 </button>
 
                 <div className="flex items-center gap-3">
                   {getPageNumbers().map((pNum, idx) => {
                     if (pNum === '...') {
                       return (
-                        <span key={`ell-${idx}`} className="w-12 h-12 flex items-center justify-center font-urw font-bold text-[1.4rem] text-brand-text-muted/60">
+                        <span key={`ell-${idx}`} className="w-10 h-10 flex items-center justify-center font-urw font-bold text-[1.4rem] text-brand-text-muted/60">
                           ...
                         </span>
                       )
@@ -304,7 +314,7 @@ const Portfolio: React.FC = () => {
                       <button
                         key={pNum}
                         onClick={() => setPage(Number(pNum))}
-                        className={`w-12 h-12 rounded-sm font-urw font-bold text-[1.4rem] flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                        className={`w-10 h-10 rounded-sm font-urw font-bold text-[1.4rem] flex items-center justify-center transition-all duration-300 cursor-pointer ${
                           page === pNum
                             ? 'bg-[#9E5330] text-white shadow-[0_5px_15px_rgba(158,83,48,0.3)]'
                             : 'border border-brand-white/10 text-brand-text-muted hover:border-brand-gold hover:text-white bg-white/[0.02]'
@@ -320,13 +330,23 @@ const Portfolio: React.FC = () => {
                 <button
                   onClick={() => setPage(p => Math.min(data.pagination.totalPages, p + 1))}
                   disabled={page === data.pagination.totalPages}
-                  className={`px-6 py-3.5 rounded-sm border font-urw font-bold text-[1.4rem] tracking-wider uppercase transition-all duration-300 ${
+                  className={`flex items-center gap-4 font-urw font-bold uppercase tracking-wider transition-colors duration-300 group/next ${
                     page === data.pagination.totalPages
-                      ? 'border-brand-white/10 text-brand-text-muted/40 cursor-not-allowed bg-transparent'
-                      : 'border-brand-white/20 hover:border-brand-gold hover:bg-brand-gold/10 text-white cursor-pointer active:scale-95'
+                      ? 'text-brand-text-muted/40 cursor-not-allowed'
+                      : 'text-brand-text-muted hover:text-white cursor-pointer'
                   }`}
                 >
-                  Next
+                  <span style={{ fontSize: '2.2rem' }}>Next</span>
+                  <div 
+                    className={`rounded-full border flex items-center justify-center transition-all duration-300 ${
+                      page === data.pagination.totalPages
+                        ? 'border-brand-white/10 bg-transparent'
+                        : 'border-brand-white/20 hover:border-brand-gold bg-brand-white/5 group-hover/next:scale-105'
+                    }`}
+                    style={{ width: '4rem', height: '4rem' }}
+                  >
+                    <ChevronRight style={{ width: '2rem', height: '2rem' }} />
+                  </div>
                 </button>
               </div>
             )}
