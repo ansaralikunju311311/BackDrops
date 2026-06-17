@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               UAE Address
             </span>
-            <p className="font-circe text-white leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+            <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.2rem' }}>
               Backdrops Technical Services L.L.C<br />
               Gate no.13, Warehouse no- 6<br />
               Jebel Ali Industrial area 1<br />
@@ -143,22 +143,22 @@ const Footer: React.FC = () => {
             </span>
             <a
               href="tel:00971552291691"
-              className="font-circe text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              className="font-circe font-light text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
+              style={{ fontSize: '2.5rem' }}
             >
               +971 55 2291691
             </a>
             <a
               href="tel:+971507613437"
-              className="font-circe text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              className="font-circe font-light text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
+              style={{ fontSize: '2.5rem' }}
             >
               +971 50 7613437
             </a>
             <a
               href="mailto:info@bexdxb.com"
-              className="font-circe text-white hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
+              style={{ fontSize: '2.5rem' }}
             >
               info@bexdxb.com
             </a>
@@ -169,7 +169,7 @@ const Footer: React.FC = () => {
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               India Address
             </span>
-            <p className="font-circe text-white leading-relaxed" style={{ fontSize: '1.6rem', fontWeight: 400 }}>
+            <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.2rem' }}>
               CREO Construction Experts<br />
               Arullil Arcade<br />
               Thrissur Dt.<br />
@@ -180,7 +180,7 @@ const Footer: React.FC = () => {
               className="mt-6 flex items-center gap-3 text-brand-gold hover:text-white transition-colors duration-300 group/link inline-flex"
             >
               <span className="font-euclid font-bold uppercase tracking-wider text-[1.3rem]">Explore CREO</span>
-              <div className="w-8 h-8 rounded-full bg-[#E51D1D] flex items-center justify-center group-hover/link:bg-[#c81717] transition-colors duration-300">
+              <div className="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center group-hover/link:bg-brand-gold-light transition-colors duration-300">
                 <ArrowUpRight className="w-4 h-4 text-white group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
               </div>
             </Link>
@@ -193,15 +193,15 @@ const Footer: React.FC = () => {
             </span>
             <a
               href="tel:+919188866924"
-              className="font-circe text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              className="font-circe font-light text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
+              style={{ fontSize: '2.5rem' }}
             >
               +91 9188 866924
             </a>
             <a
               href="tel:+919605218618"
-              className="font-circe text-white hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '1.6rem', fontWeight: 400 }}
+              className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
+              style={{ fontSize: '2.5rem' }}
             >
               +91 9605 218618
             </a>
