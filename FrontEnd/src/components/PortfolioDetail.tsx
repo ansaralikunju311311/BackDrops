@@ -320,13 +320,13 @@ const PortfolioDetail: React.FC = () => {
             </div>
 
             {/* stand information classification list */}
-            <div className="w-full text-left flex flex-col gap-8 mt-4">
+            <div className="w-full text-left flex flex-col gap-8 mt-6">
               <div>
-                <h4 className="font-urw font-bold text-[1.8rem] text-brand-white/90 uppercase tracking-wide mb-3">Type of stand:</h4>
-                <ul className="flex flex-col gap-2">
+                <h4 className="font-urw font-bold text-[2.2rem] text-brand-white/90 uppercase tracking-wide mb-4">Type of stand:</h4>
+                <ul className="flex flex-col gap-3">
                   {currentTypeOfStands.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-3 font-circe font-medium text-[1.8rem] text-brand-text-muted">
-                      <span className="w-2.5 h-2.5 bg-[#E51D1D] shrink-0" />
+                    <li key={idx} className="flex items-center gap-4 font-circe font-medium text-[2.2rem] text-brand-text-muted">
+                      <span className="w-3 h-3 bg-[#E51D1D] shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -334,11 +334,11 @@ const PortfolioDetail: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="font-urw font-bold text-[1.8rem] text-brand-white/90 uppercase tracking-wide mb-3">Type of event:</h4>
-                <ul className="flex flex-col gap-2">
+                <h4 className="font-urw font-bold text-[2.2rem] text-brand-white/90 uppercase tracking-wide mb-4">Type of event:</h4>
+                <ul className="flex flex-col gap-3">
                   {currentTypeOfEvents.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-3 font-circe font-medium text-[1.8rem] text-brand-text-muted">
-                      <span className="w-2.5 h-2.5 bg-[#E51D1D] shrink-0" />
+                    <li key={idx} className="flex items-center gap-4 font-circe font-medium text-[2.2rem] text-brand-text-muted">
+                      <span className="w-3 h-3 bg-[#E51D1D] shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -360,50 +360,50 @@ const PortfolioDetail: React.FC = () => {
               </h1>
 
               {/* Vertical list of key specs with clean, minimalist white/grey icons */}
-              <div className="flex flex-col gap-6 text-left mb-12">
+              <div className="flex flex-col gap-8 text-left mb-12">
                 
                 {/* Event Spec */}
-                <div className="flex items-center gap-5">
-                  <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
-                    <Activity className="w-6 h-6" />
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
+                    <Activity className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{currentExhibitionName}</span>
+                  <span className="font-circe font-light text-[2rem] text-brand-white/80">{currentExhibitionName}</span>
                 </div>
 
                 {/* Location Spec */}
-                <div className="flex items-center gap-5">
-                  <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
-                    <MapPin className="w-6 h-6" />
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
+                    <MapPin className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{currentExLocation}</span>
+                  <span className="font-circe font-light text-[2rem] text-brand-white/80">{currentExLocation}</span>
                 </div>
 
                 {/* Year Spec */}
-                <div className="flex items-center gap-5">
-                  <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
-                    <Calendar className="w-6 h-6" />
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
+                    <Calendar className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">{currentExYear}</span>
+                  <span className="font-circe font-light text-[2rem] text-brand-white/80">{currentExYear}</span>
                 </div>
 
                 {/* Area Spec */}
-                <div className="flex items-center gap-5">
-                  <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
-                    <Box className="w-6 h-6" />
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
+                    <Box className="w-8 h-8" />
                   </div>
-                  <span className="font-circe font-light text-[1.7rem] text-brand-white/80">
-                    Building area: <span className="font-urw font-bold text-[2rem] text-white ml-1">{currentArea}</span>
+                  <span className="font-circe font-light text-[2rem] text-brand-white/80">
+                    Built-up Area: <span className="font-urw font-bold text-[2.4rem] text-white ml-2">{currentArea}</span>
                   </span>
                 </div>
 
                 {/* Client Spec */}
                 {isDb && dbStand?.client && (
-                  <div className="flex items-center gap-5">
-                    <div className="w-10 h-10 flex items-center justify-center text-brand-text-muted">
-                      <Briefcase className="w-6 h-6" />
+                  <div className="flex items-center gap-6">
+                    <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
+                      <Briefcase className="w-8 h-8" />
                     </div>
-                    <span className="font-circe font-light text-[1.7rem] text-brand-white/80">
-                      Client: <span className="text-white font-medium ml-1">{dbStand.client}</span>
+                    <span className="font-circe font-light text-[2rem] text-brand-white/80">
+                      Client: <span className="text-white font-medium ml-2">{dbStand.client}</span>
                     </span>
                   </div>
                 )}
