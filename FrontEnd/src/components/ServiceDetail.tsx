@@ -426,10 +426,10 @@ const ServiceDetail: React.FC = () => {
 
           {/* Bottom Right Label: BEX + CREO badge for Turnkey */}
           <div className="absolute right-12 bottom-12 text-right hidden sm:block">
-            <span className="font-urw font-bold text-[2rem] tracking-[0.25em] text-black block uppercase">
+            <span className="font-urw font-bold text-[2rem] tracking-[0.25em] block uppercase" style={{ color: '#000000' }}>
               BEX —
             </span>
-            <span className="font-circe font-light text-[1.3rem] tracking-[0.2em] text-black block mt-1 uppercase">
+            <span className="font-circe font-bold text-[1.3rem] tracking-[0.2em] block mt-1 uppercase" style={{ color: '#000000' }}>
               Premium Execution Partner
             </span>
           </div>
