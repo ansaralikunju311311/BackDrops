@@ -104,6 +104,81 @@ const Services: React.FC = () => {
   const [direction, setDirection] = useState(0) // -1 for left, 1 for right
   const scrollRef = useRef<HTMLDivElement>(null)
 
+  // Mouse drag-to-scroll state and refs
+  const [isDragging, setIsDragging] = useState(false)
+  const dragStart = useRef({ x: 0, scrollLeft: 0 })
+  const dragDistance = useRef(0)
+  const velocity = useRef(0)
+  const lastX = useRef(0)
+  const lastTime = useRef(0)
+  const animationFrameId = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+      }
+    }
+  }, [])
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return
+    setIsDragging(true)
+    dragDistance.current = 0
+    dragStart.current = {
+      x: e.clientX,
+      scrollLeft: scrollRef.current.scrollLeft
+    }
+    lastX.current = e.clientX
+    lastTime.current = performance.now()
+    velocity.current = 0
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current)
+    }
+  }
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollRef.current) return
+    e.preventDefault()
+    const now = performance.now()
+    const dt = now - lastTime.current
+    const dx = e.clientX - dragStart.current.x
+    dragDistance.current = Math.abs(dx)
+
+    if (dt > 0) {
+      // Calculate instantaneous velocity (pixels per millisecond)
+      velocity.current = -(e.clientX - lastX.current) / dt
+    }
+    
+    lastX.current = e.clientX
+    lastTime.current = now
+
+    // Disable smooth scrolling to follow drag instantly
+    scrollRef.current.style.scrollBehavior = 'auto'
+    scrollRef.current.scrollLeft = dragStart.current.scrollLeft - dx
+  }
+
+  const handleMouseUpOrLeave = () => {
+    if (isDragging) {
+      setIsDragging(false)
+      if (scrollRef.current) {
+        // Apply decay loop for a natural momentum glide
+        const decay = () => {
+          if (!scrollRef.current || Math.abs(velocity.current) < 0.1) {
+            if (scrollRef.current) {
+              scrollRef.current.style.scrollBehavior = 'smooth'
+            }
+            return
+          }
+          scrollRef.current.scrollLeft += velocity.current * 16 // ~16ms frame step
+          velocity.current *= 0.92 // deceleration rate
+          animationFrameId.current = requestAnimationFrame(decay)
+        }
+        decay()
+      }
+    }
+  }
+
   // Smooth scroll to header below the fixed navbar
   const scrollToHeader = () => {
     const headerEl = document.getElementById('our-services-header')
@@ -180,25 +255,49 @@ const Services: React.FC = () => {
     }
   }
 
-  // Slide transition configuration - Very slow, premium cinematic ease curve
+  // Slide transition configuration - Slow and elegant slide
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 150 : -150,
+      x: dir > 0 ? 60 : -60,
       opacity: 0
     }),
     center: {
       x: 0,
       opacity: 1,
       transition: {
-        x: { type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 1.2 }, // Custom easeOutExpo
+        x: { type: 'spring', stiffness: 40, damping: 18, mass: 1.0 }, // Slower, gentler spring
+        opacity: { duration: 0.7 }
+      }
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -60 : 60,
+      opacity: 0,
+      transition: {
+        x: { type: 'tween', ease: [0.25, 1, 0.5, 1], duration: 0.7 },
+        opacity: { duration: 0.5 }
+      }
+    })
+  }
+
+  // Image transition configuration - Smooth slide (right-to-left) & opacity (0 to 100%)
+  const imageVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? '100%' : '-100%',
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 1.4 }, // Slower transition duration (1.4s)
         opacity: { duration: 1.0 }
       }
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? -150 : 150,
+      x: dir > 0 ? '-100%' : '100%',
       opacity: 0,
       transition: {
-        x: { type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 1.2 },
+        x: { type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 1.4 },
         opacity: { duration: 0.8 }
       }
     })
@@ -280,20 +379,21 @@ const Services: React.FC = () => {
 
               {/* Main Image Viewport wrapped in detail link */}
               <Link to={`/services/detail?id=${activeIdx}`} className="w-full h-full relative overflow-hidden rounded-sm z-10 bg-brand-dark-accent border border-brand-white/5 block group/img">
-                <AnimatePresence initial={false} custom={direction} mode="wait">
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
                   <motion.img
                     key={activeIdx}
                     custom={direction}
-                    variants={slideVariants}
+                    variants={imageVariants}
                     initial="enter"
                     animate="center"
                     exit="exit"
+                    whileHover={{ scale: activeIdx === 9 ? 1 : 1.05 }}
+                    transition={{ scale: { duration: 0.7, ease: [0.25, 1, 0.5, 1] } }}
                     src={SERVICES_DATA[activeIdx].image}
                     alt={SERVICES_DATA[activeIdx].title}
-                    className={`w-full h-full select-none transition-transform duration-700 ${
-                      activeIdx === 9
-                        ? 'object-contain group-hover/img:scale-100'
-                        : 'object-cover group-hover/img:scale-105'
+                    draggable="false"
+                    className={`w-full h-full select-none ${
+                      activeIdx === 9 ? 'object-contain' : 'object-cover'
                     }`}
                   />
                 </AnimatePresence>
@@ -328,8 +428,8 @@ const Services: React.FC = () => {
             </div>
 
             {/* Dynamic text details with animation */}
-            <div className="min-h-[26rem] flex flex-col justify-start">
-              <AnimatePresence initial={false} custom={direction} mode="wait">
+            <div className="min-h-[26rem] flex flex-col justify-start relative overflow-hidden">
+              <AnimatePresence initial={false} custom={direction} mode="popLayout">
                 <motion.div
                   key={activeIdx}
                   custom={direction}
@@ -337,7 +437,7 @@ const Services: React.FC = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="flex flex-col gap-6"
+                  className="flex flex-col gap-6 w-full"
                 >
                   <h2 className="font-urw font-extrabold text-[3.8rem] sm:text-[4.5rem] lg:text-[5.2rem] text-white leading-tight tracking-wide">
                     {SERVICES_DATA[activeIdx].title}
@@ -394,17 +494,23 @@ const Services: React.FC = () => {
           {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-8 overflow-x-auto scrollbar-hide pb-8 snap-x snap-mandatory scroll-smooth pt-4"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            className="flex gap-8 overflow-x-auto scrollbar-hide pb-8 pt-4 select-none cursor-grab active:cursor-grabbing"
           >
             {SERVICES_DATA.map((service, idx) => (
               <div
                 key={idx}
                 onClick={() => {
+                  // If drag distance is significant, ignore the click to avoid accidental activation
+                  if (dragDistance.current > 8) return
                   setDirection(idx > activeIdx ? 1 : -1)
                   setActiveIdx(idx)
                   scrollToHeader()
                 }}
-                className={`flex-shrink-0 w-[24rem] sm:w-[28rem] cursor-pointer group transition-all duration-500 ease-out snap-start hover:-translate-y-4 hover:scale-[1.03] ${
+                className={`flex-shrink-0 w-[24rem] sm:w-[28rem] cursor-pointer group transition-all duration-500 ease-out hover:-translate-y-4 hover:scale-[1.03] ${
                   idx === activeIdx 
                     ? 'opacity-100 scale-102 shadow-[0_20px_40px_rgba(158,83,48,0.25)]' 
                     : 'opacity-50 hover:opacity-100 hover:shadow-[0_20px_40px_rgba(0,0,0,0.65)]'
@@ -417,6 +523,7 @@ const Services: React.FC = () => {
                   <img
                     src={service.image}
                     alt={service.title}
+                    draggable="false"
                     className={`w-full h-full filter brightness-75 group-hover:brightness-100 transition-all duration-700 select-none ${
                       idx === 9
                         ? 'object-contain group-hover:scale-100'
