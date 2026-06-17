@@ -215,7 +215,7 @@ const FAQ: React.FC = () => {
         {/* Header and Search Area */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 mb-20">
           <div>
-            <span className="font-circe font-light text-[1.4rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
+            <span className="font-circe font-bold text-[2rem] tracking-[0.3em] text-brand-gold uppercase mb-4 block">
               Support Center
             </span>
             <h2 className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] lg:text-[6.5rem] text-white uppercase tracking-wider leading-none mb-4">
@@ -382,7 +382,7 @@ const FAQ: React.FC = () => {
 
               <div className="relative z-10">
                 {/* FAQ Category / Number Badge */}
-                <div className="inline-flex items-center gap-2 bg-brand-gold/[0.08] border border-brand-gold/20 px-4 py-2 rounded-lg font-mono font-bold text-brand-gold-light text-[1.4rem] mb-8">
+                <div className="inline-flex items-center gap-2 bg-brand-gold/[0.08] border border-brand-gold/20 px-5 py-2.5 rounded-lg font-mono font-bold text-brand-gold-light text-[2rem] mb-8">
                   <span>Question #{selectedFAQ.number}</span>
                 </div>
 
