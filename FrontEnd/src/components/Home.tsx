@@ -228,7 +228,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowHeroText(false)
-    }, 3000)
+    }, 4500)
     return () => clearTimeout(timer)
   }, [])
 
@@ -240,7 +240,7 @@ const Home: React.FC = () => {
     setShowHeroText(true)
     setTimeout(() => {
       setShowHeroText(false)
-    }, 3000)
+    }, 4500)
   }
 
   const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -1103,7 +1103,7 @@ const Home: React.FC = () => {
           </motion.div>
 
           {/* Illustrative purposes label */}
-          <div className="font-circe font-bold text-[1.5rem] text-white tracking-wide mb-12 -mt-10 pl-4 relative z-10">
+          <div className="font-circe font-bold text-[1.5rem] text-white tracking-wide mb-12 -mt-6 pl-4 relative z-10">
             *Concept Render – For Illustrative Purposes Only
           </div>
 

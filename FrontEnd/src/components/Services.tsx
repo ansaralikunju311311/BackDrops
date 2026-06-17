@@ -301,7 +301,7 @@ const Services: React.FC = () => {
               </Link>
               
               {/* Illustrative purposes label */}
-              <div className="absolute -bottom-12 left-0 font-circe font-bold text-[1.5rem] text-white tracking-wide z-10">
+              <div className="absolute -bottom-14 left-0 font-circe font-bold text-[1.5rem] text-white tracking-wide z-10">
                 *Concept Render – For Illustrative Purposes Only
               </div>
             </div>

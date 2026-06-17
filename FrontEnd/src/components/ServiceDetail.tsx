@@ -320,19 +320,36 @@ const ServiceDetail: React.FC = () => {
   // Fallback to all dbStands if no specific matches found, ensuring screen is never empty
   const finalStandsToUse = filteredStands.length > 0 ? filteredStands : dbStands
 
-  const combinedPortfolio = finalStandsToUse.map((stand: any) => ({
-    title: stand.showName,
-    area: `${stand.standArea} m²`,
-    details: [
-      `Client: ${stand.client}`,
-      `Location: ${stand.location}`,
-      ...(stand.typeOfStands || [])
-    ].slice(0, 3),
-    image: stand.images && stand.images.length > 0 ? stand.images[0].url : '',
-    dbId: stand._id,
-    isDb: true,
-    originalIdx: 0
-  }))
+  const combinedPortfolio = finalStandsToUse.flatMap((stand: any) => {
+    if (stand.images && stand.images.length > 0) {
+      return stand.images.map((img: any, imgIdx: number) => ({
+        title: `${stand.showName}${imgIdx > 0 ? ` - View ${imgIdx + 1}` : ''}`,
+        area: `${stand.standArea} m²`,
+        details: [
+          `Client: ${stand.client}`,
+          `Location: ${stand.location}`,
+          ...(stand.typeOfStands || [])
+        ].slice(0, 3),
+        image: img.url,
+        dbId: stand._id,
+        isDb: true,
+        originalIdx: imgIdx
+      }))
+    }
+    return [{
+      title: stand.showName,
+      area: `${stand.standArea} m²`,
+      details: [
+        `Client: ${stand.client}`,
+        `Location: ${stand.location}`,
+        ...(stand.typeOfStands || [])
+      ].slice(0, 3),
+      image: '',
+      dbId: stand._id,
+      isDb: true,
+      originalIdx: 0
+    }]
+  })
 
   const handlePortfolioScroll = (direction: 'left' | 'right') => {
     if (portfolioScrollRef.current) {
@@ -356,6 +373,16 @@ const ServiceDetail: React.FC = () => {
         
         {/* Left Side: Service Image */}
         <div className="relative h-[45rem] lg:h-full w-full overflow-hidden bg-brand-dark-accent">
+          {/* Prominent Floating Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute top-8 left-8 sm:left-12 z-50 flex items-center gap-2 bg-black/40 hover:bg-brand-gold backdrop-blur-md text-white px-6 py-3 rounded-full font-euclid font-bold tracking-widest uppercase text-[1.3rem] transition-all duration-300 group shadow-lg border border-white/10"
+            aria-label="Go back"
+          >
+            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" /> 
+            Back
+          </button>
+
           <img
             src={service.image}
             alt={service.title}
