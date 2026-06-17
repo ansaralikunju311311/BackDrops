@@ -1159,9 +1159,10 @@ const Contact: React.FC = () => {
             <button
               type="button"
               onClick={() => setMapView('roadmap')}
-              className={`relative px-8 py-3.5 rounded-full font-euclid font-bold text-[1.4rem] uppercase tracking-wider transition-colors duration-300 cursor-pointer z-10 ${
+              className={`relative px-10 py-4.5 rounded-full font-euclid font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer z-10 ${
                 mapView === 'roadmap' ? 'text-brand-dark font-extrabold' : 'text-brand-white/60 hover:text-brand-white'
               }`}
+              style={{ fontSize: '2.2rem' }}
             >
               {mapView === 'roadmap' && (
                 <motion.div
@@ -1175,9 +1176,10 @@ const Contact: React.FC = () => {
             <button
               type="button"
               onClick={() => setMapView('satellite')}
-              className={`relative px-8 py-3.5 rounded-full font-euclid font-bold text-[1.4rem] uppercase tracking-wider transition-colors duration-300 cursor-pointer z-10 ${
+              className={`relative px-10 py-4.5 rounded-full font-euclid font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer z-10 ${
                 mapView === 'satellite' ? 'text-brand-dark font-extrabold' : 'text-brand-white/60 hover:text-brand-white'
               }`}
+              style={{ fontSize: '2.2rem' }}
             >
               {mapView === 'satellite' && (
                 <motion.div
@@ -1197,7 +1199,7 @@ const Contact: React.FC = () => {
         <div className="absolute inset-0 bg-linear-to-tr from-brand-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-750 pointer-events-none z-10" />
         
         {/* Map Frame Container */}
-        <div className="w-full h-[500px] md:h-[650px] overflow-hidden relative">
+        <div className="w-full h-[600px] md:h-[800px] overflow-hidden relative">
           <iframe
             title="Backdrops Location Map"
             src={
