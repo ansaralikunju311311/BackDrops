@@ -53,16 +53,24 @@ const Footer: React.FC = () => {
             <div className="flex flex-col text-left select-text font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white leading-relaxed space-y-12 max-w-[120rem] mx-auto">
 
               {/* Our Mission */}
-              <div className="space-y-4">
-                <h3 className="font-urw font-bold text-[3rem] text-white tracking-wide uppercase">
-                  Our Mission
-                </h3>
-                <p className="font-semibold text-white">
-                  To be the most trusted execution partner for experiential projects worldwide.
-                </p>
-                <p className="text-white">
-                  We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+                {/* Left: Heading */}
+                <div className="md:col-span-4">
+                  <h3 className="font-urw font-bold text-[3.5rem] text-white tracking-wide uppercase">
+                    Our Mission
+                  </h3>
+                  <div className="w-20 h-[2px] bg-brand-gold mt-4" />
+                </div>
+                
+                {/* Right: Content */}
+                <div className="md:col-span-8 space-y-6 text-left">
+                  <p className="font-semibold text-brand-gold italic text-[2.2rem] md:text-[2.6rem] leading-relaxed">
+                    “To be the most trusted execution partner for experiential projects worldwide.”
+                  </p>
+                  <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white/90 leading-relaxed">
+                    We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
+                  </p>
+                </div>
               </div>
 
               {/* BEX CORE VALUES */}
