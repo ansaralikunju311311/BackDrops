@@ -376,10 +376,11 @@ const ServiceDetail: React.FC = () => {
           {/* Prominent Floating Back Button */}
           <button
             onClick={() => navigate(-1)}
-            className="absolute top-8 left-8 sm:left-12 z-50 flex items-center gap-2 bg-black/40 hover:bg-brand-gold backdrop-blur-md text-white px-6 py-3 rounded-full font-euclid font-bold tracking-widest uppercase text-[1.3rem] transition-all duration-300 group shadow-lg border border-white/10"
+            className="absolute top-8 left-8 sm:left-12 z-50 flex items-center gap-3 bg-black/50 hover:bg-brand-gold backdrop-blur-md text-white px-8 py-4 rounded-full font-euclid font-bold tracking-widest uppercase transition-all duration-300 group shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/20"
+            style={{ fontSize: '2.3rem' }}
             aria-label="Go back"
           >
-            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" /> 
+            <ChevronLeft className="w-8 h-8 group-hover:-translate-x-2 transition-transform duration-300" /> 
             Back
           </button>
 

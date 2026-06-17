@@ -22,7 +22,7 @@ const containerVariants = {
   hidden: { 
     opacity: 0,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.3,
       staggerDirection: -1
     }
   },
@@ -41,8 +41,10 @@ const wordVariants = {
     x: i < 2 ? "-50vw" : "50vw", // "WE" and "BUILD" from left, "EXPERIENCES" from right
     filter: "blur(15px)",
     transition: {
-      duration: 1.5,
-      ease: "easeInOut"
+      type: "spring",
+      damping: 40,
+      stiffness: 30,
+      mass: 2,
     }
   }),
   visible: {
