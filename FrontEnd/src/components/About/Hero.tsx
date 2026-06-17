@@ -2,6 +2,7 @@ import React from 'react'
 import { motion, animate } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Phone } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -49,7 +50,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="about-us"
-      className="relative min-h-screen flex items-center bg-brand-bg overflow-hidden pt-4"
+      className="relative min-h-screen flex items-start md:items-center bg-brand-bg overflow-hidden pt-[12rem] md:pt-[16rem] pb-16"
     >
       {/* Background Subtle Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(212,164,55,0.06),rgba(20,23,33,0))] pointer-events-none" />
@@ -73,13 +74,19 @@ const Hero: React.FC = () => {
       {/* Main Content Container */}
       <div className="relative z-10 max-w-[140rem] mx-auto w-full px-6 md:px-12 lg:px-24 flex items-center">
         <div className="max-w-[95rem] w-full">
+          {/* Breadcrumbs */}
+          <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-12 text-left select-none">
+            <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
+            <span className="opacity-40">/</span>
+            <span className="text-white font-normal">About us</span>
+          </nav>
           
           {/* Main Title "BACKDROPS Exhibitions" */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[8.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark leading-none mb-10 whitespace-nowrap"
+            className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[8.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark leading-none mb-10 whitespace-normal md:whitespace-nowrap"
           >
             BACKDROPS Exhibitions
           </motion.h1>

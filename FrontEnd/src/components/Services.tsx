@@ -325,6 +325,12 @@ const Services: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-[140rem] mx-auto w-full px-6 md:px-12 lg:px-24">
+        {/* Breadcrumbs */}
+        <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-12 text-left select-none">
+          <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
+          <span className="opacity-40">/</span>
+          <span className="text-white font-normal">Services</span>
+        </nav>
         
         {/* Header container for scrolling target */}
         <div id="our-services-header" className="flex justify-between items-baseline mb-16 border-b border-brand-white/5 pb-8">

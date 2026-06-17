@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, ArrowUpRight, Check, AlertCircle, X, Upload, ChevronDown, MessageSquare, ExternalLink } from 'lucide-react'
 interface ValidationErrors {
   fullName?: string;
@@ -422,6 +423,12 @@ const Contact: React.FC = () => {
       </div>
 
       <div className="max-w-560 mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        {/* Breadcrumbs */}
+        <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-12 text-left select-none">
+          <Link to="/" className="hover:text-brand-gold transition-colors duration-300">Home page</Link>
+          <span className="opacity-40">/</span>
+          <span className="text-white font-normal">Contacts</span>
+        </nav>
         
         {/* Contact Us Title */}
         <motion.div

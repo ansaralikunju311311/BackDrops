@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import BexLogo from './BexLogo'
 import HexagonTimeline from './HexagonTimeline'
 import BexPurpose from './About/BexPurpose'
+import OurMission from './About/OurMission'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -53,35 +54,8 @@ const Footer: React.FC = () => {
             <div className="flex flex-col text-left select-text font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white leading-relaxed space-y-12 max-w-[120rem] mx-auto">
 
               {/* Our Mission */}
-              <div className="flex flex-col md:flex-row items-center gap-16 md:gap-32 w-full justify-center">
-                {/* Left Text (Heading) - centered on mobile, right-aligned on desktop */}
-                <div className="flex flex-col text-center md:text-right order-1 md:order-1 max-w-[48rem] w-full shrink-0">
-                  <h2 className="font-urw font-normal text-[4rem] md:text-[5rem] lg:text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap">
-                    Our Mission
-                  </h2>
-                </div>
-
-                {/* Center Divider with Orange Node - adapts horizontally/vertically */}
-                <div className="flex flex-row md:flex-col items-center w-full md:w-auto h-auto md:h-48 justify-center md:justify-between order-2 shrink-0">
-                  {/* Left/Top Line */}
-                  <div className="h-[1.5px] md:h-auto w-16 md:w-[1.5px] bg-brand-white/10 flex-grow" />
-                  
-                  {/* Orange Square Node */}
-                  <div className="w-4 h-4 bg-[#9E5330] border border-[#000000] mx-4 md:my-3 shadow-[0_0_10px_rgba(158,83,48,0.5)] flex-shrink-0" />
-                  
-                  {/* Right/Bottom Line */}
-                  <div className="h-[1.5px] md:h-6 w-16 md:w-[1.5px] bg-brand-white/10" />
-                </div>
-
-                {/* Right Text (Content) - centered on mobile, left-aligned on desktop */}
-                <div className="max-w-[75rem] text-center md:text-left order-3 md:order-3 space-y-6">
-                  <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-snug italic max-w-[55rem] md:max-w-[60rem]">
-                    "To be the most trusted execution partner for experiential projects worldwide."
-                  </p>
-                  <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white/90 leading-relaxed max-w-[60rem]">
-                    We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
-                  </p>
-                </div>
+              <div className="mt-4 mb-16 -mx-6 md:-mx-12 lg:-mx-24">
+                <OurMission />
               </div>
 
               {/* BEX CORE VALUES */}
