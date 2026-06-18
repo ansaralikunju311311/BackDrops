@@ -45,13 +45,13 @@ const TermsConditions: React.FC = () => {
             Terms & Conditions
           </h1>
           <p className="font-circe font-light text-[1.8rem] text-brand-text-muted max-w-[80rem]">
-            Last updated: 17 December 2025. These Terms and Conditions outline the rules defining your interaction with the BackDrops website and our professional services.
+            Last updated: 17 December 2025. These Terms and Conditions outline the rules defining your interaction with the Backdrops website and our professional services.
           </p>
         </div>
 
         {/* Introduction text banner */}
         <div className="mb-12 p-8 sm:p-10 rounded-2xl bg-brand-dark-accent/20 border border-brand-gold/20 font-circe font-light text-[1.7rem] text-brand-white/95 leading-relaxed">
-          These Terms and Conditions (“Terms”) are the rules that define your interaction with the website <a href="https://www.bexdxb.com/" className="text-brand-gold hover:underline">https://www.bexdxb.com/</a> (“Website”) run by BackDrops (“we”, “us”, “our”). Your access to or use of the website or our services is your consent to these Terms, which means that you agree to be legally bound by them. If this is not the case, you are not permitted to use the website or our services.
+          These Terms and Conditions (“Terms”) are the rules that define your interaction with the website <a href="https://www.bexdxb.com/" className="text-brand-gold hover:underline">https://www.bexdxb.com/</a> (“Website”) run by Backdrops (“we”, “us”, “our”). Your access to or use of the website or our services is your consent to these Terms, which means that you agree to be legally bound by them. If this is not the case, you are not permitted to use the website or our services.
         </div>
 
         {/* Content Box */}
@@ -67,11 +67,11 @@ const TermsConditions: React.FC = () => {
               <ul className="space-y-4 list-none pl-0">
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-3.5" />
-                  <span><strong>User / Client / You</strong> refers to any person or any legal organisation who is using the website or who has requested any services offered by BackDrops.</span>
+                  <span><strong>User / Client / You</strong> refers to any person or any legal organisation who is using the website or who has requested any services offered by Backdrops.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-3.5" />
-                  <span><strong>Services</strong> are any services provided by BackDrops to You, including, but not limited to, exhibition stand design and construction, event organization, rental of exhibition space, provision of multimedia services, design of showrooms and retail spaces, printing and production of promotional stands, provision of catering services related to exhibitions, and any other services that are offered by BackDrops.</span>
+                  <span><strong>Services</strong> are any services provided by Backdrops to You, including, but not limited to, exhibition stand design and construction, event organization, rental of exhibition space, provision of multimedia services, design of showrooms and retail spaces, printing and production of promotional stands, provision of catering services related to exhibitions, and any other services that are offered by Backdrops.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-3.5" />
@@ -89,13 +89,13 @@ const TermsConditions: React.FC = () => {
             </h2>
             <div className="font-circe font-light text-[1.6rem] sm:text-[1.7rem] text-brand-text-muted leading-relaxed space-y-4 pl-12">
               <p>
-                2.1. The Website details the Services offered by BackDrops. A request made through the Website or the submission of a “Send Request” form is a non-binding indication of interest until a formal agreement is signed.
+                2.1. The Website details the Services offered by Backdrops. A request made through the Website or the submission of a “Send Request” form is a non-binding indication of interest until a formal agreement is signed.
               </p>
               <p>
-                2.2. Services will only be extended to you after an explicit agreement between you and BackDrops has been reached, evidenced by a mutually signed proposal/contract (or email confirmation) detailing the scope, deliverables, timeline, charges, payment terms, and other relevant terms.
+                2.2. Services will only be extended to you after an explicit agreement between you and Backdrops has been reached, evidenced by a mutually signed proposal/contract (or email confirmation) detailing the scope, deliverables, timeline, charges, payment terms, and other relevant terms.
               </p>
               <p>
-                2.3. BackDrops reserves the right to refuse or discontinue the provision of Services (or access to the Website) at its sole discretion. Without limiting the reasons, this comprises the case where a user submits false or incomplete information; misuses the Website; or if it is determined that the continuation of the engagement would violate our internal policies or applicable laws.
+                2.3. Backdrops reserves the right to refuse or discontinue the provision of Services (or access to the Website) at its sole discretion. Without limiting the reasons, this comprises the case where a user submits false or incomplete information; misuses the Website; or if it is determined that the continuation of the engagement would violate our internal policies or applicable laws.
               </p>
             </div>
           </div>
@@ -108,10 +108,10 @@ const TermsConditions: React.FC = () => {
             </h2>
             <div className="font-circe font-light text-[1.6rem] sm:text-[1.7rem] text-brand-text-muted leading-relaxed space-y-4 pl-12">
               <p>
-                3.1. Everything on the Site, such as content, text, images, logos, graphic design, 3D mockups, layouts, and everything else, will be the property of BackDrops and will be protected under copyright, trademark, and other intellectual laws.
+                3.1. Everything on the Site, such as content, text, images, logos, graphic design, 3D mockups, layouts, and everything else, will be the property of Backdrops and will be protected under copyright, trademark, and other intellectual laws.
               </p>
               <p>
-                3.2. BackDrops allows users to have access to the Site for personal use as long as copyright or other ownership notifications are kept on any downloaded and/or printed materials. You are not allowed, without prior explicit written permission, to duplicate, share, change, publish, or distribute the Contents in any manner.
+                3.2. Backdrops allows users to have access to the Site for personal use as long as copyright or other ownership notifications are kept on any downloaded and/or printed materials. You are not allowed, without prior explicit written permission, to duplicate, share, change, publish, or distribute the Contents in any manner.
               </p>
             </div>
           </div>
@@ -149,7 +149,7 @@ const TermsConditions: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-3.5" />
-                  <span>By accepting the Service, you acknowledge that all designs, arrangements, 3D templates, and offers are subject to changes that may be made. BackDrops cannot guarantee the success of any circumstances.</span>
+                  <span>By accepting the Service, you acknowledge that all designs, arrangements, 3D templates, and offers are subject to changes that may be made. Backdrops cannot guarantee the success of any circumstances.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-3.5" />

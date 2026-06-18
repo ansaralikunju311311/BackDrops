@@ -45,7 +45,7 @@ const PrivacyPolicy: React.FC = () => {
             Privacy Policy
           </h1>
           <p className="font-circe font-light text-[1.8rem] text-brand-text-muted max-w-[80rem]">
-            Last updated: June 5, 2026. This Privacy Policy outlines our principles, legal grounds, and procedures regarding the collection, processing, and protection of your personal data when using the BackDrops service.
+            Last updated: June 5, 2026. This Privacy Policy outlines our principles, legal grounds, and procedures regarding the collection, processing, and protection of your personal data when using the Backdrops service.
           </p>
         </div>
 
