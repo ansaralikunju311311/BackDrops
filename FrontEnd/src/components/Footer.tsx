@@ -117,7 +117,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 border-t border-brand-white/10 pt-16 mb-16">
 
           {/* UAE Address */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-3 md:col-start-1">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               UAE Address
             </span>
@@ -130,7 +130,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact UAE */}
-          <div className="md:col-span-2 md:col-start-5">
+          <div className="md:col-span-2 md:col-start-4 md:pl-8">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               Contact 
             </span>
@@ -158,12 +158,12 @@ const Footer: React.FC = () => {
           </div>
 
           {/* India Address */}
-          <div className="md:col-span-3 md:col-start-8">
+          <div className="md:col-span-2 md:col-start-8 md:ml-6">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               India Address
             </span>
             <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.0rem' }}>
-              CREO Construction Experts<br />
+              <span className="block whitespace-nowrap">CREO Construction Experts</span>
               Arullil Arcade<br />
               Thrissur Dt.<br />
               Kerala- INDIA
@@ -180,7 +180,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact India */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 md:col-start-11">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               Contact 
             </span>
