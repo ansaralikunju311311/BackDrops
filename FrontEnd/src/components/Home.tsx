@@ -1042,7 +1042,7 @@ const Home: React.FC = () => {
                 <div key={step.num} className="flex flex-col items-center w-full relative px-2">
                   <motion.div
                     whileHover={{ scale: 1.08 }}
-                    className="w-24 h-24 rounded-full border border-brand-gold/40 bg-[#16171d] flex items-center justify-center font-mono font-bold text-[3rem] z-10 transition-all duration-300 hover:border-brand-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] cursor-default text-brand-gold"
+                    className="w-24 h-24 rounded-full border border-brand-gold/40 bg-[#16171d] flex items-center justify-center font-mono font-light text-[2.2rem] z-10 transition-all duration-300 hover:border-brand-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] cursor-default text-brand-gold"
                   >
                     #{step.num}
                   </motion.div>
