@@ -21,7 +21,7 @@ const ExecutiveProfile: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 md:mb-24 relative z-10"
         >
-          <span className="font-circe font-semibold text-[2.4rem] md:text-[3.2rem] tracking-[0.05em] text-brand-gold uppercase block mb-4">
+          <span className="font-urw font-extrabold text-h1 tracking-[0.05em] text-brand-gold uppercase block mb-4">
             THE VISIONARY BEHIND BEX
           </span>
           <div className="w-24 h-[2px] bg-brand-gold mx-auto" />
