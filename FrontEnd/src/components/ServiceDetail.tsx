@@ -653,8 +653,9 @@ const ServiceDetail: React.FC = () => {
                          navigate(`/portfolio/detail?serviceId=${activeIdx}&projectId=${project.originalIdx}`)
                        }
                      }}
-                     className="shrink-0 bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold text-[1.8rem] tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(196,121,86,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
+                     className="shrink-0 bg-brand-gold hover:bg-brand-gold-light text-white font-urw font-bold tracking-wider uppercase px-6 py-3.5 rounded-sm transition-all duration-300 ease-out shadow-[0_5px_15px_rgba(196,121,86,0.25)] hover:scale-105 pointer-events-auto cursor-pointer flex items-center gap-1.5"
                      aria-label="View project details"
+                     style={{ fontSize: '1.7rem' }}
                    >
                      Details <ArrowUpRight className="w-5 h-5 text-white" />
                    </button>
