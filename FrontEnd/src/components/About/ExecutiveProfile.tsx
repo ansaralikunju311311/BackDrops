@@ -13,19 +13,30 @@ const ExecutiveProfile: React.FC = () => {
       <div className="absolute bottom-[10%] left-[-10%] w-[45rem] h-[45rem] rounded-full bg-brand-gold/[0.02] blur-[120px] pointer-events-none animate-float-orb" style={{ animationDelay: '-5s' }} />
 
       <div className="max-w-[140rem] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        {/* Section Heading */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16 md:mb-24 relative z-10"
+        >
+          <span className="font-circe font-semibold text-[2.4rem] md:text-[3.2rem] tracking-[0.05em] text-brand-gold uppercase block mb-4">
+            THE VISIONARY BEHIND BEX
+          </span>
+          <div className="w-24 h-[2px] bg-brand-gold mx-auto" />
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-16 lg:gap-x-24 gap-y-10 lg:gap-y-12 items-start">
           
-          {/* Left Column: Subtitle & Executive Photo */}
+          {/* Left Column: Executive Photo */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col items-start lg:mt-3"
+            className="lg:col-span-5 flex justify-center lg:mt-3"
           >
-            <span className="font-circe font-semibold text-[2.4rem] md:text-[3.2rem] tracking-[0.05em] text-brand-gold block mb-6 whitespace-nowrap">
-              THE VISIONARY BEHIND BEX
-            </span>
             <div className="relative group w-full max-w-[42rem] aspect-[3/4] rounded-sm overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               {/* Photo */}
               <img
