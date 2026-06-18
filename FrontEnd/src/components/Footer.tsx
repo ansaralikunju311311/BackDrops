@@ -117,12 +117,12 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 border-t border-brand-white/10 pt-16 mb-16">
 
           {/* UAE Address */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-4">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               UAE Address
             </span>
-            <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.2rem' }}>
-              Backdrops Technical Services L.L.C<br />
+            <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.0rem' }}>
+              <span className="block whitespace-nowrap">Backdrops Technical Services L.L.C</span>
               Gate no.13, Warehouse no- 6<br />
               Jebel Ali Industrial area 1<br />
               Dubai- U.A.E
@@ -137,32 +137,32 @@ const Footer: React.FC = () => {
             <a
               href="tel:00971552291691"
               className="font-circe font-light text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '2.5rem' }}
+              style={{ fontSize: '2.0rem' }}
             >
               +971 55 2291691
             </a>
             <a
               href="tel:+971507613437"
               className="font-circe font-light text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '2.5rem' }}
+              style={{ fontSize: '2.0rem' }}
             >
               +971 50 7613437
             </a>
             <a
               href="mailto:info@bexdxb.com"
               className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '2.5rem' }}
+              style={{ fontSize: '2.0rem' }}
             >
               info@bexdxb.com
             </a>
           </div>
 
           {/* India Address */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-4">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               India Address
             </span>
-            <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.2rem' }}>
+            <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.0rem' }}>
               CREO Construction Experts<br />
               Arullil Arcade<br />
               Thrissur Dt.<br />
@@ -187,35 +187,17 @@ const Footer: React.FC = () => {
             <a
               href="tel:+919188866924"
               className="font-circe font-light text-white hover:text-brand-gold block mb-2 transition-colors duration-300"
-              style={{ fontSize: '2.5rem' }}
+              style={{ fontSize: '2.0rem' }}
             >
               +91 9188 866924
             </a>
             <a
               href="tel:+919605218618"
               className="font-circe font-light text-white hover:text-brand-gold block transition-colors duration-300"
-              style={{ fontSize: '2.5rem' }}
+              style={{ fontSize: '2.0rem' }}
             >
               +91 9605 218618
             </a>
-          </div>
-
-          {/* Legal Policy Links */}
-          <div className="flex flex-col gap-2 md:col-span-2 md:items-end">
-            <Link
-              to="/privacy-policy"
-              className="font-euclid font-normal text-white hover:text-brand-gold transition-colors duration-300"
-              style={{ fontSize: '1.8rem' }}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms-conditions"
-              className="font-euclid font-normal text-white hover:text-brand-gold transition-colors duration-300"
-              style={{ fontSize: '1.8rem' }}
-            >
-              Terms &amp; Conditions
-            </Link>
           </div>
 
         </div>
@@ -223,8 +205,15 @@ const Footer: React.FC = () => {
 
 
         {/* Copy Line & Socials */}
-        <div className="flex flex-col sm:flex-row justify-between items-center text-white border-t border-brand-white/5 pt-12 gap-6" style={{ fontSize: '1.8rem', fontWeight: 400 }}>
-          <p>&copy; {currentYear} BEX Backdrops. All rights reserved.</p>
+        <div className="flex flex-col lg:flex-row justify-between items-center text-white border-t border-brand-white/5 pt-12 gap-6" style={{ fontSize: '1.8rem', fontWeight: 400 }}>
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+            <p>&copy; {currentYear} BEX Backdrops. All rights reserved.</p>
+            <span className="hidden sm:inline opacity-30">|</span>
+            <div className="flex gap-6">
+              <Link to="/privacy-policy" className="hover:text-brand-gold transition-colors duration-300">Privacy Policy</Link>
+              <Link to="/terms-conditions" className="hover:text-brand-gold transition-colors duration-300">Terms &amp; Conditions</Link>
+            </div>
+          </div>
           
           {/* Social Badges */}
           <div className="flex items-center gap-4">
