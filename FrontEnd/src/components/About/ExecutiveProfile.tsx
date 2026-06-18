@@ -58,7 +58,7 @@ const ExecutiveProfile: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Bio & Message (Row 2, Right Column on Desktop) */}
+          {/* Right Column: Bio (Row 2, Right Column on Desktop) */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -78,8 +78,16 @@ const ExecutiveProfile: React.FC = () => {
                 Under his leadership, BEX has earned a reputation for creativity, precision, reliability, and seamless delivery. Driven by a global vision, he continues to expand BEX’s international footprint, positioning the company as a trusted execution partner for brands and agencies seeking exceptional experiences and measurable results worldwide.
               </p>
             </div>
+          </motion.div>
 
-            {/* Founder's Message Quote Block */}
+          {/* Full Width: Founder's Message Quote Block */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="lg:col-span-12 mt-8"
+          >
             <div className="w-full bg-brand-dark-accent/30 border-l-[3px] border-brand-gold p-8 rounded-r-xs space-y-4 shadow-inner">
               <span className="font-urw font-bold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block">
                 Founder's Message
@@ -88,7 +96,6 @@ const ExecutiveProfile: React.FC = () => {
                 "At BEX, we believe extraordinary experiences have the power to shape perceptions, strengthen brands, and create lasting value. As we continue to grow globally, our focus remains clear: to deliver world-class execution, embrace innovation, and exceed expectations at every stage of the journey."
               </p>
             </div>
-
           </motion.div>
 
         </div>
