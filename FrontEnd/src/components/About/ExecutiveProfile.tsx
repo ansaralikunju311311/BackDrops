@@ -24,7 +24,7 @@ const ExecutiveProfile: React.FC = () => {
             className="lg:col-start-6 lg:col-span-7 flex flex-col items-start text-left"
           >
             <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-2">
-              Executive Profile
+              THE VISIONARY BEHIND BEX
             </span>
             <h2 className="font-urw font-extrabold text-h2 text-white leading-tight tracking-wide">
               Nebeel Aboobacker
