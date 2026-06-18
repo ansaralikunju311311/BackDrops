@@ -1,7 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
-import { MapPin, Calendar, Box, Activity, ChevronLeft, ChevronRight, Briefcase, RefreshCw } from 'lucide-react'
+import { MapPin, Calendar, Box, ChevronLeft, ChevronRight, Briefcase, RefreshCw } from 'lucide-react'
 import { DETAIL_SERVICES_DATA } from './ServiceDetail'
+
+const EventIcon: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    {/* Star at the top center */}
+    <path d="M12 1.5 L13.2 3.8 L15.7 3.8 L13.8 5.2 L14.5 7.5 L12 6.1 L9.5 7.5 L10.2 5.2 L8.3 3.8 L10.8 3.8 Z" />
+    
+    {/* Left Stanchion Ball */}
+    <circle cx="4.5" cy="9.5" r="1.5" />
+    
+    {/* Left Stanchion Pole */}
+    <line x1="4.5" y1="11" x2="4.5" y2="20" />
+    
+    {/* Left Stanchion Base */}
+    <line x1="2" y1="21" x2="7" y2="21" />
+    <line x1="3" y1="20" x2="6" y2="20" />
+
+    {/* Right Stanchion Ball */}
+    <circle cx="19.5" cy="9.5" r="1.5" />
+    
+    {/* Right Stanchion Pole */}
+    <line x1="19.5" y1="11" x2="19.5" y2="20" />
+    
+    {/* Right Stanchion Base */}
+    <line x1="17" y1="21" x2="22" y2="21" />
+    <line x1="18" y1="20" x2="21" y2="20" />
+
+    {/* Velvet Rope */}
+    <path d="M4.5 10.5 Q12 14 19.5 10.5" />
+
+    {/* Carpet/Path */}
+    <path d="M8 21 L10 14 H14 L16 21" />
+  </svg>
+)
 
 interface PortfolioProject {
   title: string
@@ -365,7 +406,7 @@ const PortfolioDetail: React.FC = () => {
                 {/* Event Spec */}
                 <div className="flex items-center gap-6">
                   <div className="w-12 h-12 flex items-center justify-center text-brand-text-muted">
-                    <Activity className="w-8 h-8" />
+                    <EventIcon className="w-8 h-8" />
                   </div>
                   <span className="font-circe font-light text-[2rem] text-white">
                     Event: <span className="text-white font-medium ml-2">{currentExhibitionName}</span>
