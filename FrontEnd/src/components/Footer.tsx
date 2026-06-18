@@ -158,7 +158,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* India Address */}
-          <div className="md:col-span-2 md:col-start-8 md:ml-6">
+          <div className="md:col-span-2 md:col-start-9">
             <span className="font-urw font-extrabold tracking-wider text-brand-white block mb-4 uppercase" style={{ fontSize: '1.8rem' }}>
               India Address
             </span>

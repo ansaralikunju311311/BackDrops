@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="about-us"
-      className="relative min-h-screen flex items-start bg-brand-bg overflow-hidden pt-32 lg:pt-48 pb-16 lg:pb-32"
+      className="relative min-h-fit flex items-start bg-brand-bg overflow-hidden pt-32 lg:pt-48 pb-16 lg:pb-32"
     >
       {/* Background Subtle Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(212,164,55,0.06),rgba(20,23,33,0))] pointer-events-none" />
@@ -96,7 +96,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-white leading-relaxed max-w-[120rem] mb-20 md:mb-26"
+            className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-white leading-relaxed max-w-[120rem] mb-16"
           >
             <span className="font-urw font-thin text-white" style={{ fontSize: '1.25em' }}>BEX</span> is an international experiential execution partner delivering exhibitions, brand experiences, events, interiors, retail environments, and turnkey project solutions. We collaborate with agencies, brands, and organizers to transform ambitious ideas into exceptional real-world experiences through expert execution, robust infrastructure, and seamless project delivery. Across the UAE, GCC, and international markets, we act as an extension of our clients' teams—bringing creativity, precision, and reliability together to deliver environments that engage audiences, elevate brands, and create lasting impact.
           </motion.p>
@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-[repeat(3,30.33rem)] justify-between gap-y-8 w-full max-w-[112rem]"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-[95rem]"
           >
             {/* Stat 1 */}
             <div className="flex flex-col justify-center items-center text-center py-12 px-8 bg-[#0d0d0f]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5),_inset_0_2px_10px_rgba(255,255,255,0.05)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(212,164,55,0.15)] transition-all duration-400">
