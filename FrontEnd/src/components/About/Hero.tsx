@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="about-us"
-      className="relative min-h-screen flex items-start md:items-center bg-brand-bg overflow-hidden pt-[12rem] md:pt-[16rem] pb-16"
+      className="relative min-h-screen flex items-start bg-brand-bg overflow-hidden pt-32 lg:pt-48 pb-16 lg:pb-32"
     >
       {/* Background Subtle Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(212,164,55,0.06),rgba(20,23,33,0))] pointer-events-none" />
@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 max-w-[140rem] mx-auto w-full px-6 md:px-12 lg:px-24 flex items-center">
+      <div className="relative z-10 max-w-[140rem] mx-auto w-full px-6 md:px-12 lg:px-24 flex items-start">
         <div className="max-w-[125rem] w-full">
           {/* Breadcrumbs */}
           <nav className="font-circe font-light text-[1.8rem] sm:text-[2.2rem] text-brand-text-muted tracking-wide flex items-center gap-2 mb-12 text-left select-none">
