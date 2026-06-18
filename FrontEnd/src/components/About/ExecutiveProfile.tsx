@@ -84,8 +84,8 @@ const ExecutiveProfile: React.FC = () => {
               <span className="font-urw font-bold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block">
                 Founder's Message
               </span>
-              <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white italic leading-relaxed">
-                "At BEX, we believe great experiences have the power to connect people, elevate brands, and create lasting impact. Our commitment is to deliver innovative solutions, exceptional quality, and meaningful value for our clients and partners worldwide. As we grow globally, we remain focused on pushing boundaries, embracing innovation, and creating experiences that inspire confidence, engagement, and success."
+              <p className="font-circe font-light text-[2.2rem] md:text-[2.8rem] text-white italic leading-relaxed">
+                "At BEX, we believe extraordinary experiences have the power to shape perceptions, strengthen brands, and create lasting value. As we continue to grow globally, our focus remains clear: to deliver world-class execution, embrace innovation, and exceed expectations at every stage of the journey."
               </p>
             </div>
 
