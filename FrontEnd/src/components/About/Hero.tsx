@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
             className="font-urw font-extrabold text-[4.5rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[8.5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark leading-none mb-10 whitespace-normal md:whitespace-nowrap"
           >
-            BACKDROPS Exhibitions
+            Backdrops Exhibitions
           </motion.h1>
 
           {/* Description paragraph */}
