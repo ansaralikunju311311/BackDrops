@@ -40,11 +40,8 @@ const OurMission: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="max-w-[75rem] text-center md:text-left order-3 md:order-3 space-y-6"
           >
-            <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-snug italic max-w-[55rem] md:max-w-[60rem]">
-              "To be the most trusted execution partner for experiential projects worldwide."
-            </p>
-            <p className="font-circe font-light text-[1.8rem] md:text-[2.3rem] text-white/90 leading-relaxed max-w-[60rem]">
-              We exist to help agencies, brands, and event professionals bring bold ideas to life through seamless execution, technical expertise, and unwavering commitment to quality. By combining creativity, craftsmanship, and operational excellence, we deliver environments and experiences that create meaningful connections between brands and their audiences.
+            <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-snug italic max-w-[65rem] md:max-w-[70rem]">
+              "To be the most trusted execution partner for experiential projects worldwide. To deliver world-class experiences through precision, craftsmanship, and execution excellence—empowering our partners to achieve extraordinary outcomes."
             </p>
           </motion.div>
 
