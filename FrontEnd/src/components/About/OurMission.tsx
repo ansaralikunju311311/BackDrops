@@ -13,7 +13,7 @@ const OurMission: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col text-center md:text-right order-1 md:order-1 max-w-[48rem] w-full shrink-0"
+            className="flex flex-col text-center md:text-right order-1 md:order-1 max-w-[28rem]"
           >
             <h2 className="font-urw font-normal text-[4rem] md:text-[5rem] lg:text-h1 leading-[1.05] text-brand-white tracking-wide whitespace-nowrap">
               Our Mission
@@ -38,9 +38,9 @@ const OurMission: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-[75rem] text-center md:text-left order-3 md:order-3 space-y-6"
+            className="max-w-[95rem] text-center md:text-left order-3 md:order-3 space-y-6"
           >
-            <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-snug italic max-w-[65rem] md:max-w-[70rem]">
+            <p className="font-circe font-bold text-[2.2rem] md:text-[2.8rem] text-[#9E5330] leading-snug italic max-w-[85rem] md:max-w-[90rem]">
               "To be the most trusted execution partner for experiential projects worldwide. To deliver world-class experiences through precision, craftsmanship, and execution excellence—empowering our partners to achieve extraordinary outcomes."
             </p>
           </motion.div>

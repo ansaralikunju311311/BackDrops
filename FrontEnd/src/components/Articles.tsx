@@ -132,16 +132,16 @@ const Articles: React.FC = () => {
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={`w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white transition-all duration-300 ${
+              className={`w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-white transition-all duration-300 ${
                 currentPage === 1
                   ? 'opacity-30 cursor-not-allowed'
                   : 'hover:bg-brand-gold hover:border-brand-gold hover:scale-105 active:scale-95 cursor-pointer shadow-lg'
               }`}
               aria-label="Previous page"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-8 h-8" />
             </button>
-
+ 
             {/* Page Numbers */}
             {Array.from({ length: totalPages }).map((_, i) => {
               const pageNum = i + 1
@@ -150,29 +150,30 @@ const Articles: React.FC = () => {
                 <button
                   key={pageNum}
                   onClick={() => setCurrentPage(pageNum)}
-                  className={`w-16 h-16 rounded-full font-euclid font-bold text-[1.8rem] transition-all duration-300 cursor-pointer border ${
+                  className={`w-20 h-20 rounded-full font-euclid font-bold transition-all duration-300 cursor-pointer border ${
                     isActive
                       ? 'bg-brand-gold border-brand-gold text-white shadow-[0_5px_15px_rgba(158,83,48,0.3)] hover:scale-105'
                       : 'bg-brand-dark-accent/40 border-white/10 text-brand-white/80 hover:border-brand-gold hover:text-brand-gold hover:scale-105'
                   }`}
+                  style={{ fontSize: '2.4rem' }}
                 >
                   {pageNum}
                 </button>
               )
             })}
-
+ 
             {/* Next Button */}
             <button
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className={`w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white transition-all duration-300 ${
+              className={`w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-white transition-all duration-300 ${
                 currentPage === totalPages
                   ? 'opacity-30 cursor-not-allowed'
                   : 'hover:bg-brand-gold hover:border-brand-gold hover:scale-105 active:scale-95 cursor-pointer shadow-lg'
               }`}
               aria-label="Next page"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-8 h-8" />
             </button>
           </div>
         )}

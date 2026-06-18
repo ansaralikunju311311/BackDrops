@@ -50,7 +50,7 @@ const HexagonTimeline: React.FC = () => {
         
         {/* Header Section */}
         <div className="text-center mb-24 md:mb-32">
-          <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-[rgb(158,83,48)] uppercase mb-4 block">
+          <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-white uppercase mb-4 block">
             Our Philosophy
           </span>
           <h2 className="font-urw font-extrabold text-[3.5rem] md:text-[5rem] text-[rgb(158,83,48)] uppercase tracking-wider leading-tight">
