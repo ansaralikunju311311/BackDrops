@@ -23,7 +23,7 @@ const ExecutiveProfile: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 flex flex-col items-start lg:mt-3"
           >
-            <span className="font-circe font-semibold text-[2rem] md:text-[2.5rem] tracking-[0.2em] text-brand-gold block mb-6 whitespace-nowrap">
+            <span className="font-circe font-semibold text-[2.4rem] md:text-[3.2rem] tracking-[0.05em] text-brand-gold block mb-6 whitespace-nowrap">
               THE VISIONARY BEHIND BEX
             </span>
             <div className="relative group w-full max-w-[42rem] aspect-[3/4] rounded-sm overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
