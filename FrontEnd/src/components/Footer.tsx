@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
             <p className="font-circe font-light text-white leading-relaxed" style={{ fontSize: '2.0rem' }}>
               <span className="block whitespace-nowrap">Backdrops Technical Services L.L.C</span>
               Gate no.13, Warehouse no- 6<br />
-              Jebel Ali Industrial area 1<br />
+              Jebel Ali Industrial Area 1<br />
               Dubai- U.A.E
             </p>
           </div>

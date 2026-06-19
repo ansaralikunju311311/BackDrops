@@ -247,7 +247,7 @@ const TermsConditions: React.FC = () => {
               <p className="bg-white/[0.02] border border-white/5 p-6 rounded-lg max-w-xl">
                 <strong>Backdrops Technical Services L.L.C</strong><br />
                 Warehouse no- 6, Gate no.13<br />
-                Jebel Ali Industrial area 1<br />
+                Jebel Ali Industrial Area 1<br />
                 Dubai - United Arab Emirates<br />
                 Email: <a href="mailto:info@bexdxb.com" className="text-brand-gold hover:underline">info@bexdxb.com</a><br />
                 Phone: +971 55 229 1691

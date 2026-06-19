@@ -214,7 +214,7 @@ const Contact: React.FC = () => {
       top: '28%',
       left: '32%',
       title: 'Dubai HQ Showroom',
-      desc: 'Jebel Ali Industrial area 1, Warehouse 6'
+      desc: 'Jebel Ali Industrial Area 1, Warehouse 6'
     },
     {
       id: 'fabrication',
@@ -471,7 +471,7 @@ const Contact: React.FC = () => {
                     <p className="font-circe font-light text-[2.2rem] text-white leading-relaxed">
                       Backdrops Technical Services L.L.C<br />
                       Gate no.13, Warehouse no- 6<br />
-                      Jebel Ali Industrial area 1<br />
+                      Jebel Ali Industrial Area 1<br />
                       Dubai- U.A.E
                     </p>
                   </div>
@@ -1108,7 +1108,7 @@ const Contact: React.FC = () => {
                               Google Map
                             </span>
                             <span className="font-circe font-light text-[1.3rem] text-white">
-                              Get directions to Jebel Ali Industrial area 1
+                              Get directions to Jebel Ali Industrial Area 1
                             </span>
                           </div>
                         </div>
@@ -1230,10 +1230,10 @@ const Contact: React.FC = () => {
             Backdrops UAE Showroom & Exhibition
           </span>
           <p className="font-circe font-light text-[1.8rem] text-white leading-relaxed mb-6">
-            Warehouse no- 6, Gate no.13<br />Jebel Ali Industrial area 1 - Dubai - United Arab Emirates
+            Warehouse no- 6, Gate no.13<br />Jebel Ali Industrial Area 1 - Dubai - United Arab Emirates
           </p>
           <a
-            href="https://maps.google.com/?q=Backdrops+exhibition+Warehouse+no-+6+Gate+no.13+Jebel+Ali+Industrial+area+1+Dubai+United+Arab+Emirates"
+            href="https://maps.google.com/?q=Backdrops+exhibition+Warehouse+no-+6+Gate+no.13+Jebel+Ali+Industrial+Area+1+Dubai+United+Arab+Emirates"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 font-euclid font-bold text-[1.5rem] uppercase tracking-wider text-brand-gold hover:text-brand-white transition-colors duration-300 group/link cursor-pointer"
