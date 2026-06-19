@@ -214,7 +214,7 @@ const StaggeredFeatures: React.FC = () => {
                       </motion.div>
 
                       {/* Clickable Hint Indicator */}
-                      <span className={`text-[1.2rem] tracking-wider uppercase font-circe font-semibold mt-1 transition-opacity duration-300 opacity-30 group-hover:opacity-75 flex items-center gap-1.5 ${
+                      <span className={`text-[1.2rem] tracking-wider uppercase font-circe font-semibold mt-1 transition-opacity duration-300 opacity-70 group-hover:opacity-100 flex items-center gap-1.5 ${
                         card.isGold ? 'text-white' : 'text-brand-gold'
                       }`}>
                         {isExpanded ? 'Click to collapse' : 'Click to expand'}
@@ -304,7 +304,7 @@ const StaggeredFeatures: React.FC = () => {
                     </motion.div>
 
                     {/* Clickable Hint Indicator */}
-                    <span className={`text-[1.2rem] tracking-wider uppercase font-circe font-semibold mt-1 transition-opacity duration-300 opacity-30 group-hover:opacity-75 flex items-center gap-1.5 ${
+                    <span className={`text-[1.2rem] tracking-wider uppercase font-circe font-semibold mt-1 transition-opacity duration-300 opacity-70 group-hover:opacity-100 flex items-center gap-1.5 ${
                       card.isGold ? 'text-white' : 'text-brand-gold'
                     }`}>
                       {isExpanded ? 'Click to collapse' : 'Click to expand'}
