@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Phone } from 'lucide-react'
 
 import serv1 from '../assets/service/serv1.jpeg'
@@ -100,6 +100,7 @@ const SERVICES_DATA: ServiceData[] = [
 
 const Services: React.FC = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const [activeIdx, setActiveIdx] = useState(0)
   const [direction, setDirection] = useState(0) // -1 for left, 1 for right
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -512,9 +513,7 @@ const Services: React.FC = () => {
                 onClick={() => {
                   // If drag distance is significant, ignore the click to avoid accidental activation
                   if (dragDistance.current > 8) return
-                  setDirection(idx > activeIdx ? 1 : -1)
-                  setActiveIdx(idx)
-                  scrollToHeader()
+                  navigate(`/services/detail?id=${idx}`)
                 }}
                 className={`flex-shrink-0 w-[24rem] sm:w-[28rem] cursor-pointer group transition-all duration-500 ease-out hover:-translate-y-4 hover:scale-[1.03] ${
                   idx === activeIdx 
