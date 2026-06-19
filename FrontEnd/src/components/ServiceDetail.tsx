@@ -328,7 +328,9 @@ const ServiceDetail: React.FC = () => {
         details: [
           `Client: ${stand.client}`,
           `Location: ${stand.location}`,
-          ...(stand.typeOfStands || [])
+          ...(stand.typeOfStands || []).map((t: string) => 
+            t.split(' ').map(w => w ? (w === '/' ? '/' : w.charAt(0).toUpperCase() + w.slice(1)) : '').join(' ')
+          )
         ].slice(0, 3),
         image: img.url,
         dbId: stand._id,
@@ -342,7 +344,9 @@ const ServiceDetail: React.FC = () => {
       details: [
         `Client: ${stand.client}`,
         `Location: ${stand.location}`,
-        ...(stand.typeOfStands || [])
+        ...(stand.typeOfStands || []).map((t: string) => 
+          t.split(' ').map(w => w ? (w === '/' ? '/' : w.charAt(0).toUpperCase() + w.slice(1)) : '').join(' ')
+        )
       ].slice(0, 3),
       image: '',
       dbId: stand._id,
