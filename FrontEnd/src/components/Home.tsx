@@ -813,7 +813,7 @@ const Home: React.FC = () => {
                     clientVideoScrollRef.current.scrollBy({ left: -600, behavior: 'smooth' });
                   }
                 }}
-                className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold hover:scale-105 shadow-xl hidden md:flex"
+                className="absolute left-2 md:-left-6 lg:-left-12 top-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold hover:scale-105 shadow-xl hidden md:flex"
               >
                 <ChevronLeft className="w-8 h-8" />
               </button>
@@ -826,7 +826,7 @@ const Home: React.FC = () => {
                     clientVideoScrollRef.current.scrollBy({ left: 600, behavior: 'smooth' });
                   }
                 }}
-                className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold hover:scale-105 shadow-xl hidden md:flex"
+                className="absolute right-2 md:-right-6 lg:-right-12 top-1/2 -translate-y-1/2 z-30 w-16 h-16 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold hover:scale-105 shadow-xl hidden md:flex"
               >
                 <ChevronRight className="w-8 h-8" />
               </button>
