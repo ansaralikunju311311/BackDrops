@@ -301,8 +301,8 @@ const FAQ: React.FC = () => {
                   </div>
 
                   {/* Top corner Icon */}
-                  <div className="relative z-10 w-10 h-10 rounded-lg bg-white/[0.02] border border-white/[0.05] group-hover:border-brand-gold/25 group-hover:bg-brand-gold/[0.05] flex items-center justify-center transition-all duration-300 shrink-0">
-                    <HelpCircle className="w-5 h-5 text-brand-text-muted group-hover:text-brand-gold transition-colors duration-300" />
+                  <div className="relative z-10 w-16 h-16 rounded-xl bg-white/[0.02] border border-white/[0.05] group-hover:border-brand-gold/25 group-hover:bg-brand-gold/[0.05] flex items-center justify-center transition-all duration-300 shrink-0">
+                    <HelpCircle className="w-9 h-9 text-brand-text-muted group-hover:text-brand-gold transition-colors duration-300" />
                   </div>
 
                   {/* Interactive content wrapper */}
