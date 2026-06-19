@@ -305,7 +305,11 @@ const Portfolio: React.FC = () => {
                   {getPageNumbers().map((pNum, idx) => {
                     if (pNum === '...') {
                       return (
-                        <span key={`ell-${idx}`} className="w-10 h-10 flex items-center justify-center font-urw font-bold text-[1.4rem] text-brand-text-muted/60">
+                        <span 
+                          key={`ell-${idx}`} 
+                          className="flex items-center justify-center font-urw font-bold text-brand-text-muted/60"
+                          style={{ width: '4rem', height: '4rem', fontSize: '2.2rem' }}
+                        >
                           ...
                         </span>
                       )
@@ -314,11 +318,12 @@ const Portfolio: React.FC = () => {
                       <button
                         key={pNum}
                         onClick={() => setPage(Number(pNum))}
-                        className={`w-10 h-10 rounded-sm font-urw font-bold text-[1.4rem] flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                        className={`rounded-sm font-urw font-bold flex items-center justify-center transition-all duration-300 cursor-pointer ${
                           page === pNum
                             ? 'bg-[#9E5330] text-white shadow-[0_5px_15px_rgba(158,83,48,0.3)]'
                             : 'border border-brand-white/10 text-brand-text-muted hover:border-brand-gold hover:text-white bg-white/[0.02]'
                         }`}
+                        style={{ width: '4rem', height: '4rem', fontSize: '2.2rem' }}
                       >
                         {pNum}
                       </button>
