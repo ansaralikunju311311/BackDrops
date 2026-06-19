@@ -151,7 +151,7 @@ const StaggeredFeatures: React.FC = () => {
                       variants={cardVariants(isTop)}
                       whileHover={{ y: isTop ? -8 : 8 }}
                     onClick={toggleExpand}
-                    className={`w-full min-h-[24rem] h-auto p-8 flex flex-col justify-between rounded-sm cursor-pointer transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group relative ${
+                    className={`w-full min-h-[24rem] h-auto p-8 xl:px-5 xl:py-7 flex flex-col justify-between rounded-sm cursor-pointer transition-all duration-300 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.7)] overflow-hidden border group relative ${
                       card.isGold
                         ? 'bg-[#9E5330] border-[#9E5330]/20 text-white hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15),_0_20px_45px_-10px_rgba(158,83,48,0.4)]'
                         : 'bg-brand-dark-accent/80 border-brand-white/5 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15),_0_20px_45px_-10px_rgba(0,0,0,0.8)] text-white'
@@ -185,13 +185,13 @@ const StaggeredFeatures: React.FC = () => {
 
                     {/* Bottom: Title & Expander */}
                     <div className="flex flex-col gap-4 mt-auto">
-                      <div className="flex items-center justify-between gap-4 w-full">
-                        <h3 className="flex-1 min-w-0 font-circe font-light text-[2.2rem] xl:text-[2.4rem] leading-snug tracking-normal text-white break-words pr-2">
+                      <div className="flex items-center justify-between gap-2 w-full">
+                        <h3 className="flex-1 min-w-0 font-circe font-light text-[2.0rem] xl:text-[2.1rem] leading-snug tracking-normal text-white break-normal pr-1">
                           {card.title}
                         </h3>
                         <motion.span 
                           animate={{ rotate: isExpanded ? 180 : 0 }}
-                          className={`flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center text-[1.2rem] transition-colors duration-200 ${
+                          className={`flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center text-[1.1rem] transition-colors duration-200 ${
                             card.isGold ? 'border-white/30 text-white group-hover:bg-white/10' : 'border-brand-gold/30 text-brand-gold group-hover:bg-brand-gold/10'
                           }`}
                         >
