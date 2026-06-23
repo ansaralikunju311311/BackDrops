@@ -1107,10 +1107,11 @@ const AdminPortal: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-[1.4rem] bg-brand-gold text-white font-euclid font-bold text-[1.6rem] tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-[1.8rem] bg-brand-gold text-white font-euclid font-bold text-[2.2rem] tracking-wider uppercase rounded-xs hover:bg-brand-gold-light transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_20px_rgba(158,83,48,0.2)] hover:scale-[1.02] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ fontSize: '2.2rem' }}
                   >
                     {isLoading ? 'Verifying...' : 'Sign In'}
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-6 h-6" />
                   </button>
                 </form>
               </div>
@@ -1140,9 +1141,10 @@ const AdminPortal: React.FC = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="bg-brand-dark-accent/60 hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider text-[1.4rem] uppercase py-4 px-[2rem] border border-white/5 hover:border-brand-gold rounded-xs cursor-pointer flex items-center gap-3 shadow-lg group/logout"
+                  className="bg-brand-dark-accent/60 hover:bg-brand-gold hover:text-white transition-all duration-300 font-euclid font-bold tracking-wider text-[1.8rem] uppercase py-[1.8rem] px-[2.4rem] border border-white/5 hover:border-brand-gold rounded-xs cursor-pointer flex items-center gap-3 shadow-lg group/logout"
+                  style={{ fontSize: '1.8rem' }}
                 >
-                  <LogOut className="w-5 h-5 group-hover/logout:translate-x-0.5 transition-transform" />
+                  <LogOut className="w-6 h-6 group-hover/logout:translate-x-0.5 transition-transform" />
                   Sign Out
                 </button>
               </div>
@@ -1151,51 +1153,56 @@ const AdminPortal: React.FC = () => {
               <div className="flex gap-4 border-b border-white/10 pb-4">
                 <button
                   onClick={() => setActiveTab('projects')}
-                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                  className={`font-circe text-[2.0rem] uppercase tracking-wider font-semibold py-3 px-8 rounded-sm transition-all duration-300 cursor-pointer ${
                     activeTab === 'projects' 
                       ? 'bg-brand-gold text-white shadow-lg' 
                       : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
                   }`}
+                  style={{ fontSize: '2.0rem' }}
                 >
                   Stand Projects
                 </button>
                 <button
                   onClick={() => setActiveTab('gallery')}
-                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                  className={`font-circe text-[2.0rem] uppercase tracking-wider font-semibold py-3 px-8 rounded-sm transition-all duration-300 cursor-pointer ${
                     activeTab === 'gallery' 
                       ? 'bg-brand-gold text-white shadow-lg' 
                       : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
                   }`}
+                  style={{ fontSize: '2.0rem' }}
                 >
                   Photo Gallery
                 </button>
                 <button
                   onClick={() => setActiveTab('videocases')}
-                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                  className={`font-circe text-[2.0rem] uppercase tracking-wider font-semibold py-3 px-8 rounded-sm transition-all duration-300 cursor-pointer ${
                     activeTab === 'videocases' 
                       ? 'bg-brand-gold text-white shadow-lg' 
                       : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
                   }`}
+                  style={{ fontSize: '2.0rem' }}
                 >
                   Video Cases
                 </button>
                 <button
                   onClick={() => setActiveTab('reviews')}
-                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                  className={`font-circe text-[2.0rem] uppercase tracking-wider font-semibold py-3 px-8 rounded-sm transition-all duration-300 cursor-pointer ${
                     activeTab === 'reviews' 
                       ? 'bg-brand-gold text-white shadow-lg' 
                       : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
                   }`}
+                  style={{ fontSize: '2.0rem' }}
                 >
                   Reviews
                 </button>
                 <button
                   onClick={() => setActiveTab('clientvideos')}
-                  className={`font-circe text-[1.6rem] uppercase tracking-wider font-semibold py-2 px-6 rounded-sm transition-all duration-300 cursor-pointer ${
+                  className={`font-circe text-[2.0rem] uppercase tracking-wider font-semibold py-3 px-8 rounded-sm transition-all duration-300 cursor-pointer ${
                     activeTab === 'clientvideos' 
                       ? 'bg-brand-gold text-white shadow-lg' 
                       : 'text-brand-text-muted hover:text-white bg-white/5 hover:bg-white/10'
                   }`}
+                  style={{ fontSize: '2.0rem' }}
                 >
                   Client Review Videos
                 </button>
